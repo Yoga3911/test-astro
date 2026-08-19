@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Disallow draft & admin previews if any
+Disallow: /draft/
+Disallow: /api/
+
+Sitemap: https://sman1nusantara.sch.id/sitemap-index.xml
+

@@ -1,0 +1,54 @@
+---
+/**
+ * berita/[id].astro — Dynamic route for individual news articles (Astro 7)
+ *
+ * Generates one page per MDX file in the 'berita' content collection.
+ * Uses ArticleLayout for consistent article presentation.
+ */
+
+import ArticleLayout from '@/layouts/ArticleLayout.astro';
+import { getCollection, render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const beritaEntries = await getCollection('berita');
+  return beritaEntries
+    .filter(entry => !entry.data.draft)
+    .map((entry) => ({
+      params: { id: entry.id },
+      props:  { entry },
+    }));
+};
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  author,
+  coverImage,
+  coverAlt,
+  kategori,
+  tags,
+} = entry.data;
+---
+
+<ArticleLayout
+  title={title}
+  description={description}
+  pubDate={pubDate}
+  updatedDate={updatedDate}
+  author={author}
+  coverImage={coverImage}
+  coverAlt={coverAlt}
+  kategori={kategori}
+  tags={tags}
+  backHref="/berita"
+  backLabel="Kembali ke Berita"
+>
+  <Content />
+</ArticleLayout>
+

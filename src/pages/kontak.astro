@@ -1,0 +1,227 @@
+---
+/**
+ * kontak.astro — Halaman Kontak
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import KontakForm from '@/components/KontakForm.svelte';
+import { SITE_CONFIG } from '@/utils/config';
+
+const kontakInfo = [
+  {
+    icon: '📍',
+    label: 'Alamat',
+    value: SITE_CONFIG.address,
+    href: `https://maps.google.com/?q=${encodeURIComponent(SITE_CONFIG.address)}`,
+  },
+  {
+    icon: '📞',
+    label: 'Telepon',
+    value: SITE_CONFIG.phone,
+    href: `tel:${SITE_CONFIG.phone}`,
+  },
+  {
+    icon: '✉️',
+    label: 'Email',
+    value: SITE_CONFIG.email,
+    href: `mailto:${SITE_CONFIG.email}`,
+  },
+  {
+    icon: '🕐',
+    label: 'Jam Layanan',
+    value: 'Sen–Jum: 07.00–16.00 WIB',
+    href: null,
+  },
+];
+
+const kontakSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: `Kontak ${SITE_CONFIG.name}`,
+  description: 'Informasi alamat resmi, nomor telepon, email, jam kerja, dan formulir pengiriman pesan SMAN 1 Nusantara.',
+  url: `${SITE_CONFIG.url}/kontak`,
+  mainEntity: {
+    '@type': 'HighSchool',
+    name: SITE_CONFIG.name,
+    telephone: SITE_CONFIG.phone,
+    email: SITE_CONFIG.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: SITE_CONFIG.address,
+      addressCountry: 'ID',
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+        opens: '07:00',
+        closes: '16:00',
+      },
+    ],
+  },
+};
+---
+
+<BaseLayout
+  title="Kontak Kami"
+  description="Hubungi SMAN 1 Nusantara — alamat sekolah, nomor telepon, email resmi, jam operasional layanan, dan formulir pengiriman pesan online."
+  keywords={`Kontak ${SITE_CONFIG.name}, Alamat SMAN 1 Nusantara, Telepon SMAN 1 Nusantara, Email Sekolah, Lokasi SMAN 1 Nusantara`}
+  structuredData={kontakSchema}
+>
+
+  <Header />
+  <main id="main-content" style="padding-top: 4.5rem; background: #ffffff;">
+
+    <!-- Page Header -->
+    <div style="
+      padding: 4.5rem 0;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #fffbeb 100%);
+      border-bottom: 1px solid #e2e8f0;
+      position: relative; overflow: hidden;
+    ">
+      <div class="container">
+        <div class="section-tag">📬 Hubungi Kami</div>
+        <h1 style="margin: 0.75rem 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
+          Kami Siap <span class="accent">Membantu</span>
+        </h1>
+        <p style="color: #475569; font-size: 1.05rem; max-width: 480px;">
+          Ada pertanyaan, masukan, atau ingin berkunjung? Jangan ragu untuk menghubungi kami.
+        </p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="kontak-section-heading" style="background: #ffffff;">
+      <div class="container">
+        <!-- Hidden Accessible H2 to satisfy sequential heading order (h1 -> h2 -> h3) -->
+        <h2 id="kontak-section-heading" class="sr-only">Informasi Kontak, Media Sosial, dan Lokasi Sekolah</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: start;" class="kontak-grid">
+
+          <!-- Left: Info + Map -->
+          <div>
+            <!-- Contact Info Cards -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem;">
+              {kontakInfo.map((info, i) => (
+                <div class={`card reveal delay-${(i + 1) * 100}`} style="padding: 1.25rem; background: #ffffff; border: 1px solid #e2e8f0;">
+                  <div style="display: flex; gap: 1rem; align-items: center;">
+                    <div style="
+                      width: 48px; height: 48px;
+                      background: #eff6ff;
+                      border: 1px solid #dbeafe;
+                      border-radius: 0.75rem;
+                      display: flex; align-items: center; justify-content: center;
+                      font-size: 1.3rem;
+                      flex-shrink: 0;
+                    ">{info.icon}</div>
+                    <div style="flex: 1; min-width: 0;">
+                      <p style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.2rem;">{info.label}</p>
+                      {info.href ? (
+                        <a
+                          href={info.href}
+                          target={info.href.startsWith('http') ? '_blank' : undefined}
+                          rel={info.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                          style="font-size: 0.9rem; color: #2563eb; font-weight: 600; transition: var(--transition-base); display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+                          class="contact-link"
+                        >
+                          {info.value}
+                        </a>
+                      ) : (
+                        <span style="font-size: 0.9rem; color: #0f172a; font-weight: 500;">{info.value}</span>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <!-- Social Media -->
+            <div class="card reveal delay-500" style="padding: 1.5rem; background: #ffffff; border: 1px solid #e2e8f0;">
+              <h3 style="font-size: 0.875rem; font-weight: 700; color: #0f172a; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem;">Media Sosial</h3>
+              <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                {SITE_CONFIG.socialMedia.instagram && (
+                  <a href={SITE_CONFIG.socialMedia.instagram} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="Instagram kami">
+                    📸 Instagram
+                  </a>
+                )}
+                {SITE_CONFIG.socialMedia.youtube && (
+                  <a href={SITE_CONFIG.socialMedia.youtube} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="YouTube kami">
+                    ▶️ YouTube
+                  </a>
+                )}
+                {SITE_CONFIG.socialMedia.facebook && (
+                  <a href={SITE_CONFIG.socialMedia.facebook} target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm" aria-label="Facebook kami">
+                    👍 Facebook
+                  </a>
+                )}
+              </div>
+            </div>
+
+            <!-- Maps Embed placeholder -->
+            <div class="reveal delay-300" style="margin-top: 1.5rem;">
+              <div style="
+                height: 240px;
+                background: #f8fafc;
+                border: 1px solid #e2e8f0;
+                border-radius: var(--radius-card);
+                display: flex; flex-direction: column; align-items: center; justify-content: center;
+                gap: 0.75rem;
+                color: #475569;
+                font-size: 0.875rem;
+                overflow: hidden;
+                position: relative;
+              ">
+                <span style="font-size: 2.5rem;">🗺️</span>
+                <p style="margin: 0; text-align: center; line-height: 1.5;">
+                  Embed Google Maps di sini<br/>
+                  <span style="font-size: 0.78rem; color: #64748b;">Ganti dengan iframe Google Maps sekolah</span>
+                </p>
+                <a
+                  href={`https://maps.google.com/?q=${encodeURIComponent(SITE_CONFIG.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-outline btn-sm"
+                >
+                  Buka di Google Maps
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Contact Form -->
+          <div class="reveal delay-100">
+            <div class="card" style="padding: 2.5rem; background: #ffffff; border: 1px solid #e2e8f0;">
+              <h2 style="font-size: 1.35rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">
+                Kirim Pesan
+              </h2>
+              <p style="color: #475569; font-size: 0.9rem; margin-bottom: 2rem;">
+                Isi formulir di bawah ini dan tim kami akan merespons dalam 1×24 jam kerja.
+              </p>
+              <KontakForm
+                client:visible
+                formTitle="Kirim Pesan"
+                web3FormsKey="YOUR_WEB3FORMS_KEY"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media (min-width: 1024px) {
+    .kontak-grid {
+      grid-template-columns: 1fr 1.3fr !important;
+    }
+  }
+
+  .contact-link:hover {
+    color: #1d4ed8 !important;
+  }
+</style>

@@ -1,0 +1,334 @@
+---
+/**
+ * Hero.astro
+ *
+ * Full-viewport hero section with:
+ * - Animated light gradient background with soft glowing floating orbs
+ * - Grid overlay texture
+ * - Staggered text reveal animations
+ * - Animated stats row
+ * - Floating school emblem illustration
+ * - CTA buttons
+ */
+
+import { SITE_CONFIG, STATS } from '@/utils/config';
+---
+
+<section
+  id="hero"
+  aria-label="Selamat datang di SMAN 1 Nusantara"
+  style="
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding-top: 6.5rem;
+    padding-bottom: 4rem;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(37,99,235,0.07) 0%, #ffffff 70%);
+  "
+>
+  <!-- Background layers -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; pointer-events: none; overflow: hidden;">
+    <!-- Grid overlay -->
+    <div class="bg-grid" style="position: absolute; inset: 0; opacity: 0.5;"></div>
+
+    <!-- Soft glowing gradient orbs (static for peak mobile FPS) -->
+    <div style="
+      position: absolute;
+      top: 10%; left: -5%;
+      width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(37,99,235,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    "></div>
+    <div style="
+      position: absolute;
+      bottom: 10%; right: -5%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    "></div>
+  </div>
+
+  <div class="container" style="position: relative; z-index: 1;">
+    <div style="
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    " class="hero-grid">
+
+      <!-- Left: Text Content -->
+      <div>
+        <!-- Tag -->
+        <div style="margin-bottom: 1.5rem;">
+          <span class="section-tag">
+            <span style="
+              width: 6px; height: 6px;
+              background: var(--color-gold-400);
+              border-radius: 50%;
+              display: inline-block;
+              animation: pulse-glow 2s ease-in-out infinite;
+            "></span>
+            Akreditasi A (Unggul) · NPSN {SITE_CONFIG.npsn}
+          </span>
+        </div>
+
+        <!-- Headline (Critical LCP Element - Zero Delay) -->
+        <h1
+          style="
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: var(--font-size-display);
+            line-height: 1.05;
+            color: #0f172a;
+            margin-bottom: 1.5rem;
+            text-wrap: balance;
+          "
+        >
+          Sekolah Unggulan<br />
+          untuk <span class="gradient-text">Generasi</span><br />
+          <span style="
+            background: linear-gradient(135deg, #d97706, #b45309);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          ">Pemimpin Bangsa</span>
+        </h1>
+
+        <!-- Description -->
+        <p
+          style="
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: #475569;
+            line-height: 1.75;
+            max-width: 560px;
+            margin-bottom: 2.5rem;
+          "
+        >
+          {SITE_CONFIG.name} — membangun generasi cerdas, berkarakter, dan berdaya saing
+          global dengan lingkungan belajar modern dan inovatif sejak 1975.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 3rem;">
+          <a
+            href="/ppdb"
+            id="hero-cta-ppdb"
+            class="btn btn-gold"
+            aria-label="Daftar PPDB 2026/2027 sekarang"
+          >
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+            </svg>
+            Daftar PPDB 2026/2027
+          </a>
+          <a
+            href="/tentang"
+            id="hero-cta-tentang"
+            class="btn btn-outline"
+            aria-label="Pelajari lebih lanjut tentang sekolah"
+          >
+            <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            Tentang Sekolah
+          </a>
+        </div>
+
+        <!-- Stats Row -->
+        <div
+          style="
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+          "
+          id="hero-stats"
+        >
+          {STATS.map((stat) => (
+            <div style="
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 0.875rem 1rem;
+              background: #ffffff;
+              border: 1px solid #e2e8f0;
+              border-radius: 0.75rem;
+              box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+            ">
+              <span style="font-size: 1.5rem;">{stat.icon}</span>
+              <div>
+                <div style="
+                  font-family: var(--font-heading);
+                  font-weight: 800;
+                  font-size: 1.35rem;
+                  color: #0f172a;
+                  line-height: 1;
+                ">
+                  <span data-counter={stat.value}>{stat.value}</span>{stat.suffix}
+                </div>
+                <div style="font-size: 0.75rem; color: #64748b; margin-top: 0.15rem; font-weight: 500;">
+                  {stat.label}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Right: Visual decoration -->
+      <div class="hero-visual" style="display: flex; justify-content: center; align-items: center;">
+        <div style="position: relative; width: 100%; max-width: 480px;">
+
+          <!-- Central school emblem card -->
+          <div class="glass pulse-glow" style="
+            padding: 2.5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.12);
+          ">
+            <!-- Shimmer overlay -->
+            <div class="shimmer" style="position: absolute; inset: 0; pointer-events: none;"></div>
+
+            <!-- Large emoji emblem -->
+            <div class="float" style="font-size: 4.5rem; margin-bottom: 1rem; display: block;">🏫</div>
+
+            <h2 style="
+              font-family: var(--font-heading);
+              font-weight: 800;
+              font-size: 1.4rem;
+              color: #0f172a;
+              margin-bottom: 0.35rem;
+            ">SMAN 1 Nusantara</h2>
+
+            <p style="
+              font-size: 0.85rem;
+              color: #64748b;
+              margin-bottom: 1.25rem;
+            ">Berdiri sejak 1975 · Jawa, Indonesia</p>
+
+            <!-- Mini achievement list -->
+            <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+              {[
+                { icon: '🥇', text: 'Juara OSN Nasional 2026' },
+                { icon: '⭐', text: 'Akreditasi A (Unggul)' },
+                { icon: '🌟', text: '200+ Prestasi Akademik' },
+              ].map((item) => (
+                <div style="
+                  display: flex; align-items: center; gap: 0.625rem;
+                  background: #f8fafc;
+                  border: 1px solid #e2e8f0;
+                  border-radius: 0.5rem;
+                  padding: 0.5rem 0.75rem;
+                  font-size: 0.82rem;
+                  color: #334155;
+                  font-weight: 500;
+                  text-align: left;
+                ">
+                  <span>{item.icon}</span>
+                  <span>{item.text}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Floating badge top-right -->
+          <div style="
+            position: absolute;
+            top: -1rem; right: -1rem;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.8rem;
+            box-shadow: 0 6px 16px rgba(217, 119, 6, 0.35);
+            white-space: nowrap;
+          ">PPDB 2026 Dibuka!</div>
+
+          <!-- Floating badge bottom-left -->
+          <div style="
+            position: absolute;
+            bottom: -0.75rem; left: -0.75rem;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 0.625rem 0.875rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+          ">
+            <span style="font-size: 1.2rem;">🎓</span>
+            <div>
+              <div style="font-size: 0.7rem; color: #64748b; font-weight: 500;">Lulusan</div>
+              <div style="font-size: 0.9rem; font-weight: 800; color: #0f172a;">95% PTN</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    aria-hidden="true"
+    style="
+      position: absolute;
+      bottom: 1.75rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.375rem;
+      opacity: 0.6;
+    "
+  >
+    <span style="font-size: 0.7rem; color: #64748b; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;">Scroll</span>
+    <div style="
+      width: 22px; height: 34px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      padding-top: 5px;
+    ">
+      <div style="
+        width: 4px; height: 7px;
+        background: #2563eb;
+        border-radius: 2px;
+        animation: scroll-dot 1.5s ease-in-out infinite;
+      "></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll-dot {
+    0%   { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(10px); opacity: 0; }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+  @media (max-width: 640px) {
+    #hero-stats {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .hero-visual {
+      display: none !important;
+    }
+  }
+</style>
+

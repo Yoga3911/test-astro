@@ -1,0 +1,204 @@
+---
+/**
+ * agenda.astro — Halaman Agenda Sekolah
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import AgendaCard from '@/components/AgendaCard.astro';
+
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '@/utils/config';
+
+const allAgenda = await getCollection('agenda');
+
+const sorted = allAgenda.sort(
+  (a, b) => a.data.tanggal.valueOf() - b.data.tanggal.valueOf()
+);
+
+const grouped = {
+  upcoming:  sorted.filter(a => a.data.status === 'upcoming'),
+  ongoing:   sorted.filter(a => a.data.status === 'ongoing'),
+  completed: sorted.filter(a => a.data.status === 'completed'),
+};
+
+const agendaSchema = sorted.map((item) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Event',
+  name: item.data.judul,
+  description: item.data.deskripsi,
+  startDate: item.data.tanggal.toISOString(),
+  endDate: (item.data.tanggalAkhir ?? item.data.tanggal).toISOString(),
+  eventStatus: item.data.status === 'completed'
+    ? 'https://schema.org/EventMovedOnline'
+    : 'https://schema.org/EventScheduled',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: {
+    '@type': 'Place',
+    name: item.data.lokasi,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: SITE_CONFIG.address,
+      addressCountry: 'ID',
+    },
+  },
+  organizer: {
+    '@type': 'HighSchool',
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+  },
+}));
+---
+
+<BaseLayout
+  title="Agenda & Kegiatan Sekolah"
+  description="Kalender agenda resmi SMAN 1 Nusantara — Jadwal lengkap kegiatan akademik, ujian sekolah, peringatan hari besar, kompetisi OSN, dan ekstrakurikuler."
+  keywords="Agenda SMAN 1 Nusantara, Kalender Akademik SMA, Jadwal Kegiatan Sekolah, Event SMAN 1 Nusantara, Ujian Sekolah"
+  structuredData={agendaSchema}
+>
+
+  <Header />
+  <main id="main-content" style="padding-top: 4.5rem; background: #ffffff;">
+
+    <!-- Page Header -->
+    <div style="
+      padding: 4.5rem 0;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #fffbeb 100%);
+      border-bottom: 1px solid #e2e8f0;
+      position: relative; overflow: hidden;
+    ">
+      <div class="container">
+        <div class="section-tag">📅 Kegiatan</div>
+        <h1 style="margin: 0.75rem 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
+          Agenda <span class="accent">Sekolah</span>
+        </h1>
+        <p style="color: #475569; font-size: 1.05rem; max-width: 480px;">
+          Kalender kegiatan dan acara penting SMAN 1 Nusantara. Selalu update dan jangan sampai terlewat!
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="container">
+
+        <!-- Ongoing Events (if any) -->
+        {grouped.ongoing.length > 0 && (
+          <div style="margin-bottom: 3rem;">
+            <h2 class="reveal" style="font-size: 1.35rem; font-weight: 700; color: #166534; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%; animation: pulse-glow 1.5s infinite;"></span>
+              Sedang Berlangsung
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+              {grouped.ongoing.map((agenda, i) => (
+                <div class={`reveal delay-${(i + 1) * 100}`}>
+                  <AgendaCard agenda={agenda} layout="grid" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Upcoming Events -->
+        {grouped.upcoming.length > 0 && (
+          <div style="margin-bottom: 3rem;">
+            <h2 class="reveal" style="font-size: 1.35rem; font-weight: 700; color: #1d4ed8; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              🗓️ Akan Datang
+            </h2>
+
+            <!-- Desktop: Timeline | Mobile: Grid -->
+            <div class="timeline-wrapper" style="position: relative;">
+              <!-- Timeline line (desktop only) -->
+              <div class="timeline-line" aria-hidden="true"></div>
+
+              {grouped.upcoming.map((agenda, i) => (
+                <div class={`reveal delay-${(i % 4 + 1) * 100}`}>
+                  <AgendaCard agenda={agenda} index={i} layout="timeline" />
+                </div>
+              ))}
+            </div>
+
+            <!-- Mobile grid fallback -->
+            <div class="agenda-grid-mobile">
+              {grouped.upcoming.map((agenda, i) => (
+                <div class={`reveal delay-${(i % 4 + 1) * 100}`}>
+                  <AgendaCard agenda={agenda} layout="grid" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <!-- Completed Events -->
+        {grouped.completed.length > 0 && (
+          <div>
+            <h2 class="reveal" style="font-size: 1.35rem; font-weight: 700; color: #64748b; margin-bottom: 1.25rem;">
+              ✅ Telah Selesai
+            </h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; opacity: 0.85;">
+              {grouped.completed.map((agenda, i) => (
+                <div class={`reveal delay-${(i + 1) * 100}`}>
+                  <AgendaCard agenda={agenda} layout="grid" />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {allAgenda.length === 0 && (
+          <div style="text-align: center; padding: 6rem 0;">
+            <p style="font-size: 3rem; margin-bottom: 1rem;">📭</p>
+            <p style="color: #64748b;">Belum ada agenda yang dipublikasikan.</p>
+          </div>
+        )}
+
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .timeline-wrapper {
+    display: block;
+  }
+
+  .timeline-line {
+    display: none;
+  }
+
+  .agenda-grid-mobile {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .timeline-wrapper {
+      display: block;
+    }
+
+    .timeline-line {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e2e8f0;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
+
+    .agenda-grid-mobile {
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .timeline-wrapper {
+      display: none;
+    }
+  }
+</style>
+

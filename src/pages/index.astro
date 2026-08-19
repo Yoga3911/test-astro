@@ -1,17 +1,272 @@
 ---
+/**
+ * index.astro — Beranda (Homepage)
+ *
+ * Sections: Hero → Pengumuman Penting → Berita Terbaru → Agenda → Fasilitas → CTA PPDB
+ */
 
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import Hero from '@/components/Hero.astro';
+import BeritaCard from '@/components/BeritaCard.astro';
+import AgendaCard from '@/components/AgendaCard.astro';
+
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG, formatDate } from '@/utils/config';
+
+// Fetch content (Astro 7 Content Layer)
+const allBerita     = await getCollection('berita');
+const allAgenda     = await getCollection('agenda');
+const allPengumuman = await getCollection('pengumuman');
+
+// Sort by date desc, filter drafts
+const latestBerita  = allBerita
+  .filter(b => !b.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 4);
+
+const upcomingAgenda = allAgenda
+  .filter(a => a.data.status !== 'completed')
+  .sort((a, b) => a.data.tanggal.valueOf() - b.data.tanggal.valueOf())
+  .slice(0, 3);
+
+const importantPengumuman = allPengumuman
+  .filter(p => p.data.penting)
+  .sort((a, b) => b.data.tanggal.valueOf() - a.data.tanggal.valueOf())
+  .slice(0, 3);
+
+// School facilities data (static, maintained here)
+const fasilitas = [
+  { icon: '🔬', name: 'Laboratorium Sains',  desc: '4 lab lengkap: Fisika, Kimia, Biologi, dan Digital' },
+  { icon: '📚', name: 'Perpustakaan Modern', desc: 'Koleksi 10.000+ buku & akses e-library 24/7' },
+  { icon: '🖥️', name: 'Lab Komputer & AI',   desc: 'Fasilitas komputer terbaru dengan koneksi fiber 1Gbps' },
+  { icon: '🏟️', name: 'Lapangan Olahraga',   desc: 'Lapangan basket, voli, futsal, dan atletik indoor' },
+  { icon: '🎭', name: 'Aula Serbaguna',       desc: 'Kapasitas 800 orang dengan sistem audio visual premium' },
+  { icon: '🍽️', name: 'Kantin Sehat',         desc: 'Makanan bergizi & higienis, diawasi ahli gizi sekolah' },
+];
+
+const homeTitle = "Sekolah Unggulan Berprestasi & PPDB 2026/2027";
+const homeDesc  = "Website resmi SMA Negeri 1 Nusantara — Sekolah berprestasi dengan fasilitas modern, akreditasi A, informasi PPDB 2026/2027, agenda kegiatan, dan berita sekolah.";
+const homeKeywords = "SMAN 1 Nusantara, SMA Negeri 1 Nusantara, PPDB SMAN 1 Nusantara 2026, SMA Unggulan Jawa, SMA Terbaik Indonesia, Akreditasi A, Berita Sekolah";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title={homeTitle}
+  description={homeDesc}
+  keywords={homeKeywords}
+  image="/og-image.svg"
+>
+  <Header />
+  <main id="main-content">
+
+
+    <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+    <Hero />
+
+    <!-- ── Pengumuman Penting ─────────────────────────────────────────────── -->
+    {importantPengumuman.length > 0 && (
+      <section aria-label="Pengumuman penting" style="padding: 1.5rem 0; background: #fffbeb; border-top: 1px solid #fde68a; border-bottom: 1px solid #fde68a;">
+        <div class="container">
+          <div style="display: flex; align-items: center; gap: 1.5rem; overflow-x: auto; scrollbar-width: none; padding-bottom: 0.25rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-shrink: 0;">
+              <div style="
+                background: linear-gradient(135deg, #f59e0b, #d97706);
+                color: #ffffff;
+                padding: 0.3rem 0.75rem;
+                border-radius: 0.375rem;
+                font-size: 0.75rem;
+                font-weight: 800;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                display: flex;
+                align-items: center;
+                gap: 0.35rem;
+                box-shadow: 0 2px 6px rgba(217, 119, 6, 0.2);
+              ">
+                <span style="width:6px;height:6px;background:#ffffff;border-radius:50%;animation:pulse-glow 1.5s infinite;"></span>
+                PENGUMUMAN
+              </div>
+            </div>
+            <div style="display: flex; gap: 2rem; flex-shrink: 0;">
+              {importantPengumuman.map((p) => (
+                <div style="display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; font-size: 0.875rem; color: #78350f; font-weight: 500;">
+                  <span style="color: #d97706;">📌</span>
+                  <span>{p.data.judul}</span>
+                  <span style="color: #b45309;">·</span>
+                  <time style="color: #92400e; font-size: 0.8rem;" datetime={p.data.tanggal.toISOString()}>
+                    {formatDate(p.data.tanggal)}
+                  </time>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    )}
+
+    <!-- ── Berita Terbaru ─────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="berita-heading" style="background: #ffffff;">
+      <div class="container">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+          <div class="reveal">
+            <div class="section-tag">📰 Terbaru</div>
+            <h2 id="berita-heading" class="section-title">
+              Berita & <span class="accent">Informasi</span>
+            </h2>
+            <p style="color: #64748b; max-width: 480px;">
+              Ikuti perkembangan terkini dari dunia pendidikan dan kegiatan sekolah kami.
+            </p>
+          </div>
+          <a href="/berita" class="btn btn-outline btn-sm reveal" aria-label="Lihat semua berita">
+            Lihat Semua
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div style="
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+          gap: 1.5rem;
+        ">
+          {latestBerita.map((berita, i) => (
+            <div class={`reveal delay-${(i + 1) * 100}`}>
+              <BeritaCard berita={berita} featured={i === 0 && berita.data.featured} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── Agenda Mendatang ───────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="agenda-heading" style="background: #f8fafc;">
+      <div class="container">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap;">
+          <div class="reveal">
+            <div class="section-tag">📅 Agenda</div>
+            <h2 id="agenda-heading" class="section-title">
+              Kegiatan <span class="accent">Mendatang</span>
+            </h2>
+            <p style="color: #64748b; max-width: 420px;">
+              Jangan lewatkan acara dan kegiatan penting yang akan segera berlangsung.
+            </p>
+          </div>
+          <a href="/agenda" class="btn btn-outline btn-sm reveal" aria-label="Lihat semua agenda">
+            Kalender Lengkap
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+          {upcomingAgenda.map((agenda, i) => (
+            <div class={`reveal delay-${(i + 1) * 100}`}>
+              <AgendaCard agenda={agenda} layout="grid" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── Fasilitas ──────────────────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="fasilitas-heading" style="background: #ffffff;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;" class="reveal">
+          <div class="section-tag">🏫 Fasilitas</div>
+          <h2 id="fasilitas-heading" class="section-title">
+            Lingkungan Belajar <span class="accent-gold">Berkualitas</span>
+          </h2>
+          <p style="color: #64748b; max-width: 520px; margin: 0 auto;">
+            Fasilitas lengkap dan modern untuk mendukung proses belajar mengajar yang optimal.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;">
+          {fasilitas.map((f, i) => (
+            <div
+              class={`card card-gold reveal delay-${(i % 4 + 1) * 100}`}
+              style="padding: 1.75rem; display: flex; gap: 1rem; align-items: flex-start; background: #ffffff; border: 1px solid #e2e8f0;"
+            >
+              <div style="
+                font-size: 2rem;
+                flex-shrink: 0;
+                width: 52px; height: 52px;
+                background: #fffbeb;
+                border: 1px solid #fde68a;
+                border-radius: 0.75rem;
+                display: flex; align-items: center; justify-content: center;
+              ">{f.icon}</div>
+              <div>
+                <h3 style="font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.375rem;">{f.name}</h3>
+                <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin: 0;">{f.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CTA PPDB ───────────────────────────────────────────────────────── -->
+    <section
+      aria-label="Daftar PPDB"
+      style="
+        padding: 5rem 0;
+        position: relative;
+        overflow: hidden;
+        background: linear-gradient(135deg, #eff6ff 0%, #f8fafc 50%, #fffbeb 100%);
+        border-top: 1px solid #e2e8f0;
+        border-bottom: 1px solid #e2e8f0;
+      "
+    >
+      <!-- Background glow -->
+      <div aria-hidden="true" style="
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 600px; height: 300px;
+        background: radial-gradient(ellipse, rgba(37,99,235,0.08) 0%, transparent 70%);
+        filter: blur(40px);
+        pointer-events: none;
+      "></div>
+
+      <div class="container" style="position: relative; text-align: center;">
+        <div class="reveal">
+          <div class="section-tag" style="display: inline-flex;">🎓 Tahun Ajaran 2026/2027</div>
+          <h2 style="
+            font-family: var(--font-heading);
+            font-weight: 900;
+            font-size: clamp(1.75rem, 4vw, 3rem);
+            color: #0f172a;
+            margin: 1rem 0;
+          ">
+            Bergabunglah Bersama <span class="gradient-text">Keluarga SMAN 1 Nusantara</span>
+          </h2>
+          <p style="
+            color: #475569;
+            font-size: 1.1rem;
+            max-width: 540px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+          ">
+            Pendaftaran PPDB 2026/2027 telah dibuka. Raih kesempatan belajar di sekolah unggulan bersama ribuan siswa berprestasi.
+          </p>
+
+          <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="/ppdb" id="cta-daftar-ppdb" class="btn btn-gold" aria-label="Daftar PPDB sekarang">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/></svg>
+              Daftar Sekarang
+            </a>
+            <a href="/kontak" id="cta-kontak" class="btn btn-outline" aria-label="Hubungi kami">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+              Hubungi Kami
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+

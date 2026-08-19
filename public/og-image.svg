@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Decorative circles -->
+  <circle cx="1050" cy="150" r="280" fill="#eff6ff" opacity="0.8"/>
+  <circle cx="150" cy="500" r="220" fill="#fffbeb" opacity="0.6"/>
+
+  <!-- Border Card Frame -->
+  <rect x="50" y="50" width="1100" height="530" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Logo Mark -->
+  <rect x="100" y="100" width="80" height="80" rx="20" fill="url(#accent)"/>
+  <text x="140" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="44" fill="#ffffff">N</text>
+
+  <!-- Badge -->
+  <rect x="200" y="120" width="220" height="38" rx="19" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+  <text x="310" y="145" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" fill="#1d4ed8">AKREDITASI A (UNGGUL)</text>
+
+  <!-- Title -->
+  <text x="100" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="56" fill="#0f172a">
+    SMA NEGERI 1 NUSANTARA
+  </text>
+
+  <!-- Subtitle -->
+  <text x="100" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="28" fill="#475569">
+    Sekolah Unggulan untuk Generasi Pemimpin Bangsa sejak 1975
+  </text>
+
+  <!-- Stats row / Highlights -->
+  <g transform="translate(100, 420)">
+    <!-- Stat 1 -->
+    <rect x="0" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="25" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">51+ Tahun</text>
+    <text x="25" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Berdiri &amp; Berdedikasi</text>
+
+    <!-- Stat 2 -->
+    <rect x="250" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="275" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">200+ Prestasi</text>
+    <text x="275" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Tingkat Nasional</text>
+
+    <!-- Stat 3 -->
+    <rect x="500" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
+    <text x="525" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">95% Lulusan</text>
+    <text x="525" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Diterima di PTN</text>
+
+    <!-- Website URL badge -->
+    <rect x="750" y="0" width="250" height="90" rx="12" fill="url(#accent)"/>
+    <text x="875" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="18" fill="#ffffff">PPDB 2026/2027</text>
+    <text x="875" y="68" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#dbeafe">sman1nusantara.sch.id</text>
+  </g>
+</svg>

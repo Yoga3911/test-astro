@@ -1,0 +1,17 @@
+{
+  "name": "SMA Negeri 1 Nusantara",
+  "short_name": "SMAN 1 Nusantara",
+  "description": "Sekolah Unggulan Berprestasi untuk Generasi Pemimpin Bangsa sejak 1975.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d4ed8",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

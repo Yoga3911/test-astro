@@ -1,0 +1,353 @@
+---
+/**
+ * ppdb.astro — Halaman Penerimaan Peserta Didik Baru
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import KontakForm from '@/components/KontakForm.svelte';
+import { SITE_CONFIG } from '@/utils/config';
+
+const jalurPendaftaran = [
+  {
+    icon: '🏆',
+    nama: 'Jalur Prestasi',
+    kuota: '20%',
+    desc: 'Untuk siswa dengan prestasi akademik (nilai UN) atau non-akademik (kejuaraan) tingkat kabupaten/kota, provinsi, atau nasional.',
+    syarat: ['Sertifikat prestasi (asli + fotokopi)', 'Nilai rata-rata rapor SMP min. 80'],
+  },
+  {
+    icon: '🏘️',
+    nama: 'Jalur Zonasi',
+    kuota: '55%',
+    desc: 'Berdasarkan jarak domisili (tempat tinggal) ke sekolah. Prioritas diberikan kepada calon siswa yang paling dekat.',
+    syarat: ['Kartu Keluarga yang sudah 1 tahun', 'Bukti tempat tinggal sesuai KK'],
+  },
+  {
+    icon: '💙',
+    nama: 'Jalur Afirmasi',
+    kuota: '15%',
+    desc: 'Untuk keluarga tidak mampu secara ekonomi dan/atau penyandang disabilitas yang memiliki potensi akademik.',
+    syarat: ['Kartu PKH / KIP / KKS', 'Surat keterangan tidak mampu dari RT/RW/Kelurahan'],
+  },
+  {
+    icon: '🚀',
+    nama: 'Jalur Perpindahan',
+    kuota: '10%',
+    desc: 'Untuk anak dari ASN, TNI, atau Polri yang wajib pindah tugas. Juga untuk anak guru di sekolah bersangkutan.',
+    syarat: ['Surat tugas/penugasan dari instansi', 'Surat keterangan pindah domisili'],
+  },
+];
+
+const jadwal = [
+  { kegiatan: 'Sosialisasi PPDB',             tanggal: '1–31 Agustus 2026' },
+  { kegiatan: 'Pendaftaran Online Dibuka',     tanggal: '1–20 September 2026' },
+  { kegiatan: 'Verifikasi & Seleksi Berkas',  tanggal: '21–25 September 2026' },
+  { kegiatan: 'Pengumuman Hasil Seleksi',      tanggal: '30 September 2026' },
+  { kegiatan: 'Pendaftaran Ulang (Daftar Ulang)', tanggal: '1–7 Oktober 2026' },
+  { kegiatan: 'Masa Pengenalan Lingkungan Sekolah (MPLS)', tanggal: '13–15 Oktober 2026' },
+  { kegiatan: 'Kegiatan Belajar Mengajar Dimulai', tanggal: '16 Oktober 2026' },
+];
+
+const syaratUmum = [
+  'Memiliki ijazah / SKHUN SMP atau sederajat',
+  'Kartu Keluarga (KK) dan KTP Orang Tua/Wali',
+  'Akta kelahiran (asli + fotokopi)',
+  'Pas foto terbaru ukuran 3×4 (4 lembar, latar merah)',
+  'Surat keterangan lulus (bagi yang belum memiliki ijazah)',
+  'Formulir pendaftaran yang telah diisi lengkap',
+];
+
+const ppdbSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: `PPDB Tahun Ajaran 2026/2027 ${SITE_CONFIG.name}`,
+    description: 'Penerimaan Peserta Didik Baru (PPDB) SMAN 1 Nusantara tahun ajaran 2026/2027 melalui 4 jalur: Zonasi, Prestasi, Afirmasi, dan Perpindahan.',
+    startDate: '2026-06-01T08:00:00+07:00',
+    endDate: '2026-07-15T16:00:00+07:00',
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/MixedEventAttendanceMode',
+    location: {
+      '@type': 'Place',
+      name: SITE_CONFIG.name,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: SITE_CONFIG.address,
+        addressCountry: 'ID',
+      },
+    },
+    organizer: {
+      '@type': 'HighSchool',
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'IDR',
+      availability: 'https://schema.org/InStock',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: 'Kapan pendaftaran PPDB 2026/2027 SMAN 1 Nusantara dibuka?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Pendaftaran PPDB online resmi dibuka mulai tanggal 1 September 2026 melalui portal PPDB resmi sekolah.',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Apa saja jalur masuk PPDB SMAN 1 Nusantara?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Tersedia 4 jalur pendaftaran: Jalur Zonasi (kuota 55%), Jalur Prestasi (kuota 20%), Jalur Afirmasi (kuota 15%), dan Jalur Perpindahan Tugas Orang Tua (kuota 10%).',
+        },
+      },
+      {
+        '@type': 'Question',
+        name: 'Berapa biaya pendaftaran PPDB SMAN 1 Nusantara?',
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: 'Pendaftaran PPDB SMAN 1 Nusantara 100% bebas biaya pendaftaran (Gratis).',
+        },
+      },
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="PPDB 2026/2027 - Penerimaan Peserta Didik Baru"
+  description="Informasi resmi PPDB SMAN 1 Nusantara TA 2026/2027. Jadwal, 4 jalur masuk (Zonasi, Prestasi, Afirmasi, Perpindahan), persyaratan berkas, dan pendaftaran online."
+  keywords="PPDB SMAN 1 Nusantara, PPDB 2026, Pendaftaran Siswa Baru SMA, Syarat PPDB SMAN 1 Nusantara, Jadwal PPDB 2026, Jalur Zonasi SMA, Jalur Prestasi SMA"
+  structuredData={ppdbSchema}
+>
+
+  <Header />
+  <main id="main-content" style="padding-top: 4.5rem; background: #ffffff;">
+
+    <!-- Hero PPDB -->
+    <div style="
+      padding: 4.5rem 0;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #fffbeb 100%);
+      border-bottom: 1px solid #e2e8f0;
+      position: relative; overflow: hidden;
+    ">
+      <div class="bg-grid" aria-hidden="true" style="position: absolute; inset: 0; opacity: 0.5;"></div>
+      <div class="container" style="position: relative;">
+        <div class="section-tag" style="display: inline-flex;">
+          🎓 Penerimaan Siswa Baru
+        </div>
+        <h1 style="margin: 0.75rem 0 1rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
+          PPDB <span class="accent-gold">2026/2027</span>
+        </h1>
+        <p style="color: #475569; font-size: 1.1rem; max-width: 560px; line-height: 1.75; margin-bottom: 2rem;">
+          Selamat datang, calon siswa SMAN 1 Nusantara! Kami membuka pintu seluas-luasnya bagi putra-putri terbaik bangsa.
+        </p>
+        <!-- Status badge -->
+        <div style="
+          display: inline-flex; align-items: center; gap: 0.75rem;
+          background: #f0fdf4;
+          border: 1px solid #bbf7d0;
+          border-radius: 0.75rem;
+          padding: 0.75rem 1.25rem;
+        ">
+          <div style="width: 8px; height: 8px; background: #16a34a; border-radius: 50%; animation: pulse-glow 1.5s infinite;"></div>
+          <span style="color: #166534; font-weight: 700; font-size: 0.9rem;">Pendaftaran Dibuka: 1 September 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Jalur Pendaftaran ──────────────────────────────────────────────── -->
+    <section id="jalur" class="section" aria-labelledby="jalur-heading" style="background: #ffffff;">
+      <div class="container">
+        <div style="text-align: center; margin-bottom: 3rem;" class="reveal">
+          <div class="section-tag" style="display: inline-flex;">🎯 Kuota & Jalur</div>
+          <h2 id="jalur-heading" class="section-title">
+            4 Jalur <span class="accent">Pendaftaran</span>
+          </h2>
+          <p style="color: #64748b; max-width: 500px; margin: 0 auto;">
+            Pilih jalur pendaftaran yang paling sesuai dengan kondisi dan potensi Anda.
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem;">
+          {jalurPendaftaran.map((jalur, i) => (
+            <div
+              class={`card reveal delay-${(i + 1) * 100}`}
+              style="padding: 1.75rem; display: flex; flex-direction: column; background: #ffffff; border: 1px solid #e2e8f0;"
+            >
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="font-size: 2rem;">{jalur.icon}</span>
+                <span style="
+                  font-family: var(--font-heading);
+                  font-weight: 800;
+                  font-size: 1.05rem;
+                  color: #1d4ed8;
+                  background: #eff6ff;
+                  border: 1px solid #bfdbfe;
+                  padding: 0.25rem 0.625rem;
+                  border-radius: 0.5rem;
+                ">
+                  Kuota {jalur.kuota}
+                </span>
+              </div>
+
+              <h3 style="font-size: 1.1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">{jalur.nama}</h3>
+              <p style="font-size: 0.85rem; color: #475569; line-height: 1.6; margin-bottom: 1.25rem; flex: 1;">{jalur.desc}</p>
+
+              <div style="border-top: 1px solid #f1f5f9; padding-top: 1rem;">
+                <div style="font-size: 0.78rem; font-weight: 700; color: #334155; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em;">Persyaratan:</div>
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.35rem;">
+                  {jalur.syarat.map(s => (
+                    <li style="font-size: 0.8rem; color: #475569; display: flex; gap: 0.4rem; align-items: flex-start;">
+                      <span style="color: #2563eb; flex-shrink: 0;">✓</span>
+                      <span>{s}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── Syarat Umum + Jadwal ──────────────────────────────────────────── -->
+    <section class="section" style="background: #f8fafc;" aria-labelledby="syarat-heading">
+      <div class="container">
+        <div style="display: grid; grid-template-columns: 1fr; gap: 2.5rem;" class="syarat-jadwal-grid">
+
+          <!-- Syarat Umum -->
+          <div class="reveal">
+            <div class="section-tag">📋 Persyaratan Umum</div>
+            <h2 id="syarat-heading" class="section-title" style="margin-top: 0.75rem;">
+              Dokumen yang <span class="accent">Diperlukan</span>
+            </h2>
+            <p style="color: #64748b; margin-bottom: 1.75rem;">Seluruh calon pendaftar dari semua jalur wajib menyiapkan dokumen berikut:</p>
+            <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+              {syaratUmum.map((syarat, i) => (
+                <div style="
+                  display: flex; gap: 0.875rem; align-items: flex-start;
+                  padding: 0.875rem 1rem;
+                  background: #ffffff;
+                  border: 1px solid #e2e8f0;
+                  border-radius: 0.625rem;
+                  font-size: 0.9rem; color: #334155;
+                  transition: var(--transition-base);
+                " class="syarat-item">
+                  <div style="
+                    width: 24px; height: 24px;
+                    background: #eff6ff;
+                    border: 1px solid #bfdbfe;
+                    border-radius: 50%;
+                    display: flex; align-items: center; justify-content: center;
+                    font-size: 0.7rem; font-weight: 700;
+                    color: #1d4ed8;
+                    flex-shrink: 0;
+                  ">{i + 1}</div>
+                  <span style="line-height: 1.5;">{syarat}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Jadwal -->
+          <div class="reveal delay-200">
+            <div class="section-tag">🗓️ Jadwal Pelaksanaan</div>
+            <h2 class="section-title" style="margin-top: 0.75rem;">
+              Timeline <span class="accent-gold">PPDB</span>
+            </h2>
+            <div style="display: flex; flex-direction: column; gap: 0; margin-top: 1.75rem; position: relative;">
+              <!-- Timeline line -->
+              <div aria-hidden="true" style="
+                position: absolute; left: 24px; top: 0; bottom: 0;
+                width: 2px;
+                background: #e2e8f0;
+              "></div>
+
+              {jadwal.map((item, i) => (
+                <div style="
+                  display: flex; gap: 1.25rem; align-items: flex-start;
+                  padding-bottom: 1.5rem;
+                  position: relative;
+                ">
+                  <!-- Dot -->
+                  <div style="
+                    width: 48px; height: 48px;
+                    background: #ffffff;
+                    border: 2px solid #2563eb;
+                    border-radius: 50%;
+                    display: flex; align-items: center; justify-content: center;
+                    font-weight: 800; font-size: 0.9rem;
+                    color: #1d4ed8;
+                    flex-shrink: 0;
+                    z-index: 1;
+                    position: relative;
+                    box-shadow: 0 2px 8px rgba(37,99,235,0.12);
+                  ">{i + 1}</div>
+                  <div style="padding-top: 0.75rem; flex: 1;">
+                    <h3 style="font-size: 0.95rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem;">{item.kegiatan}</h3>
+                    <p style="font-size: 0.82rem; color: #d97706; font-weight: 600; margin: 0;">{item.tanggal}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="divider" />
+
+    <!-- ── Form Pertanyaan PPDB ──────────────────────────────────────────── -->
+    <section class="section" aria-labelledby="form-ppdb-heading" style="background: #ffffff;">
+      <div class="container">
+        <div style="max-width: 700px; margin: 0 auto;">
+          <div style="text-align: center; margin-bottom: 2.5rem;" class="reveal">
+            <div class="section-tag" style="display: inline-flex;">✉️ Hubungi Panitia</div>
+            <h2 id="form-ppdb-heading" class="section-title">
+              Ada <span class="accent">Pertanyaan?</span>
+            </h2>
+            <p style="color: #64748b;">
+              Tim panitia PPDB kami siap membantu. Kirimkan pertanyaan Anda dan kami akan merespons dalam 1×24 jam.
+            </p>
+          </div>
+
+          <div class="card reveal delay-100" style="padding: 2.5rem; background: #ffffff; border: 1px solid #e2e8f0;">
+            <KontakForm
+              client:visible
+              formTitle="Kirim Pertanyaan PPDB"
+              web3FormsKey="YOUR_WEB3FORMS_KEY"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  @media (min-width: 1024px) {
+    .syarat-jadwal-grid {
+      grid-template-columns: 1fr 1fr !important;
+    }
+  }
+
+  .syarat-item:hover {
+    border-color: #cbd5e1 !important;
+    background: #f1f5f9 !important;
+  }
+</style>
+

@@ -1,0 +1,175 @@
+---
+/**
+ * berita/index.astro — Halaman Daftar Berita
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import BeritaCard from '@/components/BeritaCard.astro';
+
+import { getCollection } from 'astro:content';
+import { SITE_CONFIG } from '@/utils/config';
+
+const allBerita = await getCollection('berita');
+
+// Sort by date desc, filter drafts
+const sortedBerita = allBerita
+  .filter(b => !b.data.draft)
+  .sort(
+    (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  );
+
+// Extract unique categories for filter
+const categories = ['Semua', ...new Set(allBerita.map(b => b.data.kategori))];
+
+const beritaListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Berita & Informasi ${SITE_CONFIG.name}`,
+  description: 'Arsip berita resmi, prestasi siswa, program unggulan, dan pengumuman terbaru SMAN 1 Nusantara.',
+  url: `${SITE_CONFIG.url}/berita`,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: sortedBerita.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.data.title,
+      url: `${SITE_CONFIG.url}/berita/${item.id}`,
+    })),
+  },
+};
+---
+
+<BaseLayout
+  title="Berita & Informasi Terkini"
+  description="Arsip berita resmi SMAN 1 Nusantara — Informasi prestasi akademik & non-akademik, kegiatan sekolah, kurikulum digital, dan pengumuman PPDB."
+  keywords="Berita SMAN 1 Nusantara, Prestasi Siswa SMA, Kegiatan SMAN 1 Nusantara, Pengumuman Sekolah, Informasi PPDB"
+  structuredData={beritaListSchema}
+>
+
+  <Header />
+  <main id="main-content" style="padding-top: 4.5rem; background: #ffffff;">
+
+    <!-- Page Header -->
+    <div style="
+      padding: 4.5rem 0;
+      background: linear-gradient(135deg, #eff6ff 0%, #ffffff 50%, #fffbeb 100%);
+      border-bottom: 1px solid #e2e8f0;
+      position: relative;
+      overflow: hidden;
+    ">
+      <div class="container" style="position: relative;">
+        <div class="section-tag">📰 Berita & Informasi</div>
+        <h1 style="margin: 0.75rem 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
+          Berita <span class="accent">Terkini</span>
+        </h1>
+        <p style="color: #475569; font-size: 1.05rem; max-width: 500px;">
+          Temukan informasi, prestasi, dan kegiatan terbaru dari SMAN 1 Nusantara.
+        </p>
+      </div>
+    </div>
+
+    <section class="section" aria-labelledby="daftar-berita-heading" style="background: #ffffff;">
+      <div class="container">
+        <!-- Hidden Accessible H2 to satisfy sequential heading order (h1 -> h2 -> h3) -->
+        <h2 id="daftar-berita-heading" class="sr-only">Daftar Artikel Berita dan Pengumuman</h2>
+
+        <!-- Category Tabs -->
+        <div
+          id="berita-tabs"
+          role="tablist"
+          aria-label="Filter kategori berita"
+          style="display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2.5rem;"
+        >
+          {categories.map((cat, i) => (
+            <button
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls="berita-grid"
+              id={`tab-${cat.toLowerCase().replace(/\s+/g, '-')}`}
+              data-category={cat}
+              class="filter-tab"
+              style={`
+                padding: 0.5rem 1.125rem;
+                border-radius: 9999px;
+                border: 1px solid ${i === 0 ? '#2563eb' : '#e2e8f0'};
+                background: ${i === 0 ? '#eff6ff' : '#ffffff'};
+                color: ${i === 0 ? '#1d4ed8' : '#64748b'};
+                font-size: 0.875rem;
+                font-weight: ${i === 0 ? '700' : '500'};
+                cursor: pointer;
+                transition: var(--transition-base);
+                font-family: var(--font-body);
+                box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+              `}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+
+        <!-- Berita Grid -->
+        <div
+          id="berita-grid"
+          role="tabpanel"
+          aria-label="Daftar berita"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+          "
+        >
+          {sortedBerita.map((berita, i) => (
+            <div
+              class={`reveal delay-${(i % 4 + 1) * 100}`}
+              data-kategori={berita.data.kategori}
+            >
+              <BeritaCard berita={berita} />
+            </div>
+          ))}
+        </div>
+
+        <!-- Empty state -->
+        <div id="berita-empty" style="display: none; text-align: center; padding: 4rem 0;">
+          <p style="font-size: 3rem; margin-bottom: 1rem;">📭</p>
+          <p style="color: #64748b;">Tidak ada berita di kategori ini.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<script>
+  const tabs     = document.querySelectorAll<HTMLButtonElement>('.filter-tab');
+  const items    = document.querySelectorAll<HTMLDivElement>('[data-kategori]');
+  const emptyMsg = document.getElementById('berita-empty')!;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const cat = tab.dataset.category!;
+
+      // Update tab styles
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.style.background    = active ? '#eff6ff' : '#ffffff';
+        t.style.borderColor   = active ? '#2563eb' : '#e2e8f0';
+        t.style.color         = active ? '#1d4ed8' : '#64748b';
+        t.style.fontWeight    = active ? '700' : '500';
+        t.setAttribute('aria-selected', String(active));
+      });
+
+      // Filter items
+      let visibleCount = 0;
+      items.forEach((item) => {
+        const matches = cat === 'Semua' || item.dataset.kategori === cat;
+        item.style.display = matches ? 'block' : 'none';
+        if (matches) visibleCount++;
+      });
+
+      emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    });
+  });
+</script>
+

@@ -1,0 +1,277 @@
+---
+/**
+ * BaseLayout.astro
+ *
+ * Single Responsibility: Handles HTML shell, SEO, meta tags, OpenGraph,
+ * Twitter cards, Schema.org JSON-LD, fonts, performance optimizations,
+ * and accessibility landmarks.
+ *
+ * All pages extend this layout. Change once → updates everywhere.
+ */
+
+import { SITE_CONFIG } from '@/utils/config';
+import '@/styles/global.css';
+
+interface Props {
+  title?:          string;
+  description?:    string;
+  image?:          string;
+  imageAlt?:       string;
+  type?:           'website' | 'article';
+  keywords?:       string;
+  author?:         string;
+  publishedTime?:  string;
+  modifiedTime?:   string;
+  noindex?:        boolean;
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+}
+
+const {
+  title,
+  description    = SITE_CONFIG.description,
+  image          = '/og-image.svg',
+  imageAlt       = `Banner ${SITE_CONFIG.name}`,
+  type           = 'website',
+  keywords       = 'SMAN 1 Nusantara, SMA Negeri 1 Nusantara, SMA Unggulan, PPDB 2026, Sekolah Berprestasi, Akreditasi A, SMA Terbaik, Kurikulum Merdeka, Prestasi OSN',
+  author         = SITE_CONFIG.name,
+  publishedTime,
+  modifiedTime,
+  noindex        = false,
+  structuredData,
+} = Astro.props;
+
+const pageTitle    = title ? `${title} | ${SITE_CONFIG.shortName}` : `${SITE_CONFIG.name} — Sekolah Unggulan Berprestasi`;
+const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
+const ogImageURL   = new URL(image, SITE_CONFIG.url).href;
+
+// Breadcrumb Schema calculation
+const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Beranda',
+    item: SITE_CONFIG.url,
+  },
+  ...pathSegments.map((segment, index) => {
+    const url = `${SITE_CONFIG.url}/${pathSegments.slice(0, index + 1).join('/')}`;
+    const name = segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, ' ');
+    return {
+      '@type': 'ListItem',
+      position: index + 2,
+      name,
+      item: url,
+    };
+  }),
+];
+
+// Organization Schema (HighSchool)
+const schoolSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HighSchool',
+  '@id': `${SITE_CONFIG.url}/#school`,
+  name: SITE_CONFIG.name,
+  alternateName: SITE_CONFIG.shortName,
+  description: SITE_CONFIG.description,
+  url: SITE_CONFIG.url,
+  logo: `${SITE_CONFIG.url}/favicon.svg`,
+  image: ogImageURL,
+  email: SITE_CONFIG.email,
+  telephone: SITE_CONFIG.phone,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: SITE_CONFIG.address,
+    addressCountry: 'ID',
+  },
+  foundingDate: '1975',
+  sameAs: Object.values(SITE_CONFIG.socialMedia).filter(Boolean),
+};
+
+// WebSite Schema
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_CONFIG.url}/#website`,
+  url: SITE_CONFIG.url,
+  name: SITE_CONFIG.name,
+  description: SITE_CONFIG.description,
+  publisher: {
+    '@id': `${SITE_CONFIG.url}/#school`,
+  },
+  inLanguage: 'id-ID',
+};
+
+// BreadcrumbList Schema
+const breadcrumbSchema = pathSegments.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems,
+} : null;
+---
+
+<!doctype html>
+<html lang="id" dir="ltr">
+<head>
+  <!-- Technical & Charset -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="theme-color" content="#1d4ed8" />
+  <meta name="color-scheme" content="light" />
+  <meta name="application-name" content={SITE_CONFIG.shortName} />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Primary Meta Tags -->
+  <title>{pageTitle}</title>
+  <meta name="title" content={pageTitle} />
+  <meta name="description" content={description} />
+  <meta name="keywords" content={keywords} />
+  <meta name="author" content={author} />
+  <meta name="publisher" content={SITE_CONFIG.name} />
+
+  <!-- Crawl & Index Directives -->
+  <link rel="canonical" href={canonicalURL} />
+  {noindex ? (
+    <meta name="robots" content="noindex, nofollow" />
+  ) : (
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  )}
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type} />
+  <meta property="og:site_name" content={SITE_CONFIG.name} />
+  <meta property="og:url" content={canonicalURL} />
+  <meta property="og:title" content={pageTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImageURL} />
+  <meta property="og:image:alt" content={imageAlt} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="id_ID" />
+  {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+  {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content={canonicalURL} />
+  <meta name="twitter:title" content={pageTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImageURL} />
+  <meta name="twitter:image:alt" content={imageAlt} />
+
+  <!-- Favicon & PWA Icons -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Performance: Async Google Fonts Loading (Zero Critical Network Tree) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <script is:inline>
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700;800&display=swap';
+        document.head.appendChild(l);
+      });
+    } else {
+      window.addEventListener('load', function() {
+        var l = document.createElement('link');
+        l.rel = 'stylesheet';
+        l.href = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700;800&display=swap';
+        document.head.appendChild(l);
+      });
+    }
+  </script>
+  <noscript>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Space+Grotesk:wght@700;800&display=swap"
+    />
+  </noscript>
+
+  <!-- Structured Data: School Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(schoolSchema)} />
+
+  <!-- Structured Data: WebSite Schema -->
+  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+  <!-- Structured Data: Breadcrumb Schema (if subpage) -->
+  {breadcrumbSchema && (
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  )}
+
+  <!-- Structured Data: Custom Page Specific Schemas (Articles, Events, etc.) -->
+  {structuredData && (
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  )}
+</head>
+<body>
+  <!-- Accessibility: Skip to main content link -->
+  <a href="#main-content" class="skip-link">
+    Lewati ke konten utama
+  </a>
+
+  <slot />
+
+  <!-- Performance-optimized single observer script for reveal and counter animations -->
+  <script>
+    function initUIObservers() {
+      // 1. Reveal observer
+      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+      if (revealElements.length) {
+        const revealObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
+        );
+        revealElements.forEach((el) => revealObserver.observe(el));
+      }
+
+      // 2. Counter observer (lightweight numeric interpolation)
+      const counterElements = document.querySelectorAll('[data-counter]');
+      if (counterElements.length) {
+        const counterObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const el = entry.target as HTMLElement;
+              const target = parseInt(el.dataset.counter ?? '0', 10);
+              const duration = 1200;
+              const start = performance.now();
+
+              function update(now: number) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = String(Math.round(eased * target));
+                if (progress < 1) requestAnimationFrame(update);
+              }
+
+              requestAnimationFrame(update);
+              counterObserver.unobserve(el);
+            });
+          },
+          { threshold: 0.2 }
+        );
+        counterElements.forEach((el) => counterObserver.observe(el));
+      }
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(initUIObservers);
+    } else {
+      setTimeout(initUIObservers, 100);
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,393 @@
+---
+/**
+ * Footer.astro
+ *
+ * Compact white-themed multi-column footer with school info,
+ * navigation links, contact details, social media, and accreditation badge.
+ */
+
+import { SITE_CONFIG, NAV_ITEMS } from '@/utils/config';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand Column -->
+      <div class="footer-brand">
+        <a href="/" class="brand-link" aria-label={`Kembali ke beranda ${SITE_CONFIG.shortName}`}>
+          <div class="brand-logo">N</div>
+          <div>
+            <div class="brand-name">{SITE_CONFIG.shortName}</div>
+            <div class="brand-npsn">NPSN: {SITE_CONFIG.npsn}</div>
+          </div>
+        </a>
+
+        <p class="brand-desc">
+          Mencetak generasi unggul, berkarakter, dan berdaya saing global sejak 1975.
+        </p>
+
+        <!-- Accreditation Badge -->
+        <div class="accreditation-badge">
+          <span class="badge-star" aria-hidden="true">⭐</span>
+          <div>
+            <div class="badge-title">Akreditasi BAN-S/M</div>
+            <div class="badge-grade">A (Unggul)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Column -->
+      <div class="footer-nav">
+        <h3 class="footer-heading">Navigasi</h3>
+        <ul role="list" class="nav-list">
+          {NAV_ITEMS.map((item) => (
+            <li>
+              <a href={item.href} class="footer-link">
+                <span class="link-bullet" aria-hidden="true"></span>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="footer-contact">
+        <h3 class="footer-heading">Kontak</h3>
+        <ul role="list" class="contact-list">
+          <li>
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+              </svg>
+            </div>
+            <span>{SITE_CONFIG.address}</span>
+          </li>
+          <li>
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+              </svg>
+            </div>
+            <a href={`tel:${SITE_CONFIG.phone}`} class="footer-link">{SITE_CONFIG.phone}</a>
+          </li>
+          <li>
+            <div class="contact-icon" aria-hidden="true">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <a href={`mailto:${SITE_CONFIG.email}`} class="footer-link">{SITE_CONFIG.email}</a>
+          </li>
+        </ul>
+
+        <!-- Social Media -->
+        <div class="social-list">
+          {SITE_CONFIG.socialMedia.instagram && (
+            <a href={SITE_CONFIG.socialMedia.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram SMAN 1 Nusantara" class="social-btn">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+              </svg>
+            </a>
+          )}
+          {SITE_CONFIG.socialMedia.youtube && (
+            <a href={SITE_CONFIG.socialMedia.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube SMAN 1 Nusantara" class="social-btn">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+          )}
+          {SITE_CONFIG.socialMedia.facebook && (
+            <a href={SITE_CONFIG.socialMedia.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook SMAN 1 Nusantara" class="social-btn">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom">
+      <p class="copyright-text">
+        © {currentYear} {SITE_CONFIG.name}. Semua hak dilindungi.
+      </p>
+      <div class="bottom-links">
+        <a href="/tentang" class="footer-bottom-link">Tentang</a>
+        <span class="link-separator">•</span>
+        <a href="/kontak" class="footer-bottom-link">Kebijakan Privasi</a>
+        <span class="link-separator">•</span>
+        <a href="/sitemap-index.xml" class="footer-bottom-link">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    color: #475569;
+    padding: 2.25rem 0 1.25rem;
+    position: relative;
+    box-shadow: 0 -4px 20px -2px rgba(0, 0, 0, 0.03);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.75rem;
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  @media (min-width: 640px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1.4fr 1fr 1.3fr;
+      gap: 2.5rem;
+    }
+  }
+
+  /* ── Brand ── */
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    margin-bottom: 0.75rem;
+    text-decoration: none;
+  }
+
+  .brand-logo {
+    width: 38px;
+    height: 38px;
+    background: linear-gradient(135deg, #2563eb, #3b82f6);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1.1rem;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(37, 99, 235, 0.25);
+  }
+
+  .brand-name {
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1rem;
+    color: #0f172a;
+    line-height: 1.2;
+  }
+
+  .brand-npsn {
+    font-size: 0.7rem;
+    color: #64748b;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .brand-desc {
+    font-size: 0.825rem;
+    color: #64748b;
+    line-height: 1.55;
+    max-width: 320px;
+    margin: 0 0 0.875rem 0;
+  }
+
+  /* ── Accreditation ── */
+  .accreditation-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.75rem;
+  }
+
+  .badge-star {
+    font-size: 1rem;
+  }
+
+  .badge-title {
+    font-size: 0.65rem;
+    color: #92400e;
+    font-weight: 600;
+    line-height: 1.1;
+  }
+
+  .badge-grade {
+    font-size: 0.8rem;
+    color: #b45309;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  /* ── Headings ── */
+  .footer-heading {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0 0 0.75rem 0;
+  }
+
+  /* ── Navigation ── */
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 0.75rem;
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .nav-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-link {
+    font-size: 0.825rem;
+    color: #475569;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: none;
+  }
+
+  .link-bullet {
+    width: 4px;
+    height: 4px;
+    background: #94a3b8;
+    border-radius: 50%;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .footer-link:hover {
+    color: #2563eb;
+    transform: translateX(2px);
+  }
+
+  .footer-link:hover .link-bullet {
+    background: #2563eb;
+    transform: scale(1.3);
+  }
+
+  /* ── Contact ── */
+  .contact-list {
+    list-style: none;
+    margin: 0 0 0.875rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .contact-list li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: flex-start;
+    font-size: 0.825rem;
+    color: #475569;
+    line-height: 1.4;
+  }
+
+  .contact-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: #eff6ff;
+    border: 1px solid #dbeafe;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* ── Social Media ── */
+  .social-list {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    color: #64748b;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    text-decoration: none;
+  }
+
+  .social-btn:hover {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+  }
+
+  /* ── Bottom Bar ── */
+  .footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.625rem;
+    padding-top: 1rem;
+  }
+
+  .copyright-text {
+    font-size: 0.75rem;
+    color: #64748b;
+    margin: 0;
+  }
+
+  .bottom-links {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .footer-bottom-link {
+    font-size: 0.75rem;
+    color: #64748b;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-bottom-link:hover {
+    color: #2563eb;
+  }
+
+  .link-separator {
+    color: #cbd5e1;
+    font-size: 0.65rem;
+  }
+</style>
+
