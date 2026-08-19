@@ -2,11 +2,9 @@ name = "maria-fatima"
 compatibility_date = "2025-08-01"
 pages_build_output_dir = "./dist"
 
-# Cloudflare Pages configuration
-# Deploy via: Connect your Git repo at dash.cloudflare.com → Pages → Create project
-# Build command: npm run build
-# Build output: dist/
+[assets]
+directory = "./dist"
 
-# Environment variables (set in CF Dashboard, NOT here):
-# WEB3FORMS_KEY=your_key_here
-# TURNSTILE_SITE_KEY=your_site_key_here
+# Cloudflare Configuration
+# Build command: npm run build
+# Build output: dist
