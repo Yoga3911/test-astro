@@ -1,0 +1,76 @@
+---
+/**
+ * VisiMisiSection.astro
+ *
+ * Dedicated section for Visi & Misi SDK Maria Fatima Jember:
+ * - Side-by-side card layout (Our Vision & Our Mission)
+ * - Clean bright theme with high contrast typography
+ */
+
+import { VISI_MISI_DATA } from '@/utils/config';
+---
+
+<section id="visi-misi" class="py-12 sm:py-16 bg-white relative overflow-hidden border-b border-slate-200/80">
+  <!-- Soft ambient glow -->
+  <div class="absolute top-0 right-1/4 w-80 h-80 bg-blue-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+  <div class="absolute bottom-0 left-1/4 w-80 h-80 bg-amber-100/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-stretch">
+      
+      <!-- Left Card: Our Vision -->
+      <div class="bg-gradient-to-br from-white via-amber-50/20 to-white rounded-3xl p-7 sm:p-9 border border-slate-200/90 shadow-md shadow-slate-900/5 flex flex-col justify-between hover:border-amber-400/60 hover:shadow-xl transition-all duration-300 group">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-amber-500 group-hover:scale-125 transition-transform"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-amber-700">OUR VISION</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900 leading-snug">
+            Visi SDK Maria Fatima
+          </h2>
+          <blockquote class="text-base sm:text-lg text-slate-700 font-medium leading-relaxed border-l-4 border-amber-400 pl-4 py-1">
+            "{VISI_MISI_DATA.visi}"
+          </blockquote>
+        </div>
+        <div class="pt-4 mt-6 border-t border-slate-100 text-xs text-amber-800 font-bold flex items-center gap-2">
+          <span>🌱</span>
+          <span>Komunitas Pembelajar Cerdas &amp; Berkarakter Luhur</span>
+        </div>
+      </div>
+
+      <!-- Right Card: Our Mission -->
+      <div class="bg-gradient-to-br from-white via-blue-50/20 to-white rounded-3xl p-7 sm:p-9 border border-slate-200/90 shadow-md shadow-slate-900/5 flex flex-col justify-between hover:border-blue-400/60 hover:shadow-xl transition-all duration-300 group">
+        <div class="space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="w-3 h-3 rounded-full bg-blue-600 group-hover:scale-125 transition-transform"></span>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-blue-700">OUR MISSION</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900 leading-snug">
+            Misi Utama Sekolah
+          </h2>
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
+            <li class="flex items-start gap-2.5">
+              <span class="text-blue-600 font-black mt-0.5">✦</span>
+              <span>Pendidikan holistik mengintegrasikan keunggulan akademik &amp; karakter Kristiani.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-blue-600 font-black mt-0.5">✦</span>
+              <span>Menumbuhkembangkan potensi unik anak lewat KBM aktif, kreatif &amp; inovatif.</span>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <span class="text-blue-600 font-black mt-0.5">✦</span>
+              <span>Mewujudkan iklim sekolah yang aman, inklusif, dan berakar pada nilai SIKARU.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="pt-4 mt-6 border-t border-slate-100 text-xs text-blue-700 font-bold flex items-center gap-2">
+          <span>⛪</span>
+          <span>Yayasan Santa Perawan Maria Probolinggo</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>

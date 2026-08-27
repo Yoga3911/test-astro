@@ -1,0 +1,53 @@
+---
+/**
+ * TaglineSection.astro
+ *
+ * Dedicated section for Tagline & Spiritualitas:
+ * - "Beyond Education, Touching Lives — Educating in the Spirit of St. Julie & SPM"
+ * - Clean bright banner layout with call to action
+ */
+
+import { VISI_MISI_DATA } from '@/utils/config';
+---
+
+<section id="tagline-spirituality" class="py-14 sm:py-20 bg-white relative overflow-hidden border-b border-slate-200/80">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    
+    <div class="bg-gradient-to-br from-blue-50/70 via-white to-amber-50/40 rounded-3xl p-8 sm:p-12 md:p-14 border-2 border-blue-200/80 shadow-lg text-center space-y-6 relative overflow-hidden">
+      <!-- Decorative ambient glows -->
+      <div class="absolute -top-20 -right-20 w-72 h-72 bg-blue-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      <div class="absolute -bottom-20 -left-20 w-72 h-72 bg-amber-200/40 rounded-full blur-3xl pointer-events-none -z-10"></div>
+
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-widest border border-amber-200 shadow-xs">
+        <span>OUR MOTTO &amp; IDENTITY</span>
+      </div>
+      
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-slate-900 leading-tight">
+        "{VISI_MISI_DATA.tagline}"
+      </h2>
+
+      <p class="text-slate-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+        <strong class="text-slate-900 font-semibold">"Ah, betapa baiknya Allah yang Mahabaik!"</strong> — Bersama teladan kasih Santa Perawan Maria dan Santa Julie Billiart, kami mendedikasikan seluruh daya untuk menyentuh hati dan mencerdaskan budi tunas bangsa.
+      </p>
+
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a
+          href="/heritage"
+          class="inline-flex items-center justify-center gap-2 px-7 py-3 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-heading font-bold text-sm shadow-md shadow-blue-700/20 hover:scale-105 active:scale-95 transition-all"
+        >
+          <span>Pelajari Heritage &amp; Spiritualitas SPM</span>
+          <span>→</span>
+        </a>
+
+        <a
+          href="/about-us"
+          class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-2xl bg-white hover:bg-slate-50 text-slate-700 hover:text-blue-700 font-bold text-sm border border-slate-200 shadow-xs transition-colors"
+        >
+          <span>Tentang SDK Maria Fatima</span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>

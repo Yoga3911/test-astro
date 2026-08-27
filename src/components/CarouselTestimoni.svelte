@@ -1,9 +1,8 @@
 <script lang="ts">
   import { ALUMNI_TESTIMONIALS } from '@/utils/config';
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
 
   let currentIndex = $state(0);
-  let autoScrollTimer: any = null;
   let isHovered = $state(false);
 
   function next() {
@@ -18,28 +17,16 @@
     currentIndex = index;
   }
 
-  function startAutoScroll() {
-    stopAutoScroll();
-    autoScrollTimer = setInterval(() => {
-      if (!isHovered) {
-        next();
-      }
-    }, 4000); // Otomatis scroll setiap 4 detik
-  }
-
-  function stopAutoScroll() {
-    if (autoScrollTimer) {
-      clearInterval(autoScrollTimer);
-      autoScrollTimer = null;
-    }
-  }
-
   onMount(() => {
-    startAutoScroll();
-  });
+    const interval = setInterval(() => {
+      if (!isHovered) {
+        currentIndex = (currentIndex + 1) % ALUMNI_TESTIMONIALS.length;
+      }
+    }, 4000);
 
-  onDestroy(() => {
-    stopAutoScroll();
+    return () => {
+      clearInterval(interval);
+    };
   });
 </script>
 
@@ -123,10 +110,7 @@
           type="button"
           aria-label="Alumni Sebelumnya"
           class="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-700 hover:text-blue-700 bg-white hover:bg-slate-100 border border-slate-200 text-sm font-bold shadow-xs active:scale-95 transition-all cursor-pointer hover:border-blue-300"
-          onclick={() => {
-            prev();
-            startAutoScroll();
-          }}
+          onclick={prev}
         >
           <span>←</span>
           <span class="hidden sm:inline">Sebelumnya</span>
@@ -143,10 +127,7 @@
                   ? 'w-8 h-2.5 bg-blue-700 shadow-sm'
                   : 'w-2.5 h-2.5 bg-slate-300 hover:bg-slate-400'
               }`}
-              onclick={() => {
-                goTo(dotIndex);
-                startAutoScroll();
-              }}
+              onclick={() => goTo(dotIndex)}
             ></button>
           {/each}
         </div>
@@ -156,10 +137,7 @@
           type="button"
           aria-label="Alumni Berikutnya"
           class="flex items-center gap-2 px-4 py-2 rounded-xl text-slate-700 hover:text-blue-700 bg-white hover:bg-slate-100 border border-slate-200 text-sm font-bold shadow-xs active:scale-95 transition-all cursor-pointer hover:border-blue-300"
-          onclick={() => {
-            next();
-            startAutoScroll();
-          }}
+          onclick={next}
         >
           <span class="hidden sm:inline">Berikutnya</span>
           <span>→</span>
