@@ -93,9 +93,9 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         {STATS.map((stat) => (
-          <div class="flex flex-col items-center justify-center p-2">
-            <div class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-amber-300 flex items-center gap-1 drop-shadow-sm">
-              <span>{stat.value}</span>
+          <div class="flex flex-col items-center justify-center p-2 group">
+            <div class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-amber-300 flex items-center justify-center gap-1 drop-shadow-sm group-hover:scale-105 transition-transform duration-300">
+              <span class="stat-counter" data-target={stat.value}>0</span>
               <span>{stat.suffix}</span>
             </div>
             <div class="text-xs sm:text-sm font-medium text-slate-300 mt-1 flex items-center gap-1.5">
@@ -125,12 +125,58 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       setTimeout(triggerPlay, 2500);
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initHeroVideo);
-    } else {
-      initHeroVideo();
+    function initCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      if (!counters.length) return;
+
+      const animate = (el: HTMLElement) => {
+        const target = parseInt(el.getAttribute('data-target') || '0', 10);
+        if (isNaN(target) || target <= 0) return;
+
+        const duration = 1800; // 1.8 detik animasi menghitung naik
+        const startTime = performance.now();
+
+        const updateCount = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease-out cubic: cepat di awal lalu melambat anggun
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          el.innerText = current.toString();
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            el.innerText = target.toString();
+          }
+        };
+
+        requestAnimationFrame(updateCount);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      counters.forEach((c) => observer.observe(c));
     }
-    document.addEventListener('astro:page-load', initHeroVideo);
+
+    function initAll() {
+      initHeroVideo();
+      initCounters();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAll);
+    } else {
+      initAll();
+    }
+    document.addEventListener('astro:page-load', initAll);
   </script>
 
 </section>

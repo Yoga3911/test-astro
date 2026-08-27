@@ -272,12 +272,57 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
       });
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', setupScrollReveal);
-    } else {
-      setupScrollReveal();
+    function initGlobalCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      if (!counters.length) return;
+
+      const animate = (el: HTMLElement) => {
+        const target = parseInt(el.getAttribute('data-target') || '0', 10);
+        if (isNaN(target) || target <= 0) return;
+
+        const duration = 1800; // 1.8 detik animasi menghitung naik
+        const startTime = performance.now();
+
+        const updateCount = (currentTime: number) => {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const easeOut = 1 - Math.pow(1 - progress, 3);
+          const current = Math.floor(easeOut * target);
+          el.innerText = current.toString();
+
+          if (progress < 1) {
+            requestAnimationFrame(updateCount);
+          } else {
+            el.innerText = target.toString();
+          }
+        };
+
+        requestAnimationFrame(updateCount);
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            animate(entry.target as HTMLElement);
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      counters.forEach((c) => observer.observe(c));
     }
-    document.addEventListener('astro:page-load', setupScrollReveal);
+
+    function initGlobalScripts() {
+      setupScrollReveal();
+      initGlobalCounters();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initGlobalScripts);
+    } else {
+      initGlobalScripts();
+    }
+    document.addEventListener('astro:page-load', initGlobalScripts);
   </script>
 </body>
 </html>
