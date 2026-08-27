@@ -22,6 +22,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       id="hero-bg-video"
       autoplay
       loop
+      muted
       playsinline
       poster="/images/heritage/spm.svg"
       class="w-full h-full object-cover select-none filter brightness-95 scale-100"
@@ -122,31 +123,26 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
       if (!video) return;
 
-      // Attempt to play with sound immediately
-      video.muted = false;
-      const playPromise = video.play();
+      // Start playing
+      video.play().catch(() => {});
 
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // If browser policy blocks sound autoplay on first load, start muted
-          video.muted = true;
-          video.play().catch(() => {});
+      const unmute = () => {
+        video.muted = false;
+        video.volume = 1.0;
+      };
 
-          // Unmute automatically upon first user gesture anywhere on page
-          const enableAudio = () => {
-            video.muted = false;
-            document.removeEventListener('click', enableAudio);
-            document.removeEventListener('touchstart', enableAudio);
-            document.removeEventListener('scroll', enableAudio);
-            document.removeEventListener('keydown', enableAudio);
-          };
+      // Try unmuting immediately
+      try {
+        video.muted = false;
+        video.volume = 1.0;
+      } catch (_) {}
 
-          document.addEventListener('click', enableAudio, { once: true });
-          document.addEventListener('touchstart', enableAudio, { once: true });
-          document.addEventListener('scroll', enableAudio, { once: true });
-          document.addEventListener('keydown', enableAudio, { once: true });
-        });
-      }
+      // Unmute on ANY first interaction anywhere on screen
+      const events = ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'wheel', 'keydown', 'mousemove'];
+      events.forEach((evt) => {
+        window.addEventListener(evt, unmute, { once: true, passive: true });
+        document.addEventListener(evt, unmute, { once: true, passive: true });
+      });
     }
 
     function initFullscreen() {
@@ -155,6 +151,8 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
 
       if (video && fsBtn) {
         fsBtn.addEventListener('click', () => {
+          video.muted = false;
+          video.volume = 1.0;
           if (!document.fullscreenElement) {
             video.requestFullscreen?.().catch(() => {});
           } else {
