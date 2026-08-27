@@ -37,26 +37,27 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <!-- 2. TOP RIGHT FLOATING FULLSCREEN BUTTON -->
-  <!-- 2. SOUND ENABLE OVERLAY — shown until user clicks (browser autoplay policy) -->
+  <!-- 2. SOUND ENABLE OVERLAY — z-35 above welcome text (z-20), below header (z-50) -->
   <div
     id="sound-overlay"
-    class="absolute inset-0 z-20 flex items-center justify-center cursor-pointer"
+    class="flex absolute inset-0 z-35 items-center justify-center cursor-pointer"
     style="background: transparent;"
-    title="Klik di mana saja untuk mengaktifkan suara"
+    title="Klik atau scroll untuk mengaktifkan suara"
   >
     <!-- Pulsing sound badge at center -->
-    <div id="sound-badge" class="flex flex-col items-center gap-2 pointer-events-none select-none" style="animation: soundPulse 2s ease-in-out infinite;">
-      <div class="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border-2 border-amber-400/60 flex items-center justify-center shadow-2xl">
-        <span class="text-3xl">🔇</span>
+    <div id="sound-badge" class="flex flex-col items-center gap-2 pointer-events-none select-none drop-shadow-2xl" style="animation: soundPulse 2s ease-in-out infinite;">
+      <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-slate-950/75 backdrop-blur-md border-2 border-amber-400 flex items-center justify-center shadow-2xl">
+        <span class="text-3xl sm:text-4xl">🔇</span>
       </div>
-      <span class="text-white text-xs font-bold tracking-widest uppercase bg-slate-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
-        Klik untuk aktifkan suara
+      <span class="text-white text-xs sm:text-sm font-bold tracking-widest uppercase bg-slate-950/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-amber-400/50 shadow-lg">
+        <span class="md:hidden">Scroll untuk aktifkan suara</span>
+        <span class="hidden md:inline">Klik untuk aktifkan suara</span>
       </span>
     </div>
   </div>
 
-  <!-- 2b. TOP RIGHT VIDEO CONTROLS (absolute pinned to corner, slides under sticky header z-50) -->
-  <div class="absolute z-30 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
+  <!-- 2b. TOP RIGHT VIDEO CONTROLS (z-40 above overlay z-35, slides under sticky header z-50) -->
+  <div class="absolute z-40 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
     <button
       id="toggle-sound-btn"
       type="button"
@@ -232,7 +233,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         });
       }
 
-      // One-time gesture listener across the window for first touch/click
+      // One-time gesture listener across the window for first touch/scroll/click
       const onFirstUserGesture = (e: Event) => {
         // If clicking/tapping the sound button or fullscreen button, let those buttons handle their own events
         const target = e.target as HTMLElement | null;
@@ -241,10 +242,12 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         }
         unlockAudio();
         window.removeEventListener('touchstart', onFirstUserGesture);
-        window.removeEventListener('click', onFirstUserGesture);
+        window.removeEventListener('touchmove',  onFirstUserGesture);
+        window.removeEventListener('click',      onFirstUserGesture);
       };
       window.addEventListener('touchstart', onFirstUserGesture, { passive: true });
-      window.addEventListener('click', onFirstUserGesture, { passive: true });
+      window.addEventListener('touchmove',  onFirstUserGesture, { passive: true });
+      window.addEventListener('click',      onFirstUserGesture, { passive: true });
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
