@@ -130,7 +130,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       if (!video) return;
 
       // Always ensure it is playing (covers page-revisit via back-button)
-      video.muted = true;
+      video.muted = false;
       if (video.paused) {
         video.play().catch(() => {});
       }
