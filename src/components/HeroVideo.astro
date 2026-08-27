@@ -92,7 +92,10 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     
     <!-- Identity Badge -->
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn">
-      <span class="text-base">✝️</span>
+      <span class="relative flex h-2.5 w-2.5">
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+      </span>
       <span>Sekolah Dasar Katolik Unggulan Jember</span>
     </div>
 
