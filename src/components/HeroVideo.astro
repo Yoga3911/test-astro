@@ -37,23 +37,26 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <!-- 2. TOP RIGHT FLOATING FULLSCREEN BUTTON -->
-  <!-- 2. SOUND ENABLE OVERLAY — z-35 above welcome text (z-20), below header (z-50) -->
+  <!-- 2. SOUND ENABLE BUTTON — z-35 above welcome text (z-20), below header (z-50) -->
   <div
     id="sound-overlay"
-    class="flex absolute inset-0 z-35 items-center justify-center cursor-pointer"
-    style="background: transparent;"
-    title="Klik atau scroll untuk mengaktifkan suara"
+    class="flex absolute inset-0 z-35 items-center justify-center pointer-events-none"
   >
-    <!-- Pulsing sound badge at center -->
-    <div id="sound-badge" class="flex flex-col items-center gap-2 pointer-events-none select-none drop-shadow-2xl" style="animation: soundPulse 2s ease-in-out infinite;">
-      <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-slate-950/75 backdrop-blur-md border-2 border-amber-400 flex items-center justify-center shadow-2xl">
+    <!-- Dedicated Clickable Pulsing Sound Button (pointer-events-auto) -->
+    <button
+      id="center-sound-btn"
+      type="button"
+      class="pointer-events-auto cursor-pointer flex flex-col items-center gap-2 group focus:outline-hidden select-none drop-shadow-2xl hover:scale-105 active:scale-95 transition-transform"
+      style="animation: soundPulse 2s ease-in-out infinite;"
+      title="Klik untuk aktifkan suara"
+    >
+      <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-slate-950/85 backdrop-blur-md border-2 border-amber-400 group-hover:border-amber-300 flex items-center justify-center shadow-2xl transition-colors">
         <span class="text-3xl sm:text-4xl">🔇</span>
       </div>
-      <span class="text-white text-xs sm:text-sm font-bold tracking-widest uppercase bg-slate-950/80 backdrop-blur-md px-4 py-1.5 rounded-full border border-amber-400/50 shadow-lg">
-        <span class="md:hidden">Scroll untuk aktifkan suara</span>
-        <span class="hidden md:inline">Klik untuk aktifkan suara</span>
+      <span class="text-white text-xs sm:text-sm font-bold tracking-widest uppercase bg-slate-950/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-amber-400/60 shadow-lg group-hover:bg-slate-900 transition-colors">
+        Klik untuk aktifkan suara
       </span>
-    </div>
+    </button>
   </div>
 
   <!-- 2b. TOP RIGHT VIDEO CONTROLS (z-40 above overlay z-35, slides under sticky header z-50) -->
@@ -97,7 +100,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
       </span>
-      <span>Sekolah Dasar Katolik Unggulan Jember</span>
+      <span>Sekolah Dasar Katolik Unggulan</span>
     </div>
 
     <!-- Grand Headline -->
@@ -189,11 +192,12 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     }
 
     function initHeroVideo() {
-      const video    = document.getElementById('hero-bg-video')    as HTMLVideoElement;
-      const overlay  = document.getElementById('sound-overlay')    as HTMLElement;
-      const icon     = document.getElementById('sound-btn-icon')   as HTMLElement;
-      const label    = document.getElementById('sound-btn-label')  as HTMLElement;
-      const soundBtn = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
+      const video          = document.getElementById('hero-bg-video')    as HTMLVideoElement;
+      const overlay        = document.getElementById('sound-overlay')    as HTMLElement;
+      const centerSoundBtn = document.getElementById('center-sound-btn') as HTMLButtonElement;
+      const icon           = document.getElementById('sound-btn-icon')   as HTMLElement;
+      const label          = document.getElementById('sound-btn-label')  as HTMLElement;
+      const soundBtn       = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
 
       if (!video) return;
 
@@ -225,29 +229,14 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       if (_heroInitDone) return;
       _heroInitDone = true;
 
-      // Overlay tap/click to unlock audio
-      if (overlay) {
-        overlay.addEventListener('click', (e) => {
+      // Center sound button click (both desktop & mobile)
+      if (centerSoundBtn) {
+        centerSoundBtn.addEventListener('click', (e) => {
           e.stopPropagation();
+          e.preventDefault();
           unlockAudio();
         });
       }
-
-      // One-time gesture listener across the window for first touch/scroll/click
-      const onFirstUserGesture = (e: Event) => {
-        // If clicking/tapping the sound button or fullscreen button, let those buttons handle their own events
-        const target = e.target as HTMLElement | null;
-        if (target && target.closest('#toggle-sound-btn, #toggle-fullscreen-btn')) {
-          return;
-        }
-        unlockAudio();
-        window.removeEventListener('touchstart', onFirstUserGesture);
-        window.removeEventListener('touchmove',  onFirstUserGesture);
-        window.removeEventListener('click',      onFirstUserGesture);
-      };
-      window.addEventListener('touchstart', onFirstUserGesture, { passive: true });
-      window.addEventListener('touchmove',  onFirstUserGesture, { passive: true });
-      window.addEventListener('click',      onFirstUserGesture, { passive: true });
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
