@@ -87,8 +87,8 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     }
   </style>
 
-  <!-- 3. HERO MAIN CENTERED FLOATING CONTENT (GRAND ALA SDH) -->
-  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex-1 flex flex-col justify-center items-center text-center">
+  <!-- 3. HERO MAIN LEFT-ALIGNED FLOATING CONTENT -->
+  <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex-1 flex flex-col justify-center items-start text-left">
     
     <!-- Foundation Badge -->
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-amber-300 text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn">
@@ -96,7 +96,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       <span>SDK MARIA FATIMA • KABUPATEN JEMBER</span>
     </div>
 
-    <!-- Grand Headline (Ala SDH) -->
+    <!-- Grand Headline -->
     <h1 id="hero-headline" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] max-w-5xl text-white mb-2 drop-shadow-lg">
       <span id="welcome-to-text">WELCOME TO</span> <br class="hidden sm:inline" />
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300">
@@ -113,24 +113,16 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       Living values, creating digitally
     </p>
 
-    <!-- Quick Action Buttons -->
-    <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto justify-center">
+    <!-- Quick Action Button -->
+    <div class="flex items-center">
       <a
         href="/admission"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-black text-base text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 hover:from-amber-300 hover:to-amber-200 shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200"
+        class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-black text-base text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 hover:from-amber-300 hover:to-amber-200 shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200"
       >
         <span>Daftar PPDB 2026/2027</span>
         <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
-      </a>
-
-      <a
-        href="/about-us"
-        class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-bold text-base text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 hover:border-white/40 shadow-md hover:scale-105 active:scale-95 transition-all duration-200"
-      >
-        <span>Jelajahi Profil Sekolah</span>
-        <span>→</span>
       </a>
     </div>
 
