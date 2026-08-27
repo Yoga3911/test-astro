@@ -237,7 +237,7 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
             const el = child as HTMLElement;
             if (!el.classList.contains('reveal') && !el.classList.contains('reveal-scale') && !el.classList.contains('reveal-on-scroll')) {
               el.classList.add('reveal-on-scroll');
-              el.style.transitionDelay = `${(idx % 6) * 75}ms`;
+              el.style.transitionDelay = `${(idx % 6) * 120}ms`;
             }
             elementsToObserve.add(el);
           });
