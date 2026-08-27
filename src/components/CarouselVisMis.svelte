@@ -23,7 +23,7 @@
     stopAutoScroll();
     autoScrollTimer = setInterval(() => {
       nextSlide();
-    }, 4000); // Otomatis berganti setiap 4 detik
+    }, 8000); // Otomatis berganti setiap 8 detik
   }
 
   function stopAutoScroll() {

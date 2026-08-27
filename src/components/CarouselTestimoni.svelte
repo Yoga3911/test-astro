@@ -21,7 +21,7 @@
   onMount(() => {
     const interval = setInterval(() => {
       currentIndex = (currentIndex + 1) % ALUMNI_TESTIMONIALS.length;
-    }, 4000);
+    }, 8000); // Berganti otomatis setiap 8 detik
 
     return () => {
       clearInterval(interval);
