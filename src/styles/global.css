@@ -396,53 +396,64 @@
 /* ─── Utility Styles ───────────────────────────────────────────────────────── */
 @layer utilities {
 
-  /* ── Scroll Reveal Animations ── */
-  .reveal {
+  /* ── Scroll Reveal Animations (Silky Smooth 60fps) ── */
+  .reveal,
+  .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(32px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal.visible,
+  .reveal.is-revealed,
+  .reveal-on-scroll.visible,
+  .reveal-on-scroll.is-revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
   }
 
   .reveal-left {
     opacity: 0;
-    transform: translateX(-40px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(-35px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .reveal-left.visible {
-    opacity: 1;
-    transform: translateX(0);
+  .reveal-left.visible,
+  .reveal-left.is-revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
   }
 
   .reveal-right {
     opacity: 0;
-    transform: translateX(40px);
-    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateX(35px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .reveal-right.visible {
-    opacity: 1;
-    transform: translateX(0);
+  .reveal-right.visible,
+  .reveal-right.is-revealed {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
   }
 
   .reveal-scale {
     opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.92) translateY(18px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
   }
 
-  .reveal-scale.visible {
-    opacity: 1;
-    transform: scale(1);
+  .reveal-scale.visible,
+  .reveal-scale.is-revealed {
+    opacity: 1 !important;
+    transform: scale(1) translateY(0) !important;
   }
 
   /* Delay utilities for staggered reveals */

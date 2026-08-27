@@ -210,32 +210,74 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   <!-- Global Floating WhatsApp Action Button -->
   <FloatingWA client:load />
 
-  <!-- Performance-optimized single observer script for reveal and counter animations -->
+  <!-- Global Scroll-Triggered Reveal Animation Observer (Smooth 60fps) -->
   <script>
-    function initUIObservers() {
-      // Reveal observer
-      const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
-      if (revealElements.length) {
-        const revealObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                revealObserver.unobserve(entry.target);
-              }
-            });
-          },
-          { threshold: 0.05, rootMargin: '0px 0px -20px 0px' }
-        );
-        revealElements.forEach((el) => revealObserver.observe(el));
-      }
+    function setupScrollReveal() {
+      const elementsToObserve = new Set<Element>();
+
+      // 1. Explicitly marked elements
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .reveal-on-scroll').forEach((el) => {
+        elementsToObserve.add(el);
+      });
+
+      // 2. Automatically observe main sections & content grids across all pages
+      const sections = document.querySelectorAll('main > section, main section');
+      sections.forEach((section) => {
+        if (section.id === 'hero-banner') return;
+
+        if (!section.classList.contains('reveal') && !section.classList.contains('reveal-on-scroll')) {
+          section.classList.add('reveal-on-scroll');
+        }
+        elementsToObserve.add(section);
+
+        // Stagger child cards in grids
+        const grids = section.querySelectorAll('.grid');
+        grids.forEach((grid) => {
+          Array.from(grid.children).forEach((child, idx) => {
+            const el = child as HTMLElement;
+            if (!el.classList.contains('reveal') && !el.classList.contains('reveal-scale') && !el.classList.contains('reveal-on-scroll')) {
+              el.classList.add('reveal-on-scroll');
+              el.style.transitionDelay = `${(idx % 6) * 75}ms`;
+            }
+            elementsToObserve.add(el);
+          });
+        });
+      });
+
+      if (!elementsToObserve.size) return;
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed', 'visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.08,
+          rootMargin: '0px 0px -40px 0px',
+        }
+      );
+
+      elementsToObserve.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        // If element is already visible on screen, reveal immediately without jump
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add('is-revealed', 'visible');
+        } else {
+          observer.observe(el);
+        }
+      });
     }
 
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(initUIObservers);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setupScrollReveal);
     } else {
-      setTimeout(initUIObservers, 100);
+      setupScrollReveal();
     }
+    document.addEventListener('astro:page-load', setupScrollReveal);
   </script>
 </body>
 </html>

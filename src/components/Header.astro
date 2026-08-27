@@ -121,99 +121,121 @@ function isActive(href: string): boolean {
           <span>→</span>
         </a>
 
-        <!-- Mobile Hamburger Button -->
+        <!-- Animated Mobile Hamburger Button -->
         <button
           type="button"
           id="mobile-menu-toggle"
           aria-expanded="false"
           aria-controls="mobile-drawer"
           aria-label="Buka Menu Navigasi"
-          class="xl:hidden p-2.5 rounded-xl text-slate-700 hover:text-blue-700 hover:bg-slate-100 border border-slate-200 transition-colors focus:outline-hidden focus:ring-2 focus:ring-blue-600"
+          class="xl:hidden w-11 h-11 rounded-xl text-slate-700 hover:text-blue-700 hover:bg-slate-100 border border-slate-200 flex flex-col items-center justify-center gap-1.5 transition-all duration-300 focus:outline-hidden focus:ring-2 focus:ring-blue-600 relative group"
         >
-          <svg id="icon-menu" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg id="icon-close" class="w-6 h-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          <span id="bar-top" class="w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300 origin-center group-hover:bg-blue-700"></span>
+          <span id="bar-mid" class="w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300 group-hover:bg-blue-700"></span>
+          <span id="bar-bot" class="w-5 h-0.5 bg-slate-700 rounded-full transition-all duration-300 origin-center group-hover:bg-blue-700"></span>
         </button>
       </div>
 
     </div>
   </nav>
 
-  <!-- Mobile Drawer -->
+  <!-- Mobile Drawer with Smooth Slide & Fade Transition -->
   <div
     id="mobile-drawer"
-    class="xl:hidden fixed inset-x-0 top-20 bg-white/98 backdrop-blur-lg border-b border-slate-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto hidden transition-all duration-300"
+    class="xl:hidden fixed inset-x-0 top-20 bg-white/98 backdrop-blur-xl border-b border-slate-200/90 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto invisible opacity-0 -translate-y-4 pointer-events-none transition-all duration-300 ease-out z-40"
   >
-    <div class="px-5 py-6 space-y-4">
-      {NAV_ITEMS.map((item) => {
+    <div class="px-4 sm:px-6 py-6 space-y-3">
+      {NAV_ITEMS.map((item, idx) => {
         const hasChildren = item.children && item.children.length > 0;
         const active = isActive(item.href);
 
         if (!hasChildren) {
           return (
-            <a
-              href={item.href}
-              class={`block px-4 py-3 rounded-xl text-base font-semibold transition-colors ${
-                active ? 'bg-blue-50 text-blue-700 font-bold' : 'text-slate-800 hover:bg-slate-50'
-              }`}
-            >
-              {item.label}
-            </a>
+            <div class="mobile-nav-item" style={`--item-index: ${idx}`}>
+              <a
+                href={item.href}
+                class={`flex items-center justify-between px-4 py-3.5 rounded-2xl text-base font-semibold transition-all duration-200 ${
+                  active
+                    ? 'bg-blue-50 text-blue-700 font-bold shadow-xs'
+                    : 'text-slate-800 hover:bg-slate-50 hover:text-blue-700'
+                }`}
+              >
+                <span>{item.label}</span>
+                <span class="text-xs text-slate-400">→</span>
+              </a>
+            </div>
           );
         }
 
         return (
-          <details class="group/mobile rounded-xl border border-slate-100 overflow-hidden bg-slate-50/50">
-            <summary class="flex items-center justify-between px-4 py-3 text-base font-semibold text-slate-800 cursor-pointer list-none select-none hover:bg-slate-100/70">
-              <span class={active ? 'text-blue-700 font-bold' : ''}>{item.label}</span>
-              <svg
-                class="w-4 h-4 text-slate-400 group-open/mobile:rotate-180 transition-transform duration-200"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-4 pb-3 pt-1 space-y-1 bg-white border-t border-slate-100">
-              <a
-                href={item.href}
-                class="block py-2 text-xs font-bold text-blue-600 uppercase tracking-wider"
-              >
-                Semua {item.label} →
-              </a>
-              {item.children!.map((child) => (
-                <a
-                  href={child.href}
-                  class="block py-2 text-sm font-medium text-slate-600 hover:text-blue-700 hover:pl-1 transition-all"
-                >
-                  {child.label}
-                </a>
-              ))}
-            </div>
-          </details>
+          <div class="mobile-nav-item" style={`--item-index: ${idx}`}>
+            <details class="group/mobile rounded-2xl border border-slate-100 overflow-hidden bg-slate-50/70 transition-all duration-300 open:bg-white open:border-blue-200 open:shadow-md">
+              <summary class="flex items-center justify-between px-4 py-3.5 text-base font-semibold text-slate-800 cursor-pointer list-none select-none hover:bg-slate-100/70 transition-colors">
+                <span class={active ? 'text-blue-700 font-bold' : ''}>{item.label}</span>
+                <div class="w-7 h-7 rounded-lg bg-slate-100 group-open/mobile:bg-blue-50 group-open/mobile:text-blue-700 flex items-center justify-center transition-colors">
+                  <svg
+                    class="w-4 h-4 text-slate-500 group-open/mobile:text-blue-700 group-open/mobile:rotate-180 transition-transform duration-300 ease-out"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2.5"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </summary>
+              
+              <!-- Animated Submenu (CSS Grid Expand/Collapse) -->
+              <div class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-300 ease-out group-open/mobile:grid-rows-[1fr]">
+                <div class="overflow-hidden">
+                  <div class="px-4 pb-4 pt-1 space-y-1 bg-white border-t border-slate-100 animate-submenuSlide">
+                    <a
+                      href={item.href}
+                      class="flex items-center justify-between py-2 px-3 rounded-xl text-xs font-extrabold text-blue-700 bg-blue-50/80 uppercase tracking-wider hover:bg-blue-100 transition-colors my-1"
+                    >
+                      <span>Lihat Semua {item.label}</span>
+                      <span>→</span>
+                    </a>
+                    {item.children!.map((child) => (
+                      <a
+                        href={child.href}
+                        class="block py-2.5 px-3 rounded-xl text-sm font-medium text-slate-700 hover:text-blue-700 hover:bg-blue-50/50 hover:translate-x-1 transition-all duration-200 group/subitem"
+                      >
+                        <div class="flex items-center justify-between">
+                          <span class="font-semibold">{child.label}</span>
+                          <span class="text-blue-600 text-xs opacity-0 -translate-x-1 group-hover/subitem:opacity-100 group-hover/subitem:translate-x-0 transition-all">→</span>
+                        </div>
+                        {child.description && (
+                          <div class="text-xs text-slate-500 font-normal mt-0.5 line-clamp-1">
+                            {child.description}
+                          </div>
+                        )}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
         );
       })}
 
-      <div class="pt-4 border-t border-slate-200 flex flex-col gap-3">
+      <!-- Mobile CTA Buttons -->
+      <div class="mobile-nav-item pt-4 border-t border-slate-200 flex flex-col gap-3" style={`--item-index: ${NAV_ITEMS.length}`}>
         <a
           href="/admission"
-          class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 text-center shadow-md shadow-blue-600/20"
+          class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-800 hover:to-indigo-700 text-center shadow-lg shadow-blue-700/25 active:scale-95 transition-all"
         >
-          <span>Pendaftaran Siswa Baru (PPDB)</span>
+          <span>Pendaftaran Siswa Baru (PPDB Online)</span>
           <span>→</span>
         </a>
         <a
           href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima%20Jember,%20saya%20ingin%20bertanya`}
           target="_blank"
           rel="noopener noreferrer"
-          class="w-full flex items-center justify-center gap-2 py-3 rounded-xl font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 text-center text-sm"
+          class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 text-center text-sm transition-colors active:scale-95"
         >
-          <span>💬 Chat WhatsApp Sekolah</span>
+          <span>💬 Hubungi Kami via WhatsApp</span>
         </a>
       </div>
     </div>
@@ -234,30 +256,104 @@ function isActive(href: string): boolean {
   .animate-fadeIn {
     animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   }
+
+  @keyframes staggerItemIn {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes submenuFade {
+    from {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-submenuSlide {
+    animation: submenuFade 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* When mobile drawer is open */
+  #mobile-drawer.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  #mobile-drawer.is-open .mobile-nav-item {
+    animation: staggerItemIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: calc(var(--item-index, 0) * 45ms);
+  }
+
+  /* Hamburger transform to X */
+  #mobile-menu-toggle.is-active #bar-top {
+    transform: translateY(8px) rotate(45deg);
+    background-color: #1d4ed8;
+  }
+  #mobile-menu-toggle.is-active #bar-mid {
+    opacity: 0;
+    transform: scale(0);
+  }
+  #mobile-menu-toggle.is-active #bar-bot {
+    transform: translateY(-8px) rotate(-45deg);
+    background-color: #1d4ed8;
+  }
 </style>
 
 <script>
-  const btn = document.getElementById('mobile-menu-toggle');
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-drawer');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
 
-  if (btn && drawer && iconMenu && iconClose) {
-    btn.addEventListener('click', () => {
-      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!isExpanded));
-      drawer.classList.toggle('hidden');
-      iconMenu.classList.toggle('hidden');
-      iconClose.classList.toggle('hidden');
+  if (toggleBtn && drawer) {
+    const openMenu = () => {
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      toggleBtn.classList.add('is-active');
+      drawer.classList.add('is-open');
+      document.body.classList.add('overflow-hidden', 'xl:overflow-auto');
+    };
+
+    const closeMenu = () => {
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      toggleBtn.classList.remove('is-active');
+      drawer.classList.remove('is-open');
+      document.body.classList.remove('overflow-hidden', 'xl:overflow-auto');
+    };
+
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isExpanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+      if (isExpanded) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
     });
 
-    // Close on click outside or navigation
+    // Close when clicking outside
     document.addEventListener('click', (e) => {
-      if (!btn.contains(e.target as Node) && !drawer.contains(e.target as Node) && !drawer.classList.contains('hidden')) {
-        btn.setAttribute('aria-expanded', 'false');
-        drawer.classList.add('hidden');
-        iconMenu.classList.remove('hidden');
-        iconClose.classList.add('hidden');
+      if (
+        !toggleBtn.contains(e.target as Node) &&
+        !drawer.contains(e.target as Node) &&
+        drawer.classList.contains('is-open')
+      ) {
+        closeMenu();
+      }
+    });
+
+    // Close when Esc key is pressed
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && drawer.classList.contains('is-open')) {
+        closeMenu();
       }
     });
   }
