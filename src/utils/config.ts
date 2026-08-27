@@ -28,9 +28,12 @@ export const SITE_CONFIG: SiteConfig = {
   email:       'sdkmartimjember@gmail.com',
   phone:       '(0331) 487123',
   whatsapp:    '6281234567890',
-  address:     'Jl. Kartini No. 49, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68137',
+  address:     'Jl. R.A. Kartini No.24, Tembaan, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68137',
   city:        'Jember, Jawa Timur',
   foundation:  'Kabupaten Jember',
+  coordinates: { lat: -8.1713365, lng: 113.7008447 },
+  mapsUrl:     'https://maps.google.com/?q=-8.1713365,113.7008447',
+  mapsEmbedUrl: 'https://maps.google.com/maps?q=-8.1713365,113.7008447&hl=id&z=17&output=embed',
   socialMedia: {
     instagram: 'https://instagram.com/sdkmartimjember',
     facebook:  'https://facebook.com/sdkmartimjember',

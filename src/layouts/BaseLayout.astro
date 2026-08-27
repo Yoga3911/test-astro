@@ -87,6 +87,12 @@ const schoolSchema = {
     postalCode: '68137',
     addressCountry: 'ID',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: -8.1713365,
+    longitude: 113.7008447,
+  },
+  hasMap: SITE_CONFIG.mapsUrl,
   sameAs: Object.values(SITE_CONFIG.socialMedia).filter(Boolean),
 };
 

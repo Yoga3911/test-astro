@@ -14,7 +14,7 @@ const kontakInfo = [
     icon: '📍',
     label: 'Alamat Sekolah',
     value: SITE_CONFIG.address,
-    href: `https://maps.google.com/?q=${encodeURIComponent('SDK Maria Fatima Jember')}`,
+    href: SITE_CONFIG.mapsUrl || 'https://maps.google.com/?q=-8.1713365,113.7008447',
   },
   {
     icon: '📞',
@@ -132,7 +132,7 @@ const kontakInfo = [
           <iframe
             title="Peta Lokasi SDK Maria Fatima Jember"
             class="w-full h-full border-0"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.3364950942516!2d113.6961208!3d-8.168798!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6943af6b5e0c5%3A0xbca12a433a763ff4!2sSDK%20Maria%20Fatima!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid"
+            src={SITE_CONFIG.mapsEmbedUrl || "https://maps.google.com/maps?q=-8.1713365,113.7008447&hl=id&z=17&output=embed"}
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"

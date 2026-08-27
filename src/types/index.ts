@@ -17,6 +17,9 @@ export interface SiteConfig {
   address:     string;
   city:        string;
   foundation:  string;
+  mapsUrl?:    string;
+  mapsEmbedUrl?: string;
+  coordinates?: { lat: number; lng: number };
   socialMedia: SocialMedia;
 }
 
