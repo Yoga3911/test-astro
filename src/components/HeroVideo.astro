@@ -15,24 +15,25 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
 
 <section id="hero-banner" class="relative overflow-hidden w-full min-h-[85vh] lg:min-h-[90vh] flex flex-col justify-between bg-slate-950 text-white">
   
-  <!-- 1. FULL-WIDTH EDGE-TO-EDGE BACKGROUND VIDEO (CLEAN NATIVE VIDEO - NO YOUTUBE BUTTONS) -->
+  <!-- 1. FULL-WIDTH EDGE-TO-EDGE BACKGROUND VIDEO (SEAMLESS AUTOPLAY - NO CONTROLS) -->
   <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-    <video
-      id="hero-bg-video"
-      autoplay
-      loop
-      muted
-      playsinline
-      poster="/images/heritage/spm.svg"
-      class="w-full h-full object-cover pointer-events-none select-none filter brightness-90 scale-105"
-    >
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-children-in-a-classroom-raising-their-hands-43225-large.mp4" type="video/mp4" />
-      <source src="https://assets.mixkit.co/videos/preview/mixkit-students-walking-in-a-university-hallway-43224-large.mp4" type="video/mp4" />
-    </video>
+    
+    <!-- Scaled video wrapper to hide any player UI and fit edge-to-edge -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130vw] h-[73.125vw] min-h-[130vh] min-w-[231.11vh] pointer-events-none overflow-hidden select-none">
+      <iframe
+        id="hero-yt-player"
+        class="w-full h-full object-cover pointer-events-none scale-110"
+        src="https://www.youtube-nocookie.com/embed/n42s_hI72v4?autoplay=1&mute=1&controls=0&loop=1&playlist=n42s_hI72v4&playsinline=1&enablejsapi=1&rel=0&iv_load_policy=3&disablekb=1&modestbranding=1&fs=0&autohide=1"
+        title="Background Video Profil SDK Maria Fatima"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        tabindex="-1"
+        style="border: 0; pointer-events: none;"
+      ></iframe>
+    </div>
 
-    <!-- Cinematic Vignette / Glass Gradient Overlay for Perfect Text Contrast -->
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/60 to-slate-950/40 z-10"></div>
-    <div class="absolute inset-0 bg-blue-950/30 mix-blend-multiply z-10"></div>
+    <!-- Cinematic Vignette / Glass Gradient Overlay (Blocks All Iframe UI & Guarantees High Contrast) -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/40 z-10 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-blue-950/30 mix-blend-multiply z-10 pointer-events-none"></div>
 
     <!-- Ambient Glowing Orbs -->
     <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl z-10 pointer-events-none animate-pulse"></div>
@@ -106,5 +107,30 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       </div>
     </div>
   </div>
+
+  <script>
+    function initHeroVideo() {
+      const iframe = document.getElementById('hero-yt-player') as HTMLIFrameElement;
+      if (!iframe) return;
+
+      const triggerPlay = () => {
+        try {
+          iframe.contentWindow?.postMessage('{"event":"command","func":"mute","args":""}', '*');
+          iframe.contentWindow?.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+        } catch (_) {}
+      };
+
+      iframe.addEventListener('load', triggerPlay);
+      setTimeout(triggerPlay, 1000);
+      setTimeout(triggerPlay, 2500);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHeroVideo);
+    } else {
+      initHeroVideo();
+    }
+    document.addEventListener('astro:page-load', initHeroVideo);
+  </script>
 
 </section>
