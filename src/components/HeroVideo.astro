@@ -97,10 +97,13 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     </div>
 
     <!-- Grand Headline -->
-    <h1 id="hero-headline" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] max-w-5xl text-white mb-2 drop-shadow-lg">
-      <span id="welcome-to-text">WELCOME TO</span> <br class="hidden sm:inline" />
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300">
-        SDK MARIA FATIMA JEMBER
+    <h1 id="hero-headline" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] text-white mb-2 drop-shadow-lg">
+      <span id="welcome-to-text">WELCOME TO</span> <br />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300 whitespace-nowrap">
+        SDK MARIA FATIMA
+      </span><br />
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-300">
+        JEMBER
       </span>
     </h1>
 
@@ -211,16 +214,23 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       if (_heroInitDone) return;
       _heroInitDone = true;
 
-      // Clicking the full-page transparent overlay → unmute
+      // Persistent overlay click listener — works even after re-muting via toggle button
       if (overlay) {
-        overlay.addEventListener('click', enableSoundAndHideOverlay, { once: true });
+        overlay.addEventListener('click', () => {
+          if (!overlay.classList.contains('hidden-overlay')) {
+            enableSoundAndHideOverlay();
+          }
+        });
       }
 
-      // Also unlock on first touch (mobile) — touchstart IS a user activation event
-      // NOTE: scroll & wheel are intentionally excluded — they are NOT user activation
-      // events and calling setMuted(false) from them causes Chrome to pause the video.
-      window.addEventListener('touchstart', enableSoundAndHideOverlay, { once: true, passive: true });
-      window.addEventListener('touchmove',  enableSoundAndHideOverlay, { once: true, passive: true });
+      // Mobile: persistent touch listener that checks overlay visibility
+      const touchUnlock = () => {
+        if (overlay && !overlay.classList.contains('hidden-overlay')) {
+          enableSoundAndHideOverlay();
+        }
+      };
+      window.addEventListener('touchstart', touchUnlock, { passive: true });
+      window.addEventListener('touchmove',  touchUnlock, { passive: true });
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
