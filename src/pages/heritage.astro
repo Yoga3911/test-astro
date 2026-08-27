@@ -97,7 +97,7 @@ import { HERITAGE_DATA, SITE_CONFIG } from '@/utils/config';
 
                 <!-- Right Visual -->
                 <div class={`lg:col-span-5 ${!isEven ? 'lg:order-1' : ''}`}>
-                  <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-slate-100 bg-slate-900">
+                  <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-100 ring-1 ring-slate-200">
                     <img
                       src={`/images/heritage/${item.id === 'st-julie-billiart' ? 'st-julie' : item.id === 'pater-matthias-wolff' ? 'pater-wolff' : item.id}.svg`}
                       alt={item.title}
@@ -115,23 +115,28 @@ import { HERITAGE_DATA, SITE_CONFIG } from '@/utils/config';
       </div>
     </section>
 
-    <!-- Banner Call to Action -->
-    <section class="py-16 bg-blue-900 text-white text-center">
-      <div class="max-w-4xl mx-auto px-4 space-y-4">
-        <h3 class="text-2xl sm:text-3xl font-heading font-black">
-          "Ah! Betapa Baiknya Allah yang Mahabaik!"
-        </h3>
-        <p class="text-blue-200 text-sm sm:text-base max-w-2xl mx-auto">
-          Mari wujudkan semangat kasih dan keteladanan Bunda Maria dalam mendidik putra-putri tercinta di SDK Maria Fatima Jember.
-        </p>
-        <div class="pt-4">
-          <a
-            href="/admission"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-md transition-colors"
-          >
-            <span>Daftar PPDB Online</span>
-            <span>→</span>
-          </a>
+    <!-- Banner Call to Action (Bright Theme) -->
+    <section class="py-16 bg-slate-50 border-t border-slate-200/80">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="bg-gradient-to-br from-white via-blue-50/50 to-white rounded-3xl p-8 sm:p-12 border-2 border-blue-200/80 shadow-xl space-y-4 relative overflow-hidden">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider border border-amber-200 shadow-xs">
+            <span>SPIRITUALITAS SPM</span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
+            "Ah! Betapa Baiknya Allah yang Mahabaik!"
+          </h3>
+          <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+            Mari wujudkan semangat kasih dan keteladanan Bunda Maria dalam mendidik putra-putri tercinta di SDK Maria Fatima Jember.
+          </p>
+          <div class="pt-4">
+            <a
+              href="/admission"
+              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-heading font-bold text-sm shadow-lg shadow-blue-700/25 hover:scale-105 active:scale-95 transition-all"
+            >
+              <span>Daftar PPDB Online</span>
+              <span>→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

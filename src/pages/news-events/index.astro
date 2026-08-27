@@ -128,16 +128,16 @@ const GALERI_KEGIATAN = [
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {GALERI_KEGIATAN.map((galeri) => (
-            <div class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div class="aspect-4/3 overflow-hidden bg-slate-200 relative">
+                <div class="aspect-4/3 overflow-hidden bg-slate-100 relative">
                   <img
                     src={galeri.image}
                     alt={galeri.title}
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-bold uppercase">
+                  <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-bold uppercase shadow-xs">
                     {galeri.category}
                   </span>
                 </div>

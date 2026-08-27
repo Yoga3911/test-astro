@@ -119,24 +119,24 @@ const PHOTO_GALLERY = [
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {VIDEO_ITEMS.map((video) => (
-            <div class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <!-- Video Thumbnail with Play Button -->
-                <div class="aspect-video bg-slate-900 relative overflow-hidden flex items-center justify-center">
+                <div class="aspect-video bg-slate-100 relative overflow-hidden flex items-center justify-center">
                   <img
                     src={video.thumbnail}
                     alt={video.title}
-                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
-                  <div class="absolute inset-0 bg-slate-950/30 flex items-center justify-center">
+                  <div class="absolute inset-0 bg-slate-900/20 flex items-center justify-center">
                     <div class="w-14 h-14 rounded-full bg-red-600 group-hover:bg-red-500 text-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
                       <svg class="w-6 h-6 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M8 5v14l11-7z" />
                       </svg>
                     </div>
                   </div>
-                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-slate-950/80 text-white text-[11px] font-mono font-bold">
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-slate-900/80 text-white text-[11px] font-mono font-bold">
                     {video.duration}
                   </span>
                 </div>
@@ -196,7 +196,7 @@ const PHOTO_GALLERY = [
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-bold uppercase">
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-bold uppercase shadow-xs">
                   {foto.category}
                 </span>
               </div>
