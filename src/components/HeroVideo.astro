@@ -40,7 +40,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   <!-- 2. SOUND ENABLE OVERLAY — shown until user clicks (browser autoplay policy) -->
   <div
     id="sound-overlay"
-    class="absolute inset-0 z-40 flex items-center justify-center cursor-pointer"
+    class="absolute inset-0 z-20 flex items-center justify-center cursor-pointer"
     style="background: transparent;"
     title="Klik di mana saja untuk mengaktifkan suara"
   >
@@ -55,8 +55,8 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     </div>
   </div>
 
-  <!-- 2b. TOP RIGHT VIDEO CONTROLS (absolute pinned to corner) -->
-  <div class="absolute z-50 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
+  <!-- 2b. TOP RIGHT VIDEO CONTROLS (absolute pinned to corner, slides under sticky header z-50) -->
+  <div class="absolute z-30 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
     <button
       id="toggle-sound-btn"
       type="button"
