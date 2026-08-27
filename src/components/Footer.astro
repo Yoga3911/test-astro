@@ -2,7 +2,7 @@
 /**
  * Footer.astro
  *
- * Multi-column footer for SDK Maria Fatima Jember:
+ * Clean Bright Light Multi-column footer for SDK Maria Fatima Jember:
  * - Brand & SPM Heritage identity
  * - Sitemap navigation matching PDF
  * - Contact info (Jember), WhatsApp quick link, Social media
@@ -14,51 +14,51 @@ import { SITE_CONFIG, NAV_ITEMS } from '@/utils/config';
 const currentYear = new Date().getFullYear();
 ---
 
-<footer class="bg-slate-900 text-slate-300 pt-16 pb-12 border-t border-slate-800" role="contentinfo">
+<footer class="bg-slate-50 text-slate-600 pt-16 pb-12 border-t border-slate-200/90" role="contentinfo">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-800">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-slate-200">
 
       <!-- Column 1: Brand & Foundation Info (4 cols) -->
       <div class="lg:col-span-4 space-y-4">
         <a href="/" class="flex items-center gap-3 group">
-          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-700 to-blue-500 flex items-center justify-center font-heading font-black text-white text-lg shadow-md">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-700 to-blue-600 flex items-center justify-center font-heading font-black text-white text-lg shadow-md shadow-blue-700/20">
             MF
           </div>
           <div>
-            <div class="font-heading font-black text-lg text-white group-hover:text-blue-400 transition-colors">
+            <div class="font-heading font-black text-lg text-slate-900 group-hover:text-blue-700 transition-colors">
               {SITE_CONFIG.shortName}
             </div>
-            <div class="text-xs text-amber-400 font-semibold">
+            <div class="text-xs text-amber-700 font-bold">
               Yayasan Suster SPM Probolinggo
             </div>
           </div>
         </a>
 
-        <p class="text-sm text-slate-400 leading-relaxed">
+        <p class="text-sm text-slate-600 leading-relaxed font-normal">
           {SITE_CONFIG.description}
         </p>
 
         <!-- Accreditation Badge -->
-        <div class="inline-flex items-center gap-3 p-3 rounded-2xl bg-slate-800/80 border border-slate-700/80">
+        <div class="inline-flex items-center gap-3 p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs">
           <span class="text-2xl">⭐</span>
           <div>
-            <div class="text-[11px] uppercase font-bold text-slate-400 tracking-wider">Akreditasi BAN-S/M</div>
-            <div class="text-sm font-heading font-black text-amber-300">{SITE_CONFIG.akreditasi} • NPSN {SITE_CONFIG.npsn}</div>
+            <div class="text-[11px] uppercase font-bold text-slate-500 tracking-wider">Akreditasi BAN-S/M</div>
+            <div class="text-sm font-heading font-black text-blue-800">{SITE_CONFIG.akreditasi} • NPSN {SITE_CONFIG.npsn}</div>
           </div>
         </div>
       </div>
 
       <!-- Column 2: Quick Links (3 cols) -->
       <div class="lg:col-span-3 space-y-3">
-        <h3 class="font-heading font-extrabold text-sm text-white uppercase tracking-wider">
+        <h3 class="font-heading font-extrabold text-sm text-slate-900 uppercase tracking-wider">
           Navigasi Utama
         </h3>
-        <ul class="space-y-2 text-sm">
+        <ul class="space-y-2 text-sm font-medium">
           {NAV_ITEMS.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="hover:text-blue-400 hover:translate-x-1 inline-block transition-all text-slate-400"
+                class="hover:text-blue-700 hover:translate-x-1 inline-block transition-all text-slate-600"
               >
                 {item.label}
               </a>
@@ -69,55 +69,55 @@ const currentYear = new Date().getFullYear();
 
       <!-- Column 3: Heritage & Values (2 cols) -->
       <div class="lg:col-span-2 space-y-3">
-        <h3 class="font-heading font-extrabold text-sm text-white uppercase tracking-wider">
+        <h3 class="font-heading font-extrabold text-sm text-slate-900 uppercase tracking-wider">
           Heritage &amp; Nilai
         </h3>
-        <ul class="space-y-2 text-sm text-slate-400">
-          <li><a href="/heritage#maria-fatima" class="hover:text-amber-400 transition-colors">Bunda Maria Fatima</a></li>
-          <li><a href="/heritage#spm" class="hover:text-amber-400 transition-colors">Kongregasi Suster SPM</a></li>
-          <li><a href="/heritage#st-julie-billiart" class="hover:text-amber-400 transition-colors">Santa Julie Billiart</a></li>
-          <li><a href="/heritage#pater-matthias-wolff" class="hover:text-amber-400 transition-colors">Pater Matthias Wolff</a></li>
-          <li><a href="/heritage#sikaru" class="hover:text-amber-400 transition-colors">Nilai-Nilai SIKARU</a></li>
-          <li><a href="/about-us#profil-lulusan" class="hover:text-amber-400 transition-colors">8 Profil Lulusan</a></li>
+        <ul class="space-y-2 text-sm font-medium text-slate-600">
+          <li><a href="/heritage#maria-fatima" class="hover:text-blue-700 transition-colors">Bunda Maria Fatima</a></li>
+          <li><a href="/heritage#spm" class="hover:text-blue-700 transition-colors">Kongregasi Suster SPM</a></li>
+          <li><a href="/heritage#st-julie-billiart" class="hover:text-blue-700 transition-colors">Santa Julie Billiart</a></li>
+          <li><a href="/heritage#pater-matthias-wolff" class="hover:text-blue-700 transition-colors">Pater Matthias Wolff</a></li>
+          <li><a href="/heritage#sikaru" class="hover:text-blue-700 transition-colors">Nilai-Nilai SIKARU</a></li>
+          <li><a href="/about-us#profil-lulusan" class="hover:text-blue-700 transition-colors">8 Profil Lulusan</a></li>
         </ul>
       </div>
 
       <!-- Column 4: Contact & Social (3 cols) -->
       <div class="lg:col-span-3 space-y-4">
-        <h3 class="font-heading font-extrabold text-sm text-white uppercase tracking-wider">
+        <h3 class="font-heading font-extrabold text-sm text-slate-900 uppercase tracking-wider">
           Sekretariat &amp; Kontak
         </h3>
         
-        <div class="space-y-2.5 text-xs sm:text-sm text-slate-400">
+        <div class="space-y-2.5 text-xs sm:text-sm text-slate-600">
           <div class="flex items-start gap-2.5">
-            <span class="text-blue-400 mt-0.5">📍</span>
+            <span class="text-blue-600 mt-0.5">📍</span>
             <span>{SITE_CONFIG.address}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <span class="text-blue-400">📞</span>
+            <span class="text-blue-600">📞</span>
             <span>{SITE_CONFIG.phone}</span>
           </div>
           <div class="flex items-center gap-2.5">
-            <span class="text-emerald-400">💬</span>
-            <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer" class="text-emerald-400 hover:underline">
+            <span class="text-emerald-600">💬</span>
+            <a href={`https://wa.me/${SITE_CONFIG.whatsapp}`} target="_blank" rel="noopener noreferrer" class="text-emerald-700 font-semibold hover:underline">
               WhatsApp: +62 812-3456-7890
             </a>
           </div>
           <div class="flex items-center gap-2.5">
-            <span class="text-blue-400">✉️</span>
+            <span class="text-blue-600">✉️</span>
             <span>{SITE_CONFIG.email}</span>
           </div>
         </div>
 
         <!-- Social Media Icons -->
         <div class="pt-2">
-          <div class="text-xs font-semibold text-slate-400 mb-2">Media Sosial Resmi:</div>
+          <div class="text-xs font-semibold text-slate-500 mb-2">Media Sosial Resmi:</div>
           <div class="flex items-center gap-2">
             <a
               href={SITE_CONFIG.socialMedia.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-pink-600 text-white flex items-center justify-center transition-colors"
+              class="w-9 h-9 rounded-xl bg-white hover:bg-pink-50 hover:text-pink-600 text-slate-700 border border-slate-200 shadow-xs flex items-center justify-center transition-colors"
               aria-label="Instagram SDK Maria Fatima"
             >
               📸
@@ -126,7 +126,7 @@ const currentYear = new Date().getFullYear();
               href={SITE_CONFIG.socialMedia.youtube}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-red-600 text-white flex items-center justify-center transition-colors"
+              class="w-9 h-9 rounded-xl bg-white hover:bg-red-50 hover:text-red-600 text-slate-700 border border-slate-200 shadow-xs flex items-center justify-center transition-colors"
               aria-label="YouTube SDK Maria Fatima"
             >
               ▶
@@ -135,7 +135,7 @@ const currentYear = new Date().getFullYear();
               href={SITE_CONFIG.socialMedia.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-blue-600 text-white flex items-center justify-center transition-colors"
+              class="w-9 h-9 rounded-xl bg-white hover:bg-blue-50 hover:text-blue-600 text-slate-700 border border-slate-200 shadow-xs flex items-center justify-center transition-colors"
               aria-label="Facebook SDK Maria Fatima"
             >
               📘
@@ -144,7 +144,7 @@ const currentYear = new Date().getFullYear();
               href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
               target="_blank"
               rel="noopener noreferrer"
-              class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-emerald-600 text-white flex items-center justify-center transition-colors"
+              class="w-9 h-9 rounded-xl bg-white hover:bg-emerald-50 hover:text-emerald-600 text-slate-700 border border-slate-200 shadow-xs flex items-center justify-center transition-colors"
               aria-label="WhatsApp SDK Maria Fatima"
             >
               💬
@@ -159,12 +159,12 @@ const currentYear = new Date().getFullYear();
     <!-- Bottom Copyright -->
     <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
       <p>© {currentYear} {SITE_CONFIG.name}. Seluruh hak cipta dilindungi undang-undang.</p>
-      <div class="flex items-center gap-4">
-        <a href="/about-us#tata-tertib" class="hover:text-slate-300">Tata Tertib</a>
+      <div class="flex items-center gap-4 font-medium">
+        <a href="/about-us#tata-tertib" class="hover:text-blue-700">Tata Tertib</a>
         <span>•</span>
-        <a href="/admission" class="hover:text-slate-300">Pendaftaran PPDB</a>
+        <a href="/admission" class="hover:text-blue-700">Pendaftaran PPDB</a>
         <span>•</span>
-        <a href="/media" class="hover:text-slate-300">Mars &amp; Jingle</a>
+        <a href="/media" class="hover:text-blue-700">Mars &amp; Jingle</a>
       </div>
     </div>
   </div>
