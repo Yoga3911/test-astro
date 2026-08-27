@@ -27,15 +27,19 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
   <main id="main-content">
     
     <!-- Hero Header -->
-    <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+    <section class="bg-gradient-to-b from-blue-50/80 via-white to-slate-50 border-b border-slate-200/80 py-16 sm:py-20 relative overflow-hidden">
+      <!-- Decorative ambient glows -->
+      <div class="absolute top-0 right-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs">
           <span>PROFIL SDM &amp; PENDIDIK</span>
         </div>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight">
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
           People: Guru &amp; Tenaga Kependidikan
         </h1>
-        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+        <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
           Pendidik dan staf profesional, berdedikasi tinggi, dan penuh kasih dalam membimbing setiap langkah putra-putri kita.
         </p>
       </div>
@@ -45,13 +49,13 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
     <section id="kepala-sekolah" class="py-16 sm:py-24 bg-white scroll-mt-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl relative overflow-hidden">
+        <div class="bg-gradient-to-br from-blue-50 via-white to-slate-50 text-slate-900 rounded-3xl p-8 sm:p-12 md:p-16 shadow-xl border border-blue-200/80 relative overflow-hidden">
           
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
             
             <!-- Photo -->
             <div class="lg:col-span-4 flex flex-col items-center text-center">
-              <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-400 bg-slate-800 mb-4">
+              <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-200 mb-4 ring-2 ring-blue-600/20">
                 <img
                   src={kepalaSekolah.photo}
                   alt={kepalaSekolah.name}
@@ -59,30 +63,30 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
                   loading="lazy"
                 />
               </div>
-              <span class="px-4 py-1 rounded-full bg-amber-400 text-slate-950 text-xs font-extrabold uppercase tracking-wider">
+              <span class="px-4 py-1 rounded-full bg-blue-700 text-white text-xs font-extrabold uppercase tracking-wider shadow-sm">
                 KEPALA SEKOLAH
               </span>
             </div>
 
             <!-- Speech / Profile -->
             <div class="lg:col-span-8 space-y-5">
-              <div class="text-xs font-bold uppercase text-amber-300 tracking-widest">
+              <div class="text-xs font-bold uppercase text-amber-600 tracking-widest">
                 SAMBUTAN KEPALA SEKOLAH
               </div>
 
-              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white leading-tight">
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 leading-tight">
                 {kepalaSekolah.name}
               </h2>
               
-              <p class="text-xs sm:text-sm text-blue-200 font-semibold">
+              <p class="text-xs sm:text-sm text-blue-700 font-semibold">
                 {kepalaSekolah.education} • {kepalaSekolah.yearsOfService}
               </p>
 
-              <blockquote class="text-base sm:text-lg text-slate-200 italic leading-relaxed border-l-4 border-amber-400 pl-4 py-2 font-serif">
+              <blockquote class="text-base sm:text-lg text-slate-800 italic leading-relaxed border-l-4 border-amber-500 pl-4 py-2 font-serif bg-white/80 rounded-r-2xl border-y border-r border-slate-100 p-4">
                 {kepalaSekolah.quote}
               </blockquote>
 
-              <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
                 "Selamat datang di gerbang digital SDK Maria Fatima Jember. Kami meyakini bahwa setiap anak dianugerahi keunikan dan potensi tak terbatas oleh Tuhan. Komitmen kami bersama para guru dan karyawan adalah menyajikan lingkungan belajar yang aman, suportif, dan inspiratif agar tunas-tunas muda ini bertumbuh menjadi pribadi yang cerdas berilmu, berkarakter mulia, serta siap memimpin masa depan."
               </p>
             </div>

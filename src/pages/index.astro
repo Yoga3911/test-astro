@@ -220,44 +220,50 @@ const KEUNGGULAN_LIST = [
     <InstagramFeed />
 
     <!-- 7. REGISTRASI / CALL TO ACTION (ALA SDH: BE A PART OF OUR COMMUNITY) -->
-    <section id="registrasi-cta" class="py-16 sm:py-24 bg-gradient-to-br from-slate-950 via-blue-950 to-slate-950 text-white relative overflow-hidden">
-      <!-- Ambient light effect -->
-      <div class="absolute top-0 right-1/4 w-96 h-96 bg-blue-600/25 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="absolute bottom-0 left-1/4 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl pointer-events-none"></div>
+    <section id="registrasi-cta" class="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-gradient-to-br from-blue-700 via-blue-800 to-indigo-900 text-white rounded-3xl p-8 sm:p-14 md:p-16 text-center shadow-2xl relative overflow-hidden">
+          
+          <!-- Ambient lighting effects -->
+          <div class="absolute -top-24 -right-24 w-96 h-96 bg-amber-400/20 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-sky-400/25 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-8">
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-widest">
-          <span>PPDB TAHUN AJARAN 2026/2027</span>
-        </div>
+          <div class="relative z-10 space-y-6 max-w-3xl mx-auto">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20 text-amber-300 text-xs font-bold uppercase tracking-widest">
+              <span>PPDB TAHUN AJARAN 2026/2027</span>
+            </div>
 
-        <h2 class="text-3xl sm:text-5xl md:text-6xl font-heading font-black tracking-tight leading-tight text-white max-w-4xl mx-auto">
-          Be a Part of Our Lifelong <br class="hidden sm:inline" />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300">
-            Transformative Learning Community
-          </span>
-        </h2>
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-heading font-black tracking-tight leading-tight text-white">
+              Be a Part of Our Lifelong <br class="hidden sm:inline" />
+              <span class="text-amber-300">
+                Transformative Learning Community
+              </span>
+            </h2>
 
-        <p class="text-slate-300 text-base sm:text-xl max-w-2xl mx-auto font-normal leading-relaxed">
-          Pintu pendaftaran peserta didik baru (PPDB) telah dibuka. Berikan fondasi terbaik bagi masa depan, karakter, dan iman ananda tercinta bersama SDK Maria Fatima Jember.
-        </p>
+            <p class="text-blue-100 text-base sm:text-lg font-normal leading-relaxed">
+              Pintu pendaftaran peserta didik baru (PPDB) telah dibuka. Berikan fondasi terbaik bagi masa depan, karakter, dan iman ananda tercinta bersama SDK Maria Fatima Jember.
+            </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a
-            href="/admission"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-black text-base text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-xl shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all duration-200"
-          >
-            <span>Daftar Sekarang Secara Online</span>
-            <span>→</span>
-          </a>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+              <a
+                href="/admission"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-black text-base text-slate-950 bg-amber-400 hover:bg-amber-300 shadow-xl shadow-amber-500/25 hover:scale-105 active:scale-95 transition-all duration-200"
+              >
+                <span>Daftar Sekarang Secara Online</span>
+                <span>→</span>
+              </a>
 
-          <a
-            href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20pendaftaran%20PPDB%202026/2027`}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-bold text-base text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md transition-colors"
-          >
-            <span>💬 Konsultasi PPDB via WA</span>
-          </a>
+              <a
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20pendaftaran%20PPDB%202026/2027`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-2xl font-bold text-base text-white bg-white/15 hover:bg-white/25 border border-white/25 backdrop-blur-md transition-all"
+              >
+                <span>💬 Konsultasi PPDB via WA</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
