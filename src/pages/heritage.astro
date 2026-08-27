@@ -1,0 +1,138 @@
+---
+/**
+ * heritage.astro — Kongregasi, Identitas Spiritual & Sejarah Yayasan
+ *
+ * Sesuai Sitemap PDF:
+ * - Maria Fatima
+ * - SPM
+ * - St. Julie Billiart
+ * - Pater Matthias Wolff
+ * - SIKARU
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { HERITAGE_DATA, SITE_CONFIG } from '@/utils/config';
+---
+
+<BaseLayout
+  title="Heritage & Spiritualitas SPM"
+  description="Warisan rohani, sejarah Kongregasi Suster SPM, Santa Maria Fatima, St. Julie Billiart, Pater Matthias Wolff, dan nilai SIKARU."
+>
+  <Header />
+
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <span>WARISAN SPIRITUAL &amp; IDENTITAS</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight">
+          Heritage &amp; Spiritualitas
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+          Mengenal akar iman, teladan para tokoh pendiri, dan nilai-nilai keutamaan yang menjiwai seluruh karya pendidikan di SDK Maria Fatima Jember.
+        </p>
+      </div>
+    </section>
+
+    <!-- Heritage Items List -->
+    <section class="py-16 sm:py-24 bg-slate-50">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {HERITAGE_DATA.map((item, index) => {
+          const isEven = index % 2 === 0;
+
+          return (
+            <div
+              id={item.id}
+              class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all duration-300 scroll-mt-28"
+            >
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Left Details -->
+                <div class={`lg:col-span-7 space-y-5 ${!isEven ? 'lg:order-2' : ''}`}>
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider">
+                    <span>{item.icon}</span>
+                    <span>WARISAN #{index + 1}</span>
+                  </div>
+
+                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
+                    {item.title}
+                  </h2>
+                  <p class="text-sm sm:text-base font-bold text-amber-600">
+                    {item.subtitle}
+                  </p>
+
+                  <p class="text-base text-slate-700 font-medium leading-relaxed bg-blue-50/60 p-4 rounded-2xl border border-blue-100">
+                    {item.summary}
+                  </p>
+
+                  <div class="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed">
+                    {item.content.map((p) => (
+                      <p>{p}</p>
+                    ))}
+                  </div>
+
+                  {item.values && item.values.length > 0 && (
+                    <div class="pt-2">
+                      <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nilai Keutamaan:</div>
+                      <div class="flex flex-wrap gap-2">
+                        {item.values.map((v) => (
+                          <span class="px-3 py-1 rounded-xl bg-slate-100 text-slate-800 text-xs font-bold">
+                            ✦ {v}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <!-- Right Visual -->
+                <div class={`lg:col-span-5 ${!isEven ? 'lg:order-1' : ''}`}>
+                  <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-slate-100 bg-slate-900">
+                    <img
+                      src={`/images/heritage/${item.id === 'st-julie-billiart' ? 'st-julie' : item.id === 'pater-matthias-wolff' ? 'pater-wolff' : item.id}.svg`}
+                      alt={item.title}
+                      class="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          );
+        })}
+
+      </div>
+    </section>
+
+    <!-- Banner Call to Action -->
+    <section class="py-16 bg-blue-900 text-white text-center">
+      <div class="max-w-4xl mx-auto px-4 space-y-4">
+        <h3 class="text-2xl sm:text-3xl font-heading font-black">
+          "Ah! Betapa Baiknya Allah yang Mahabaik!"
+        </h3>
+        <p class="text-blue-200 text-sm sm:text-base max-w-2xl mx-auto">
+          Mari wujudkan semangat kasih dan keteladanan Bunda Maria dalam mendidik putra-putri tercinta di SDK Maria Fatima Jember.
+        </p>
+        <div class="pt-4">
+          <a
+            href="/admission"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm shadow-md transition-colors"
+          >
+            <span>Daftar PPDB Online</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

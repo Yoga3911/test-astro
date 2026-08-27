@@ -8,6 +8,8 @@
  */
 
 import BaseLayout from './BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
 import { SITE_CONFIG, formatDate, KATEGORI_COLORS } from '@/utils/config';
 
 interface Props {
@@ -34,8 +36,8 @@ const {
   coverAlt    = title,
   kategori,
   tags        = [],
-  backHref    = '/berita',
-  backLabel   = 'Kembali ke Berita',
+  backHref    = '/news-events',
+  backLabel   = 'Kembali ke News & Events',
 } = Astro.props;
 
 const badgeClass = kategori ? (KATEGORI_COLORS[kategori] ?? 'badge-blue') : 'badge-blue';
@@ -60,16 +62,13 @@ const articleSchema = {
     name: author,
   },
   publisher: {
-    '@type': 'HighSchool',
+    '@type': 'Organization',
     name: SITE_CONFIG.name,
     logo: {
       '@type': 'ImageObject',
       url: `${SITE_CONFIG.url}/favicon.svg`,
     },
   },
-  inLanguage: 'id-ID',
-  articleSection: kategori ?? 'Berita',
-  keywords: tags.join(', '),
 };
 ---
 
@@ -85,6 +84,8 @@ const articleSchema = {
   keywords={`${kategori ?? 'Berita'}, ${tags.join(', ')}, ${SITE_CONFIG.name}`}
   structuredData={articleSchema}
 >
+  <Header />
+
   <!-- Header with top nav padding -->
   <main id="main-content" style="padding-top: 4.5rem; background: #ffffff;">
 
@@ -138,32 +139,39 @@ const articleSchema = {
           </div>
 
           <!-- Title -->
-          <h1 style="font-size: clamp(1.75rem, 4vw, 3rem); font-weight: 800; margin-bottom: 1.5rem; color: #0f172a; line-height: 1.2; text-wrap: balance;">
+          <h1 style="font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 800; color: #0f172a; line-height: 1.25; margin-bottom: 1.25rem;">
             {title}
           </h1>
 
-          <!-- Meta row -->
-          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0;">
-            <!-- Author -->
+          <!-- Meta (Author, Date, Read time) -->
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem; font-size: 0.875rem; color: #64748b; padding-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0;">
             <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <div style="width: 36px; height: 36px; background: linear-gradient(135deg, #1d4ed8, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 700; color: #fff;">
-                {author.charAt(0)}
+              <div style="width: 28px; height: 28px; border-radius: 50%; background: #2563eb; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;">
+                MF
               </div>
-              <span style="font-size: 0.9rem; color: #0f172a; font-weight: 600;">{author}</span>
+              <span style="font-weight: 600; color: #334155;">{author}</span>
             </div>
 
-            <!-- Dates -->
-            <div style="display: flex; align-items: center; gap: 0.4rem; color: #64748b; font-size: 0.85rem;">
+            <span aria-hidden="true" style="color: #cbd5e1;">•</span>
+
+            <time datetime={pubDate.toISOString()} style="display: flex; align-items: center; gap: 0.35rem;">
               <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
               </svg>
-              <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
-              {updatedDate && (
-                <span style="color: #94a3b8;">
-                  · Diperbarui: <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate)}</time>
+              {formatDate(pubDate)}
+            </time>
+
+            {updatedDate && (
+              <>
+                <span aria-hidden="true" style="color: #cbd5e1;">•</span>
+                <span style="font-size: 0.8rem; color: #94a3b8;">
+                  (Diperbarui: {formatDate(updatedDate)})
                 </span>
-              )}
-            </div>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -201,5 +209,6 @@ const articleSchema = {
       </div>
     </article>
   </main>
-</BaseLayout>
 
+  <Footer />
+</BaseLayout>

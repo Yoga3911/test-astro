@@ -1,22 +1,22 @@
 /**
- * Shared TypeScript type definitions
- *
- * SOLID — Single Responsibility:
- * Types are isolated here and imported by components/pages.
- * This prevents type duplication and ensures consistency.
+ * Shared TypeScript type definitions for SDK Maria Fatima Jember
  */
 
 // ─── Site Configuration ────────────────────────────────────────────────────
 export interface SiteConfig {
   name:        string;
   shortName:   string;
+  tagline:     string;
   description: string;
   url:         string;
   npsn:        string;
   akreditasi:  string;
   email:       string;
   phone:       string;
+  whatsapp:    string;
   address:     string;
+  city:        string;
+  foundation:  string;
   socialMedia: SocialMedia;
 }
 
@@ -24,13 +24,15 @@ export interface SocialMedia {
   instagram?: string;
   facebook?:  string;
   youtube?:   string;
-  twitter?:   string;
+  whatsapp?:  string;
+  tiktok?:    string;
 }
 
 // ─── Navigation ────────────────────────────────────────────────────────────
 export interface NavItem {
   label:    string;
   href:     string;
+  description?: string;
   children?: NavItem[];
 }
 
@@ -42,10 +44,101 @@ export interface StatItem {
   icon:   string;
 }
 
-// ─── Team Member ───────────────────────────────────────────────────────────
-export interface TeamMember {
-  name:    string;
-  role:    string;
-  photo?:  string;
-  nip?:    string;
+// ─── Team / Staff Member ───────────────────────────────────────────────────
+export interface StaffMember {
+  id:          string;
+  name:        string;
+  role:        string;
+  category:    'kepala_sekolah' | 'guru_kelas' | 'guru_bidang' | 'karyawan';
+  subCategory?: string; // e.g. "Kelas 1", "Pendidikan Agama", "Tata Usaha"
+  photo:       string;
+  education?:  string;
+  quote?:      string;
+  yearsOfService?: string;
+}
+
+// ─── Alumni Testimonial ────────────────────────────────────────────────────
+export interface AlumniTestimonial {
+  id:          string;
+  name:        string;
+  batch:       string; // Angkatan / Tahun Lulus
+  currentRole: string; // Pekerjaan / Pendidikan saat ini
+  photo:       string;
+  headline:    string;
+  testimony:   string[]; // 2 paragraphs of inspiring testimony
+}
+
+// ─── 8 Profil Lulusan ──────────────────────────────────────────────────────
+export interface GraduateProfile {
+  number:      number;
+  title:       string;
+  description: string;
+  icon:        string;
+  aspect:      string;
+}
+
+// ─── Heritage Item ─────────────────────────────────────────────────────────
+export interface HeritageItem {
+  id:          string;
+  title:       string;
+  subtitle:    string;
+  summary:     string;
+  content:     string[];
+  icon:        string;
+  image?:      string;
+  values?:     string[];
+}
+
+// ─── Classroom Level ───────────────────────────────────────────────────────
+export interface ClassroomLevel {
+  grade:       number;
+  title:       string;
+  theme:       string;
+  focus:       string;
+  highlights:  string[];
+  activities:  string[];
+  image:       string;
+}
+
+// ─── Media Items ───────────────────────────────────────────────────────────
+export interface SongTrack {
+  id:          string;
+  title:       string;
+  composer:    string;
+  category:    'mars' | 'jingle' | 'lagu_rohani';
+  audioUrl?:   string;
+  duration?:   string;
+  lyrics:      string[];
+  description: string;
+}
+
+export interface MediaGalleryItem {
+  id:          string;
+  title:       string;
+  category:    'kegiatan' | 'prestasi' | 'fasilitas' | 'spiritualitas';
+  imageUrl:    string;
+  date:        string;
+  description?: string;
+}
+
+export interface VideoItem {
+  id:          string;
+  title:       string;
+  category:    'profil' | 'kegiatan' | 'karya_siswa';
+  youtubeId:   string;
+  duration:    string;
+  thumbnail:   string;
+  description: string;
+}
+
+// ─── Instagram Mock Post ───────────────────────────────────────────────────
+export interface InstagramPost {
+  id:          string;
+  caption:     string;
+  likes:       number;
+  comments:    number;
+  imageUrl:    string;
+  type:        'post' | 'reel';
+  date:        string;
+  link:        string;
 }

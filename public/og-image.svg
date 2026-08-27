@@ -1,67 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#f1f5f9;stop-opacity:1"/>
-    </linearGradient>
-    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1d4ed8;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#2563eb;stop-opacity:1"/>
+    <linearGradient id="ogBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e3a8a"/>
+      <stop offset="100%" stop-color="#172554"/>
     </linearGradient>
     <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1"/>
-      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1"/>
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
     </linearGradient>
   </defs>
-
-  <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
-
-  <!-- Decorative circles -->
-  <circle cx="1050" cy="150" r="280" fill="#eff6ff" opacity="0.8"/>
-  <circle cx="150" cy="500" r="220" fill="#fffbeb" opacity="0.6"/>
-
-  <!-- Border Card Frame -->
-  <rect x="50" y="50" width="1100" height="530" rx="24" fill="#ffffff" stroke="#e2e8f0" stroke-width="2"/>
+  <rect width="1200" height="630" fill="url(#ogBg)"/>
+  <circle cx="1050" cy="150" r="300" fill="#2563eb" opacity="0.2"/>
+  <circle cx="150" cy="500" r="200" fill="#d97706" opacity="0.1"/>
 
   <!-- Logo Mark -->
-  <rect x="100" y="100" width="80" height="80" rx="20" fill="url(#accent)"/>
-  <text x="140" y="156" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="44" fill="#ffffff">N</text>
+  <rect x="100" y="90" width="80" height="80" rx="20" fill="url(#gold)"/>
+  <text x="140" y="148" font-family="system-ui, sans-serif" font-weight="900" font-size="40" fill="#0f172a" text-anchor="middle">MF</text>
 
-  <!-- Badge -->
-  <rect x="200" y="120" width="220" height="38" rx="19" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
-  <text x="310" y="145" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="14" fill="#1d4ed8">AKREDITASI A (UNGGUL)</text>
+  <rect x="200" y="105" width="280" height="42" rx="21" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.2)"/>
+  <text x="340" y="132" font-family="system-ui, sans-serif" font-weight="700" font-size="16" fill="#fde68a" text-anchor="middle" letter-spacing="1">YAYASAN SUSTER SPM</text>
 
   <!-- Title -->
-  <text x="100" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="56" fill="#0f172a">
-    SMA NEGERI 1 NUSANTARA
-  </text>
-
+  <text x="100" y="270" font-family="system-ui, sans-serif" font-weight="900" font-size="64" fill="#ffffff" letter-spacing="-1">SDK Maria Fatima Jember</text>
+  
   <!-- Subtitle -->
-  <text x="100" y="340" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="28" fill="#475569">
-    Sekolah Unggulan untuk Generasi Pemimpin Bangsa sejak 1975
-  </text>
+  <text x="100" y="340" font-family="system-ui, sans-serif" font-weight="600" font-size="28" fill="#93c5fd">Educating in the Spirit of St. Julie &amp; SPM</text>
+  <text x="100" y="385" font-family="system-ui, sans-serif" font-weight="400" font-size="22" fill="#cbd5e1">Cerdas, Berkarakter Luhur, dan Berakar pada Spiritualitas Kasih</text>
 
-  <!-- Stats row / Highlights -->
-  <g transform="translate(100, 420)">
-    <!-- Stat 1 -->
-    <rect x="0" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="25" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">51+ Tahun</text>
-    <text x="25" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Berdiri &amp; Berdedikasi</text>
+  <!-- Badges -->
+  <rect x="100" y="460" width="220" height="50" rx="14" fill="#1e40af"/>
+  <text x="210" y="492" font-family="system-ui, sans-serif" font-weight="800" font-size="18" fill="#ffffff" text-anchor="middle">⭐ AKREDITASI A</text>
 
-    <!-- Stat 2 -->
-    <rect x="250" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="275" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">200+ Prestasi</text>
-    <text x="275" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Tingkat Nasional</text>
+  <rect x="340" y="460" width="260" height="50" rx="14" fill="#d97706"/>
+  <text x="470" y="492" font-family="system-ui, sans-serif" font-weight="800" font-size="18" fill="#ffffff" text-anchor="middle">🏫 PPDB 2026/2027</text>
 
-    <!-- Stat 3 -->
-    <rect x="500" y="0" width="220" height="90" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1"/>
-    <text x="525" y="42" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="800" font-size="28" fill="#0f172a">95% Lulusan</text>
-    <text x="525" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#64748b">Diterima di PTN</text>
-
-    <!-- Website URL badge -->
-    <rect x="750" y="0" width="250" height="90" rx="12" fill="url(#accent)"/>
-    <text x="875" y="42" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="700" font-size="18" fill="#ffffff">PPDB 2026/2027</text>
-    <text x="875" y="68" text-anchor="middle" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="500" font-size="14" fill="#dbeafe">sman1nusantara.sch.id</text>
-  </g>
+  <text x="100" y="580" font-family="system-ui, sans-serif" font-weight="500" font-size="18" fill="#94a3b8">Jl. Kartini No. 49, Jember, Jawa Timur • sdkmartimjember.sch.id</text>
 </svg>

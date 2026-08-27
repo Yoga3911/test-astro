@@ -1,0 +1,213 @@
+---
+/**
+ * media.astro — Multimedia Resmi SDK Maria Fatima
+ *
+ * Sesuai Sitemap PDF:
+ * - Mars SDK
+ * - Jingle UKB
+ * - Galeri Foto
+ * - Video
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import AudioPlayer from '@/components/AudioPlayer.svelte';
+import { SITE_CONFIG } from '@/utils/config';
+
+// ─── Data Video Items ───────────────────────────────────────────────────────
+const VIDEO_ITEMS = [
+  {
+    title: 'Profil Resmi SDK Maria Fatima Jember 2026',
+    category: 'Video Profil',
+    duration: '04:15',
+    thumbnail: '/images/heritage/spm.svg',
+    youtubeId: 'dQw4w9WgXcQ',
+    description: 'Menelusuri fasilitas modern, budaya kasih SIKARU, dan dinamika pembelajaran aktif peserta didik.',
+  },
+  {
+    title: 'Penampilan Paduan Suara SDK Maria Fatima di Gereja Katedral',
+    category: 'Seni & Musik',
+    duration: '03:40',
+    thumbnail: '/images/instagram/ig-4.svg',
+    youtubeId: 'dQw4w9WgXcQ',
+    description: 'Harmoni suara siswa-siswi membawakan lagu pujian syukur dengan penuh penghayatan rohani.',
+  },
+  {
+    title: 'Gelar Karya Proyek P5 & Pentas Seni Siswa Kelas 1-6',
+    category: 'Dokumentasi Acara',
+    duration: '05:20',
+    thumbnail: '/images/instagram/ig-3.svg',
+    youtubeId: 'dQw4w9WgXcQ',
+    description: 'Pameran kreativitas karya daur ulang, tari tradisional, dan inovasi sains cilik.',
+  },
+];
+
+// ─── Data Galeri Foto ───────────────────────────────────────────────────────
+const PHOTO_GALLERY = [
+  { title: 'Pembiasaan Doa Pagi Bersama di Halaman', category: 'Spiritualitas', image: '/images/instagram/ig-1.svg' },
+  { title: 'Praktikum Komputer di Laboratorium Multimedia', category: 'Fasilitas', image: '/images/classroom/kelas-4.svg' },
+  { title: 'Juara Umum Olimpiade Matematika SD se-Jawa Timur', category: 'Prestasi', image: '/images/instagram/ig-2.svg' },
+  { title: 'Eksplorasi Pembelajaran Sains di Kebun Sekolah', category: 'Aktivitas KBM', image: '/images/classroom/kelas-2.svg' },
+  { title: 'Kegiatan Kepramukaan Siaga & Penggalang', category: 'Karakter', image: '/images/classroom/kelas-5.svg' },
+  { title: 'Pelepasan & Wisuda Siswa Kelas 6', category: 'Kelulusan', image: '/images/classroom/kelas-6.svg' },
+];
+---
+
+<BaseLayout
+  title="Media — Mars, Jingle, Galeri & Video"
+  description="Koleksi multimedia resmi SDK Maria Fatima Jember: Mars sekolah, Jingle UKB, video profil, dan galeri dokumentasi foto."
+>
+  <Header />
+
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <span>MULTIMEDIA &amp; KARYA</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight">
+          Media: Mars, Jingle &amp; Galeri
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+          Dengarkan lagu kebanggaan sekolah, tonton dokumentasi video kegiatan, dan nikmati rekaman visual perjalanan kami.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1 & 2. MARS SDK & JINGLE UKB (AUDIO PLAYER INTERAKTIF) -->
+    <section id="mars-sdk" class="py-16 sm:py-24 bg-slate-50 scroll-mt-24">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
+            <span>AUDIO &amp; LIRIK LAGU RESMI</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            Mars SDK Maria Fatima &amp; Jingle UKB
+          </h2>
+          <p class="text-slate-600 mt-2 text-base">
+            Gunakan pemutar audio interaktif di bawah ini untuk mendengarkan lagu dan menghafal liriknya.
+          </p>
+        </div>
+
+        <AudioPlayer client:load />
+
+      </div>
+    </section>
+
+    <!-- 3. VIDEO PROFIL & DOKUMENTASI -->
+    <section id="video" class="py-16 sm:py-24 bg-white scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-red-100 text-red-800 text-xs font-bold uppercase mb-3">
+            <span>DOKUMENTASI SINEMATIK</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            Video Kegiatan &amp; Profil Sekolah
+          </h2>
+          <p class="text-slate-600 mt-2 text-base">
+            Saksikan tayangan visual dinamis seputar dinamika belajar dan prestasi murid di SDK Maria Fatima.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {VIDEO_ITEMS.map((video) => (
+            <div class="bg-slate-50 rounded-3xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <!-- Video Thumbnail with Play Button -->
+                <div class="aspect-video bg-slate-900 relative overflow-hidden flex items-center justify-center">
+                  <img
+                    src={video.thumbnail}
+                    alt={video.title}
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80"
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-slate-950/30 flex items-center justify-center">
+                    <div class="w-14 h-14 rounded-full bg-red-600 group-hover:bg-red-500 text-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-110">
+                      <svg class="w-6 h-6 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z" />
+                      </svg>
+                    </div>
+                  </div>
+                  <span class="absolute bottom-3 right-3 px-2 py-0.5 rounded-md bg-slate-950/80 text-white text-[11px] font-mono font-bold">
+                    {video.duration}
+                  </span>
+                </div>
+
+                <div class="p-6 space-y-2">
+                  <span class="inline-block px-2.5 py-0.5 rounded-md bg-blue-100 text-blue-800 text-[11px] font-bold uppercase">
+                    {video.category}
+                  </span>
+                  <h3 class="font-heading font-bold text-lg text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
+                    {video.title}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    {video.description}
+                  </p>
+                </div>
+              </div>
+
+              <div class="px-6 pb-6 pt-0">
+                <a
+                  href={`https://youtube.com/results?search_query=SDK+Maria+Fatima+Jember`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-1.5 text-xs font-bold text-red-600 hover:text-red-700"
+                >
+                  <span>Tonton di YouTube</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. GALERI FOTO LENGKAP -->
+    <section id="galeri-foto" class="py-16 sm:py-24 bg-slate-50 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase mb-3">
+            <span>DOKUMENTASI FOTO</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            Galeri Foto Pembelajaran &amp; Fasilitas
+          </h2>
+          <p class="text-slate-600 mt-2 text-base">
+            Kumpulan potret keseharian, lingkungan belajar hijau, dan fasilitas penunjang di SDK Maria Fatima Jember.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PHOTO_GALLERY.map((foto) => (
+            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 group">
+              <div class="aspect-4/3 overflow-hidden bg-slate-100 relative">
+                <img
+                  src={foto.image}
+                  alt={foto.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-[10px] font-bold uppercase">
+                  {foto.category}
+                </span>
+              </div>
+              <div class="p-5">
+                <h3 class="font-heading font-bold text-base text-slate-900 group-hover:text-blue-700 transition-colors leading-snug">
+                  {foto.title}
+                </h3>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

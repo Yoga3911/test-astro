@@ -1,0 +1,110 @@
+---
+/**
+ * InstagramFeed.astro
+ *
+ * Cards Instagram Feed & Reels component inspired by sdh.sch.id ("WHAT'S ON SDH"):
+ * - Visual cards representing recent school activity posts and reels
+ * - Likes, comments, date, caption preview
+ * - Direct follow link to @sdkmartimjember
+ */
+
+import { INSTAGRAM_POSTS, SITE_CONFIG } from '@/utils/config';
+---
+
+<section id="instagram-feed" class="py-16 sm:py-24 bg-slate-50 relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-pink-100 text-pink-800 text-xs font-extrabold uppercase tracking-wider mb-3">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          <span>WHAT'S ON SDK MARIA FATIMA</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+          Kabar &amp; Momen di Instagram
+        </h2>
+        <p class="text-slate-600 mt-2 text-base">
+          Ikuti aktivitas harian murid, prestasi guru, perayaan rohani, dan keseruan belajar di @sdkmartimjember.
+        </p>
+      </div>
+
+      <a
+        href={SITE_CONFIG.socialMedia.instagram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-gradient-to-r from-pink-600 via-rose-600 to-amber-500 text-white font-bold text-sm shadow-md hover:shadow-lg hover:scale-105 active:scale-95 transition-all duration-200"
+      >
+        <span>Follow @sdkmartimjember</span>
+        <span>↗</span>
+      </a>
+    </div>
+
+    <!-- Instagram Cards Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {INSTAGRAM_POSTS.map((post) => (
+        <a
+          href={post.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+        >
+          <!-- Image / Media Container -->
+          <div class="relative aspect-4/3 overflow-hidden bg-slate-100">
+            <img
+              src={post.imageUrl}
+              alt={post.caption}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+
+            <!-- Type Badge (Post / Reel) -->
+            <div class="absolute top-3 right-3 px-3 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-[11px] font-bold tracking-wider uppercase flex items-center gap-1.5 shadow-sm">
+              {post.type === 'reel' ? (
+                <>
+                  <span>🎬</span>
+                  <span>REEL</span>
+                </>
+              ) : (
+                <>
+                  <span>📸</span>
+                  <span>POST</span>
+                </>
+              )}
+            </div>
+
+            <!-- Date tag -->
+            <div class="absolute bottom-3 left-3 px-2.5 py-1 rounded-lg bg-white/90 backdrop-blur-md text-slate-700 text-xs font-semibold shadow-xs">
+              {post.date}
+            </div>
+          </div>
+
+          <!-- Content Body -->
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <p class="text-xs sm:text-sm text-slate-700 font-medium line-clamp-3 leading-relaxed mb-4 group-hover:text-blue-900 transition-colors">
+              {post.caption}
+            </p>
+
+            <!-- Metrics bar -->
+            <div class="flex items-center justify-between pt-3 border-t border-slate-100 text-xs text-slate-500 font-semibold">
+              <div class="flex items-center gap-3">
+                <span class="flex items-center gap-1 text-rose-500">
+                  <span>❤️</span>
+                  <span>{post.likes}</span>
+                </span>
+                <span class="flex items-center gap-1 text-blue-500">
+                  <span>💬</span>
+                  <span>{post.comments}</span>
+                </span>
+              </div>
+              <span class="text-blue-600 group-hover:underline">Buka IG →</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</section>

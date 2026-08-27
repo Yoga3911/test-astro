@@ -1,0 +1,125 @@
+---
+/**
+ * classroom.astro — Aktivitas KBM Kelas 1 sampai Kelas 6
+ *
+ * Sesuai Sitemap PDF:
+ * - Kelas 1 - 6: Aktivitas KBM, kurikulum Merdeka, proyek pembelajaran, dan pembinaan karakter per jenjang
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { CLASSROOM_LEVELS, SITE_CONFIG } from '@/utils/config';
+---
+
+<BaseLayout
+  title="Classroom — Aktivitas KBM Kelas 1-6"
+  description="Dinamika pembelajaran aktif, kurikulum Merdeka, dan program pembinaan holistik per jenjang Kelas 1 s.d. 6 di SDK Maria Fatima Jember."
+>
+  <Header />
+
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <span>AKTIVITAS BELAJAR MENGAJAR</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight">
+          Classroom: Kelas 1 — 6
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+          Pendekatan pembelajaran bertahap yang menyenangkan, menantang nalar, dan mengasah kepekaan hati di setiap jenjang usia.
+        </p>
+      </div>
+    </section>
+
+    <!-- Classroom Levels Grid -->
+    <section class="py-16 sm:py-24 bg-slate-50">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {CLASSROOM_LEVELS.map((level, index) => {
+          const isEven = index % 2 === 0;
+
+          return (
+            <div
+              id={`kelas-${level.grade}`}
+              class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 scroll-mt-28"
+            >
+              <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+                
+                <!-- Details Left -->
+                <div class={`lg:col-span-7 space-y-6 ${!isEven ? 'lg:order-2' : ''}`}>
+                  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider">
+                    <span>JENJANG #{level.grade}</span>
+                  </div>
+
+                  <h2 class="text-2xl sm:text-3xl font-heading font-black text-slate-900 tracking-tight">
+                    {level.title}
+                  </h2>
+
+                  <p class="text-base font-bold text-amber-600">
+                    Tema Utama: "{level.theme}"
+                  </p>
+
+                  <p class="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+                    {level.focus}
+                  </p>
+
+                  <!-- Highlights -->
+                  <div class="space-y-3 pt-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                      FOKUS PEMBELAJARAN:
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {level.highlights.map((h) => (
+                        <div class="flex items-center gap-2 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-xs font-semibold text-slate-700">
+                          <span class="text-blue-600">✓</span>
+                          <span>{h}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <!-- Activities -->
+                  <div class="space-y-2 pt-2">
+                    <div class="text-xs font-extrabold uppercase tracking-wider text-slate-400">
+                      PROGRAM &amp; PROYEK KHUSUS:
+                    </div>
+                    <ul class="space-y-1.5 text-xs sm:text-sm text-slate-600">
+                      {level.activities.map((act) => (
+                        <li class="flex items-center gap-2">
+                          <span class="text-amber-500">✦</span>
+                          <span>{act}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                </div>
+
+                <!-- Visual Right -->
+                <div class={`lg:col-span-5 ${!isEven ? 'lg:order-1' : ''}`}>
+                  <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-slate-100 bg-slate-900">
+                    <img
+                      src={level.image}
+                      alt={level.title}
+                      class="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          );
+        })}
+
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>

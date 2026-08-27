@@ -1,0 +1,199 @@
+---
+/**
+ * people.astro — Profil SDM Tenaga Pendidik & Kependidikan
+ *
+ * Sesuai Sitemap PDF:
+ * - Kepala Sekolah
+ * - Guru
+ * - Karyawan
+ */
+
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/Header.astro';
+import Footer from '@/components/Footer.astro';
+import { STAFF_DATA, SITE_CONFIG } from '@/utils/config';
+
+const kepalaSekolah = STAFF_DATA.find((s) => s.category === 'kepala_sekolah')!;
+const dewanGuru = STAFF_DATA.filter((s) => s.category === 'guru_kelas' || s.category === 'guru_bidang');
+const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
+---
+
+<BaseLayout
+  title="People — Pendidik & Tenaga Kependidikan"
+  description="Profil Kepala Sekolah, Dewan Guru, dan Karyawan SDK Maria Fatima Jember — Pendidik berdedikasi dan berkarakter."
+>
+  <Header />
+
+  <main id="main-content">
+    
+    <!-- Hero Header -->
+    <section class="bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 text-white py-20 relative overflow-hidden">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-amber-300 text-xs font-bold uppercase tracking-wider">
+          <span>PROFIL SDM &amp; PENDIDIK</span>
+        </div>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black tracking-tight">
+          People: Guru &amp; Tenaga Kependidikan
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg max-w-2xl mx-auto font-normal">
+          Pendidik dan staf profesional, berdedikasi tinggi, dan penuh kasih dalam membimbing setiap langkah putra-putri kita.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1. KEPALA SEKOLAH -->
+    <section id="kepala-sekolah" class="py-16 sm:py-24 bg-white scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="bg-gradient-to-br from-blue-900 via-blue-950 to-slate-900 text-white rounded-3xl p-8 sm:p-12 md:p-16 shadow-2xl relative overflow-hidden">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center relative z-10">
+            
+            <!-- Photo -->
+            <div class="lg:col-span-4 flex flex-col items-center text-center">
+              <div class="w-48 h-48 sm:w-56 sm:h-56 rounded-3xl overflow-hidden shadow-2xl border-4 border-amber-400 bg-slate-800 mb-4">
+                <img
+                  src={kepalaSekolah.photo}
+                  alt={kepalaSekolah.name}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <span class="px-4 py-1 rounded-full bg-amber-400 text-slate-950 text-xs font-extrabold uppercase tracking-wider">
+                KEPALA SEKOLAH
+              </span>
+            </div>
+
+            <!-- Speech / Profile -->
+            <div class="lg:col-span-8 space-y-5">
+              <div class="text-xs font-bold uppercase text-amber-300 tracking-widest">
+                SAMBUTAN KEPALA SEKOLAH
+              </div>
+
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white leading-tight">
+                {kepalaSekolah.name}
+              </h2>
+              
+              <p class="text-xs sm:text-sm text-blue-200 font-semibold">
+                {kepalaSekolah.education} • {kepalaSekolah.yearsOfService}
+              </p>
+
+              <blockquote class="text-base sm:text-lg text-slate-200 italic leading-relaxed border-l-4 border-amber-400 pl-4 py-2 font-serif">
+                {kepalaSekolah.quote}
+              </blockquote>
+
+              <p class="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
+                "Selamat datang di gerbang digital SDK Maria Fatima Jember. Kami meyakini bahwa setiap anak dianugerahi keunikan dan potensi tak terbatas oleh Tuhan. Komitmen kami bersama para guru dan karyawan adalah menyajikan lingkungan belajar yang aman, suportif, dan inspiratif agar tunas-tunas muda ini bertumbuh menjadi pribadi yang cerdas berilmu, berkarakter mulia, serta siap memimpin masa depan."
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. DEWAN GURU -->
+    <section id="guru" class="py-16 sm:py-24 bg-slate-50 scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
+            <span>DEWAN PENDIDIK</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            Dewan Guru Berdedikasi
+          </h2>
+          <p class="text-slate-600 mt-2 text-base">
+            Guru wali kelas dan guru bidang studi yang berpengalaman, berpendidikan linier, dan bersertifikasi pendidik.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {dewanGuru.map((guru) => (
+            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+              <div>
+                <div class="aspect-4/3 overflow-hidden bg-slate-100 relative">
+                  <img
+                    src={guru.photo}
+                    alt={guru.name}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-blue-700/90 backdrop-blur-md text-white text-[11px] font-bold">
+                    {guru.subCategory || 'Guru'}
+                  </div>
+                </div>
+
+                <div class="p-6">
+                  <h3 class="font-heading font-bold text-lg text-slate-900 leading-snug">
+                    {guru.name}
+                  </h3>
+                  <p class="text-xs text-blue-600 font-semibold mt-1">
+                    {guru.role}
+                  </p>
+                  <p class="text-xs text-slate-500 mt-3 font-normal">
+                    🎓 {guru.education}
+                  </p>
+                </div>
+              </div>
+
+              <div class="px-6 pb-6 pt-0 border-t border-slate-100 text-xs text-slate-400 font-medium">
+                ⏳ {guru.yearsOfService}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. KARYAWAN & TENAGA KEPENDIDIKAN -->
+    <section id="karyawan" class="py-16 sm:py-24 bg-white scroll-mt-24">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase mb-3">
+            <span>TENAGA KEPENDIDIKAN</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            Tenaga Kependidikan &amp; Staf Pendukung
+          </h2>
+          <p class="text-slate-600 mt-2 text-base">
+            Mendukung kelancaran administrasi, layanan perpustakaan, keamanan, dan kebersihan lingkungan sekolah.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {karyawan.map((staf) => (
+            <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 flex items-center gap-6 shadow-xs hover:shadow-md transition-shadow">
+              <div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-200 border-2 border-white shadow-md">
+                <img
+                  src={staf.photo}
+                  alt={staf.name}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+              <div class="space-y-1">
+                <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[11px] font-bold uppercase">
+                  {staf.subCategory}
+                </span>
+                <h3 class="font-heading font-bold text-base text-slate-900">
+                  {staf.name}
+                </h3>
+                <p class="text-xs text-slate-600 font-medium">
+                  {staf.role}
+                </p>
+                <p class="text-xs text-slate-400">
+                  {staf.yearsOfService}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
