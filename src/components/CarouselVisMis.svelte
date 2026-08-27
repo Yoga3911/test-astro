@@ -6,7 +6,6 @@
   let currentSlide = $state(0);
   const totalSlides = 3;
   let autoScrollTimer: any = null;
-  let isHovered = $state(false);
 
   function nextSlide() {
     currentSlide = (currentSlide + 1) % totalSlides;
@@ -23,9 +22,7 @@
   function startAutoScroll() {
     stopAutoScroll();
     autoScrollTimer = setInterval(() => {
-      if (!isHovered) {
-        nextSlide();
-      }
+      nextSlide();
     }, 4000); // Otomatis berganti setiap 4 detik
   }
 
@@ -49,8 +46,6 @@
 <section
   id="vis-mis-carousel"
   class="bg-gradient-to-b from-white via-blue-50/40 to-slate-50 text-slate-800 py-12 sm:py-16 relative overflow-hidden border-b border-slate-200/80 shadow-xs"
-  onmouseenter={() => (isHovered = true)}
-  onmouseleave={() => (isHovered = false)}
 >
   <!-- Ambient soft glow -->
   <div class="absolute top-0 right-1/4 w-80 h-80 bg-blue-100/50 rounded-full blur-3xl pointer-events-none -z-10"></div>

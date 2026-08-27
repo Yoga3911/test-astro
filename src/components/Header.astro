@@ -25,51 +25,51 @@ function isActive(href: string): boolean {
     aria-label="Navigasi Utama"
     class="w-full bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs transition-all duration-300"
   >
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <div class="w-full px-4 sm:px-6 md:px-8 lg:px-8 xl:px-12 2xl:px-16 h-20 flex items-center justify-between gap-4">
 
       <!-- Logo & Branding -->
       <a
         href="/"
         id="site-logo"
         aria-label={`${SITE_CONFIG.name} - Halaman Utama`}
-        class="flex items-center gap-3 shrink-0 group focus:outline-hidden focus:ring-2 focus:ring-blue-600 rounded-xl p-1"
+        class="flex items-center gap-3 shrink-0 focus:outline-hidden focus:ring-2 focus:ring-blue-600 rounded-xl p-1"
       >
         <!-- Logo Mark -->
         <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 flex items-center justify-center font-heading font-black text-white text-lg shadow-md shadow-blue-900/20 group-hover:scale-105 transition-transform duration-300">
           MF
         </div>
         <div class="flex flex-col">
-          <span class="font-heading font-extrabold text-base sm:text-lg text-slate-900 leading-tight group-hover:text-blue-700 transition-colors">
+          <span class="font-heading font-extrabold text-base sm:text-lg text-slate-900 leading-tight group-hover:text-blue-700 transition-colors whitespace-nowrap">
             {SITE_CONFIG.shortName}
           </span>
-          <span class="text-xs text-amber-600 font-semibold tracking-wide flex items-center gap-1">
+          <span class="text-xs text-amber-600 font-semibold tracking-wide flex items-center gap-1 whitespace-nowrap">
             <span>Yayasan Suster SPM</span> • <span>Jember</span>
           </span>
         </div>
       </a>
 
-      <!-- Desktop Navigation Menu -->
-      <ul id="desktop-nav" role="list" class="hidden xl:flex items-center gap-1 list-none m-0 p-0">
+      <!-- Desktop Navigation Menu (Full Width & No Overlap / 1 Line) -->
+      <ul id="desktop-nav" role="list" class="hidden lg:flex items-center gap-1 xl:gap-2 2xl:gap-3 list-none m-0 p-0">
         {NAV_ITEMS.map((item) => {
           const hasChildren = item.children && item.children.length > 0;
           const active = isActive(item.href);
 
           return (
-            <li class="relative group/nav py-2">
+            <li class="relative group/nav py-2 shrink-0">
               <a
                 href={item.href}
                 aria-current={active ? 'page' : undefined}
                 aria-haspopup={hasChildren ? 'true' : undefined}
-                class={`flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                class={`whitespace-nowrap inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-semibold transition-all duration-200 shrink-0 ${
                   active
-                    ? 'text-blue-700 font-bold bg-blue-50/80'
-                    : 'text-slate-700 hover:text-blue-700 hover:bg-slate-50'
+                    ? 'text-blue-700 font-bold bg-blue-50/80 shadow-xs'
+                    : 'text-slate-700 hover:text-blue-700 hover:bg-slate-100/80'
                 }`}
               >
                 <span>{item.label}</span>
                 {hasChildren && (
                   <svg
-                    class="w-3.5 h-3.5 opacity-60 group-hover/nav:opacity-100 group-hover/nav:rotate-180 transition-transform duration-200"
+                    class="w-3.5 h-3.5 opacity-60 group-hover/nav:opacity-100 group-hover/nav:rotate-180 transition-transform duration-200 shrink-0"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -112,25 +112,23 @@ function isActive(href: string): boolean {
       </ul>
 
       <!-- CTA & Mobile Menu Toggle -->
-      <div class="flex items-center gap-3">
+      <div class="flex items-center gap-3 shrink-0">
         <a
           href="/admission"
-          class="hidden sm:inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-800 hover:to-indigo-700 shadow-md shadow-blue-700/20 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200"
+          class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-800 hover:to-indigo-700 shadow-md shadow-blue-700/20 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 whitespace-nowrap"
         >
           <span>PPDB Online</span>
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          <span>→</span>
         </a>
 
-        <!-- Hamburger Toggle for Mobile/Tablet -->
+        <!-- Mobile Hamburger Button -->
         <button
-          id="mobile-menu-btn"
           type="button"
+          id="mobile-menu-toggle"
           aria-expanded="false"
           aria-controls="mobile-drawer"
           aria-label="Buka Menu Navigasi"
-          class="xl:hidden p-2.5 rounded-xl text-slate-700 hover:text-blue-700 hover:bg-slate-100 focus:outline-hidden focus:ring-2 focus:ring-blue-600 transition-colors"
+          class="lg:hidden p-2.5 rounded-xl text-slate-700 hover:text-blue-700 hover:bg-slate-100 border border-slate-200 transition-colors focus:outline-hidden focus:ring-2 focus:ring-blue-600"
         >
           <svg id="icon-menu" class="w-6 h-6 block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -147,7 +145,7 @@ function isActive(href: string): boolean {
   <!-- Mobile Drawer -->
   <div
     id="mobile-drawer"
-    class="xl:hidden fixed inset-x-0 top-20 bg-white/98 backdrop-blur-lg border-b border-slate-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto hidden transition-all duration-300"
+    class="lg:hidden fixed inset-x-0 top-20 bg-white/98 backdrop-blur-lg border-b border-slate-200 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto hidden transition-all duration-300"
   >
     <div class="px-5 py-6 space-y-4">
       {NAV_ITEMS.map((item) => {
@@ -239,7 +237,7 @@ function isActive(href: string): boolean {
 </style>
 
 <script>
-  const btn = document.getElementById('mobile-menu-btn');
+  const btn = document.getElementById('mobile-menu-toggle');
   const drawer = document.getElementById('mobile-drawer');
   const iconMenu = document.getElementById('icon-menu');
   const iconClose = document.getElementById('icon-close');
