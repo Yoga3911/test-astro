@@ -118,30 +118,41 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <script>
-    // Handle automatic video playback with sound
+    // Guarantee 100% autoplay on page load + instant sound unlock on user interaction
     function initHeroVideo() {
       const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
       if (!video) return;
 
-      // Start playing
+      // Start playing immediately (muted is required by browser security for autoplay)
+      video.muted = true;
+      video.defaultMuted = true;
       video.play().catch(() => {});
 
-      const unmute = () => {
+      let hasUnmuted = false;
+      const enableSound = () => {
+        if (hasUnmuted) return;
+        hasUnmuted = true;
         video.muted = false;
         video.volume = 1.0;
+        video.play().catch(() => {});
       };
 
-      // Try unmuting immediately
-      try {
-        video.muted = false;
-        video.volume = 1.0;
-      } catch (_) {}
+      // Unmute instantly on ANY interaction (tap, click, scroll, hover, touch)
+      const interactionEvents = [
+        'click',
+        'touchstart',
+        'touchend',
+        'pointerdown',
+        'pointerup',
+        'scroll',
+        'wheel',
+        'keydown',
+        'mousemove'
+      ];
 
-      // Unmute on ANY first interaction anywhere on screen
-      const events = ['click', 'touchstart', 'touchend', 'pointerdown', 'scroll', 'wheel', 'keydown', 'mousemove'];
-      events.forEach((evt) => {
-        window.addEventListener(evt, unmute, { once: true, passive: true });
-        document.addEventListener(evt, unmute, { once: true, passive: true });
+      interactionEvents.forEach((eventName) => {
+        window.addEventListener(eventName, enableSound, { once: true, passive: true });
+        document.addEventListener(eventName, enableSound, { once: true, passive: true });
       });
     }
 
@@ -153,6 +164,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         fsBtn.addEventListener('click', () => {
           video.muted = false;
           video.volume = 1.0;
+          video.play().catch(() => {});
           if (!document.fullscreenElement) {
             video.requestFullscreen?.().catch(() => {});
           } else {
