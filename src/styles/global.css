@@ -406,10 +406,12 @@
   .reveal,
   .reveal-on-scroll {
     opacity: 0;
-    transform: translateY(36px);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+    transform: translateY(32px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+    /* will-change is intentionally NOT set here — it is applied per-element
+       in JS right before animation starts, then removed, to prevent
+       unnecessary GPU layer promotion across the entire page. */
   }
 
   .reveal.visible,
@@ -418,48 +420,49 @@
   .reveal-on-scroll.is-revealed {
     opacity: 1 !important;
     transform: translateY(0) !important;
+    will-change: auto;
   }
 
   .reveal-left {
     opacity: 0;
-    transform: translateX(-45px);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+    transform: translateX(-40px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .reveal-left.visible,
   .reveal-left.is-revealed {
     opacity: 1 !important;
     transform: translateX(0) !important;
+    will-change: auto;
   }
 
   .reveal-right {
     opacity: 0;
-    transform: translateX(45px);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+    transform: translateX(40px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .reveal-right.visible,
   .reveal-right.is-revealed {
     opacity: 1 !important;
     transform: translateX(0) !important;
+    will-change: auto;
   }
 
   .reveal-scale {
     opacity: 0;
-    transform: scale(0.9) translateY(24px);
-    transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1),
-                transform 1s cubic-bezier(0.22, 1, 0.36, 1);
-    will-change: opacity, transform;
+    transform: scale(0.92) translateY(20px);
+    transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .reveal-scale.visible,
   .reveal-scale.is-revealed {
     opacity: 1 !important;
     transform: scale(1) translateY(0) !important;
+    will-change: auto;
   }
 
   /* Delay utilities for staggered reveals */

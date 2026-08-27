@@ -250,8 +250,15 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              entry.target.classList.add('is-revealed', 'visible');
-              observer.unobserve(entry.target);
+              const el = entry.target as HTMLElement;
+              // Promote to GPU layer just before animating
+              el.style.willChange = 'opacity, transform';
+              el.classList.add('is-revealed', 'visible');
+              observer.unobserve(el);
+              // After transition, clear will-change to free GPU memory
+              el.addEventListener('transitionend', () => {
+                el.style.willChange = 'auto';
+              }, { once: true });
             }
           });
         },
