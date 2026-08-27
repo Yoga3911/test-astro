@@ -21,7 +21,7 @@ export const SITE_CONFIG: SiteConfig = {
   name:        'SDK Maria Fatima Jember',
   shortName:   'SDK Maria Fatima',
   tagline:     'Cerdas, Berkarakter, dan Berakar pada Spiritualitas Kasih',
-  description: 'Sekolah Dasar Katolik Maria Fatima Jember di bawah naungan Perkumpulan Santa Perawan Maria (SPM) — Membina tunas muda berprestasi, berintegritas, mandiri, dan berjiwa belas kasih.',
+  description: 'Sekolah Dasar Katolik Maria Fatima Jember di Kabupaten Jember — Membina tunas muda berprestasi, berintegritas, mandiri, dan berjiwa belas kasih.',
   url:         'https://sdkmartimjember.sch.id',
   npsn:        '20523821',
   akreditasi:  'A (Unggul)',
@@ -30,7 +30,7 @@ export const SITE_CONFIG: SiteConfig = {
   whatsapp:    '6281234567890',
   address:     'Jl. Kartini No. 49, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68137',
   city:        'Jember, Jawa Timur',
-  foundation:  'Yayasan Santa Perawan Maria (SPM) Probolinggo',
+  foundation:  'Kabupaten Jember',
   socialMedia: {
     instagram: 'https://instagram.com/sdkmartimjember',
     facebook:  'https://facebook.com/sdkmartimjember',
@@ -58,13 +58,13 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Heritage',
     href: '/heritage',
-    description: 'Kongregasi, identitas spiritual, & sejarah yayasan',
+    description: 'Identitas spiritual & sejarah karya pelayanan di Jember',
     children: [
       { label: 'Maria Fatima', href: '/heritage#maria-fatima', description: 'Pelindung dan teladan kasih sekolah' },
-      { label: 'SPM', href: '/heritage#spm', description: 'Suster Santa Perawan Maria & karya perutusannya' },
+      { label: 'SPM', href: '/heritage#spm', description: 'Karya pelayanan & pendidikan di Kabupaten Jember' },
       { label: 'St. Julie Billiart', href: '/heritage#st-julie-billiart', description: 'Spiritualitas kegembiraan dan kebaikan Allah' },
-      { label: 'Pater Matthias Wolff', href: '/heritage#pater-matthias-wolff', description: 'Pendiri Kongregasi Suster SPM' },
-      { label: 'SIKARU', href: '/heritage#sikaru', description: 'Spiritualitas & nilai hidup komunitas SPM' },
+      { label: 'Pater Matthias Wolff', href: '/heritage#pater-matthias-wolff', description: 'Inspirator pendidik berdedikasi tinggi' },
+      { label: 'SIKARU', href: '/heritage#sikaru', description: 'Spiritualitas & nilai hidup komunitas sekolah' },
     ],
   },
   {
@@ -120,7 +120,7 @@ export const STATS: StatItem[] = [
 
 // ─── Visi Misi Core Values Tagline ─────────────────────────────────────────
 export const VISI_MISI_DATA = {
-  visi: 'Terwujudnya komunitas pembelajar yang cerdas, berkarakter luhur, berwawasan global, dan berakar kuat pada spiritualitas kasih Santa Perawan Maria.',
+  visi: 'Terwujudnya komunitas pembelajar yang cerdas, berkarakter luhur, berwawasan global, dan berakar kuat pada spiritualitas kasih Bunda Maria.',
   misi: [
     'Menyelenggarakan pendidikan holistik yang mengintegrasikan keunggulan akademik dan pembentukan karakter Kristiani.',
     'Menumbuhkembangkan potensi unik setiap peserta didik melalui pembelajaran aktif, kreatif, dan inovatif.',
@@ -215,12 +215,12 @@ export const HERITAGE_DATA: HeritageItem[] = [
   },
   {
     id: 'spm',
-    title: 'Kongregasi Suster SPM',
-    subtitle: 'Suster Santa Perawan Maria Probolinggo',
-    summary: 'Kongregasi religius yang mendedikasikan hidup bagi pendidikan, kesehatan, dan karya sosial demi kemuliaan Allah dan kebaikan sesama.',
+    title: 'Pendidikan SPM Jember',
+    subtitle: 'Pelayanan Pendidikan di Kabupaten Jember',
+    summary: 'Pelayanan pendidikan bermutu dan berkarakter demi kemuliaan Allah dan kebaikan sesama di Kabupaten Jember.',
     content: [
-      'Suster-suster Santa Perawan Maria (SPM) hadir di Indonesia sejak masa misi awal di Probolinggo dan berkembang ke berbagai penjuru nusantara, termasuk Jember.',
-      'Misi pendidikan SPM berfokus pada pendidikan hati dan budi (Educating Heart & Mind), memastikan setiap anak menerima asuhan penuh kasih layaknya Bunda Maria merawat sang Putra.',
+      'Pelayanan pendidikan SPM hadir di Kabupaten Jember untuk mewujudkan pendidikan bermutu tinggi dan penuh kasih bagi masyarakat.',
+      'Misi pendidikan berfokus pada pendidikan hati dan budi (Educating Heart & Mind), memastikan setiap anak menerima asuhan penuh kasih layaknya Bunda Maria merawat sang Putra.',
     ],
     icon: '⛪',
     values: ['Bela Rasa', 'Pelayanan Kasih', 'Kesederhanaan', 'Kemurnian Hidup'],

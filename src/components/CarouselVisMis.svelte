@@ -125,7 +125,7 @@
               </div>
               <div class="pt-4 mt-4 border-t border-slate-100 text-xs text-blue-700 font-bold flex items-center gap-1.5">
                 <span>⛪</span>
-                <span>Yayasan Santa Perawan Maria Probolinggo</span>
+                <span>Kabupaten Jember</span>
               </div>
             </div>
 
