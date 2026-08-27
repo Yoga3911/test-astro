@@ -37,7 +37,35 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <!-- 2. TOP RIGHT FLOATING FULLSCREEN BUTTON -->
-  <div class="relative z-30 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 flex justify-end items-center">
+  <!-- 2. SOUND ENABLE OVERLAY — shown until user clicks (browser autoplay policy) -->
+  <div
+    id="sound-overlay"
+    class="absolute inset-0 z-40 flex items-center justify-center cursor-pointer"
+    style="background: transparent;"
+    title="Klik di mana saja untuk mengaktifkan suara"
+  >
+    <!-- Pulsing sound badge at center -->
+    <div id="sound-badge" class="flex flex-col items-center gap-2 pointer-events-none select-none" style="animation: soundPulse 2s ease-in-out infinite;">
+      <div class="w-16 h-16 rounded-full bg-white/15 backdrop-blur-md border-2 border-amber-400/60 flex items-center justify-center shadow-2xl">
+        <span class="text-3xl">🔇</span>
+      </div>
+      <span class="text-white text-xs font-bold tracking-widest uppercase bg-slate-950/60 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+        Klik untuk aktifkan suara
+      </span>
+    </div>
+  </div>
+
+  <!-- 2b. TOP RIGHT VIDEO CONTROLS -->
+  <div class="relative z-30 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 pt-24 flex justify-end items-center gap-2">
+    <button
+      id="toggle-sound-btn"
+      type="button"
+      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+      title="Nyalakan/Matikan Suara"
+    >
+      <span id="sound-btn-icon" class="text-sm">🔇</span>
+      <span id="sound-btn-label">Suara</span>
+    </button>
     <button
       id="toggle-fullscreen-btn"
       type="button"
@@ -49,6 +77,16 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     </button>
   </div>
 
+  <style>
+    @keyframes soundPulse {
+      0%, 100% { transform: scale(1); opacity: 0.9; }
+      50% { transform: scale(1.08); opacity: 1; }
+    }
+    #sound-overlay.hidden-overlay {
+      display: none !important;
+    }
+  </style>
+
   <!-- 3. HERO MAIN CENTERED FLOATING CONTENT (GRAND ALA SDH) -->
   <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex-1 flex flex-col justify-center items-center text-center">
     
@@ -59,15 +97,19 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     </div>
 
     <!-- Grand Headline (Ala SDH) -->
-    <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] max-w-5xl text-white mb-4 drop-shadow-lg">
-      WELCOME TO <br class="hidden sm:inline" />
+    <h1 id="hero-headline" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] max-w-5xl text-white mb-2 drop-shadow-lg">
+      <span id="welcome-to-text">WELCOME TO</span> <br class="hidden sm:inline" />
       <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300">
         SDK MARIA FATIMA JEMBER
       </span>
     </h1>
 
-    <!-- Tagline & Description with Homemade Apple font -->
-    <p class="text-xl sm:text-3xl md:text-4xl text-amber-300 tracking-wider mb-10 drop-shadow-lg font-script font-normal transform -rotate-1">
+    <!-- Tagline matching width of WELCOME TO -->
+    <p
+      id="hero-tagline"
+      class="text-white tracking-wider mb-10 drop-shadow-lg font-script font-normal transform -rotate-1 whitespace-nowrap"
+      style="font-size: 2rem;"
+    >
       Living values, creating digitally
     </p>
 
@@ -115,58 +157,94 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <script>
-    // ─── Video: Autoplay + delayed audio unlock ─────────────────────────────
-    // Strategy:
-    //   1. Start video muted (required by all modern browsers for autoplay).
-    //   2. On first deliberate user gesture (click / tap / keydown only — NOT
-    //      scroll/mousemove, which fire instantly and race against playback)
-    //      unmute the video without calling play() again.
-    //   3. Guard against duplicate runs on Astro view-transitions.
+    // ─── Browser Autoplay Policy Note ────────────────────────────────────────
+    // All modern browsers (Chrome, Safari, Firefox) block audio autoplay
+    // without a prior user gesture. We cannot bypass this in JS.
+    // Strategy: play muted immediately → show a clear "click to enable sound"
+    // overlay → on first click anywhere, unmute + hide overlay instantly.
 
-    let _heroVideoInitDone = false;
+    let _heroInitDone = false;
+
+    // ─── Auto-fit tagline width to match "WELCOME TO" ────────────────────────
+    function fitTaglineWidth() {
+      const welcomeEl = document.getElementById('welcome-to-text') as HTMLElement;
+      const taglineEl = document.getElementById('hero-tagline')    as HTMLElement;
+      if (!welcomeEl || !taglineEl) return;
+
+      // Reset font-size so we can measure the natural width
+      taglineEl.style.fontSize = '2rem';
+
+      // Wait a frame for layout to settle
+      requestAnimationFrame(() => {
+        const targetWidth = welcomeEl.getBoundingClientRect().width;
+        if (!targetWidth) return;
+
+        const naturalWidth = taglineEl.scrollWidth;
+        if (!naturalWidth) return;
+
+        const currentSize = parseFloat(getComputedStyle(taglineEl).fontSize);
+        const newSize     = currentSize * (targetWidth / naturalWidth);
+
+        taglineEl.style.fontSize = `${newSize}px`;
+      });
+    }
 
     function initHeroVideo() {
-      const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
+      const video    = document.getElementById('hero-bg-video')    as HTMLVideoElement;
+      const overlay  = document.getElementById('sound-overlay')    as HTMLElement;
+      const icon     = document.getElementById('sound-btn-icon')   as HTMLElement;
+      const label    = document.getElementById('sound-btn-label')  as HTMLElement;
+      const soundBtn = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
+
       if (!video) return;
 
-      // Always ensure it is playing (covers page-revisit via back-button)
-      video.muted = false;
-      if (video.paused) {
-        video.play().catch(() => {});
-      }
+      // Start muted (guaranteed to work in all browsers)
+      video.muted = true;
+      if (video.paused) video.play().catch(() => {});
 
-      // Skip setting up unmute listeners more than once per page lifecycle
-      if (_heroVideoInitDone) return;
-      _heroVideoInitDone = true;
-
-      let hasUnmuted = false;
-
-      const enableSound = () => {
-        if (hasUnmuted) return;
-        hasUnmuted = true;
-        // Only unmute — do NOT call play() here; it interrupts the stream
-        video.muted = false;
-        video.volume = 1.0;
+      // ── Sound state helpers ───────────────────────────────────────────────
+      const setMuted = (muted: boolean) => {
+        video.muted = muted;
+        video.volume = muted ? 0 : 1.0;
+        if (icon)  icon.innerText  = muted ? '🔇' : '🔊';
+        if (label) label.innerText = muted ? 'Suara' : 'Suara';
       };
 
-      // Only intentional gestures — intentionally exclude scroll/mousemove
-      // to avoid interrupting smooth playback
-      const gestureEvents = ['click', 'touchend', 'pointerdown', 'keydown'];
-      gestureEvents.forEach((evt) => {
-        window.addEventListener(evt, enableSound, { once: true, passive: true });
-      });
+      const enableSoundAndHideOverlay = () => {
+        setMuted(false);
+        if (overlay) overlay.classList.add('hidden-overlay');
+      };
+
+      // ── Only attach listeners once per page lifecycle ─────────────────────
+      if (_heroInitDone) return;
+      _heroInitDone = true;
+
+      // Clicking the full-page transparent overlay → unmute
+      if (overlay) {
+        overlay.addEventListener('click', enableSoundAndHideOverlay, { once: true });
+      }
+
+      // Mute/unmute toggle button in top bar
+      if (soundBtn) {
+        soundBtn.addEventListener('click', (e) => {
+          e.stopPropagation(); // don't bubble to overlay
+          if (video.muted) {
+            enableSoundAndHideOverlay();
+          } else {
+            setMuted(true);
+            if (overlay) overlay.classList.remove('hidden-overlay');
+          }
+        });
+      }
     }
 
     function initFullscreen() {
       const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
-      const fsBtn = document.getElementById('toggle-fullscreen-btn');
-      if (!video || !fsBtn || (fsBtn as any)._fsListenerAdded) return;
-      (fsBtn as any)._fsListenerAdded = true;
+      const fsBtn = document.getElementById('toggle-fullscreen-btn') as HTMLButtonElement;
+      if (!video || !fsBtn || (fsBtn as any)._fsAdded) return;
+      (fsBtn as any)._fsAdded = true;
 
       fsBtn.addEventListener('click', () => {
-        // Unmute when user explicitly clicks fullscreen
-        video.muted = false;
-        video.volume = 1.0;
         if (!document.fullscreenElement) {
           video.requestFullscreen?.().catch(() => {});
         } else {
@@ -182,56 +260,51 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       const animate = (el: HTMLElement) => {
         const target = parseInt(el.getAttribute('data-target') || '0', 10);
         if (isNaN(target) || target <= 0) return;
-
         const duration = 1800;
         const startTime = performance.now();
-
-        const updateCount = (currentTime: number) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const easeOut = 1 - Math.pow(1 - progress, 3);
-          const current = Math.floor(easeOut * target);
-          el.innerText = current.toString();
-
-          if (progress < 1) {
-            requestAnimationFrame(updateCount);
-          } else {
-            el.innerText = target.toString();
-          }
+        const tick = (now: number) => {
+          const p = Math.min((now - startTime) / duration, 1);
+          el.innerText = Math.floor((1 - Math.pow(1 - p, 3)) * target).toString();
+          if (p < 1) requestAnimationFrame(tick);
+          else el.innerText = target.toString();
         };
-
-        requestAnimationFrame(updateCount);
+        requestAnimationFrame(tick);
       };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            animate(entry.target as HTMLElement);
-            observer.unobserve(entry.target);
-          }
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) { animate(e.target as HTMLElement); obs.unobserve(e.target); }
         });
       }, { threshold: 0.1 });
 
-      counters.forEach((c) => observer.observe(c));
+      counters.forEach((c) => obs.observe(c));
     }
 
     function initAll() {
       initHeroVideo();
       initFullscreen();
       initCounters();
+      // Fit tagline after fonts are likely loaded (small delay for Google Fonts)
+      fitTaglineWidth();
+      setTimeout(fitTaglineWidth, 600); // re-run after Homemade Apple font finishes loading
     }
 
-    // DOMContentLoaded covers first load; astro:page-load covers SPA transitions
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initAll);
     } else {
       initAll();
     }
     document.addEventListener('astro:page-load', () => {
-      // Reset init flag when navigating back to this page
-      _heroVideoInitDone = false;
+      _heroInitDone = false;
       initAll();
     });
+
+    // Re-fit on window resize (e.g. rotating phone, resizing desktop)
+    let _resizeTimer: ReturnType<typeof setTimeout>;
+    window.addEventListener('resize', () => {
+      clearTimeout(_resizeTimer);
+      _resizeTimer = setTimeout(fitTaglineWidth, 120);
+    }, { passive: true });
   </script>
 
 </section>
