@@ -24,19 +24,16 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       loop
       muted
       playsinline
+      preload="auto"
       poster="/images/heritage/spm.svg"
-      class="w-full h-full object-cover select-none filter brightness-95 scale-100"
+      style="will-change: transform; transform: translateZ(0);"
+      class="w-full h-full object-cover select-none brightness-95"
     >
       <source src="/videos/hero-profile.mp4" type="video/mp4" />
     </video>
 
-    <!-- Cinematic Vignette Overlay (Perfect Text Legibility) -->
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/60 to-slate-950/40 z-10 pointer-events-none"></div>
-    <div class="absolute inset-0 bg-blue-950/25 mix-blend-multiply z-10 pointer-events-none"></div>
-
-    <!-- Ambient Glowing Orbs -->
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl z-10 pointer-events-none animate-pulse"></div>
-    <div class="absolute top-1/3 -right-32 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl z-10 pointer-events-none"></div>
+    <!-- Cinematic Vignette Overlay -->
+    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/55 to-slate-950/35 z-10 pointer-events-none"></div>
   </div>
 
   <!-- 2. TOP RIGHT FLOATING FULLSCREEN BUTTON -->
@@ -118,60 +115,64 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <script>
-    // Guarantee 100% autoplay on page load + instant sound unlock on user interaction
+    // ─── Video: Autoplay + delayed audio unlock ─────────────────────────────
+    // Strategy:
+    //   1. Start video muted (required by all modern browsers for autoplay).
+    //   2. On first deliberate user gesture (click / tap / keydown only — NOT
+    //      scroll/mousemove, which fire instantly and race against playback)
+    //      unmute the video without calling play() again.
+    //   3. Guard against duplicate runs on Astro view-transitions.
+
+    let _heroVideoInitDone = false;
+
     function initHeroVideo() {
       const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
       if (!video) return;
 
-      // Start playing immediately (muted is required by browser security for autoplay)
+      // Always ensure it is playing (covers page-revisit via back-button)
       video.muted = true;
-      video.defaultMuted = true;
-      video.play().catch(() => {});
+      if (video.paused) {
+        video.play().catch(() => {});
+      }
+
+      // Skip setting up unmute listeners more than once per page lifecycle
+      if (_heroVideoInitDone) return;
+      _heroVideoInitDone = true;
 
       let hasUnmuted = false;
+
       const enableSound = () => {
         if (hasUnmuted) return;
         hasUnmuted = true;
+        // Only unmute — do NOT call play() here; it interrupts the stream
         video.muted = false;
         video.volume = 1.0;
-        video.play().catch(() => {});
       };
 
-      // Unmute instantly on ANY interaction (tap, click, scroll, hover, touch)
-      const interactionEvents = [
-        'click',
-        'touchstart',
-        'touchend',
-        'pointerdown',
-        'pointerup',
-        'scroll',
-        'wheel',
-        'keydown',
-        'mousemove'
-      ];
-
-      interactionEvents.forEach((eventName) => {
-        window.addEventListener(eventName, enableSound, { once: true, passive: true });
-        document.addEventListener(eventName, enableSound, { once: true, passive: true });
+      // Only intentional gestures — intentionally exclude scroll/mousemove
+      // to avoid interrupting smooth playback
+      const gestureEvents = ['click', 'touchend', 'pointerdown', 'keydown'];
+      gestureEvents.forEach((evt) => {
+        window.addEventListener(evt, enableSound, { once: true, passive: true });
       });
     }
 
     function initFullscreen() {
       const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
       const fsBtn = document.getElementById('toggle-fullscreen-btn');
+      if (!video || !fsBtn || (fsBtn as any)._fsListenerAdded) return;
+      (fsBtn as any)._fsListenerAdded = true;
 
-      if (video && fsBtn) {
-        fsBtn.addEventListener('click', () => {
-          video.muted = false;
-          video.volume = 1.0;
-          video.play().catch(() => {});
-          if (!document.fullscreenElement) {
-            video.requestFullscreen?.().catch(() => {});
-          } else {
-            document.exitFullscreen?.().catch(() => {});
-          }
-        });
-      }
+      fsBtn.addEventListener('click', () => {
+        // Unmute when user explicitly clicks fullscreen
+        video.muted = false;
+        video.volume = 1.0;
+        if (!document.fullscreenElement) {
+          video.requestFullscreen?.().catch(() => {});
+        } else {
+          document.exitFullscreen?.().catch(() => {});
+        }
+      });
     }
 
     function initCounters() {
@@ -220,12 +221,17 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       initCounters();
     }
 
+    // DOMContentLoaded covers first load; astro:page-load covers SPA transitions
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initAll);
     } else {
       initAll();
     }
-    document.addEventListener('astro:page-load', initAll);
+    document.addEventListener('astro:page-load', () => {
+      // Reset init flag when navigating back to this page
+      _heroVideoInitDone = false;
+      initAll();
+    });
   </script>
 
 </section>
