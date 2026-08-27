@@ -20,7 +20,7 @@ import type {
 export const SITE_CONFIG: SiteConfig = {
   name:        'SDK Maria Fatima Jember',
   shortName:   'SDK Maria Fatima',
-  tagline:     'Cerdas, Berkarakter, dan Berakar pada Spiritualitas Kasih',
+  tagline:     'Living values, creating digitally',
   description: 'Sekolah Dasar Katolik Maria Fatima Jember di Kabupaten Jember — Membina tunas muda berprestasi, berintegritas, mandiri, dan berjiwa belas kasih.',
   url:         'https://sdkmartimjember.sch.id',
   npsn:        '20523821',
