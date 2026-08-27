@@ -224,14 +224,11 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         overlay.addEventListener('click', enableSoundAndHideOverlay, { once: true });
       }
 
-      // Also unlock on scroll (desktop wheel + mobile touchmove/scroll)
-      // Safe to add here because enableSoundAndHideOverlay only calls setMuted(false),
-      // which does NOT call play() — so it won't interrupt the video stream.
-      const scrollTrigger = () => enableSoundAndHideOverlay();
-      window.addEventListener('scroll',     scrollTrigger,  { once: true, passive: true });
-      window.addEventListener('wheel',      scrollTrigger,  { once: true, passive: true });
-      window.addEventListener('touchmove',  scrollTrigger,  { once: true, passive: true });
-      window.addEventListener('touchstart', scrollTrigger,  { once: true, passive: true });
+      // Also unlock on first touch (mobile) — touchstart IS a user activation event
+      // NOTE: scroll & wheel are intentionally excluded — they are NOT user activation
+      // events and calling setMuted(false) from them causes Chrome to pause the video.
+      window.addEventListener('touchstart', enableSoundAndHideOverlay, { once: true, passive: true });
+      window.addEventListener('touchmove',  enableSoundAndHideOverlay, { once: true, passive: true });
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
