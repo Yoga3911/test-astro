@@ -31,9 +31,9 @@ export const SITE_CONFIG: SiteConfig = {
   address:     'Jl. R.A. Kartini No.24, Tembaan, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68137',
   city:        'Jember, Jawa Timur',
   foundation:  'Kabupaten Jember',
-  coordinates: { lat: -8.1713365, lng: 113.7008447 },
-  mapsUrl:     'https://maps.google.com/?q=-8.1713365,113.7008447',
-  mapsEmbedUrl: 'https://maps.google.com/maps?q=-8.1713365,113.7008447&hl=id&z=17&output=embed',
+  coordinates: { lat: -8.1713728, lng: 113.7008447 },
+  mapsUrl:     'https://www.google.com/maps/place/SDK+Maria+Fatima/@-8.1713728,113.7005944,20z/data=!4m6!3m5!1s0x2dd6943ad8c8d30f:0x66813f25e6dc2c7f!8m2!3d-8.1713728!4d113.7008447',
+  mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.83194826133072!2d113.70059440408045!3d-8.171372828525238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6943ad8c8d30f%3A0x66813f25e6dc2c7f!2sSDK%20Maria%20Fatima!5e0!3m2!1sid!2sid!4v1787836482664!5m2!1sid!2sid',
   socialMedia: {
     instagram: 'https://instagram.com/sdkmartimjember',
     facebook:  'https://facebook.com/sdkmartimjember',
