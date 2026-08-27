@@ -56,11 +56,11 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
   </div>
 
   <!-- 2b. TOP RIGHT VIDEO CONTROLS (absolute pinned to corner) -->
-  <div class="absolute z-30 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
+  <div class="absolute z-50 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
     <button
       id="toggle-sound-btn"
       type="button"
-      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
       title="Nyalakan/Matikan Suara"
     >
       <span id="sound-btn-icon" class="text-sm">🔇</span>
@@ -69,7 +69,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     <button
       id="toggle-fullscreen-btn"
       type="button"
-      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
       title="Tonton Video Profil Layar Penuh"
     >
       <span class="text-sm">⛶</span>
@@ -196,19 +196,26 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
 
       if (!video) return;
 
-      // Start muted (guaranteed to work in all browsers)
+      // Start muted (guaranteed autoplay across all browsers)
       video.muted = true;
       if (video.paused) video.play().catch(() => {});
 
       // ── Sound state helpers ───────────────────────────────────────────────
+      const updateButtonUI = (isMuted: boolean) => {
+        if (icon)  icon.innerText  = isMuted ? '🔇' : '🔊';
+        if (label) label.innerText = isMuted ? 'Suara' : 'Suara';
+      };
+
       const setMuted = (muted: boolean) => {
         video.muted = muted;
         video.volume = muted ? 0 : 1.0;
-        if (icon)  icon.innerText  = muted ? '🔇' : '🔊';
-        if (label) label.innerText = muted ? 'Suara' : 'Suara';
+        updateButtonUI(muted);
+        if (!muted && video.paused) {
+          video.play().catch(() => {});
+        }
       };
 
-      const enableSoundAndHideOverlay = () => {
+      const unlockAudio = () => {
         setMuted(false);
         if (overlay) overlay.classList.add('hidden-overlay');
       };
@@ -217,33 +224,37 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       if (_heroInitDone) return;
       _heroInitDone = true;
 
-      // Persistent overlay click listener — works even after re-muting via toggle button
+      // Overlay tap/click to unlock audio
       if (overlay) {
-        overlay.addEventListener('click', () => {
-          if (!overlay.classList.contains('hidden-overlay')) {
-            enableSoundAndHideOverlay();
-          }
+        overlay.addEventListener('click', (e) => {
+          e.stopPropagation();
+          unlockAudio();
         });
       }
 
-      // Mobile: persistent touch listener that checks overlay visibility
-      const touchUnlock = () => {
-        if (overlay && !overlay.classList.contains('hidden-overlay')) {
-          enableSoundAndHideOverlay();
+      // One-time gesture listener across the window for first touch/click
+      const onFirstUserGesture = (e: Event) => {
+        // If clicking/tapping the sound button or fullscreen button, let those buttons handle their own events
+        const target = e.target as HTMLElement | null;
+        if (target && target.closest('#toggle-sound-btn, #toggle-fullscreen-btn')) {
+          return;
         }
+        unlockAudio();
+        window.removeEventListener('touchstart', onFirstUserGesture);
+        window.removeEventListener('click', onFirstUserGesture);
       };
-      window.addEventListener('touchstart', touchUnlock, { passive: true });
-      window.addEventListener('touchmove',  touchUnlock, { passive: true });
+      window.addEventListener('touchstart', onFirstUserGesture, { passive: true });
+      window.addEventListener('click', onFirstUserGesture, { passive: true });
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
         soundBtn.addEventListener('click', (e) => {
-          e.stopPropagation(); // don't bubble to overlay
+          e.stopPropagation();
+          e.preventDefault();
           if (video.muted) {
-            enableSoundAndHideOverlay();
+            unlockAudio();
           } else {
             setMuted(true);
-            if (overlay) overlay.classList.remove('hidden-overlay');
           }
         });
       }
@@ -255,11 +266,67 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       if (!video || !fsBtn || (fsBtn as any)._fsAdded) return;
       (fsBtn as any)._fsAdded = true;
 
-      fsBtn.addEventListener('click', () => {
-        if (!document.fullscreenElement) {
-          video.requestFullscreen?.().catch(() => {});
+      const isFullscreenActive = () => {
+        return !!(
+          document.fullscreenElement ||
+          (document as any).webkitFullscreenElement ||
+          (document as any).mozFullScreenElement ||
+          (document as any).msFullscreenElement ||
+          (video as any).webkitDisplayingFullscreen
+        );
+      };
+
+      const enterFullscreen = () => {
+        // Unmute and ensure video is playing when entering fullscreen
+        video.muted = false;
+        video.volume = 1.0;
+        const icon = document.getElementById('sound-btn-icon');
+        if (icon) icon.innerText = '🔊';
+        const overlay = document.getElementById('sound-overlay');
+        if (overlay) overlay.classList.add('hidden-overlay');
+
+        if (video.paused) {
+          video.play().catch(() => {});
+        }
+
+        // iOS Safari on iPhone requires webkitEnterFullscreen directly on HTMLVideoElement
+        if (typeof (video as any).webkitEnterFullscreen === 'function') {
+          (video as any).webkitEnterFullscreen();
+        } else if (typeof (video as any).webkitEnterFullScreen === 'function') {
+          (video as any).webkitEnterFullScreen();
+        } else if (typeof video.requestFullscreen === 'function') {
+          video.requestFullscreen().catch(() => {});
+        } else if (typeof (video as any).webkitRequestFullscreen === 'function') {
+          (video as any).webkitRequestFullscreen();
+        } else if (typeof (video as any).mozRequestFullScreen === 'function') {
+          (video as any).mozRequestFullScreen();
+        } else if (typeof (video as any).msRequestFullscreen === 'function') {
+          (video as any).msRequestFullscreen();
+        }
+      };
+
+      const exitFullscreen = () => {
+        if (typeof (video as any).webkitExitFullscreen === 'function') {
+          (video as any).webkitExitFullscreen();
+        } else if (typeof document.exitFullscreen === 'function') {
+          document.exitFullscreen().catch(() => {});
+        } else if (typeof (document as any).webkitExitFullscreen === 'function') {
+          (document as any).webkitExitFullscreen();
+        } else if (typeof (document as any).mozCancelFullScreen === 'function') {
+          (document as any).mozCancelFullScreen();
+        } else if (typeof (document as any).msExitFullscreen === 'function') {
+          (document as any).msExitFullscreen();
+        }
+      };
+
+      fsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+
+        if (!isFullscreenActive()) {
+          enterFullscreen();
         } else {
-          document.exitFullscreen?.().catch(() => {});
+          exitFullscreen();
         }
       });
     }
