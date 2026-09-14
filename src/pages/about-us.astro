@@ -13,7 +13,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { VISI_MISI_DATA, PROFIL_LULUSAN_8, SITE_CONFIG } from '@/utils/config';
+import { VISI_MISI_DATA, PROFIL_LULUSAN_8, CORE_VALUES_UKB, SITE_CONFIG } from '@/utils/config';
 
 // ─── Data Tata Tertib ───────────────────────────────────────────────────────
 const TATA_TERTIB_ITEMS = [
@@ -58,7 +58,7 @@ const TATA_TERTIB_ITEMS = [
 
 <BaseLayout
   title="About Us — Mengenal SDK Maria Fatima"
-  description="Sejarah, Visi Misi, Core Values SIKARU, 8 Profil Lulusan, dan Tata Tertib SDK Maria Fatima Jember — Yayasan Suster SPM."
+  description="Sejarah, Visi Misi, Core Values UKB (Unggul, Kasih, Bermartabat), 8 Profil Lulusan, dan Tata Tertib SDK Maria Fatima Jember — Yayasan Suster SPM."
 >
   <Header />
 
@@ -209,36 +209,107 @@ const TATA_TERTIB_ITEMS = [
       </div>
     </section>
 
-    <!-- 3. CORE VALUE (SIKARU) -->
-    <section id="core-values" class="py-16 sm:py-24 bg-white">
+    <!-- 3. CORE VALUES UKB (UNGGUL, KASIH, BERMARTABAT) -->
+    <section id="core-values" class="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <!-- Decorative ambient glows -->
+      <div class="absolute top-1/2 left-0 w-96 h-96 bg-blue-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -z-10"></div>
+      <div class="absolute top-1/2 right-0 w-96 h-96 bg-amber-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -z-10"></div>
+
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase mb-3">
-            <span>NILAI DASAR (CORE VALUES)</span>
+        
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-widest mb-3 border border-blue-200 shadow-xs">
+            <span>CORE VALUES SDK MARIA FATIMA</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
-            6 Nilai Utama SIKARU
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
+            Nilai Luhur UKB
           </h2>
-          <p class="text-slate-600 mt-2 text-base">
-            Pedoman hidup yang ditanamkan sejak dini kepada setiap siswa untuk membentuk pribadi yang berbudi luhur.
+          <p class="text-slate-600 mt-4 text-base sm:text-lg leading-relaxed">
+            Sebagai lembaga pendidikan yang berkomitmen membentuk generasi unggul dan berkarakter, SD Katolik Maria Fatima Jember menanamkan nilai-nilai luhur yang dirangkum dalam <strong>Core Value UKB</strong>: <span class="text-blue-700 font-bold">Unggul</span>, <span class="text-rose-600 font-bold">Kasih</span>, dan <span class="text-amber-700 font-bold">Bermartabat</span> — identitas yang menjiwai budaya dan perjalanan pendidikan kami.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {VISI_MISI_DATA.coreValues.map((cv) => (
-            <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-lg hover:border-blue-300 transition-all duration-300">
-              <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-xl mb-4 font-bold">
-                💎
+        <!-- 3 Cards Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+          {CORE_VALUES_UKB.map((cv) => (
+            <div class={`group bg-white rounded-3xl p-8 sm:p-9 border border-slate-200/90 shadow-lg hover:shadow-2xl ${cv.theme.borderHover} transition-all duration-300 flex flex-col justify-between relative overflow-hidden hover:-translate-y-1.5`}>
+              
+              <!-- Ambient Top Accent Gradient -->
+              <div class={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${cv.theme.badge}`}></div>
+
+              <div>
+                <!-- Header Card: Letter Badge + Title + Subtitle -->
+                <div class="flex items-center gap-4 mb-6">
+                  <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${cv.theme.badge} font-heading font-black text-2xl flex items-center justify-center shadow-md shrink-0 group-hover:scale-105 transition-transform`}>
+                    {cv.letter}
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-extrabold uppercase tracking-widest text-slate-400">Core Value</div>
+                    <h3 class="text-2xl sm:text-3xl font-heading font-black tracking-tight text-slate-900">
+                      {cv.name}
+                    </h3>
+                  </div>
+                </div>
+
+                <!-- Tagline Highlight -->
+                <div class={`p-4 rounded-2xl ${cv.theme.lightBg} border border-slate-100 mb-5`}>
+                  <p class={`text-sm font-bold ${cv.theme.textAccent} leading-snug`}>
+                    "{cv.tagline}"
+                  </p>
+                </div>
+
+                <!-- Main Narrative -->
+                <p class="text-sm text-slate-600 leading-relaxed font-normal mb-6">
+                  {cv.fullDesc}
+                </p>
+
+                <!-- Pillars / Key Takeaways -->
+                <div class="space-y-2.5 pt-5 border-t border-slate-100">
+                  <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-3">
+                    Fokus Pembinaan Karakter:
+                  </div>
+                  {cv.points.map((pt) => (
+                    <div class="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-700">
+                      <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>{pt}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <h3 class="text-lg font-heading font-black text-slate-900 mb-2">
-                {cv.title}
-              </h3>
-              <p class="text-sm text-slate-600 leading-relaxed font-normal">
-                {cv.desc}
-              </p>
+
+              <!-- Card Bottom Accent -->
+              <div class="mt-8 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400 font-bold uppercase tracking-wider">
+                <span>SDK Maria Fatima</span>
+                <span class={cv.theme.textAccent}>Nilai UKB →</span>
+              </div>
+
             </div>
           ))}
         </div>
+
+        <!-- Heritage Bridge Box -->
+        <div class="mt-14 p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="flex items-start gap-4">
+            <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-2xl shrink-0">🏛️</span>
+            <div>
+              <h4 class="font-heading font-black text-slate-900 text-base">Pondasi Spiritualitas &amp; Nilai Yayasan SPM</h4>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed font-normal">
+                Nilai UKB berakar kuat pada warisan rohani Kongregasi Suster SPM (Suster Santa Perawan Maria), keteladanan Santa Julie Billiart, serta 6 Nilai Utama SIKARU.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/heritage#sikaru"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-slate-200/90 hover:border-blue-400 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-xs hover:shadow-md transition-all shrink-0 active:scale-95"
+          >
+            <span>Pelajari Nilai SIKARU</span>
+            <span>↗</span>
+          </a>
+        </div>
+
       </div>
     </section>
 

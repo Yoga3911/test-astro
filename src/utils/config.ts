@@ -14,6 +14,7 @@ import type {
   ClassroomLevel,
   SongTrack,
   InstagramPost,
+  CoreValueUKB,
 } from '@/types/index';
 
 // ─── School Info ───────────────────────────────────────────────────────────
@@ -140,6 +141,67 @@ export const VISI_MISI_DATA = {
   ],
   tagline: 'Educating in the Spirit of St. Julie & SPM: Beyond Education, Touching Lives.',
 };
+
+// ─── Core Value UKB (Unggul, Kasih, Bermartabat) ───────────────────────────
+export const CORE_VALUES_UKB: CoreValueUKB[] = [
+  {
+    letter: 'U',
+    name: 'UNGGUL',
+    tagline: 'Mengembangkan pribadi yang berprestasi, mandiri, dan visioner.',
+    shortDesc: 'Kemampuan untuk terus bertumbuh, berpikir kritis, berinovasi, serta berani mengambil inisiatif menghadapi tantangan.',
+    fullDesc: 'Unggul bukan sekadar meraih pencapaian akademik, melainkan kemampuan untuk terus bertumbuh, berpikir kritis, berinovasi, serta berani mengambil inisiatif dalam menghadapi tantangan. Peserta didik dibentuk menjadi pribadi yang disiplin, percaya diri, kreatif, memiliki jiwa kepemimpinan, serta mampu memberikan dampak positif bagi lingkungan sekitarnya.',
+    points: [
+      'Pribadi Berprestasi & Visioner',
+      'Berpikir Kritis & Berani Berinovasi',
+      'Disiplin, Percaya Diri & Berjiwa Pemimpin',
+      'Membawa Dampak Positif bagi Lingkungan',
+    ],
+    theme: {
+      badge: 'from-blue-600 to-indigo-600 text-white',
+      borderHover: 'hover:border-blue-400 hover:shadow-blue-900/10',
+      textAccent: 'text-blue-700',
+      lightBg: 'bg-blue-50/60',
+    },
+  },
+  {
+    letter: 'K',
+    name: 'KASIH',
+    tagline: 'Menghidupi nilai kasih melalui kepedulian, kejujuran, dan pelayanan.',
+    shortDesc: 'Landasan dalam setiap relasi dan tindakan nyata yang membangun kepedulian sosial dan semangat melayani.',
+    fullDesc: 'Kasih menjadi landasan dalam setiap relasi dan tindakan. Peserta didik dibimbing untuk memiliki empati, menghargai sesama, peduli terhadap lingkungan, menjunjung keadilan, serta mampu bekerja sama dalam keberagaman. Nilai kasih diwujudkan dalam tindakan nyata yang membangun kepedulian sosial dan semangat melayani.',
+    points: [
+      'Empati, Kejujuran & Hati yang Peduli',
+      'Menghargai Sesama & Menjunjung Keadilan',
+      'Mampu Bekerja Sama dalam Keberagaman',
+      'Semangat Melayani & Kepedulian Sosial',
+    ],
+    theme: {
+      badge: 'from-rose-500 to-pink-600 text-white',
+      borderHover: 'hover:border-rose-400 hover:shadow-rose-900/10',
+      textAccent: 'text-rose-600',
+      lightBg: 'bg-rose-50/60',
+    },
+  },
+  {
+    letter: 'B',
+    name: 'BERMARTABAT',
+    tagline: 'Menjadi pribadi berintegritas yang menghargai sesama dan berlandaskan iman.',
+    shortDesc: 'Karakter kuat yang bertindak selaras antara pikiran, perkataan, dan perbuatan berlandaskan iman dan etika luhur.',
+    fullDesc: 'Bermartabat berarti memiliki karakter yang kuat, mampu mengambil keputusan yang benar, menghormati setiap pribadi, serta bertindak selaras antara pikiran, perkataan, dan perbuatan. Dengan berlandaskan iman dan hati nurani, peserta didik dipersiapkan menjadi pribadi yang bertanggung jawab, beretika, dan mampu membawa kebaikan bagi masyarakat.',
+    points: [
+      'Pribadi Berintegritas & Berkarakter Kuat',
+      'Berlandaskan Iman & Hati Nurani',
+      'Selaras antara Pikiran, Perkataan & Perbuatan',
+      'Bertanggung Jawab, Beretika & Membawa Kebaikan',
+    ],
+    theme: {
+      badge: 'from-amber-500 to-amber-700 text-white',
+      borderHover: 'hover:border-amber-400 hover:shadow-amber-900/10',
+      textAccent: 'text-amber-700',
+      lightBg: 'bg-amber-50/60',
+    },
+  },
+];
 
 // ─── 8 Profil Lulusan SDK Maria Fatima ────────────────────────────────────
 export const PROFIL_LULUSAN_8: GraduateProfile[] = [

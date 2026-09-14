@@ -77,6 +77,22 @@ export interface AlumniTestimonial {
   testimony:   string[]; // 2 paragraphs of inspiring testimony
 }
 
+// ─── Core Values UKB ───────────────────────────────────────────────────────
+export interface CoreValueUKB {
+  letter: string;
+  name: string;
+  tagline: string;
+  shortDesc: string;
+  fullDesc: string;
+  points: string[];
+  theme: {
+    badge: string;
+    borderHover: string;
+    textAccent: string;
+    lightBg: string;
+  };
+}
+
 // ─── 8 Profil Lulusan ──────────────────────────────────────────────────────
 export interface GraduateProfile {
   number:      number;
