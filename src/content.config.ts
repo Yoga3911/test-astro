@@ -57,7 +57,7 @@ const pengumumanCollection = defineCollection({
     tanggal:       z.coerce.date(),
     berlakuHingga: z.coerce.date().optional(),
     penting:       z.boolean().default(false),
-    kategori:      z.enum(['PPDB', 'Akademik', 'Administrasi', 'Kegiatan', 'Umum']).default('Umum'),
+    kategori:      z.enum(['SPMB', 'PPDB', 'Akademik', 'Administrasi', 'Kegiatan', 'Umum']).default('Umum'),
     lampiran:      z.string().optional(),
   }),
 });

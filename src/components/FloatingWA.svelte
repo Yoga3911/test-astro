@@ -40,12 +40,12 @@
 
       <!-- Body message -->
       <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-        Halo! Terima kasih telah mengunjungi website resmi SDK Maria Fatima Jember. Butuh informasi mengenai <strong>PPDB</strong>, <strong>kegiatan belajar</strong>, atau <strong>jadwal kunjungan</strong>?
+        Halo! Terima kasih telah mengunjungi website resmi SDK Maria Fatima Jember. Butuh informasi mengenai <strong>SPMB</strong>, <strong>kegiatan belajar</strong>, atau <strong>jadwal kunjungan</strong>?
       </p>
 
       <!-- Action link to WA -->
       <a
-        href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima%20Jember,%20saya%20ingin%20konsultasi%20informasi%20sekolah%20dan%20PPDB`}
+        href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima%20Jember,%20saya%20ingin%20konsultasi%20informasi%20sekolah%20dan%20SPMB`}
         target="_blank"
         rel="noopener noreferrer"
         class="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm shadow-md shadow-emerald-600/20 active:scale-95 transition-all text-center"

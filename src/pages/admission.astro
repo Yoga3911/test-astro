@@ -1,9 +1,9 @@
 ---
 /**
- * admission.astro — Penerimaan Peserta Didik Baru (PPDB Online) SDK Maria Fatima Jember
+ * admission.astro — Penerimaan Peserta Didik Baru (SPMB Online) SDK Maria Fatima Jember
  *
- * Sesuai Sitemap PDF:
- * - Admission / PPDB / Registration: Promosi Siswa Baru, Alur Seleksi, Syarat, Biaya & Formulir Online
+ * Strictly follows the PDF Sitemap:
+ * - Admission / SPMB / Registration: Promosi Siswa Baru, Alur Seleksi, Syarat, Biaya & Formulir Online
  */
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -44,7 +44,7 @@ const SYARAT_PENDAFTARAN = [
   'Fotokopi Kartu Keluarga (KK) dan KTP kedua Orang Tua/Wali (2 lembar).',
   'Fotokopi Surat Baptis (bagi yang beragama Katolik/Kristen).',
   'Pas foto berwarna ukuran 3×4 (3 lembar).',
-  'Mengisi formulir pendaftaran PPDB SDK Maria Fatima (online atau offline di sekretariat).',
+  'Mengisi formulir pendaftaran SPMB SDK Maria Fatima (online atau offline di sekretariat).',
 ];
 
 // ─── Alur Pendaftaran ───────────────────────────────────────────────────────
@@ -78,15 +78,15 @@ const ALUR_STEPS = [
 const ppdbSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: `Admission & PPDB Online ${SITE_CONFIG.name}`,
-  description: `Informasi resmi pendaftaran peserta didik baru (PPDB) ${SITE_CONFIG.name} Tahun Ajaran 2026/2027.`,
+  name: `Admission & SPMB Online ${SITE_CONFIG.name}`,
+  description: `Informasi resmi pendaftaran peserta didik baru (SPMB) ${SITE_CONFIG.name} Tahun Ajaran 2026/2027.`,
   url: `${SITE_CONFIG.url}/admission`,
 };
 ---
 
 <BaseLayout
-  title="Admission — PPDB Online 2026/2027"
-  description="Penerimaan Peserta Didik Baru (PPDB) SDK Maria Fatima Jember Tahun Ajaran 2026/2027 — Alur, Syarat, Jadwal & Form Pendaftaran."
+  title="Admission — SPMB Online 2026/2027"
+  description="Penerimaan Peserta Didik Baru (SPMB) SDK Maria Fatima Jember Tahun Ajaran 2026/2027 — Alur, Syarat, Jadwal & Form Pendaftaran."
   structuredData={ppdbSchema}
 >
   <Header />
@@ -101,7 +101,7 @@ const ppdbSchema = {
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs">
-          <span>PPDB TAHUN AJARAN 2026/2027</span>
+          <span>SPMB TAHUN AJARAN 2026/2027</span>
         </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
           Admission: SDK Maria Fatima
@@ -222,7 +222,7 @@ const ppdbSchema = {
             </div>
 
             <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
-              Syarat &amp; Dokumen PPDB
+              Syarat &amp; Dokumen SPMB
             </h2>
 
             <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -246,17 +246,17 @@ const ppdbSchema = {
                 Tim Admisi SDK Maria Fatima siap membantu Anda dalam pengisian formulir, konsultasi biaya, maupun jadwal observasi.
               </p>
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20Admisi%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20syarat%20dan%20pendaftaran%20PPDB`}
+                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20Admisi%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20syarat%20dan%20pendaftaran%20SPMB`}
                 target="_blank"
                 rel="noopener noreferrer"
                 class="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 hover:underline"
               >
-                <span>Hubungi CS PPDB via WhatsApp (+62 812-3456-7890) →</span>
+                <span>Hubungi CS SPMB via WhatsApp (+62 812-3456-7890) →</span>
               </a>
             </div>
           </div>
 
-          <!-- Form Online Right (Menggunakan Svelte KontakForm / PPDB Form) -->
+          <!-- Form Online Right (Menggunakan Svelte KontakForm / SPMB Form) -->
           <div class="lg:col-span-7 bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-lg">
             <div class="mb-6 border-b border-slate-200 pb-4">
               <h3 class="text-2xl font-heading font-black text-slate-900">

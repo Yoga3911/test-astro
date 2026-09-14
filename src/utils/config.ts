@@ -404,7 +404,7 @@ export const STAFF_DATA: StaffMember[] = [
   {
     id: 'staf-1',
     name: 'Agnes Sri Wahyuni, A.Md.',
-    role: 'Kepala Tata Usaha & Layanan Informasi PPDB',
+    role: 'Kepala Tata Usaha & Layanan Informasi SPMB',
     category: 'karyawan',
     subCategory: 'Tata Usaha',
     photo: '/images/staff/staf-1.svg',
@@ -665,6 +665,7 @@ export const KATEGORI_COLORS: Record<string, string> = {
   'Spiritual':   'badge-blue',
   'Artikel':     'badge-green',
   'Berita':      'badge-blue',
+  'SPMB':        'badge-gold',
   'PPDB':        'badge-gold',
 };
 
