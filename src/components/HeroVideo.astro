@@ -11,10 +11,10 @@
  * - Integrated school quick statistics counter strip at bottom
  */
 
-import { SITE_CONFIG, STATS } from '@/utils/config';
+import { SITE_CONFIG } from '@/utils/config';
 ---
 
-<section id="hero-banner" class="relative overflow-hidden w-full min-h-[88vh] lg:min-h-[92vh] flex flex-col justify-between bg-slate-950 text-white">
+<section id="hero-banner" class="relative overflow-hidden w-full min-h-[88vh] lg:min-h-[92vh] flex flex-col justify-center bg-slate-950 text-white">
   
   <!-- 1. FULL-WIDTH EDGE-TO-EDGE HD BACKGROUND VIDEO -->
   <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -36,69 +36,45 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/55 to-slate-950/35 z-10 pointer-events-none"></div>
   </div>
 
-  <!-- 2. TOP RIGHT FLOATING FULLSCREEN BUTTON -->
-  <!-- 2. SOUND ENABLE BUTTON — z-35 above welcome text (z-20), below header (z-50) -->
-  <div
-    id="sound-overlay"
-    class="flex absolute inset-0 z-35 items-center justify-center pointer-events-none"
-  >
-    <!-- Dedicated Clickable Pulsing Sound Button (pointer-events-auto) -->
-    <button
-      id="center-sound-btn"
-      type="button"
-      class="pointer-events-auto cursor-pointer flex flex-col items-center gap-2 group focus:outline-hidden select-none drop-shadow-2xl hover:scale-105 active:scale-95 transition-transform"
-      style="animation: soundPulse 2s ease-in-out infinite;"
-      title="Klik untuk aktifkan suara"
-    >
-      <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-slate-950/85 backdrop-blur-md border-2 border-amber-400 group-hover:border-amber-300 flex items-center justify-center shadow-2xl transition-colors">
-        <span class="text-3xl sm:text-4xl">🔇</span>
-      </div>
-      <span class="text-white text-xs sm:text-sm font-bold tracking-widest uppercase bg-slate-950/90 backdrop-blur-md px-4 py-1.5 rounded-full border border-amber-400/60 shadow-lg group-hover:bg-slate-900 transition-colors">
-        Klik untuk aktifkan suara
-      </span>
-    </button>
-  </div>
-
-  <!-- 2b. TOP RIGHT VIDEO CONTROLS (z-40 above overlay z-35, slides under sticky header z-50) -->
+  <!-- 2. TOP RIGHT VIDEO CONTROLS -->
   <div class="absolute z-40 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
     <button
       id="toggle-sound-btn"
       type="button"
-      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-sky-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
       title="Nyalakan/Matikan Suara"
     >
-      <span id="sound-btn-icon" class="text-sm">🔇</span>
+      <!-- Sound Muted Outline Icon (Default muted state) -->
+      <svg id="sound-off-icon" class="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      </svg>
+      <!-- Sound On Outline Icon (When unmuted) -->
+      <svg id="sound-on-icon" class="w-4 h-4 text-white shrink-0 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      </svg>
       <span id="sound-btn-label">Suara</span>
     </button>
     <button
       id="toggle-fullscreen-btn"
       type="button"
-      class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-amber-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-sky-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
       title="Tonton Video Profil Layar Penuh"
     >
-      <span class="text-sm">⛶</span>
+      <svg class="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+      </svg>
       <span>Layar Penuh</span>
     </button>
   </div>
 
-  <style>
-    @keyframes soundPulse {
-      0%, 100% { transform: scale(1); opacity: 0.9; }
-      50% { transform: scale(1.08); opacity: 1; }
-    }
-    #sound-overlay.hidden-overlay {
-      display: none !important;
-    }
-  </style>
-
   <!-- 3. HERO MAIN LEFT-ALIGNED FLOATING CONTENT -->
-  <div class="relative z-20 w-full px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex-1 flex flex-col justify-center items-start text-left max-w-2xl">
+  <div class="relative z-20 w-full px-4 sm:px-6 lg:px-8 py-16 flex-1 flex flex-col justify-center items-start text-left max-w-2xl">
     
-    <!-- Identity Badge -->
+    <!-- Identity Badge with Blue Ping Animation -->
     <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn">
       <span class="relative flex h-2.5 w-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400"></span>
+        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
       </span>
       <span>Sekolah Dasar Katolik Unggulan</span>
     </div>
@@ -123,14 +99,14 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       Living values, creating digitally
     </p>
 
-    <!-- Quick Action Button -->
+    <!-- Quick Action Button: Transparan, Wording Putih, Outline Putih/Kuning -->
     <div class="flex items-center">
       <a
         href="/admission"
-        class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-black text-base text-slate-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 hover:from-amber-300 hover:to-amber-200 shadow-xl shadow-amber-500/25 hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200"
+        class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-bold text-base text-white bg-transparent border-2 border-white hover:border-amber-400 hover:bg-white/10 backdrop-blur-xs shadow-xl shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-200"
       >
         <span>Daftar PPDB 2026/2027</span>
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <svg class="w-5 h-5 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
       </a>
@@ -138,33 +114,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
 
   </div>
 
-  <!-- 4. STATS STRIP (Integrated Bottom Bar) -->
-  <div class="relative z-20 border-t border-white/10 bg-slate-950/70 backdrop-blur-xl">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-        {STATS.map((stat) => (
-          <div class="flex flex-col items-center justify-center p-2 group">
-            <div class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-amber-300 flex items-center justify-center gap-1 drop-shadow-sm group-hover:scale-105 transition-transform duration-300">
-              <span class="stat-counter" data-target={stat.value}>0</span>
-              <span>{stat.suffix}</span>
-            </div>
-            <div class="text-xs sm:text-sm font-medium text-slate-300 mt-1 flex items-center gap-1.5">
-              <span>{stat.icon}</span>
-              <span>{stat.label}</span>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-
   <script>
-    // ─── Browser Autoplay Policy Note ────────────────────────────────────────
-    // All modern browsers (Chrome, Safari, Firefox) block audio autoplay
-    // without a prior user gesture. We cannot bypass this in JS.
-    // Strategy: play muted immediately → show a clear "click to enable sound"
-    // overlay → on first click anywhere, unmute + hide overlay instantly.
-
     let _heroInitDone = false;
 
     // ─── Auto-fit tagline width to match "WELCOME TO" ────────────────────────
@@ -192,12 +142,10 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
     }
 
     function initHeroVideo() {
-      const video          = document.getElementById('hero-bg-video')    as HTMLVideoElement;
-      const overlay        = document.getElementById('sound-overlay')    as HTMLElement;
-      const centerSoundBtn = document.getElementById('center-sound-btn') as HTMLButtonElement;
-      const icon           = document.getElementById('sound-btn-icon')   as HTMLElement;
-      const label          = document.getElementById('sound-btn-label')  as HTMLElement;
-      const soundBtn       = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
+      const video         = document.getElementById('hero-bg-video')   as HTMLVideoElement;
+      const soundOffIcon  = document.getElementById('sound-off-icon')  as HTMLElement;
+      const soundOnIcon   = document.getElementById('sound-on-icon')   as HTMLElement;
+      const soundBtn      = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
 
       if (!video) return;
 
@@ -207,8 +155,15 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
 
       // ── Sound state helpers ───────────────────────────────────────────────
       const updateButtonUI = (isMuted: boolean) => {
-        if (icon)  icon.innerText  = isMuted ? '🔇' : '🔊';
-        if (label) label.innerText = isMuted ? 'Suara' : 'Suara';
+        if (soundOffIcon && soundOnIcon) {
+          if (isMuted) {
+            soundOffIcon.classList.remove('hidden');
+            soundOnIcon.classList.add('hidden');
+          } else {
+            soundOffIcon.classList.add('hidden');
+            soundOnIcon.classList.remove('hidden');
+          }
+        }
       };
 
       const setMuted = (muted: boolean) => {
@@ -220,23 +175,9 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         }
       };
 
-      const unlockAudio = () => {
-        setMuted(false);
-        if (overlay) overlay.classList.add('hidden-overlay');
-      };
-
       // ── Only attach listeners once per page lifecycle ─────────────────────
       if (_heroInitDone) return;
       _heroInitDone = true;
-
-      // Center sound button click (both desktop & mobile)
-      if (centerSoundBtn) {
-        centerSoundBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          e.preventDefault();
-          unlockAudio();
-        });
-      }
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
@@ -244,7 +185,7 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
           e.stopPropagation();
           e.preventDefault();
           if (video.muted) {
-            unlockAudio();
+            setMuted(false);
           } else {
             setMuted(true);
           }
@@ -272,10 +213,12 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
         // Unmute and ensure video is playing when entering fullscreen
         video.muted = false;
         video.volume = 1.0;
-        const icon = document.getElementById('sound-btn-icon');
-        if (icon) icon.innerText = '🔊';
-        const overlay = document.getElementById('sound-overlay');
-        if (overlay) overlay.classList.add('hidden-overlay');
+        const soundOffIcon = document.getElementById('sound-off-icon');
+        const soundOnIcon  = document.getElementById('sound-on-icon');
+        if (soundOffIcon && soundOnIcon) {
+          soundOffIcon.classList.add('hidden');
+          soundOnIcon.classList.remove('hidden');
+        }
 
         if (video.paused) {
           video.play().catch(() => {});
@@ -323,40 +266,11 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       });
     }
 
-    function initCounters() {
-      const counters = document.querySelectorAll('.stat-counter');
-      if (!counters.length) return;
-
-      const animate = (el: HTMLElement) => {
-        const target = parseInt(el.getAttribute('data-target') || '0', 10);
-        if (isNaN(target) || target <= 0) return;
-        const duration = 1800;
-        const startTime = performance.now();
-        const tick = (now: number) => {
-          const p = Math.min((now - startTime) / duration, 1);
-          el.innerText = Math.floor((1 - Math.pow(1 - p, 3)) * target).toString();
-          if (p < 1) requestAnimationFrame(tick);
-          else el.innerText = target.toString();
-        };
-        requestAnimationFrame(tick);
-      };
-
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) { animate(e.target as HTMLElement); obs.unobserve(e.target); }
-        });
-      }, { threshold: 0.1 });
-
-      counters.forEach((c) => obs.observe(c));
-    }
-
     function initAll() {
       initHeroVideo();
       initFullscreen();
-      initCounters();
-      // Fit tagline after fonts are likely loaded (small delay for Google Fonts)
       fitTaglineWidth();
-      setTimeout(fitTaglineWidth, 600); // re-run after Homemade Apple font finishes loading
+      setTimeout(fitTaglineWidth, 600);
     }
 
     if (document.readyState === 'loading') {
@@ -369,7 +283,6 @@ import { SITE_CONFIG, STATS } from '@/utils/config';
       initAll();
     });
 
-    // Re-fit on window resize (e.g. rotating phone, resizing desktop)
     let _resizeTimer: ReturnType<typeof setTimeout>;
     window.addEventListener('resize', () => {
       clearTimeout(_resizeTimer);
