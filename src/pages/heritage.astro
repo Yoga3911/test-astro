@@ -1,194 +1,759 @@
 ---
 /**
- * heritage.astro — Kongregasi, Identitas Spiritual & Sejarah Yayasan
+ * heritage.astro — Warisan Rohani, Tokoh Pendiri, Sejarah Kongregasi SPM & Maskot
  *
- * Sesuai Sitemap PDF:
- * - Maria Fatima
- * - SPM
- * - St. Julie Billiart
- * - Pater Matthias Wolff
- * - SIKARU
+ * Konten resmi dari 5 dokumen arsip:
+ * 1. Santa Julie Billiart (Inspirasi Pendidikan Kasih & Martabat)
+ * 2. Pater Mathias Wolff, SJ (Perintis & Pendiri Kongregasi SPM)
+ * 3. Sejarah Berdirinya Kongregasi SPM di Indonesia & Perkumpulan Dharmaputri
+ *    - Pendaratan Probolinggo 1926
+ *    - Carousel Spiritualitas Suster SPM (Immensitas Bonitas Dei, Ecce Ancilla Domini, Belas Kasih)
+ *    - Latar Belakang Badan Hukum, Makna Dharmaputri & Peran Saat Ini
+ * 4. Tota Christi Per Mariam (Makna Lambang & Spiritualitas)
+ * 5. Maskot "Si Karu" (Filosofi & Makna Simbolis)
  */
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { HERITAGE_DATA, SITE_CONFIG, VISI_MISI_DATA } from '@/utils/config';
+import CarouselSpiritualitasSPM from '@/components/CarouselSpiritualitasSPM.svelte';
+import { SITE_CONFIG } from '@/utils/config';
 
-const CORE_VALUE_ICONS: Record<string, { icon: string; color: string; bg: string }> = {
-  Spiritualitas: { icon: '⛪', color: 'text-purple-700', bg: 'bg-purple-50 group-hover:bg-purple-100' },
-  Integritas: { icon: '🛡️', color: 'text-blue-700', bg: 'bg-blue-50 group-hover:bg-blue-100' },
-  Kasih: { icon: '❤️', color: 'text-rose-700', bg: 'bg-rose-50 group-hover:bg-rose-100' },
-  Adil: { icon: '⚖️', color: 'text-emerald-700', bg: 'bg-emerald-50 group-hover:bg-emerald-100' },
-  Respek: { icon: '🤝', color: 'text-amber-700', bg: 'bg-amber-50 group-hover:bg-amber-100' },
-  Unggul: { icon: '🏆', color: 'text-indigo-700', bg: 'bg-indigo-50 group-hover:bg-indigo-100' },
-};
+// ─── Data Bedah Logo Tota Christi Per Mariam ────────────────────────────────
+const LOGO_ELEMENTS = [
+  {
+    title: 'Salib Kristus (P)',
+    desc: 'Untuk membawa dan melahirkan kehidupan sejati, hanya mungkin melalui jalan salib Kristus sebagaimana dialami Maria: jalan hati yang tertusuk pedang.',
+    icon: '✝️',
+    badge: 'KORBAN & KASIH',
+    color: 'border-rose-200 bg-rose-50/50 text-rose-800',
+  },
+  {
+    title: 'Inisial Bunda Maria (M)',
+    desc: 'Jalan kita untuk seutuhnya menjadi milik Kristus ditempuh melalui jalan Maria, yaitu jalan yang setia mengandung, memelihara, dan melahirkan Sabda Allah.',
+    icon: '💙',
+    badge: 'JALAN MARIA',
+    color: 'border-blue-200 bg-blue-50/50 text-blue-800',
+  },
+  {
+    title: 'Bunga Matahari Mekar',
+    desc: 'Melambangkan keterbukaan dan keterarahan hati kepada Kristus Sang Matahari Sejati. Seperti rahim Maria yang siap menerima limpahan cahaya daya hidup Allah.',
+    icon: '🌻',
+    badge: 'KETERARAHAN HATI',
+    color: 'border-amber-200 bg-amber-50/50 text-amber-800',
+  },
+  {
+    title: 'Matahari di Tengah Salib & Sinar',
+    desc: 'Keberadaan hidup kita senantiasa bernaung dalam kuasa Allah dan Roh Kudus, menyerap kehidupan dari Kristus lalu menyebarkannya ke dunia melalui perutusan karya.',
+    icon: '☀️',
+    badge: 'PERUTUSAN DUNIA',
+    color: 'border-yellow-200 bg-yellow-50/50 text-yellow-800',
+  },
+  {
+    title: 'Biji & Batang pada Salib',
+    desc: 'Biji melambangkan lubuk hati (rahim jiwa) yang mengandung sabda benih kehidupan ilahi. Batang melambangkan kesatuan hati dengan Kristus dan kekuatan doa yang mengalir dalam karya.',
+    icon: '🌱',
+    badge: 'DOA & KARYA',
+    color: 'border-emerald-200 bg-emerald-50/50 text-emerald-800',
+  },
+  {
+    title: 'Lingkaran & Warna Kuning Paskah',
+    desc: 'Lingkaran melambangkan persekutuan satu keluarga persaudaraan (fraternitas). Warna kuning melambangkan kemuliaan sukacita Paskah yang lahir sesudah dukacita salib.',
+    icon: '⭕',
+    badge: 'PERSAUDARAAN & PASKAH',
+    color: 'border-indigo-200 bg-indigo-50/50 text-indigo-800',
+  },
+];
+
+// ─── Data Bedah Maskot Si Karu ──────────────────────────────────────────────
+const MASKOT_ELEMENTS = [
+  {
+    label: 'Sosok Hewan Rusa',
+    desc: 'Mempresentasikan simbol surga dan sosok elegan yang mengatasi tantangan dengan kemurnian hati. Tanduk rusa menggambarkan ke-Unggul-an dan ketangguhan karakter.',
+    icon: '🦌',
+  },
+  {
+    label: 'Warna Pakaian (Kuning, Merah, Biru)',
+    desc: 'Tiga warna ciri khas Perkumpulan Dharmaputri. Warna cokelat kulit rusa melambangkan kejujuran, integritas, dan ketulusan hati yang membumi.',
+    icon: '🎨',
+  },
+  {
+    label: 'Perisai Tota Christi Per Mariam',
+    desc: 'Membentengi dan melindungi seluruh warga Dharmaputri agar seutuhnya milik Kristus melalui Maria, sekaligus mengusung Core Values: Unggul, Kasih, dan Bermartabat.',
+    icon: '🛡️',
+  },
+  {
+    label: 'Bunga Matahari (Ikat Jubah)',
+    desc: 'Lambang keterbukaan batin dan keterarahan seluruh cita-cita kepada Kristus Sang Matahari Sejati.',
+    icon: '🌻',
+  },
+  {
+    label: 'Jubah Warna Merah & Kuning',
+    desc: 'Menggambarkan keanggunan, wibawa kepemimpinan, dan sukacita pelayanan yang tulus bagi generasi muda.',
+    icon: '👘',
+  },
+  {
+    label: 'Hati (Ikat Pinggang)',
+    desc: 'Simbol pengendali emosi yang luhur, moralitas yang teguh, belas kasih kepada sesama, serta spiritualitas yang mendalam.',
+    icon: '❤️',
+  },
+];
 ---
 
 <BaseLayout
-  title="Heritage & Spiritualitas SPM"
-  description="Warisan rohani, sejarah Kongregasi Suster SPM, Santa Maria Fatima, St. Julie Billiart, Pater Matthias Wolff, dan nilai SIKARU."
+  title="Heritage & Spiritualitas SPM — Warisan Rohani & Sejarah"
+  description="Sejarah Kongregasi Suster SPM di Indonesia, teladan Santa Julie Billiart, Pater Mathias Wolff, SJ, Perkumpulan Dharmaputri, Logo Tota Christi Per Mariam, dan Maskot Si Karu."
 >
   <Header />
 
   <main id="main-content">
     
-    <!-- Hero Header -->
-    <section class="bg-gradient-to-b from-blue-50/80 via-white to-slate-50 border-b border-slate-200/80 py-16 sm:py-20 relative overflow-hidden">
-      <!-- Decorative ambient glows -->
-      <div class="absolute top-0 right-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+    <!-- Hero Subpage Header -->
+    <section class="bg-gradient-to-b from-blue-50/90 via-white to-slate-50 border-b border-slate-200/80 py-16 sm:py-20 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs">
-          <span>WARISAN SPIRITUAL &amp; IDENTITAS</span>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-widest border border-blue-200 shadow-xs">
+          <span>WARISAN SPIRITUAL &amp; SEJARAH KONGREGASI</span>
         </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
           Heritage &amp; Spiritualitas
         </h1>
-        <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-          Mengenal akar iman, teladan para tokoh pendiri, dan nilai-nilai keutamaan yang menjiwai seluruh karya pendidikan di SDK Maria Fatima Jember.
+        <p class="text-slate-600 text-base sm:text-lg max-w-3xl mx-auto font-normal leading-relaxed">
+          Mengenal akar iman yang mendalam, teladan hidup para perintis, perjalanan sejarah Kongregasi Suster SPM &amp; Perkumpulan Dharmaputri di tanah air, serta makna lambang dan maskot kebanggaan sekolah.
         </p>
+
+        <!-- Quick Navigation Jump Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
+          <a href="#st-julie" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+            🕊️ St. Julie Billiart
+          </a>
+          <a href="#pater-wolff" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+            ✝️ Pater Mathias Wolff
+          </a>
+          <a href="#sejarah-spm" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+            🏛️ Sejarah SPM di Indonesia
+          </a>
+          <a href="#tota-christi" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+            🌻 Tota Christi Per Mariam
+          </a>
+          <a href="#si-karu" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+            🦌 Maskot Si Karu
+          </a>
+        </div>
       </div>
     </section>
 
-    <!-- Heritage Items List -->
-    <section class="py-16 sm:py-24 bg-slate-50">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
-        {HERITAGE_DATA.map((item, index) => {
-          const isEven = index % 2 === 0;
-
-          return (
-            <div
-              id={item.id}
-              class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200/90 shadow-sm hover:shadow-lg transition-all duration-300 scroll-mt-28"
-            >
-              <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                
-                <!-- Left Details -->
-                <div class={`lg:col-span-7 space-y-5 ${!isEven ? 'lg:order-2' : ''}`}>
-                  <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider">
-                    <span>{item.icon}</span>
-                    <span>WARISAN #{index + 1}</span>
-                  </div>
-
-                  <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
-                    {item.title}
-                  </h2>
-                  <p class="text-sm sm:text-base font-bold text-amber-600">
-                    {item.subtitle}
-                  </p>
-
-                  <p class="text-base text-slate-700 font-medium leading-relaxed bg-blue-50/60 p-4 rounded-2xl border border-blue-100">
-                    {item.summary}
-                  </p>
-
-                  <div class="space-y-3 text-slate-600 text-sm sm:text-base leading-relaxed">
-                    {item.content.map((p) => (
-                      <p>{p}</p>
-                    ))}
-                  </div>
-
-                  {item.values && item.values.length > 0 && (
-                    <div class="pt-2">
-                      <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nilai Keutamaan:</div>
-                      <div class="flex flex-wrap gap-2">
-                        {item.values.map((v) => (
-                          <span class="px-3 py-1 rounded-xl bg-slate-100 text-slate-800 text-xs font-bold">
-                            ✦ {v}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+    <!-- Content Sections Container -->
+    <div class="py-16 sm:py-24 bg-slate-50 space-y-20 sm:space-y-28">
+      
+      <!-- ===================================================================
+           1. SANTA JULIE BILLIART (PDF 1)
+      ==================================================================== -->
+      <section id="st-julie" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl relative overflow-hidden">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            <!-- Left: Portrait & Timeline Card -->
+            <div class="lg:col-span-5 flex flex-col items-center text-center">
+              <div class="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200/80 bg-amber-50/50">
+                <img
+                  src="/images/heritage/st-julie.png"
+                  alt="Santa Julie Billiart mendidik anak-anak"
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent p-4 text-white text-left">
+                  <div class="font-heading font-black text-lg">Santa Julie Billiart</div>
+                  <div class="text-xs text-amber-300 font-semibold">12 Juli 1751 – 8 April 1816 • Cuvilly, Prancis</div>
                 </div>
-
-                <!-- Right Visual -->
-                <div class={`lg:col-span-5 ${!isEven ? 'lg:order-1' : ''}`}>
-                  <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-100 ring-1 ring-slate-200">
-                    <img
-                      src={`/images/heritage/${item.id === 'st-julie-billiart' ? 'st-julie' : item.id === 'pater-matthias-wolff' ? 'pater-wolff' : item.id}.svg`}
-                      alt={item.title}
-                      class="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                </div>
-
               </div>
 
-              {/* 6 Pilar SIKARU Cards Grid */}
-              {item.id === 'sikaru' && (
-                <div class="mt-10 pt-8 border-t border-slate-100">
-                  <div class="text-center max-w-2xl mx-auto mb-8">
-                    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-widest mb-2 border border-blue-200">
-                      <span>OUR CORE VALUES</span>
+              <!-- Quote Pill -->
+              <div class="mt-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 text-center max-w-sm">
+                <p class="font-serif italic font-semibold text-sm sm:text-base">
+                  "Ah! Qu'il est bon le Bon Dieu!"
+                </p>
+                <div class="text-xs text-amber-700 font-bold uppercase tracking-wider mt-1">
+                  Betapa baiknya Allah yang Mahabaik itu!
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Content & Simplification -->
+            <div class="lg:col-span-7 space-y-6">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider mb-2">
+                  <span>TOKOH SPIRITUALITAS PENDIDIKAN</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
+                  Santa Julie Billiart
+                </h2>
+                <p class="text-base sm:text-lg font-bold text-amber-600 mt-1">
+                  Inspirasi Pendidikan yang Berakar pada Iman dan Kasih
+                </p>
+              </div>
+
+              <!-- Summary Paragraphs -->
+              <div class="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed text-justify">
+                <p>
+                  <strong>Santa Julie Billiart</strong> lahir pada 12 Juli 1751 di Cuvilly, Prancis. Sejak usia muda, ia dikenal sebagai pribadi yang memiliki iman mendalam dan kecintaan besar terhadap pendidikan iman bagi anak-anak.
+                </p>
+                <p>
+                  Perjalanan hidupnya penuh ujian berat. Pada usia dewasa, ia mengalami penderitaan kelumpuhan fisik selama lebih dari dua dekade. Namun keterbatasan fisik tidak pernah memadamkan semangat pelayanannya: dari tempat tidurnya, ia terus membimbing, menguatkan, dan mengajar iman kepada sesama. Di masa Revolusi Prancis, dengan iman yang teguh dan keberanian luar biasa, ia melindungi para imam yang setia pada Gereja.
+                </p>
+                <p>
+                  Pada tahun 1803, bersama Françoise Blin de Bourdon, ia mendirikan <em>Kongregasi Sisters of Notre Dame de Namur</em> untuk menghadirkan pendidikan bermutu bagi anak-anak miskin. Setahun kemudian (1804), Julia mengalami kesembuhan mukjizat yang semakin meneguhkan panggilannya hingga akhir hayatnya (8 April 1816).
+                </p>
+              </div>
+
+              <!-- 3 Highlighted Key Pillars -->
+              <div class="space-y-3 pt-2">
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
+                  <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">1</span>
+                  <div>
+                    <div class="font-heading font-bold text-slate-900 text-sm">Pendidikan Memerdekakan Martabat Manusia</div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                      Pendidikan adalah jalan menghadirkan harapan dan memulihkan martabat manusia, terutama menjangkau yang miskin, lemah, dan kurang beruntung.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
+                  <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">2</span>
+                  <div>
+                    <div class="font-heading font-bold text-slate-900 text-sm">Bukan Sekadar Transfer Pengetahuan</div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                      Pendidikan adalah karya kasih yang membantu setiap anak menemukan martabat, harapan, dan panggilan hidupnya karena setiap anak berharga dan dicintai Allah.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
+                  <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">3</span>
+                  <div>
+                    <div class="font-heading font-bold text-slate-900 text-sm">Warisan yang Dihidupi di Indonesia</div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                      Spiritualitas St. Julie diwariskan kepada para Suster SPM di Indonesia dan terus dihidupi oleh Perkumpulan Dharmaputri dalam membentuk generasi yang beriman, berkarakter, dan berbelarasa.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           2. PATER MATHIAS WOLFF, SJ (PDF 2)
+      ==================================================================== -->
+      <section id="pater-wolff" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl relative overflow-hidden">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            <!-- Right on desktop: Content -->
+            <div class="lg:col-span-7 space-y-6 lg:order-1">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider mb-2">
+                  <span>PENDIRI KONGREGASI SPM</span>
+                </div>
+                <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
+                  Pater Mathias Wolff, SJ
+                </h2>
+                <p class="text-base sm:text-lg font-bold text-blue-700 mt-1">
+                  Perintis Karya Pendidikan yang Melahirkan Kongregasi SPM
+                </p>
+              </div>
+
+              <!-- Summary Narrative -->
+              <div class="space-y-4 text-slate-700 text-sm sm:text-base leading-relaxed text-justify">
+                <p>
+                  <strong>Pater Mathias Wolff, SJ (1779–1857)</strong> adalah seorang imam Serikat Yesus (Yesuit) asal Luxembourg yang mengabdikan hidupnya bagi pelayanan Gereja dan pendidikan Katolik di Belanda. Pada awal abad ke-19, kesempatan pendidikan bagi anak-anak keluarga sederhana di Belanda sangat terbatas dan jumlah tenaga pendidik Katolik sangat minim.
+                </p>
+                <p>
+                  Melihat situasi tersebut, Pater Wolff meyakini bahwa pendidikan adalah sarana vital untuk membangun masa depan dan memperkuat kehidupan iman. Ia mulai merintis gerakan untuk mencerdaskan sekaligus membentuk karakter Kristiani generasi muda.
+                </p>
+                <p>
+                  Ia menghimpun dan mendampingi sekelompok perempuan muda Katolik di Amersfoort. Dengan visi yang tajam, Pater Wolff mengirim para calon suster tersebut ke Namur (Belgia) untuk menjalani pembinaan rohani di bawah asuhan kongregasi yang didirikan oleh Santa Julie Billiart. Dari perpaduan inilah pada rentang tahun <strong>1822–1824</strong> resmi lahir <strong>Kongregasi Suster-suster Santa Perawan Maria (SPM)</strong> Amersfoort.
+                </p>
+              </div>
+
+              <!-- Milestone Cards -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
+                  <div class="text-xs font-bold text-blue-800 uppercase">Mewariskan Spiritualitas</div>
+                  <div class="text-sm font-bold text-slate-900 mt-1">Jalinan Namur &amp; Amersfoort</div>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Menghubungkan pembinaan suster dengan karisma St. Julie: pendidikan kasih, iman, dan penghormatan martabat pribadi manusia.
+                  </p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-100">
+                  <div class="text-xs font-bold text-amber-800 uppercase">Menjangkau Indonesia</div>
+                  <div class="text-sm font-bold text-slate-900 mt-1">Misi Abadi Sejak 1926</div>
+                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                    Karya Pater Wolff berkembang melampaui benua hingga tiba di Indonesia pada tahun 1926 melalui pelayanan Perkumpulan Dharmaputri.
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Left on desktop: Image -->
+            <div class="lg:col-span-5 flex flex-col items-center text-center lg:order-2">
+              <div class="relative w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200/80 bg-blue-50/50">
+                <img
+                  src="/images/heritage/pater-wolff.png"
+                  alt="Lukisan Pater Mathias Wolff, SJ"
+                  class="w-full h-auto object-cover"
+                  loading="lazy"
+                />
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-slate-950/80 via-slate-900/40 to-transparent p-4 text-white text-left">
+                  <div class="font-heading font-black text-lg">Pater Mathias Wolff, SJ</div>
+                  <div class="text-xs text-blue-300 font-semibold">1779 – 1857 • Luxembourg &amp; Belanda</div>
+                </div>
+              </div>
+
+              <div class="mt-4 text-xs font-semibold text-slate-500">
+                Imam Serikat Yesus (Yesuit) • Pendiri Kongregasi Suster SPM
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           3. SEJARAH KONGREGASI SPM DI INDONESIA & PERKUMPULAN DHARMAPUTRI (PDF 3)
+      ==================================================================== -->
+      <section id="sejarah-spm" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl space-y-12">
+          
+          <!-- Header Bagian Sejarah -->
+          <div>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider mb-2">
+              <span>SEJARAH &amp; PERJALANAN MISI</span>
+            </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
+              Sejarah Berdirinya Kongregasi SPM di Indonesia
+            </h2>
+            <p class="text-base sm:text-lg font-bold text-slate-600 mt-1">
+              Dari Amersfoort Belanda Menuju Tanah Air: Menyemai Benih Pendidikan dan Pelayanan Kasih
+            </p>
+          </div>
+
+          <!-- GAMBAR PEMBUKA (Sesuai Catatan PDF 3) -->
+          <div class="rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-1 ring-slate-200 bg-slate-100 max-w-3xl mx-auto">
+            <img
+              src="/images/heritage/spm-sejarah.png"
+              alt="Enam Suster Perintis Pertama Kongregasi SPM di Indonesia"
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+            <div class="p-3 bg-slate-900 text-white text-center text-xs font-semibold">
+              Foto Bersejarah: Enam Suster Misionaris Perintis Kongregasi SPM Tiba di Indonesia (1926)
+            </div>
+          </div>
+
+          <!-- Narasi Sejarah Bagian 1 (Perataan Justify sesuai Catatan PDF 3) -->
+          <div class="space-y-6 text-slate-700 text-sm sm:text-base leading-relaxed text-justify max-w-4xl mx-auto">
+            <p>
+              Sejarah berdirinya Kongregasi Suster-suster Santa Perawan Maria (SPM) di Indonesia merupakan bagian dari gelombang karya misi Gereja Katolik pada awal abad ke-20. Dari Amersfoort, Belanda, karisma pendidikan yang berakar pada St. Julia Billiart dan dipelopori oleh Pater Mathias Wolff, SJ ini akhirnya bersemi di tanah Indonesia.
+            </p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+              <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2">
+                <div class="text-xs font-extrabold text-blue-700 uppercase tracking-wider">A. Panggilan Misi (1926)</div>
+                <h3 class="text-base font-heading font-black text-slate-900">Kebutuhan Tenaga Religius Wanita</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
+                  Pada dekade 1920-an, Vikariat Apostolik di Hindia Belanda (khususnya wilayah Jawa Timur) membutuhkan tenaga religius wanita untuk menangani karya sosial dan pendidikan Katolik bagi masyarakat lokal, keturunan Tionghoa, dan Eropa. Atas undangan pimpinan Gereja setempat, pimpinan Kongregasi SPM di Amersfoort mengutus rombongan perintis pertama ke Indonesia.
+                </p>
+              </div>
+
+              <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2">
+                <div class="text-xs font-extrabold text-amber-700 uppercase tracking-wider">B. Pendaratan Perintis</div>
+                <h3 class="text-base font-heading font-black text-slate-900">Probolinggo, 11 Oktober 1926</h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
+                  Pada 11 Oktober 1926, enam orang suster misionaris pertama tiba dan mendarat di Probolinggo, Jawa Timur, dipimpin oleh Bunda Stanislas, SPM. Kota Probolinggo dipilih sebagai pos misi pertama dan menjadi cikal bakal (rumah induk/provinsialat) perkembangan Kongregasi SPM di tanah air.
+                </p>
+              </div>
+            </div>
+
+            <!-- 3 Bidang Pelayanan Awal -->
+            <div class="p-6 rounded-3xl bg-blue-50/50 border border-blue-100 space-y-3">
+              <div class="font-heading font-black text-slate-900 text-sm sm:text-base">
+                C. Perkembangan Karya Awal di Indonesia:
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
+                  <div class="font-bold text-sm text-blue-800 mb-1">1. Pendidikan</div>
+                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                    Mendirikan sekolah-sekolah rakyat, TK, SD, hingga jenjang menengah (kini bernaung di bawah Perkumpulan Dharmaputri).
+                  </p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
+                  <div class="font-bold text-sm text-amber-800 mb-1">2. Karya Sosial</div>
+                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                    Membuka panti asuhan dan asrama bagi anak-anak yang membutuhkan pendampingan dan cinta kasih.
+                  </p>
+                </div>
+                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
+                  <div class="font-bold text-sm text-emerald-800 mb-1">3. Kesehatan</div>
+                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                    Mengelola klinik dan rumah bersalin di berbagai daerah demi kesejahteraan sesama masyarakat.
+                  </p>
+                </div>
+              </div>
+              <p class="text-xs text-slate-600 pt-2 leading-relaxed text-justify font-normal">
+                Seiring waktu, benih panggilan hidup membiara tumbuh subur di kalangan putri-putri Indonesia. Kongregasi SPM di Indonesia berkembang dari komunitas misi menjadi <strong>Provinsi Mandiri (Provinsi Indonesia)</strong> yang kini meluas ke berbagai pulau, termasuk Jawa, Kalimantan (Samarinda, Balikpapan), dan wilayah nusantara lainnya.
+              </p>
+            </div>
+          </div>
+
+          <!-- ===============================================================
+               CAROUSEL SPIRITUALITAS SUSTER SPM (PDF 3 HALAMAN 2)
+               Ketentuan: Digeser ke kanan/kiri, 3 slide, tidak perlu gambar, rata tengah
+          ================================================================ -->
+          <div class="pt-4">
+            <div class="text-center max-w-2xl mx-auto mb-2">
+              <div class="text-xs font-extrabold uppercase tracking-widest text-slate-400">BAGIAN KHUSUS</div>
+              <h3 class="text-xl sm:text-2xl font-heading font-black text-slate-900">
+                Nilai-Nilai Spiritualitas Suster SPM
+              </h3>
+            </div>
+            <CarouselSpiritualitasSPM client:load />
+          </div>
+
+          <!-- ===============================================================
+               LANJUTAN SEJARAH (PDF 3 HALAMAN 3 & 4)
+          ================================================================ -->
+          <div class="space-y-8 pt-6 border-t border-slate-200">
+            <div class="text-center max-w-2xl mx-auto">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-100 text-slate-800 text-xs font-extrabold uppercase tracking-wider mb-2">
+                <span>LANJUTAN SEJARAH &amp; PELEMBAGAAN</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
+                Era Perintisan &amp; Lahirnya Perkumpulan Dharmaputri
+              </h3>
+            </div>
+
+            <div class="space-y-5 text-slate-700 text-sm sm:text-base leading-relaxed text-justify max-w-4xl mx-auto">
+              <p>
+                Sebelum Perkumpulan Dharmaputri berdiri secara formal, karya pendidikan Suster SPM dikelola secara langsung oleh komunitas biara (Provinsial SPM Probolinggo). Segera setelah mendarat pada 11 Oktober 1926, enam suster perintis membuka sekolah rakyat, Froebel (TK), dan Hollandsch-Inlandsche School (HIS) untuk anak-anak Bumiputera serta keturunan Tionghoa dan Eropa. Dalam waktu singkat, karya pendidikan meluas ke berbagai kota di Jawa Timur (seperti Malang, Surabaya, Pasuruan, Jember, Banyuwangi) serta wilayah Kalimantan.
+              </p>
+
+              <!-- Mengapa Butuh Badan Hukum? -->
+              <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200 space-y-4">
+                <div class="font-heading font-black text-slate-900 text-base">
+                  Kebutuhan Badan Hukum Resmi Pasca-Kemerdekaan RI:
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+                    <div class="font-bold text-xs text-blue-700 uppercase mb-1">1. Regulasi Pemerintah</div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Memiliki legalitas formal di mata Kementerian Pendidikan &amp; Kebudayaan serta Kementerian Hukum dan HAM Republik Indonesia.
+                    </p>
+                  </div>
+                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+                    <div class="font-bold text-xs text-amber-700 uppercase mb-1">2. Manajemen Profesional</div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Memisahkan tata kelola internal kehidupan kebiaraan (religius) suster dengan tata kelola profesional lembaga pendidikan (karya apostolik).
+                    </p>
+                  </div>
+                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
+                    <div class="font-bold text-xs text-emerald-700 uppercase mb-1">3. Akuntabilitas Publik</div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Menjamin kelangsungan operasional, jaminan sosial guru dan karyawan awam, serta pengelolaan dana bantuan dan akreditasi resmi.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Makna Filosofis Dharmaputri -->
+              <div class="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-blue-900 to-indigo-950 text-white space-y-3">
+                <div class="text-xs font-bold text-amber-300 uppercase tracking-widest">MAKNA FILOSOFIS NAMA</div>
+                <h4 class="text-xl sm:text-2xl font-heading font-black text-white">
+                  Arti Nama "Dharmaputri" (Bahasa Sanskerta / Jawa Kuno)
+                </h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div class="bg-white/10 p-4 rounded-2xl border border-white/15">
+                    <div class="font-bold text-amber-300 text-sm mb-1">✦ DHARMA</div>
+                    <p class="text-xs text-slate-200 leading-relaxed font-normal">
+                      Kewajiban suci, kebenaran, pengabdian, dan kebajikan luhur dalam pengabdian kepada Tuhan dan sesama.
+                    </p>
+                  </div>
+                  <div class="bg-white/10 p-4 rounded-2xl border border-white/15">
+                    <div class="font-bold text-blue-300 text-sm mb-1">✦ PUTRI</div>
+                    <p class="text-xs text-slate-200 leading-relaxed font-normal">
+                      Anak perempuan / wanita yang penuh kelembutan, keteguhan hati, dan kasih keibuan.
+                    </p>
+                  </div>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-300 pt-2 leading-relaxed text-justify font-normal">
+                  Secara sosiokultural, nama ini merefleksikan identitas para Suster SPM sebagai <strong>"Putri-Putri yang Berbakti dan Mengabdi bagi Kebajikan/Tugas Suci Pendidikan"</strong>, sekaligus menyelaraskan karisma St. Julia Billiart (pendidikan belas kasih) dengan nilai-nilai luhur kebudayaan Indonesia.
+                </p>
+              </div>
+
+              <!-- Tabel Jenjang Pendidikan & Karakteristik -->
+              <div class="pt-4 space-y-4">
+                <h4 class="text-lg font-heading font-black text-slate-900">
+                  Perkembangan dan Peran Saat Ini (Kantor Pusat Surabaya / Malang):
+                </h4>
+                
+                <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                  <table class="w-full text-left text-sm">
+                    <thead class="bg-slate-100 text-slate-800 text-xs font-bold uppercase border-b border-slate-200">
+                      <tr>
+                        <th class="p-4 w-1/3">Jenjang Pendidikan</th>
+                        <th class="p-4">Fokus Pengembangan</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-200 text-slate-700 text-xs sm:text-sm">
+                      <tr class="hover:bg-slate-50/80">
+                        <td class="p-4 font-bold text-blue-900">PAUD / TK</td>
+                        <td class="p-4">Pembentukan karakter awal, penanaman kasih sayang, dan kebiasaan bersosialisasi yang hangat.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-50/80">
+                        <td class="p-4 font-bold text-blue-900">SD / SMP</td>
+                        <td class="p-4">Fondasi numerasi, literasi, pemikiran kritis, serta internalisasi nilai-nilai kebaikan Allah <em>(Immensitas Bonitas Dei)</em>.</td>
+                      </tr>
+                      <tr class="hover:bg-slate-50/80">
+                        <td class="p-4 font-bold text-blue-900">SMA / SMK</td>
+                        <td class="p-4">Kesiapan akademik, kepemimpinan, kecakapan vokasional, dan semangat pelayanan sosial bagi masyarakat.</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+
+                <!-- 2 Karakteristik Sekolah Dharmaputri -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-left">
+                  <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-blue-600"></span>
+                      <span>Spiritualitas Terintegrasi</span>
                     </div>
-                    <h3 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
-                      6 Nilai Utama: SIKARU
-                    </h3>
-                    <p class="text-slate-600 text-sm sm:text-base mt-2">
-                      Fondasi karakter luhur yang ditanamkan secara konsisten dalam setiap aspek pembelajaran dan kehidupan berkomunitas.
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Mengusung nilai-nilai St. Julia Billiart dan Bunda Maria (ramah, berbelas kasih, inklusif, dan mengutamakan pembentukan moral/karakter).
                     </p>
                   </div>
 
-                  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-                    {VISI_MISI_DATA.coreValues.map((val) => {
-                      const key = val.title.split(' ')[0];
-                      const meta = CORE_VALUE_ICONS[key] || { icon: '💎', color: 'text-blue-700', bg: 'bg-blue-50' };
-
-                      return (
-                        <div class="bg-slate-50/90 rounded-3xl p-6 border border-slate-200 shadow-xs hover:shadow-lg hover:bg-white hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
-                          <div>
-                            <div class={`w-12 h-12 rounded-2xl ${meta.bg} flex items-center justify-center text-2xl mb-4 transition-colors`}>
-                              {meta.icon}
-                            </div>
-                            <h4 class="font-heading font-black text-base text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
-                              {val.title}
-                            </h4>
-                            <p class="text-xs sm:text-sm text-slate-600 font-normal leading-relaxed">
-                              {val.desc}
-                            </p>
-                          </div>
-                          <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                            NILAI SIKARU
-                          </div>
-                        </div>
-                      );
-                    })}
+                  <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
+                    <div class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                      <span>Terbuka dan Inklusif</span>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Menerima peserta didik dari berbagai latar belakang suku, agama, dan tingkat sosio-ekonomi sebagai wujud nyata pelayanan sosial keagamaan.
+                    </p>
                   </div>
                 </div>
-              )}
+              </div>
+
             </div>
-          );
-        })}
-
-      </div>
-    </section>
-
-    <!-- Banner Call to Action (Bright Theme) -->
-    <section class="py-16 bg-slate-50 border-t border-slate-200/80">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <div class="bg-gradient-to-br from-white via-blue-50/50 to-white rounded-3xl p-8 sm:p-12 border-2 border-blue-200/80 shadow-xl space-y-4 relative overflow-hidden">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider border border-amber-200 shadow-xs">
-            <span>SPIRITUALITAS SPM</span>
           </div>
-          <h3 class="text-2xl sm:text-3xl font-heading font-black text-slate-900">
-            "Ah! Betapa Baiknya Allah yang Mahabaik!"
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           4. TOTA CHRISTI PER MARIAM (PDF 5)
+      ==================================================================== -->
+      <section id="tota-christi" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl space-y-10">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-slate-200/80 pb-8">
+            <div class="lg:col-span-8 space-y-2">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider">
+                <span>MOTTO &amp; ARTI LOGO KONGREGASI SPM</span>
+              </div>
+              <h2 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-slate-900 tracking-tight">
+                TOTA CHRISTI PER MARIAM
+              </h2>
+              <p class="text-lg sm:text-xl font-serif italic text-blue-700 font-bold">
+                "Seutuhnya Menjadi Milik Kristus dengan Perantaraan Maria"
+              </p>
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed text-justify font-normal pt-2">
+                Karya perutusan Suster SPM berada di bawah naungan Bunda Maria: hidup dalam keterarahan, ketergantungan, dan penyerahan seutuhnya bagi Kristus Sang Matahari Sejati. Spiritualitas ini berakar pada misteri kunjungan Maria kepada Elisabeth saudaranya <em>(Lukas 1:39)</em>: Maria bergegas membawa kabar gembira Yesus di rahimnya, merendahkan diri menjadi semartabat demi melayani sesama sebagai gambar Allah.
+              </p>
+            </div>
+
+            <!-- Logo Image -->
+            <div class="lg:col-span-4 flex justify-center">
+              <div class="p-6 rounded-3xl bg-slate-50 border-2 border-blue-200/80 shadow-md flex flex-col items-center max-w-xs text-center">
+                <img
+                  src="/images/heritage/tota-christi.png"
+                  alt="Logo Resmi Tota Christi Per Mariam"
+                  class="w-48 h-auto object-contain"
+                  loading="lazy"
+                />
+                <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider mt-3">
+                  Lambang Kongregasi SPM
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bedah Arti Logo (6 Cards Grid) -->
+          <div>
+            <div class="text-center max-w-2xl mx-auto mb-8">
+              <h3 class="text-xl sm:text-2xl font-heading font-black text-slate-900">
+                Bedah Makna Filosofis Lambang
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1 font-semibold">
+                Setiap goresan lambang memancarkan teologi penyerahan diri dan perutusan kasih
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {LOGO_ELEMENTS.map((el) => (
+                <div class={`rounded-3xl p-6 border ${el.color} shadow-xs hover:shadow-md transition-all flex flex-col justify-between`}>
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-3">
+                      <span class="text-2xl">{el.icon}</span>
+                      <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
+                        {el.badge}
+                      </span>
+                    </div>
+                    <h4 class="font-heading font-black text-base text-slate-900 mb-2">
+                      {el.title}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      {el.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5. MASKOT "SI KARU" (PDF 4)
+      ==================================================================== -->
+      <section id="si-karu" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-28">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 md:p-14 border border-slate-200/90 shadow-xl space-y-10">
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center border-b border-slate-200/80 pb-8">
+            
+            <!-- Mascot Illustration -->
+            <div class="lg:col-span-5 flex justify-center">
+              <div class="p-6 rounded-3xl bg-amber-50/60 border-2 border-amber-200/80 shadow-md flex flex-col items-center max-w-sm text-center">
+                <img
+                  src="/images/heritage/si-karu.png"
+                  alt="Maskot Si Karu Perkumpulan Dharmaputri"
+                  class="w-64 sm:w-72 h-auto object-contain"
+                  loading="lazy"
+                />
+                <div class="text-xs font-black text-amber-900 uppercase tracking-widest mt-3">
+                  Maskot Resmi Perkumpulan Dharmaputri
+                </div>
+              </div>
+            </div>
+
+            <!-- Mascot Story -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider">
+                <span>MASKOT INSPIRASI SEKOLAH</span>
+              </div>
+              <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
+                Halo! Namaku <span class="text-amber-600">Si Karu</span>
+              </h2>
+              <div class="space-y-3 text-slate-700 text-sm sm:text-base leading-relaxed text-justify font-normal">
+                <p>
+                  <strong>Si Karu</strong> merupakan sosok berupa hewan rusa yang menjadi sumber inspirasi dan motivasi bagi seluruh warga Perkumpulan Dharmaputri.
+                </p>
+                <p>
+                  Si Karu mengajak setiap peserta didik untuk selalu memegang teguh martabat diri, menjunjung tinggi nilai-nilai kebaikan dengan penuh sukacita, serta selalu siap siaga menghadapi tantangan dan perkembangan zaman demi mencari solusi bersama agar kehidupan semakin bermakna dan berkualitas.
+                </p>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-blue-50 border border-blue-200 text-blue-900 text-xs sm:text-sm font-semibold flex items-center gap-3">
+                <span class="text-2xl shrink-0">🛡️</span>
+                <span>Membawa Perisai <strong>Tota Christi Per Mariam</strong> yang memuat Core Values: <strong>Unggul, Kasih, dan Bermartabat</strong>.</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bedah Arti Simbolik Maskot (6 Elements Grid) -->
+          <div>
+            <div class="text-center max-w-2xl mx-auto mb-8">
+              <h3 class="text-xl sm:text-2xl font-heading font-black text-slate-900">
+                Arti Simbolis &amp; Atribut Si Karu
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-500 mt-1 font-semibold">
+                Setiap ornamen pada Si Karu mencerminkan karakter insan pembelajar Katolik
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {MASKOT_ELEMENTS.map((elem) => (
+                <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md hover:bg-white transition-all flex flex-col justify-between">
+                  <div>
+                    <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl mb-4 shadow-xs">
+                      {elem.icon}
+                    </div>
+                    <h4 class="font-heading font-black text-base text-slate-900 mb-2">
+                      {elem.label}
+                    </h4>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                      {elem.desc}
+                    </p>
+                  </div>
+                  <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                    Karakter Si Karu
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- Bottom Bridge Call to Action -->
+    <section class="py-16 bg-white border-t border-slate-200/80">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <div class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 rounded-3xl p-8 sm:p-14 text-white shadow-2xl space-y-4 relative overflow-hidden">
+          
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs font-extrabold uppercase tracking-wider">
+            <span>MENGHIDUPI NILAI LUHUR DI MARIA FATIMA</span>
+          </div>
+          
+          <h3 class="text-2xl sm:text-3xl lg:text-4xl font-heading font-black text-white">
+            "Menjadi Pribadi yang Unggul, Kasih, dan Bermartabat"
           </h3>
-          <p class="text-slate-600 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
-            Mari wujudkan semangat kasih dan keteladanan Bunda Maria dalam mendidik putra-putri tercinta di SDK Maria Fatima Jember.
+          
+          <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-normal">
+            Mari bertumbuh bersama keluarga besar SDK Maria Fatima Jember di bawah naungan keteladanan Bunda Maria dan warisan rohani para perintis suci.
           </p>
-          <div class="pt-4">
+          
+          <div class="pt-4 flex flex-wrap items-center justify-center gap-4">
             <a
               href="/admission"
-              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-heading font-bold text-sm shadow-lg shadow-blue-700/25 hover:scale-105 active:scale-95 transition-all"
+              class="inline-flex items-center gap-2 px-8 py-3.5 rounded-2xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-heading font-bold text-sm shadow-lg hover:scale-105 active:scale-95 transition-all"
             >
-              <span>Daftar SPMB Online</span>
+              <span>Pendaftaran SPMB Online</span>
               <span>→</span>
             </a>
+            <a
+              href="/about-us"
+              class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-bold text-sm transition-all"
+            >
+              <span>Tentang SDK Maria Fatima</span>
+            </a>
           </div>
+
         </div>
       </div>
     </section>
