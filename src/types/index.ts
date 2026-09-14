@@ -17,6 +17,12 @@ export interface SiteConfig {
   address:     string;
   city:        string;
   foundation:  string;
+  headOffice?: {
+    name:     string;
+    address:  string;
+    city:     string;
+    phone?:   string;
+  };
   mapsUrl?:    string;
   mapsEmbedUrl?: string;
   coordinates?: { lat: number; lng: number };

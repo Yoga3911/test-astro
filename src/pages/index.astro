@@ -23,42 +23,6 @@ import TaglineSection from '@/components/TaglineSection.astro';
 import CarouselTestimoni from '@/components/CarouselTestimoni.svelte';
 import InstagramFeed from '@/components/InstagramFeed.astro';
 import { SITE_CONFIG } from '@/utils/config';
-
-// ─── Data Keunggulan Sekolah ───────────────────────────────────────────────
-const KEUNGGULAN_LIST = [
-  {
-    title: 'Akreditasi A (Unggul)',
-    category: 'STANDAR NASIONAL',
-    icon: '🏆',
-    color: 'from-amber-500 to-yellow-600',
-    desc: 'Pengakuan resmi mutu pendidikan terbaik dari BAN-S/M dengan capaian nilai tertinggi di Kabupaten Jember.',
-    detail: 'Kurikulum Merdeka terintegrasi, manajemen teruji, dan fasilitas pembelajaran berstandar nasional.',
-  },
-  {
-    title: 'Prestasi & Juara Bergengsi',
-    category: 'AKADEMIK & BAKAT',
-    icon: '🥇',
-    color: 'from-blue-600 to-indigo-700',
-    desc: 'Rutin meraih juara olimpiade sains, matematika, paduan suara anak, pramuka, seni tari, hingga olahraga.',
-    detail: 'Bimbingan intensif klub bakat dan pembina kompeten yang mendampingi siswa hingga level provinsi & nasional.',
-  },
-  {
-    title: 'Pembinaan Karakter SIKARU',
-    category: 'SPIRITUALITAS SPM',
-    icon: '💎',
-    color: 'from-emerald-600 to-teal-700',
-    desc: 'Internalisasi nilai Spiritualitas, Integritas, Kasih, Adil, Respek, dan Unggul dalam setiap dinamika sekolah.',
-    detail: 'Pendidikan budi pekerti yang menyentuh hati (Educating Heart & Mind) berlandaskan kasih Santa Bunda Maria.',
-  },
-  {
-    title: 'Fasilitas Modern & Ramah Anak',
-    category: 'LINGKUNGAN BELAJAR',
-    icon: '🏫',
-    color: 'from-purple-600 to-violet-700',
-    desc: 'Kampus asri dan aman dilengkapi Lab Komputer Multimedia, Perpustakaan Lengkap, Lapangan Olahraga, & Ruang Musik.',
-    detail: 'Lingkungan hijau bebas perundungan (anti-bullying) yang nyaman dan mendukung tumbuh kembang optimal.',
-  },
-];
 ---
 
 <BaseLayout
@@ -138,7 +102,7 @@ const KEUNGGULAN_LIST = [
               </div>
               <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <span class="text-emerald-600 font-bold text-lg">✓</span>
-                <span class="text-sm font-semibold text-slate-800">Bilingual &amp; Digital Learning</span>
+                <span class="text-sm font-semibold text-slate-800">Digital Learning</span>
               </div>
               <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-50 border border-slate-100">
                 <span class="text-emerald-600 font-bold text-lg">✓</span>
@@ -150,70 +114,9 @@ const KEUNGGULAN_LIST = [
               </div>
             </div>
 
-            <!-- Action Button -->
-            <div class="pt-4 flex flex-wrap items-center gap-4">
-              <a
-                href="/about-us"
-                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow-md shadow-blue-700/20 hover:scale-105 active:scale-95 transition-all duration-200"
-              >
-                <span>Pelajari Sejarah &amp; Profil Lengkap</span>
-                <span>→</span>
-              </a>
-              <a
-                href="/heritage"
-                class="inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-sm transition-colors"
-              >
-                <span>Spiritualitas SPM &amp; Heritage</span>
-              </a>
-            </div>
-
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- 4. KEUNGGULAN SEKOLAH (AKREDITASI, PRESTASI, KARAKTER, FASILITAS) -->
-    <section id="keunggulan-sekolah" class="py-16 sm:py-24 bg-slate-50 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider mb-3">
-            <span>PILAR KEUNGGULAN</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
-            Mengapa Memilih SDK Maria Fatima?
-          </h2>
-          <p class="text-slate-600 mt-3 text-base sm:text-lg">
-            Empat pilar utama yang menjadikan SDK Maria Fatima pilihan terdepan orang tua dalam mempercayakan pendidikan putra-putrinya.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {KEUNGGULAN_LIST.map((item) => (
-            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between group">
-              <div>
-                <div class={`w-14 h-14 rounded-2xl bg-gradient-to-br ${item.color} text-white flex items-center justify-center text-2xl shadow-lg mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {item.icon}
-                </div>
-                <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-1">
-                  {item.category}
-                </div>
-                <h3 class="text-xl font-heading font-black text-slate-900 mb-3 group-hover:text-blue-700 transition-colors">
-                  {item.title}
-                </h3>
-                <p class="text-sm text-slate-700 font-medium leading-relaxed mb-4">
-                  {item.desc}
-                </p>
-              </div>
-
-              <div class="pt-4 border-t border-slate-100 text-xs text-slate-500 font-normal leading-relaxed">
-                {item.detail}
-              </div>
-            </div>
-          ))}
-        </div>
-
       </div>
     </section>
 
