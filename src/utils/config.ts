@@ -123,24 +123,142 @@ export const STATS: StatItem[] = [
 
 // ─── Visi Misi Core Values Tagline ─────────────────────────────────────────
 export const VISI_MISI_DATA = {
-  visi: 'Terwujudnya komunitas pembelajar yang cerdas, berkarakter luhur, berwawasan global, dan berakar kuat pada spiritualitas kasih Bunda Maria.',
+  visi: 'Menjadi sekolah ramah anak yang unggul, berperilaku kasih, bermartabat, dan berwawasan global.',
   misi: [
-    'Menyelenggarakan pendidikan holistik yang mengintegrasikan keunggulan akademik dan pembentukan karakter Kristiani.',
-    'Menumbuhkembangkan potensi unik setiap peserta didik melalui pembelajaran aktif, kreatif, dan inovatif.',
-    'Mewujudkan iklim sekolah yang aman, inklusif, penuh kasih, dan berakar pada nilai-nilai SIKARU.',
-    'Mempersiapkan lulusan yang tangguh, berwawasan lingkungan, melek teknologi, serta siap menghadapi era global.',
-    'Menjalin sinergi kemitraan yang erat antara sekolah, orang tua, gereja, dan masyarakat luas.',
+    'Mengembangkan kesadaran literasi digital dalam pemanfaatan teknologi informasi.',
+    'Membangun lingkungan sekolah yang aman, inklusif, ramah, dan menyenangkan bagi setiap anak.',
+    'Menumbuhkan karakter murid berdasarkan nilai Unggul, Kasih, dan Bermartabat.',
+    'Mengembangkan potensi setiap anak dalam hal seni budaya, literasi global, dan numerasi secara berkelanjutan sesuai tahap perkembangannya.',
+    'Membangun kemitraan dengan orang tua dan pemangku kepentingan untuk memastikan hak, perlindungan, dan kesejahteraan anak.',
   ],
   coreValues: [
-    { title: 'Spiritualitas (Spirituality)', desc: 'Menghayati iman yang hidup, berserah dalam doa, dan meneladan Bunda Maria dalam ketaatan pada kehendak Allah.' },
-    { title: 'Integritas (Integrity)', desc: 'Jujur, dapat dipercaya, bertanggung jawab, dan memegang teguh komitmen moral dalam setiap perbuatan.' },
-    { title: 'Kasih (Compassion)', desc: 'Berbela rasa, mengasihi sesama tanpa pamrih, peduli terhadap kaum yang rentan, dan hidup rukun.' },
-    { title: 'Adil (Justice)', desc: 'Menghargai kesetaraan, menjunjung kebenaran, bersikap sportif, dan membela hak-hak setiap ciptaan.' },
-    { title: 'Respek (Respect)', desc: 'Menghormati orang tua, guru, sesama teman, serta merawat keutuhan ciptaan dan kelestarian alam.' },
-    { title: 'Unggul (Excellence)', desc: 'Selalu memberikan usaha terbaik, pantang menyerah, kreatif, dan berorientasi pada kemajuan berkelanjutan.' },
+    { title: 'Unggul (Excellence)', desc: 'Mengembangkan pribadi yang berprestasi, mandiri, berpikir kritis, berinovasi, dan visioner.' },
+    { title: 'Kasih (Compassion)', desc: 'Menghidupi nilai kasih melalui kepedulian, kejujuran, empati, keadilan, dan semangat melayani sesama.' },
+    { title: 'Bermartabat (Dignity)', desc: 'Menjadi pribadi berintegritas yang menghargai sesama, selaras kata dan perbuatan, berlandaskan iman dan etika.' },
   ],
-  tagline: 'Educating in the Spirit of St. Julie & SPM: Beyond Education, Touching Lives.',
+  tagline: 'Living Values, Creating Digitally',
+  taglineMeaning: 'Menghidupi Nilai-nilai kebenaran, Menciptakan karya dengan teknologi',
 };
+
+// ─── Tujuan Sekolah SDK Maria Fatima ───────────────────────────────────────
+export const TUJUAN_SDK = [
+  {
+    number: 1,
+    title: 'Karakter Nilai Unggul, Kasih, dan Bermartabat',
+    description: 'Tumbuhnya karakter murid berdasarkan spiritualitas nilai Unggul, Kasih, dan Bermartabat (UKB) yang menjiwai seluruh perilaku sekolah.',
+    icon: '🛡️',
+  },
+  {
+    number: 2,
+    title: 'Rasa Aman & Nyaman Bagi Seluruh Warga Sekolah',
+    description: 'Terwujudnya lingkungan sekolah ramah anak yang aman, inklusif, bebas perundungan, dan menyenangkan bagi setiap anak.',
+    icon: '🏫',
+  },
+  {
+    number: 3,
+    title: 'Kesadaran Literasi Digital & Pemanfaatan TIK',
+    description: 'Terwujudnya kesadaran dan kecakapan literasi digital dalam pemanfaatan teknologi informasi dan komunikasi secara cerdas dan bijak.',
+    icon: '💻',
+  },
+  {
+    number: 4,
+    title: 'Prestasi Seni Budaya, Literasi & Numerasi Berkelanjutan',
+    description: 'Terwujudnya murid yang berprestasi dalam seni budaya, literasi, dan numerasi melalui wadah pembinaan yang terencana dan berkesinambungan.',
+    icon: '🏆',
+  },
+  {
+    number: 5,
+    title: 'Kemitraan Hak, Perlindungan & Kesejahteraan Anak',
+    description: 'Terjalinnya kemitraan strategis dengan orang tua dan pemangku kepentingan untuk memastikan pemenuhan hak, perlindungan, dan kesejahteraan anak.',
+    icon: '👨‍👩‍👧‍👦',
+  },
+  {
+    number: 6,
+    title: 'Pembelajaran IPAS & Matematika dalam Bahasa Inggris',
+    description: 'Terselenggaranya pembelajaran IPAS (Sains) dan Matematika bilingual dalam Bahasa Inggris guna membekali siswa berwawasan global.',
+    icon: '🌐',
+  },
+];
+
+// ─── Profil Lulusan SDK Maria Fatima (6 Dimensi Karakter) ──────────────────
+export const PROFIL_LULUSAN_SDK = [
+  {
+    number: 1,
+    title: 'Pribadi yang Beriman',
+    description: 'Memiliki fondasi iman yang hidup dan mendalam, berakar pada ajaran kasih Allah, dan berbudi pekerti luhur.',
+    icon: '🕊️',
+    aspect: 'Spiritualitas & Iman',
+  },
+  {
+    number: 2,
+    title: 'Mampu Bernalar Kritis',
+    description: 'Menguasai literasi dan numerasi serta mampu berpikir analitis, logis, dan solutif dalam menghadapi permasalahan.',
+    icon: '🧠',
+    aspect: 'Nalar Kritis & Logika',
+  },
+  {
+    number: 3,
+    title: 'Bijak Mengambil Keputusan',
+    description: 'Memiliki kemandirian dan keberanian mengambil keputusan yang benar dan selaras antara kata dan tindakan.',
+    icon: '⚖️',
+    aspect: 'Kemandirian & Integritas',
+  },
+  {
+    number: 4,
+    title: 'Semangat Kolaboratif',
+    description: 'Mampu bekerja sama secara sinergis, komunikatif, menghargai keberagaman, dan memiliki jiwa kepemimpinan.',
+    icon: '🤝',
+    aspect: 'Kolaborasi & Kerjasama',
+  },
+  {
+    number: 5,
+    title: 'Hati yang Penuh Empati',
+    description: 'Peduli terhadap sesama dan lingkungan, berjiwa melayani, santun, serta mengedepankan belas kasih bagi yang lemah.',
+    icon: '❤️',
+    aspect: 'Empati & Kepedulian',
+  },
+  {
+    number: 6,
+    title: 'Berwawasan Global',
+    description: 'Adaptif terhadap kemajuan teknologi digital, berwawasan luas lintas budaya, dan siap bersaing di kancah internasional.',
+    icon: '🌍',
+    aspect: 'Wawasan Global & Digital',
+  },
+];
+
+// ─── Profil Guru SDK Maria Fatima (5 Pilar Keteladanan Pendidik) ───────────
+export const PROFIL_GURU_SDK = [
+  {
+    number: 1,
+    title: 'Adaptif terhadap Teknologi & Kurikulum Mutakhir',
+    description: 'Cakap memanfaatkan teknologi informasi dalam pembelajaran serta adaptif terhadap perkembangan kurikulum dan pendekatan pedagogi modern.',
+    icon: '💻',
+  },
+  {
+    number: 2,
+    title: 'Teladan dalam Kasih, Pelayanan, dan Kesederhanaan',
+    description: 'Menjadi cermin moral dan spiritual melalui sikap hidup yang penuh cinta kasih, ketulusan melayani, dan kesederhanaan hati.',
+    icon: '🕊️',
+  },
+  {
+    number: 3,
+    title: 'Mengenali Kebutuhan Belajar, Emosi, dan Perkembangan Murid',
+    description: 'Peka terhadap keunikan setiap anak, memahami gaya belajar, kondisi emosional, serta mendampingi fase tumbuh kembang secara personal.',
+    icon: '🌱',
+  },
+  {
+    number: 4,
+    title: 'Mengoptimalkan Potensi & Bakat Murid Lewat Pengembangan Diri',
+    description: 'Membimbing dan memfasilitasi anak didik dalam mengeksplorasi bakat akademik, minat seni budaya, dan potensi kepemimpinan.',
+    icon: '⭐',
+  },
+  {
+    number: 5,
+    title: 'Pelayanan Prima, Komunikatif, dan Solutif kepada Orang Tua',
+    description: 'Membangun komunikasi yang transparan, hangat, dan konstruktif bersama orang tua untuk solusi terbaik bagi keberhasilan anak.',
+    icon: '🤝',
+  },
+];
 
 // ─── Core Value UKB (Unggul, Kasih, Bermartabat) ───────────────────────────
 export const CORE_VALUES_UKB: CoreValueUKB[] = [

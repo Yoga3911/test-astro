@@ -1,19 +1,29 @@
 ---
 /**
- * about-us.astro — Halaman Mengenalkan Sekolah
+ * about-us.astro — Halaman Mengenalkan SDK Maria Fatima
  *
- * Sesuai Sitemap PDF:
- * - Sejarah SDK Maria Fatima
- * - Visi & Misi
- * - Core Value (SIKARU)
- * - 8 Profil Lulusan
+ * Dokumen Resmi Sekolah:
+ * - Sejarah Singkat SDK Maria Fatima
+ * - Visi & Misi SD Katolik Maria Fatima
+ * - Tujuan SD Katolik Maria Fatima
+ * - Core Values UKB (Unggul, Kasih, Bermartabat)
+ * - Profil Lulusan SD Katolik Maria Fatima
+ * - Profil Guru SD Katolik Maria Fatima
+ * - Tagline Resmi: "Living Values, Creating Digitally"
  * - Tata Tertib Sekolah
  */
 
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { VISI_MISI_DATA, PROFIL_LULUSAN_8, CORE_VALUES_UKB, SITE_CONFIG } from '@/utils/config';
+import { 
+  VISI_MISI_DATA, 
+  TUJUAN_SDK, 
+  PROFIL_LULUSAN_SDK, 
+  PROFIL_GURU_SDK, 
+  CORE_VALUES_UKB, 
+  SITE_CONFIG 
+} from '@/utils/config';
 
 // ─── Data Tata Tertib ───────────────────────────────────────────────────────
 const TATA_TERTIB_ITEMS = [
@@ -58,7 +68,7 @@ const TATA_TERTIB_ITEMS = [
 
 <BaseLayout
   title="About Us — Mengenal SDK Maria Fatima"
-  description="Sejarah, Visi Misi, Core Values UKB (Unggul, Kasih, Bermartabat), 8 Profil Lulusan, dan Tata Tertib SDK Maria Fatima Jember — Yayasan Suster SPM."
+  description="Visi, Misi, Tujuan, Core Values UKB, Profil Lulusan, Profil Guru, dan Sejarah SDK Maria Fatima Jember — Living Values, Creating Digitally."
 >
   <Header />
 
@@ -71,20 +81,42 @@ const TATA_TERTIB_ITEMS = [
       <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs">
-          <span>MENGENAL LEBIH DEKAT</span>
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider border border-blue-200 shadow-xs">
+          <span>TAGLINE: “LIVING VALUES, CREATING DIGITALLY”</span>
         </div>
         <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
           About Us: SDK Maria Fatima
         </h1>
         <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-          Perjalanan sejarah, visi keunggulan, nilai luhur pembinaan karakter, dan standar kelulusan terpadu generasi penerus bangsa.
+          Menghidupi nilai-nilai kebenaran, menciptakan karya dengan teknologi — mendampingi tunas muda yang berkarakter luhur, berprestasi, dan berwawasan global.
         </p>
+
+        <!-- Quick Section Links -->
+        <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
+          <a href="#sejarah" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            🏛️ Sejarah
+          </a>
+          <a href="#visi-misi" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            🎯 Visi &amp; Misi
+          </a>
+          <a href="#tujuan-sekolah" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            🚩 Tujuan
+          </a>
+          <a href="#core-values" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            💎 Core Value UKB
+          </a>
+          <a href="#profil-lulusan" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            🎓 Profil Lulusan
+          </a>
+          <a href="#profil-guru" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
+            👩‍🏫 Profil Guru
+          </a>
+        </div>
       </div>
     </section>
 
     <!-- 1. SEJARAH SDK MARIA FATIMA -->
-    <section id="sejarah" class="py-16 sm:py-24 bg-white">
+    <section id="sejarah" class="py-16 sm:py-24 bg-white scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -95,12 +127,12 @@ const TATA_TERTIB_ITEMS = [
             <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
               Lebih Dari 65 Tahun Menyemai Kasih &amp; Ilmu di Jember
             </h2>
-            <div class="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed">
+            <div class="space-y-4 text-slate-600 text-base sm:text-lg leading-relaxed text-justify">
               <p>
-                <strong>SDK Maria Fatima Jember</strong> lahir dari kerinduan untuk menghadirkan pelayanan pendidikan dasar Katolik yang bermutu tinggi dan penuh kasih bagi masyarakat Kabupaten Jember dan sekitarnya.
+                <strong>SDK Maria Fatima Jember</strong> lahir dari kerinduan luhur untuk menghadirkan pelayanan pendidikan dasar Katolik yang bermutu tinggi dan penuh kasih bagi masyarakat Kabupaten Jember dan sekitarnya.
               </p>
               <p>
-                Dengan bimbingan para Suster perintis, sekolah ini berkembang dari kelas-kelas bersahaja menjadi institusi pendidikan unggulan yang dipercaya lintas generasi. Ribuan alumni telah lahir dan berkiprah menjadi dokter, akademisi, pemimpin bisnis, seniman, hingga rohaniwan yang berintegritas.
+                Dengan bimbingan para Suster perintis Kongregasi SPM (Suster-suster Santa Perawan Maria), sekolah ini berkembang dari kelas-kelas bersahaja menjadi institusi pendidikan unggulan yang dipercaya lintas generasi. Ribuan alumni telah lahir dan berkiprah menjadi pemimpin, profesional, akademisi, rohaniwan, dan tokoh masyarakat yang berintegritas.
               </p>
               <p>
                 Hingga kini, di era transformasi digital dan Kurikulum Merdeka, SDK Maria Fatima terus memperbarui metodologi pengajaran modern tanpa pernah meninggalkan akar spiritualitas kasih dan pendidikan hati yang menjadi jati dirinya.
@@ -149,68 +181,117 @@ const TATA_TERTIB_ITEMS = [
       </div>
     </section>
 
-    <!-- 2. VISI & MISI -->
-    <section id="visi-misi" class="py-16 sm:py-24 bg-slate-50">
+    <!-- 2. VISI & MISI SD KATOLIK MARIA FATIMA -->
+    <section id="visi-misi" class="py-16 sm:py-24 bg-slate-50 scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
-            <span>VISI &amp; MISI</span>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
+            <span>VISI &amp; MISI SEKOLAH</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
-            Kompas Utama Pendidikan Kami
+            Arah &amp; Kompas Utama Pendidikan Kami
           </h2>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           <!-- Visi Card -->
-          <div class="lg:col-span-5 bg-white text-slate-900 rounded-3xl p-8 sm:p-10 shadow-md border border-slate-200/90 flex flex-col justify-between hover:shadow-xl hover:border-amber-400/60 transition-all duration-300 group">
-            <div class="space-y-5">
+          <div class="lg:col-span-5 bg-white text-slate-900 rounded-3xl p-8 sm:p-10 shadow-md border border-slate-200/90 flex flex-col justify-between hover:shadow-xl hover:border-blue-300 transition-all duration-300 group">
+            <div class="space-y-6">
               <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">🎯</div>
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform shadow-xs">🎯</div>
                 <div>
-                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-700 block">OUR VISION</span>
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-blue-700 block">VISI SEKOLAH</span>
                   <h3 class="text-2xl font-heading font-black text-slate-900">Visi SDK Maria Fatima</h3>
                 </div>
               </div>
-              <blockquote class="text-lg sm:text-xl font-heading font-bold text-slate-800 leading-relaxed border-l-4 border-amber-400 pl-4 py-2 bg-amber-50/30 rounded-r-2xl">
+              <blockquote class="text-lg sm:text-xl font-heading font-bold text-slate-800 leading-relaxed border-l-4 border-blue-600 pl-4 py-3 bg-blue-50/40 rounded-r-2xl">
                 "{VISI_MISI_DATA.visi}"
               </blockquote>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed font-normal">
+                Membentuk lingkungan belajar yang ramah anak, berakar pada cinta kasih Kristiani, menjunjung martabat kemanusiaan, serta memiliki kompetensi dan wawasan global di era digital.
+              </p>
             </div>
             <div class="pt-6 mt-6 border-t border-slate-100 text-xs text-slate-500 font-bold uppercase tracking-wider flex items-center gap-2">
               <span>⛪</span>
-              <span>Kabupaten Jember</span>
+              <span>SDK Maria Fatima Jember</span>
             </div>
           </div>
 
           <!-- Misi Card -->
-          <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm space-y-5">
-            <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold">🚀</div>
-              <div>
-                <h3 class="text-2xl font-heading font-black text-slate-900">Misi Sekolah</h3>
-                <p class="text-xs font-semibold text-slate-500">Langkah Operasional Pembelajaran</p>
-              </div>
-            </div>
-
-            <div class="space-y-3 pt-2">
-              {VISI_MISI_DATA.misi.map((m, idx) => (
-                <div class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100">
-                  <span class="w-6 h-6 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {idx + 1}
-                  </span>
-                  <p class="text-sm text-slate-700 font-medium leading-relaxed">
-                    {m}
-                  </p>
+          <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
+            <div>
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold shadow-xs">🚀</div>
+                <div>
+                  <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-700 block">MISI SEKOLAH</span>
+                  <h3 class="text-2xl font-heading font-black text-slate-900">Misi SD Katolik Maria Fatima</h3>
+                  <p class="text-xs font-semibold text-slate-500">Langkah Operasional dan Strategi Pembelajaran</p>
                 </div>
-              ))}
+              </div>
+
+              <div class="space-y-3 pt-1">
+                {VISI_MISI_DATA.misi.map((m, idx) => (
+                  <div class="flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-blue-50/50 hover:border-blue-200 transition-colors">
+                    <span class="w-6 h-6 rounded-lg bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                      {idx + 1}
+                    </span>
+                    <p class="text-sm text-slate-700 font-medium leading-relaxed">
+                      {m}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 3. CORE VALUES UKB (UNGGUL, KASIH, BERMARTABAT) -->
-    <section id="core-values" class="py-16 sm:py-24 bg-white relative overflow-hidden">
+    <!-- 3. TUJUAN SD KATOLIK MARIA FATIMA (BARU) -->
+    <section id="tujuan-sekolah" class="py-16 sm:py-24 bg-white relative overflow-hidden scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold uppercase tracking-widest mb-3 border border-emerald-200 shadow-xs">
+            <span>TARGET &amp; SASARAN STRATEGIS</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
+            Tujuan SD Katolik Maria Fatima
+          </h2>
+          <p class="text-slate-600 mt-3 text-base sm:text-lg">
+            Sasaran mutu dan capaian nyata yang menjadi komitmen seluruh sivitas akademika dalam mendidik generasi penerus bangsa.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {TUJUAN_SDK.map((t) => (
+            <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-xs">
+                    {t.icon}
+                  </span>
+                  <span class="text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                    Tujuan #{t.number}
+                  </span>
+                </div>
+                <h3 class="text-lg font-heading font-black text-slate-900 mb-2 group-hover:text-emerald-700 transition-colors">
+                  {t.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  {t.description}
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Sasaran Mutu Sekolah
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CORE VALUES UKB (UNGGUL, KASIH, BERMARTABAT) -->
+    <section id="core-values" class="py-16 sm:py-24 bg-slate-50 relative overflow-hidden scroll-mt-20">
       <!-- Decorative ambient glows -->
       <div class="absolute top-1/2 left-0 w-96 h-96 bg-blue-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -z-10"></div>
       <div class="absolute top-1/2 right-0 w-96 h-96 bg-amber-50/70 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -z-10"></div>
@@ -291,21 +372,21 @@ const TATA_TERTIB_ITEMS = [
         </div>
 
         <!-- Heritage Bridge Box -->
-        <div class="mt-14 p-6 sm:p-8 rounded-3xl bg-slate-50 border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="mt-14 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
           <div class="flex items-start gap-4">
             <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-2xl shrink-0">🏛️</span>
             <div>
               <h4 class="font-heading font-black text-slate-900 text-base">Pondasi Spiritualitas &amp; Nilai Yayasan SPM</h4>
               <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed font-normal">
-                Nilai UKB berakar kuat pada warisan rohani Kongregasi Suster SPM (Suster Santa Perawan Maria), keteladanan Santa Julie Billiart, serta 6 Nilai Utama SIKARU.
+                Nilai UKB berakar kuat pada warisan rohani Kongregasi Suster SPM (Suster Santa Perawan Maria), keteladanan Santa Julie Billiart, serta misi pendidikan kasih Perkumpulan Dharmaputri.
               </p>
             </div>
           </div>
           <a
-            href="/heritage#sikaru"
-            class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-slate-200/90 hover:border-blue-400 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-xs hover:shadow-md transition-all shrink-0 active:scale-95"
+            href="/heritage"
+            class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-slate-50 border border-slate-200/90 hover:border-blue-400 text-blue-700 hover:text-blue-800 font-bold text-xs shadow-xs hover:shadow-md transition-all shrink-0 active:scale-95"
           >
-            <span>Pelajari Nilai SIKARU</span>
+            <span>Pelajari Halaman Heritage</span>
             <span>↗</span>
           </a>
         </div>
@@ -313,31 +394,31 @@ const TATA_TERTIB_ITEMS = [
       </div>
     </section>
 
-    <!-- 4. 8 PROFIL LULUSAN -->
-    <section id="profil-lulusan" class="py-16 sm:py-24 bg-slate-50 relative overflow-hidden">
+    <!-- 5. PROFIL LULUSAN SD KATOLIK MARIA FATIMA -->
+    <section id="profil-lulusan" class="py-16 sm:py-24 bg-white relative overflow-hidden scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center max-w-3xl mx-auto mb-14">
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 border border-amber-200 text-xs font-bold uppercase tracking-wider mb-3 shadow-xs">
             <span>STANDAR KOMPETENSI KELULUSAN</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
-            8 Profil Lulusan SDK Maria Fatima
+            Profil Lulusan SD Katolik Maria Fatima
           </h2>
-          <p class="text-slate-600 mt-3 text-base sm:text-lg">
-            Karakter dan kompetensi utuh yang melekat pada setiap siswa saat menuntaskan pendidikan di SDK Maria Fatima.
-          </p>
+          <blockquote class="text-slate-800 font-heading font-bold text-base sm:text-xl max-w-3xl mx-auto mt-4 p-4 rounded-2xl bg-amber-50/60 border border-amber-200 italic leading-relaxed">
+            "Pribadi yang beriman, mampu bernalar kritis, mengambil keputusan, kolaboratif, empati, dan berwawasan global."
+          </blockquote>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {PROFIL_LULUSAN_8.map((p) => (
-            <div class="bg-white rounded-3xl p-6 border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROFIL_LULUSAN_SDK.map((p) => (
+            <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="w-12 h-12 rounded-2xl bg-blue-50 group-hover:bg-amber-100 flex items-center justify-center text-2xl transition-colors">
+                  <span class="w-12 h-12 rounded-2xl bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-2xl transition-colors shadow-xs">
                     {p.icon}
                   </span>
                   <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
-                    #{p.number}
+                    Dimensi #{p.number}
                   </span>
                 </div>
                 <div class="text-[11px] font-bold text-amber-600 uppercase tracking-wider mb-1">
@@ -346,7 +427,7 @@ const TATA_TERTIB_ITEMS = [
                 <h3 class="text-lg font-heading font-bold text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
                   {p.title}
                 </h3>
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                   {p.description}
                 </p>
               </div>
@@ -356,8 +437,69 @@ const TATA_TERTIB_ITEMS = [
       </div>
     </section>
 
-    <!-- 5. TATA TERTIB SEKOLAH -->
-    <section id="tata-tertib" class="py-16 sm:py-24 bg-white">
+    <!-- 6. PROFIL GURU SD KATOLIK MARIA FATIMA -->
+    <section id="profil-guru" class="py-16 sm:py-24 bg-slate-50 relative overflow-hidden scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-widest mb-3 border border-blue-200 shadow-xs">
+            <span>STANDAR KETELADANAN PENDIDIK</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
+            Profil Guru SD Katolik Maria Fatima
+          </h2>
+          <p class="text-slate-600 mt-3 text-base sm:text-lg">
+            Guru SDK Maria Fatima hadir bukan sekadar pengajar, melainkan teladan kasih, fasilitator bakat, dan pembimbing hati yang berintegritas.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROFIL_GURU_SDK.map((g) => (
+            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-4">
+                  <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-xs">
+                    {g.icon}
+                  </span>
+                  <span class="text-xs font-black px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
+                    Pilar #{g.number}
+                  </span>
+                </div>
+                <h3 class="text-lg font-heading font-black text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
+                  {g.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                  {g.description}
+                </p>
+              </div>
+              <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                Keteladanan Guru Pendidik
+              </div>
+            </div>
+          ))}
+
+          <!-- 6th Card: Official School Tagline -->
+          <div class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 rounded-3xl p-7 text-white shadow-xl flex flex-col justify-between">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-4 border border-amber-400/30">
+                <span>TAGLINE RESMI SEKOLAH</span>
+              </div>
+              <h3 class="text-2xl font-heading font-black text-white leading-tight">
+                “Living Values, Creating Digitally”
+              </h3>
+              <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed font-normal italic">
+                (Menghidupi Nilai-nilai kebenaran, Menciptakan karya dengan teknologi)
+              </p>
+            </div>
+            <div class="pt-4 mt-6 border-t border-white/15 text-[11px] font-bold uppercase tracking-wider text-amber-300">
+              SDK Maria Fatima Jember
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. TATA TERTIB SEKOLAH -->
+    <section id="tata-tertib" class="py-16 sm:py-24 bg-white scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase mb-3">
