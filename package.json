@@ -9,7 +9,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-ig": "node scripts/update-instagram.mjs"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^14.2.2",

@@ -753,48 +753,48 @@ export const SONG_TRACKS: SongTrack[] = [
   },
 ];
 
-// ─── Mock Instagram Feeds & Reels (@sdkmartimjember) ───────────────────────
+// ─── Instagram Feeds & Reels (@sdkmariafatimajbr) ───────────────────────────
 export const INSTAGRAM_POSTS: InstagramPost[] = [
   {
-    id: 'ig-1',
-    caption: '🎉 Semarak Peringatan Hari Santo Pelindung & Misa Syukur Bersama Suster SPM. Anak-anak tampak antusias membawakan tarian persembahan! #SDKMariaFatima #HariPelindung #SPMJember',
-    likes: 342,
-    comments: 28,
-    imageUrl: '/images/instagram/ig-1.svg',
-    type: 'post',
-    date: '2 hari lalu',
-    link: 'https://www.instagram.com/sdkmariafatimajbr',
+    id: "DcuxHlRzQth",
+    caption: "🌱🧹 BERSIH LINGKUNGAN, BERSIH HATI, SEHAT DAN NYAMAN! ✨\n\nHari ini, Selasa, 1 September 2026, siswa-siswi SDK Maria Fatima Jember kembali bergerak bersama dalam kegiatan Bersih Lingkungan. 🧹🌿\n\nBukan sekadar membersihkan halaman sekolah, t...",
+    likes: 4,
+    comments: 0,
+    imageUrl: "/images/instagram/post-1.jpg",
+    type: "post",
+    date: "August 31, 2026",
+    link: "https://www.instagram.com/p/DcuxHlRzQth/"
   },
   {
-    id: 'ig-2',
-    caption: '🏆 Selamat atas raihan Juara 1 Olimpiade Sains & Matematika Tingkat Kabupaten Jember! Kerja keras and doa adik-adik membuahkan hasil membanggakan. #PrestasiMartim #OlimpiadeSD',
-    likes: 512,
-    comments: 45,
-    imageUrl: '/images/instagram/ig-2.svg',
-    type: 'reel',
-    date: '4 hari lalu',
-    link: 'https://www.instagram.com/sdkmariafatimajbr',
+    id: "DcuwrBND_gz",
+    caption: "🏆✨ TIGA PRESTASI, SATU SEMANGAT UNTUK TERUS BERSINAR! ✨🏆\n\nSelamat dan apresiasi setinggi-tingginya untuk siswa-siswi SDK Maria Fatima Jember yang telah mengukir prestasi dan membawa semangat Unggul, Kasih, Bermartabat! 🌟\n\n👏 Jiselle Crys...",
+    likes: 8,
+    comments: 0,
+    imageUrl: "/images/instagram/post-2.jpg",
+    type: "post",
+    date: "August 31, 2026",
+    link: "https://www.instagram.com/p/DcuwrBND_gz/"
   },
   {
-    id: 'ig-3',
-    caption: '🌱 Serunya kegiatan Proyek Penguatan Profil Pelajar Pancasila (P5) tema Gaya Hidup Berkelanjutan di Kebun Sekolah. Anak-anak belajar memilah sampah dan membuat kompos! #P5Merdeka',
-    likes: 289,
-    comments: 19,
-    imageUrl: '/images/instagram/ig-3.svg',
-    type: 'post',
-    date: '1 minggu lalu',
-    link: 'https://www.instagram.com/sdkmariafatimajbr',
+    id: "DciW6XLj0a9",
+    caption: "Apresiasi Prestasi Siswa SDK Maria Fatima Jember — Teruslah bertumbuh dan berprestasi seturut nilai Unggul, Kasih, dan Bermartabat!",
+    likes: 5,
+    comments: 0,
+    imageUrl: "/images/instagram/post-3.jpg",
+    type: "post",
+    date: "August 27, 2026",
+    link: "https://www.instagram.com/p/DciW6XLj0a9/"
   },
   {
-    id: 'ig-4',
-    caption: '🎵 Cuplikan latihan intensif Paduan Suara SDK Maria Fatima menjelang Festival Musik Rohani Anak. Suara malaikat kecil yang begitu menyejukkan hati! #PaduanSuaraMartim',
-    likes: 478,
-    comments: 36,
-    imageUrl: '/images/instagram/ig-4.svg',
-    type: 'reel',
-    date: '1 minggu lalu',
-    link: 'https://www.instagram.com/sdkmariafatimajbr',
-  },
+    id: "DcTOKS-PosK",
+    caption: "🚫💙 BERSAMA CEGAH BULLYING, WUJUDKAN SEKOLAH YANG AMAN DAN NYAMAN! 💙🚫\n\nHari ini, siswa-siswi SDK Maria Fatima kelas 1–6 mengikuti kegiatan Edukasi Anti Bullying bersama Polres Jember. 👮‍♀️👮‍♂️✨\n\nMelalui kegiatan ini, anak-anak diajak u...",
+    likes: 3,
+    comments: 0,
+    imageUrl: "/images/instagram/post-4.jpg",
+    type: "reel",
+    date: "August 21, 2026",
+    link: "https://www.instagram.com/reel/DcTOKS-PosK/"
+  }
 ];
 
 // ─── Format helpers ───────────────────────────────────────────────────────
