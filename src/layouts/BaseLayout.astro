@@ -75,7 +75,7 @@ const schoolSchema = {
   alternateName: SITE_CONFIG.shortName,
   description: SITE_CONFIG.description,
   url: SITE_CONFIG.url,
-  logo: `${SITE_CONFIG.url}/favicon.svg`,
+  logo: `${SITE_CONFIG.url}/logo/logo-sdk.png`,
   image: ogImageURL,
   email: SITE_CONFIG.email,
   telephone: SITE_CONFIG.phone,
@@ -184,9 +184,10 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   <meta name="twitter:image:alt" content={imageAlt} />
 
   <!-- Favicon & PWA -->
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="alternate icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Structured Data: Organization & Website -->

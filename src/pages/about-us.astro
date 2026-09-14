@@ -29,7 +29,6 @@ import {
 const TATA_TERTIB_ITEMS = [
   {
     category: 'Kehadiran & Disiplin Waktu',
-    icon: '⏰',
     rules: [
       'Siswa hadir di sekolah paling lambat pukul 06.45 WIB sebelum bel masuk berbunyi.',
       'Kegiatan belajar mengajar (KBM) dimulai dengan doa pagi dan lagu kebangsaan Indonesia Raya.',
@@ -38,7 +37,6 @@ const TATA_TERTIB_ITEMS = [
   },
   {
     category: 'Seragam & Kerapian Diri',
-    icon: '👔',
     rules: [
       'Mengenakan seragam lengkap sesuai jadwal harian (Putih-Merah, Batik Yayasan SPM, Pramuka, Kaos Olahraga).',
       'Memakai sepatu hitam bertali/perekat dan kaos kaki putih berlogo sekolah.',
@@ -47,7 +45,6 @@ const TATA_TERTIB_ITEMS = [
   },
   {
     category: 'Sikap, Budi Pekerti & Relasi',
-    icon: '🤝',
     rules: [
       'Menerapkan budaya 5S (Senyum, Salam, Sapa, Sopan, Santun) kepada suster, bapak/ibu guru, karyawan, dan sesama teman.',
       'Menjaga sikap saling menghormati dan menolak segala bentuk perundungan (zero tolerance for bullying).',
@@ -56,7 +53,6 @@ const TATA_TERTIB_ITEMS = [
   },
   {
     category: 'Penggunaan Gawai & Barang Bawaan',
-    icon: '📱',
     rules: [
       'Penggunaan tablet/gawai hanya diizinkan saat sesi pembelajaran terarah di bawah bimbingan guru.',
       'Dilarang membawa mainan berbahaya, perhiasan berlebih, atau barang non-edukatif ke lingkungan sekolah.',
@@ -94,22 +90,22 @@ const TATA_TERTIB_ITEMS = [
         <!-- Quick Section Links -->
         <div class="flex flex-wrap items-center justify-center gap-2 pt-2">
           <a href="#sejarah" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            🏛️ Sejarah
+            Sejarah
           </a>
           <a href="#visi-misi" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            🎯 Visi &amp; Misi
+            Visi &amp; Misi
           </a>
           <a href="#tujuan-sekolah" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            🚩 Tujuan
+            Tujuan
           </a>
           <a href="#core-values" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            💎 Core Value UKB
+            Core Value UKB
           </a>
           <a href="#profil-lulusan" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            🎓 Profil Lulusan
+            Profil Lulusan
           </a>
           <a href="#profil-guru" class="px-3 py-1 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-blue-700 shadow-xs transition-all">
-            👩‍🏫 Profil Guru
+            Profil Guru
           </a>
         </div>
       </div>
@@ -146,7 +142,11 @@ const TATA_TERTIB_ITEMS = [
               <div class="absolute top-0 right-0 w-40 h-40 bg-blue-50/80 rounded-full blur-2xl pointer-events-none -z-10"></div>
 
               <div class="flex items-center gap-3.5 border-b border-slate-100 pb-5">
-                <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl shadow-xs">🏛️</span>
+                <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center shadow-xs">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </span>
                 <div>
                   <div class="text-[11px] uppercase font-extrabold tracking-wider text-amber-700">IDENTITAS SEKOLAH</div>
                   <div class="text-xl font-heading font-black text-slate-900">{SITE_CONFIG.foundation}</div>
@@ -198,7 +198,11 @@ const TATA_TERTIB_ITEMS = [
           <div class="lg:col-span-5 bg-white text-slate-900 rounded-3xl p-8 sm:p-10 shadow-md border border-slate-200/90 flex flex-col justify-between hover:shadow-xl hover:border-blue-300 transition-all duration-300 group">
             <div class="space-y-6">
               <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform shadow-xs">🎯</div>
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center group-hover:scale-110 transition-transform shadow-xs">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
                 <div>
                   <span class="text-[11px] font-extrabold uppercase tracking-wider text-blue-700 block">VISI SEKOLAH</span>
                   <h3 class="text-2xl font-heading font-black text-slate-900">Visi SDK Maria Fatima</h3>
@@ -212,7 +216,6 @@ const TATA_TERTIB_ITEMS = [
               </p>
             </div>
             <div class="pt-6 mt-6 border-t border-slate-100 text-xs text-slate-500 font-bold uppercase tracking-wider flex items-center gap-2">
-              <span>⛪</span>
               <span>SDK Maria Fatima Jember</span>
             </div>
           </div>
@@ -221,7 +224,11 @@ const TATA_TERTIB_ITEMS = [
           <div class="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-sm flex flex-col justify-between space-y-6">
             <div>
               <div class="flex items-center gap-3 mb-5">
-                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold shadow-xs">🚀</div>
+                <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center shadow-xs">
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
                 <div>
                   <span class="text-[11px] font-extrabold uppercase tracking-wider text-amber-700 block">MISI SEKOLAH</span>
                   <h3 class="text-2xl font-heading font-black text-slate-900">Misi SD Katolik Maria Fatima</h3>
@@ -251,7 +258,7 @@ const TATA_TERTIB_ITEMS = [
     <section id="tujuan-sekolah" class="py-16 sm:py-24 bg-white relative overflow-hidden scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-extrabold uppercase tracking-widest mb-3 border border-emerald-200 shadow-xs">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-widest mb-3 border border-blue-200 shadow-xs">
             <span>TARGET &amp; SASARAN STRATEGIS</span>
           </div>
           <h2 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black text-slate-900 tracking-tight">
@@ -264,17 +271,17 @@ const TATA_TERTIB_ITEMS = [
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {TUJUAN_SDK.map((t) => (
-            <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-emerald-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
+            <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-xs">
-                    {t.icon}
+                  <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-base shadow-xs group-hover:bg-blue-600 group-hover:text-white transition-all">
+                    0{t.number}
                   </span>
-                  <span class="text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  <span class="text-xs font-black px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                     Tujuan #{t.number}
                   </span>
                 </div>
-                <h3 class="text-lg font-heading font-black text-slate-900 mb-2 group-hover:text-emerald-700 transition-colors">
+                <h3 class="text-lg font-heading font-black text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
                   {t.title}
                 </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -307,7 +314,7 @@ const TATA_TERTIB_ITEMS = [
             Nilai Luhur UKB
           </h2>
           <p class="text-slate-600 mt-4 text-base sm:text-lg leading-relaxed">
-            Sebagai lembaga pendidikan yang berkomitmen membentuk generasi unggul dan berkarakter, SD Katolik Maria Fatima Jember menanamkan nilai-nilai luhur yang dirangkum dalam <strong>Core Value UKB</strong>: <span class="text-blue-700 font-bold">Unggul</span>, <span class="text-rose-600 font-bold">Kasih</span>, dan <span class="text-amber-700 font-bold">Bermartabat</span> — identitas yang menjiwai budaya dan perjalanan pendidikan kami.
+            Sebagai lembaga pendidikan yang berkomitmen membentuk generasi unggul dan berkarakter, SD Katolik Maria Fatima Jember menanamkan nilai-nilai luhur yang dirangkum dalam <strong>Core Value UKB</strong>: <span class="text-blue-700 font-bold">Unggul</span>, <span class="text-red-600 font-bold">Kasih</span>, dan <span class="text-amber-700 font-bold">Bermartabat</span> — identitas yang menjiwai budaya dan perjalanan pendidikan kami.
           </p>
         </div>
 
@@ -352,7 +359,7 @@ const TATA_TERTIB_ITEMS = [
                   </div>
                   {cv.points.map((pt) => (
                     <div class="flex items-start gap-2.5 text-xs sm:text-sm font-medium text-slate-700">
-                      <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <svg class="w-4 h-4 text-blue-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
                       </svg>
                       <span>{pt}</span>
@@ -374,7 +381,11 @@ const TATA_TERTIB_ITEMS = [
         <!-- Heritage Bridge Box -->
         <div class="mt-14 p-6 sm:p-8 rounded-3xl bg-white border border-slate-200/90 flex flex-col md:flex-row items-center justify-between gap-6 shadow-sm">
           <div class="flex items-start gap-4">
-            <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-2xl shrink-0">🏛️</span>
+            <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+            </span>
             <div>
               <h4 class="font-heading font-black text-slate-900 text-base">Pondasi Spiritualitas &amp; Nilai Yayasan SPM</h4>
               <p class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl leading-relaxed font-normal">
@@ -414,8 +425,8 @@ const TATA_TERTIB_ITEMS = [
             <div class="bg-gradient-to-br from-slate-50 to-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="w-12 h-12 rounded-2xl bg-amber-50 group-hover:bg-amber-100 flex items-center justify-center text-2xl transition-colors shadow-xs">
-                    {p.icon}
+                  <span class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center font-heading font-black text-base transition-colors shadow-xs group-hover:bg-amber-500 group-hover:text-white">
+                    0{p.number}
                   </span>
                   <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                     Dimensi #{p.number}
@@ -457,8 +468,8 @@ const TATA_TERTIB_ITEMS = [
             <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between group">
               <div>
                 <div class="flex items-center justify-between mb-4">
-                  <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform shadow-xs">
-                    {g.icon}
+                  <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-base group-hover:scale-110 transition-transform shadow-xs group-hover:bg-blue-600 group-hover:text-white">
+                    0{g.number}
                   </span>
                   <span class="text-xs font-black px-3 py-1 rounded-full bg-blue-100 text-blue-800 border border-blue-200">
                     Pilar #{g.number}
@@ -478,7 +489,7 @@ const TATA_TERTIB_ITEMS = [
           ))}
 
           <!-- 6th Card: Official School Tagline -->
-          <div class="bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 rounded-3xl p-7 text-white shadow-xl flex flex-col justify-between">
+          <div class="bg-gradient-to-br from-blue-900 to-slate-900 rounded-3xl p-7 text-white shadow-xl flex flex-col justify-between">
             <div>
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-4 border border-amber-400/30">
                 <span>TAGLINE RESMI SEKOLAH</span>
@@ -502,7 +513,7 @@ const TATA_TERTIB_ITEMS = [
     <section id="tata-tertib" class="py-16 sm:py-24 bg-white scroll-mt-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100 text-purple-800 text-xs font-bold uppercase mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
             <span>BUDAYA DISIPLIN</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
@@ -514,11 +525,11 @@ const TATA_TERTIB_ITEMS = [
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {TATA_TERTIB_ITEMS.map((cat) => (
+          {TATA_TERTIB_ITEMS.map((cat, idx) => (
             <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200/90 shadow-xs space-y-4">
               <div class="flex items-center gap-3">
-                <div class="w-11 h-11 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-xl font-bold">
-                  {cat.icon}
+                <div class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-heading font-black text-sm">
+                  0{idx + 1}
                 </div>
                 <h3 class="text-xl font-heading font-bold text-slate-900">
                   {cat.category}

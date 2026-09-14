@@ -21,16 +21,6 @@ const { judul, tanggal, tanggalAkhir, lokasi, deskripsi, waktu, status, kategori
 const badge    = getAgendaStatusBadge(status);
 const isEven   = index % 2 === 0;
 const isTimeline = layout === 'timeline';
-
-const categoryIcons: Record<string, string> = {
-  'Akademik':  '📚',
-  'Olahraga':  '⚽',
-  'Seni':      '🎨',
-  'Sosial':    '🤝',
-  'Keagamaan': '🕌',
-  'Lainnya':   '📌',
-};
-const icon = categoryIcons[kategori] ?? '📌';
 ---
 
 {isTimeline && (
@@ -39,23 +29,33 @@ const icon = categoryIcons[kategori] ?? '📌';
       {isEven && (
         <div class="card" style="padding: 1.5rem; background: #ffffff; border: 1px solid #e2e8f0;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-            <span>{icon}</span>
             <span class={`badge ${badge.class}`}>{badge.label}</span>
             <span class="badge" style="background: #f1f5f9; color: #64748b; font-size: 0.7rem; border: 1px solid #e2e8f0;">{kategori}</span>
           </div>
           <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">{judul}</h3>
           <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.875rem; line-height: 1.6;" class="line-clamp-2">{deskripsi}</p>
           <div style="display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <div style="font-size: 0.8rem; color: #64748b;">📅 {formatDate(tanggal)}{tanggalAkhir ? ` — ${formatDate(tanggalAkhir)}` : ''}</div>
-            {waktu && <div style="font-size: 0.8rem; color: #64748b;">🕐 {waktu}</div>}
-            <div style="font-size: 0.8rem; color: #64748b;">📍 {lokasi}</div>
+            <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>{formatDate(tanggal)}{tanggalAkhir ? ` — ${formatDate(tanggalAkhir)}` : ''}</span>
+            </div>
+            {waktu && (
+              <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>{waktu}</span>
+              </div>
+            )}
+            <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>{lokasi}</span>
+            </div>
           </div>
         </div>
       )}
     </div>
 
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <div style="width: 40px; height: 40px; background: linear-gradient(135deg, #1d4ed8, #2563eb); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; box-shadow: 0 0 0 4px #eff6ff; flex-shrink: 0; z-index: 1; position: relative; color: #ffffff;">{icon}</div>
+      <div style="width: 16px; height: 16px; background: #2563eb; border-radius: 50%; box-shadow: 0 0 0 4px #eff6ff; flex-shrink: 0; z-index: 1; position: relative; margin-top: 12px;"></div>
       <div style="width: 2px; flex: 1; background: #e2e8f0; margin-top: 0.5rem; min-height: 40px;"></div>
     </div>
 
@@ -63,16 +63,26 @@ const icon = categoryIcons[kategori] ?? '📌';
       {!isEven && (
         <div class="card" style="padding: 1.5rem; background: #ffffff; border: 1px solid #e2e8f0;">
           <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
-            <span>{icon}</span>
             <span class={`badge ${badge.class}`}>{badge.label}</span>
             <span class="badge" style="background: #f1f5f9; color: #64748b; font-size: 0.7rem; border: 1px solid #e2e8f0;">{kategori}</span>
           </div>
           <h3 style="font-size: 1.05rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem;">{judul}</h3>
           <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.875rem; line-height: 1.6;" class="line-clamp-2">{deskripsi}</p>
           <div style="display: flex; flex-direction: column; gap: 0.35rem; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
-            <div style="font-size: 0.8rem; color: #64748b;">📅 {formatDate(tanggal)}{tanggalAkhir ? ` — ${formatDate(tanggalAkhir)}` : ''}</div>
-            {waktu && <div style="font-size: 0.8rem; color: #64748b;">🕐 {waktu}</div>}
-            <div style="font-size: 0.8rem; color: #64748b;">📍 {lokasi}</div>
+            <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>{formatDate(tanggal)}{tanggalAkhir ? ` — ${formatDate(tanggalAkhir)}` : ''}</span>
+            </div>
+            {waktu && (
+              <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>{waktu}</span>
+              </div>
+            )}
+            <div style="font-size: 0.8rem; color: #64748b; display: flex; align-items: center; gap: 0.4rem;">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              <span>{lokasi}</span>
+            </div>
           </div>
         </div>
       )}
@@ -84,7 +94,9 @@ const icon = categoryIcons[kategori] ?? '📌';
   <div class="card" style="padding: 1.5rem; height: 100%; display: flex; flex-direction: column; background: #ffffff; border: 1px solid #e2e8f0;">
     <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 0.75rem; margin-bottom: 1rem;">
       <div style="display: flex; align-items: center; gap: 0.625rem;">
-        <div style="width: 42px; height: 42px; background: #eff6ff; border: 1px solid #dbeafe; border-radius: 0.625rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0;">{icon}</div>
+        <div style="width: 42px; height: 42px; background: #eff6ff; border: 1px solid #dbeafe; border-radius: 0.625rem; display: flex; align-items: center; justify-content: center; color: #2563eb; flex-shrink: 0;">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
         <div>
           <span class={`badge ${badge.class}`} style="margin-bottom: 0.25rem; display: inline-block;">{badge.label}</span>
           <div style="font-size: 0.75rem; color: #64748b; font-weight: 500;">{kategori}</div>

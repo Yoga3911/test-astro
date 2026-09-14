@@ -6,18 +6,22 @@
  * - Edge-to-edge full width & height background video playing automatically with audio
  * - Grand centered typography (Ala SDH)
  * - Tagline: "Beyond Education, Touching Lives — Cerdas, Berkarakter, dan Berakar pada Spiritualitas Kasih"
- * - Quick actions: "Daftar SPMB 2026/2027" & "Jelajahi Profil Sekolah"
+ * - Quick actions: "Daftar SPMB 2027/2028" & "Jelajahi Profil Sekolah"
  * - Sleek Fullscreen button at top right
  * - Integrated school quick statistics counter strip at bottom
  */
 
-import { SITE_CONFIG } from '@/utils/config';
+import { SITE_CONFIG } from "@/utils/config";
 ---
 
-<section id="hero-banner" class="relative overflow-hidden w-full min-h-[88vh] lg:min-h-[92vh] flex flex-col justify-center bg-slate-950 text-white">
-  
+<section
+  id="hero-banner"
+  class="relative overflow-hidden w-full min-h-[88vh] lg:min-h-[92vh] flex flex-col justify-center bg-slate-950 text-white"
+>
   <!-- 1. FULL-WIDTH EDGE-TO-EDGE HD BACKGROUND VIDEO -->
-  <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+  <div
+    class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0"
+  >
     <video
       id="hero-bg-video"
       autoplay
@@ -33,11 +37,16 @@ import { SITE_CONFIG } from '@/utils/config';
     </video>
 
     <!-- Cinematic Vignette Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/55 to-slate-950/35 z-10 pointer-events-none"></div>
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/55 to-slate-950/35 z-10 pointer-events-none"
+    >
+    </div>
   </div>
 
   <!-- 2. TOP RIGHT VIDEO CONTROLS -->
-  <div class="absolute z-40 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2">
+  <div
+    class="absolute z-40 top-4 right-4 sm:top-5 sm:right-5 flex items-center gap-2"
+  >
     <button
       id="toggle-sound-btn"
       type="button"
@@ -45,12 +54,34 @@ import { SITE_CONFIG } from '@/utils/config';
       title="Nyalakan/Matikan Suara"
     >
       <!-- Sound Muted Outline Icon (Default muted state) -->
-      <svg id="sound-off-icon" class="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      <svg
+        id="sound-off-icon"
+        class="w-4 h-4 text-white shrink-0"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+        ></path>
       </svg>
       <!-- Sound On Outline Icon (When unmuted) -->
-      <svg id="sound-on-icon" class="w-4 h-4 text-white shrink-0 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+      <svg
+        id="sound-on-icon"
+        class="w-4 h-4 text-white shrink-0 hidden"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z"
+        ></path>
       </svg>
       <span id="sound-btn-label">Suara</span>
     </button>
@@ -60,32 +91,56 @@ import { SITE_CONFIG } from '@/utils/config';
       class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-950/70 hover:bg-slate-900 text-white backdrop-blur-md border border-white/20 hover:border-sky-400 text-xs font-bold transition-all shadow-xl hover:scale-105 active:scale-95 cursor-pointer select-none"
       title="Tonton Video Profil Layar Penuh"
     >
-      <svg class="w-4 h-4 text-white shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+      <svg
+        class="w-4 h-4 text-white shrink-0"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"
+        ></path>
       </svg>
       <span>Layar Penuh</span>
     </button>
   </div>
 
   <!-- 3. HERO MAIN LEFT-ALIGNED FLOATING CONTENT -->
-  <div class="relative z-20 w-full px-4 sm:px-6 lg:px-8 py-16 flex-1 flex flex-col justify-center items-start text-left max-w-2xl">
-    
+  <div
+    class="relative z-20 w-full px-4 sm:px-6 lg:px-8 py-16 flex-1 flex flex-col justify-center items-start text-left max-w-2xl"
+  >
     <!-- Identity Badge with Blue Ping Animation -->
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn">
+    <div
+      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn"
+    >
       <span class="relative flex h-2.5 w-2.5">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"
+        ></span>
+        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"
+        ></span>
       </span>
       <span>Sekolah Dasar Katolik Unggulan</span>
     </div>
 
     <!-- Grand Headline -->
-    <h1 id="hero-headline" class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] text-white mb-2 drop-shadow-lg">
-      <span id="welcome-to-text">WELCOME TO</span> <br />
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300 whitespace-nowrap">
+    <h1
+      id="hero-headline"
+      class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] text-white mb-2 drop-shadow-lg"
+    >
+      <span id="welcome-to-text">WELCOME TO</span>
+      <br />
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300 whitespace-nowrap"
+      >
         SDK MARIA FATIMA
       </span><br />
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-300">
+      <span
+        class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-300"
+      >
         JEMBER
       </span>
     </h1>
@@ -105,13 +160,21 @@ import { SITE_CONFIG } from '@/utils/config';
         href="/admission"
         class="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-heading font-bold text-base text-white bg-transparent border-2 border-white hover:border-amber-400 hover:bg-white/10 backdrop-blur-xs shadow-xl shadow-black/20 hover:scale-105 active:scale-95 transition-all duration-200"
       >
-        <span>Daftar SPMB 2026/2027</span>
-        <svg class="w-5 h-5 text-amber-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        <span>Daftar SPMB 2027/2028</span>
+        <svg
+          class="w-5 h-5 text-amber-300"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2.5"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
         </svg>
       </a>
     </div>
-
   </div>
 
   <script>
@@ -119,12 +182,14 @@ import { SITE_CONFIG } from '@/utils/config';
 
     // ─── Auto-fit tagline width to match "WELCOME TO" ────────────────────────
     function fitTaglineWidth() {
-      const welcomeEl = document.getElementById('welcome-to-text') as HTMLElement;
-      const taglineEl = document.getElementById('hero-tagline')    as HTMLElement;
+      const welcomeEl = document.getElementById(
+        "welcome-to-text",
+      ) as HTMLElement;
+      const taglineEl = document.getElementById("hero-tagline") as HTMLElement;
       if (!welcomeEl || !taglineEl) return;
 
       // Reset font-size so we can measure the natural width
-      taglineEl.style.fontSize = '2rem';
+      taglineEl.style.fontSize = "2rem";
 
       // Wait a frame for layout to settle
       requestAnimationFrame(() => {
@@ -135,17 +200,25 @@ import { SITE_CONFIG } from '@/utils/config';
         if (!naturalWidth) return;
 
         const currentSize = parseFloat(getComputedStyle(taglineEl).fontSize);
-        const newSize     = currentSize * (targetWidth / naturalWidth);
+        const newSize = currentSize * (targetWidth / naturalWidth);
 
         taglineEl.style.fontSize = `${newSize}px`;
       });
     }
 
     function initHeroVideo() {
-      const video         = document.getElementById('hero-bg-video')   as HTMLVideoElement;
-      const soundOffIcon  = document.getElementById('sound-off-icon')  as HTMLElement;
-      const soundOnIcon   = document.getElementById('sound-on-icon')   as HTMLElement;
-      const soundBtn      = document.getElementById('toggle-sound-btn') as HTMLButtonElement;
+      const video = document.getElementById(
+        "hero-bg-video",
+      ) as HTMLVideoElement;
+      const soundOffIcon = document.getElementById(
+        "sound-off-icon",
+      ) as HTMLElement;
+      const soundOnIcon = document.getElementById(
+        "sound-on-icon",
+      ) as HTMLElement;
+      const soundBtn = document.getElementById(
+        "toggle-sound-btn",
+      ) as HTMLButtonElement;
 
       if (!video) return;
 
@@ -157,11 +230,11 @@ import { SITE_CONFIG } from '@/utils/config';
       const updateButtonUI = (isMuted: boolean) => {
         if (soundOffIcon && soundOnIcon) {
           if (isMuted) {
-            soundOffIcon.classList.remove('hidden');
-            soundOnIcon.classList.add('hidden');
+            soundOffIcon.classList.remove("hidden");
+            soundOnIcon.classList.add("hidden");
           } else {
-            soundOffIcon.classList.add('hidden');
-            soundOnIcon.classList.remove('hidden');
+            soundOffIcon.classList.add("hidden");
+            soundOnIcon.classList.remove("hidden");
           }
         }
       };
@@ -181,7 +254,7 @@ import { SITE_CONFIG } from '@/utils/config';
 
       // Mute/unmute toggle button in top bar
       if (soundBtn) {
-        soundBtn.addEventListener('click', (e) => {
+        soundBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           e.preventDefault();
           if (video.muted) {
@@ -194,8 +267,12 @@ import { SITE_CONFIG } from '@/utils/config';
     }
 
     function initFullscreen() {
-      const video = document.getElementById('hero-bg-video') as HTMLVideoElement;
-      const fsBtn = document.getElementById('toggle-fullscreen-btn') as HTMLButtonElement;
+      const video = document.getElementById(
+        "hero-bg-video",
+      ) as HTMLVideoElement;
+      const fsBtn = document.getElementById(
+        "toggle-fullscreen-btn",
+      ) as HTMLButtonElement;
       if (!video || !fsBtn || (fsBtn as any)._fsAdded) return;
       (fsBtn as any)._fsAdded = true;
 
@@ -213,11 +290,11 @@ import { SITE_CONFIG } from '@/utils/config';
         // Unmute and ensure video is playing when entering fullscreen
         video.muted = false;
         video.volume = 1.0;
-        const soundOffIcon = document.getElementById('sound-off-icon');
-        const soundOnIcon  = document.getElementById('sound-on-icon');
+        const soundOffIcon = document.getElementById("sound-off-icon");
+        const soundOnIcon = document.getElementById("sound-on-icon");
         if (soundOffIcon && soundOnIcon) {
-          soundOffIcon.classList.add('hidden');
-          soundOnIcon.classList.remove('hidden');
+          soundOffIcon.classList.add("hidden");
+          soundOnIcon.classList.remove("hidden");
         }
 
         if (video.paused) {
@@ -225,36 +302,42 @@ import { SITE_CONFIG } from '@/utils/config';
         }
 
         // iOS Safari on iPhone requires webkitEnterFullscreen directly on HTMLVideoElement
-        if (typeof (video as any).webkitEnterFullscreen === 'function') {
+        if (typeof (video as any).webkitEnterFullscreen === "function") {
           (video as any).webkitEnterFullscreen();
-        } else if (typeof (video as any).webkitEnterFullScreen === 'function') {
+        } else if (typeof (video as any).webkitEnterFullScreen === "function") {
           (video as any).webkitEnterFullScreen();
-        } else if (typeof video.requestFullscreen === 'function') {
+        } else if (typeof video.requestFullscreen === "function") {
           video.requestFullscreen().catch(() => {});
-        } else if (typeof (video as any).webkitRequestFullscreen === 'function') {
+        } else if (
+          typeof (video as any).webkitRequestFullscreen === "function"
+        ) {
           (video as any).webkitRequestFullscreen();
-        } else if (typeof (video as any).mozRequestFullScreen === 'function') {
+        } else if (typeof (video as any).mozRequestFullScreen === "function") {
           (video as any).mozRequestFullScreen();
-        } else if (typeof (video as any).msRequestFullscreen === 'function') {
+        } else if (typeof (video as any).msRequestFullscreen === "function") {
           (video as any).msRequestFullscreen();
         }
       };
 
       const exitFullscreen = () => {
-        if (typeof (video as any).webkitExitFullscreen === 'function') {
+        if (typeof (video as any).webkitExitFullscreen === "function") {
           (video as any).webkitExitFullscreen();
-        } else if (typeof document.exitFullscreen === 'function') {
+        } else if (typeof document.exitFullscreen === "function") {
           document.exitFullscreen().catch(() => {});
-        } else if (typeof (document as any).webkitExitFullscreen === 'function') {
+        } else if (
+          typeof (document as any).webkitExitFullscreen === "function"
+        ) {
           (document as any).webkitExitFullscreen();
-        } else if (typeof (document as any).mozCancelFullScreen === 'function') {
+        } else if (
+          typeof (document as any).mozCancelFullScreen === "function"
+        ) {
           (document as any).mozCancelFullScreen();
-        } else if (typeof (document as any).msExitFullscreen === 'function') {
+        } else if (typeof (document as any).msExitFullscreen === "function") {
           (document as any).msExitFullscreen();
         }
       };
 
-      fsBtn.addEventListener('click', (e) => {
+      fsBtn.addEventListener("click", (e) => {
         e.stopPropagation();
         e.preventDefault();
 
@@ -273,21 +356,24 @@ import { SITE_CONFIG } from '@/utils/config';
       setTimeout(fitTaglineWidth, 600);
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initAll);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initAll);
     } else {
       initAll();
     }
-    document.addEventListener('astro:page-load', () => {
+    document.addEventListener("astro:page-load", () => {
       _heroInitDone = false;
       initAll();
     });
 
     let _resizeTimer: ReturnType<typeof setTimeout>;
-    window.addEventListener('resize', () => {
-      clearTimeout(_resizeTimer);
-      _resizeTimer = setTimeout(fitTaglineWidth, 120);
-    }, { passive: true });
+    window.addEventListener(
+      "resize",
+      () => {
+        clearTimeout(_resizeTimer);
+        _resizeTimer = setTimeout(fitTaglineWidth, 120);
+      },
+      { passive: true },
+    );
   </script>
-
 </section>

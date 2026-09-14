@@ -27,7 +27,7 @@ const beritaListSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
   name: `Berita & Informasi ${SITE_CONFIG.name}`,
-  description: 'Arsip berita resmi, prestasi siswa, program unggulan, dan pengumuman terbaru SMAN 1 Nusantara.',
+  description: `Arsip berita resmi, prestasi siswa, program unggulan, dan pengumuman terbaru ${SITE_CONFIG.name}.`,
   url: `${SITE_CONFIG.url}/berita`,
   mainEntity: {
     '@type': 'ItemList',
@@ -60,12 +60,12 @@ const beritaListSchema = {
       overflow: hidden;
     ">
       <div class="container" style="position: relative;">
-        <div class="section-tag">📰 Berita & Informasi</div>
+        <div class="section-tag">Berita &amp; Informasi</div>
         <h1 style="margin: 0.75rem 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
           Berita <span class="accent">Terkini</span>
         </h1>
         <p style="color: #475569; font-size: 1.05rem; max-width: 500px;">
-          Temukan informasi, prestasi, dan kegiatan terbaru dari SMAN 1 Nusantara.
+          Temukan informasi, prestasi, dan kegiatan terbaru dari SDK Maria Fatima Jember.
         </p>
       </div>
     </div>
@@ -132,8 +132,7 @@ const beritaListSchema = {
 
         <!-- Empty state -->
         <div id="berita-empty" style="display: none; text-align: center; padding: 4rem 0;">
-          <p style="font-size: 3rem; margin-bottom: 1rem;">📭</p>
-          <p style="color: #64748b;">Tidak ada berita di kategori ini.</p>
+          <p style="color: #64748b; font-weight: 600;">Tidak ada berita di kategori ini.</p>
         </div>
       </div>
     </section>

@@ -22,7 +22,7 @@ const beritaCollection = defineCollection({
     description: z.string().min(1, 'Deskripsi wajib diisi'),
     pubDate:     z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
-    author:      z.string().default('Redaksi SMAN 1 Nusantara'),
+    author:      z.string().default('Redaksi SDK Maria Fatima'),
     coverImage:  z.string().optional(),
     coverAlt:    z.string().optional(),
     kategori:    z.enum(['Akademik', 'Kegiatan', 'Prestasi', 'Pengumuman', 'Lainnya']).default('Lainnya'),

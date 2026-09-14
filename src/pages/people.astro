@@ -137,13 +137,13 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
                     {guru.role}
                   </p>
                   <p class="text-xs text-slate-500 mt-3 font-normal">
-                    🎓 {guru.education}
+                    <span class="font-semibold text-slate-600">Pendidikan:</span> {guru.education}
                   </p>
                 </div>
               </div>
 
               <div class="px-6 pb-6 pt-0 border-t border-slate-100 text-xs text-slate-400 font-medium">
-                ⏳ {guru.yearsOfService}
+                Masa Pengabdian: {guru.yearsOfService}
               </div>
             </div>
           ))}

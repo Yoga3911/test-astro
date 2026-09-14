@@ -51,8 +51,7 @@
         }`}
         onclick={() => selectTrack(track)}
       >
-        <span>{track.category === 'mars' ? '🎺' : '🎵'}</span>
-        <span class="ml-1.5">{track.title}</span>
+        <span>{track.title}</span>
       </button>
     {/each}
   </div>

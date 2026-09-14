@@ -27,8 +27,8 @@ export const SITE_CONFIG: SiteConfig = {
   npsn:        '20523821',
   akreditasi:  'A (Unggul)',
   email:       'sdkmartimjember@gmail.com',
-  phone:       '(0331) 487886',
-  whatsapp:    '6281234567890',
+  phone:       '0813 5897 7450',
+  whatsapp:    '6281358977450',
   address:     'Jl. R.A. Kartini No.24, Tembaan, Kepatihan, Kec. Kaliwates, Kabupaten Jember, Jawa Timur 68137',
   city:        'Jember, Jawa Timur',
   foundation:  'Perkumpulan Santa Perawan Maria (SPM)',
@@ -42,10 +42,10 @@ export const SITE_CONFIG: SiteConfig = {
   mapsUrl:     'https://www.google.com/maps/dir/?api=1&destination=-8.1713365,113.7008447',
   mapsEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1800!2d113.70059440408045!3d-8.171372828525238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd6943ad8c8d30f%3A0x66813f25e6dc2c7f!2sSDK%20Maria%20Fatima!5e0!3m2!1sid!2sid!4v1787836482664!5m2!1sid!2sid',
   socialMedia: {
-    instagram: 'https://instagram.com/sdkmartimjember',
+    instagram: 'https://www.instagram.com/sdkmariafatimajbr',
     facebook:  'https://facebook.com/sdkmartimjember',
     youtube:   'https://youtube.com/@SDKMariaFatimaJember',
-    whatsapp:  'https://wa.me/6281234567890',
+    whatsapp:  'https://wa.me/6281358977450',
     tiktok:    'https://tiktok.com/@sdkmartimjember',
   },
 };
@@ -78,6 +78,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'People',
     href: '/people',
+    hidden: true,
     children: [
       { label: 'Kepala Sekolah', href: '/people#kepala-sekolah' },
       { label: 'Guru', href: '/people#guru' },
@@ -87,6 +88,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'News & Events',
     href: '/news-events',
+    hidden: true,
     children: [
       { label: 'Artikel', href: '/news-events?kategori=Artikel' },
       { label: 'Berita', href: '/news-events?kategori=Berita' },
@@ -96,6 +98,7 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Media',
     href: '/media',
+    hidden: true,
     children: [
       { label: 'Mars SDK', href: '/media#mars-sdk' },
       { label: 'Jingle UKB', href: '/media#jingle-ukb' },
@@ -106,30 +109,32 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Classroom',
     href: '/classroom',
+    hidden: true,
   },
   {
     label: 'Admission',
     href: '/admission',
+    hidden: true,
   },
 ];
 
 // ─── School Statistics ────────────────────────────────────────────────────
 export const STATS: StatItem[] = [
-  { value: 65,   suffix: '+', label: 'Tahun Melayani',    icon: '🏫' },
-  { value: 680,  suffix: '+', label: 'Siswa Aktif',       icon: '👨‍🎓' },
-  { value: 42,   suffix: '+', label: 'Guru & Karyawan',   icon: '👨‍🏫' },
-  { value: 150,  suffix: '+', label: 'Prestasi Juara',    icon: '🏆' },
+  { value: 65,   suffix: '+', label: 'Tahun Melayani' },
+  { value: 680,  suffix: '+', label: 'Siswa Aktif' },
+  { value: 42,   suffix: '+', label: 'Guru & Karyawan' },
+  { value: 150,  suffix: '+', label: 'Prestasi Juara' },
 ];
 
 // ─── Visi Misi Core Values Tagline ─────────────────────────────────────────
 export const VISI_MISI_DATA = {
-  visi: 'Menjadi sekolah ramah anak yang unggul, berperilaku kasih, bermartabat, dan berwawasan global.',
+  visi: 'Membentuk tunas muda berprestasi, berintegritas, mandiri, dan berjiwa kasih dalam naungan iman Kristiani di era digital.',
   misi: [
-    'Mengembangkan kesadaran literasi digital dalam pemanfaatan teknologi informasi.',
-    'Membangun lingkungan sekolah yang aman, inklusif, ramah, dan menyenangkan bagi setiap anak.',
-    'Menumbuhkan karakter murid berdasarkan nilai Unggul, Kasih, dan Bermartabat.',
-    'Mengembangkan potensi setiap anak dalam hal seni budaya, literasi global, dan numerasi secara berkelanjutan sesuai tahap perkembangannya.',
-    'Membangun kemitraan dengan orang tua dan pemangku kepentingan untuk memastikan hak, perlindungan, dan kesejahteraan anak.',
+    'Menyelenggarakan pendidikan dasar Katolik yang holistik, unggul dalam mutu akademik, dan berkarakter budi pekerti luhur.',
+    'Menanamkan dan menghidupi nilai spiritualitas cinta kasih, kesederhanaan, dan ketaatan seturut teladan Bunda Maria dan para perintis SPM.',
+    'Mengembangkan kecakapan berpikir kritis, kreatif, literasi digital, dan kemandirian belajar sesuai tuntutan abad ke-21.',
+    'Menciptakan lingkungan belajar ramah anak yang aman, inklusif, harmonis, serta menghargai keberagaman suku dan budaya.',
+    'Membangun sinergi kemitraan yang transparan dan harmonis bersama orang tua, gereja, dan masyarakat demi tumbuh kembang optimal anak.',
   ],
   coreValues: [
     { title: 'Unggul (Excellence)', desc: 'Mengembangkan pribadi yang berprestasi, mandiri, berpikir kritis, berinovasi, dan visioner.' },
@@ -146,37 +151,31 @@ export const TUJUAN_SDK = [
     number: 1,
     title: 'Karakter Nilai Unggul, Kasih, dan Bermartabat',
     description: 'Tumbuhnya karakter murid berdasarkan spiritualitas nilai Unggul, Kasih, dan Bermartabat (UKB) yang menjiwai seluruh perilaku sekolah.',
-    icon: '🛡️',
   },
   {
     number: 2,
     title: 'Rasa Aman & Nyaman Bagi Seluruh Warga Sekolah',
     description: 'Terwujudnya lingkungan sekolah ramah anak yang aman, inklusif, bebas perundungan, dan menyenangkan bagi setiap anak.',
-    icon: '🏫',
   },
   {
     number: 3,
     title: 'Kesadaran Literasi Digital & Pemanfaatan TIK',
     description: 'Terwujudnya kesadaran dan kecakapan literasi digital dalam pemanfaatan teknologi informasi dan komunikasi secara cerdas dan bijak.',
-    icon: '💻',
   },
   {
     number: 4,
     title: 'Prestasi Seni Budaya, Literasi & Numerasi Berkelanjutan',
     description: 'Terwujudnya murid yang berprestasi dalam seni budaya, literasi, dan numerasi melalui wadah pembinaan yang terencana dan berkesinambungan.',
-    icon: '🏆',
   },
   {
     number: 5,
     title: 'Kemitraan Hak, Perlindungan & Kesejahteraan Anak',
     description: 'Terjalinnya kemitraan strategis dengan orang tua dan pemangku kepentingan untuk memastikan pemenuhan hak, perlindungan, dan kesejahteraan anak.',
-    icon: '👨‍👩‍👧‍👦',
   },
   {
     number: 6,
     title: 'Pembelajaran IPAS & Matematika dalam Bahasa Inggris',
     description: 'Terselenggaranya pembelajaran IPAS (Sains) dan Matematika bilingual dalam Bahasa Inggris guna membekali siswa berwawasan global.',
-    icon: '🌐',
   },
 ];
 
@@ -186,42 +185,36 @@ export const PROFIL_LULUSAN_SDK = [
     number: 1,
     title: 'Pribadi yang Beriman',
     description: 'Memiliki fondasi iman yang hidup dan mendalam, berakar pada ajaran kasih Allah, dan berbudi pekerti luhur.',
-    icon: '🕊️',
     aspect: 'Spiritualitas & Iman',
   },
   {
     number: 2,
     title: 'Mampu Bernalar Kritis',
     description: 'Menguasai literasi dan numerasi serta mampu berpikir analitis, logis, dan solutif dalam menghadapi permasalahan.',
-    icon: '🧠',
     aspect: 'Nalar Kritis & Logika',
   },
   {
     number: 3,
     title: 'Bijak Mengambil Keputusan',
     description: 'Memiliki kemandirian dan keberanian mengambil keputusan yang benar dan selaras antara kata dan tindakan.',
-    icon: '⚖️',
     aspect: 'Kemandirian & Integritas',
   },
   {
     number: 4,
     title: 'Semangat Kolaboratif',
     description: 'Mampu bekerja sama secara sinergis, komunikatif, menghargai keberagaman, dan memiliki jiwa kepemimpinan.',
-    icon: '🤝',
     aspect: 'Kolaborasi & Kerjasama',
   },
   {
     number: 5,
     title: 'Hati yang Penuh Empati',
     description: 'Peduli terhadap sesama dan lingkungan, berjiwa melayani, santun, serta mengedepankan belas kasih bagi yang lemah.',
-    icon: '❤️',
     aspect: 'Empati & Kepedulian',
   },
   {
     number: 6,
     title: 'Berwawasan Global',
     description: 'Adaptif terhadap kemajuan teknologi digital, berwawasan luas lintas budaya, dan siap bersaing di kancah internasional.',
-    icon: '🌍',
     aspect: 'Wawasan Global & Digital',
   },
 ];
@@ -232,31 +225,26 @@ export const PROFIL_GURU_SDK = [
     number: 1,
     title: 'Adaptif terhadap Teknologi & Kurikulum Mutakhir',
     description: 'Cakap memanfaatkan teknologi informasi dalam pembelajaran serta adaptif terhadap perkembangan kurikulum dan pendekatan pedagogi modern.',
-    icon: '💻',
   },
   {
     number: 2,
     title: 'Teladan dalam Kasih, Pelayanan, dan Kesederhanaan',
     description: 'Menjadi cermin moral dan spiritual melalui sikap hidup yang penuh cinta kasih, ketulusan melayani, dan kesederhanaan hati.',
-    icon: '🕊️',
   },
   {
     number: 3,
     title: 'Mengenali Kebutuhan Belajar, Emosi, dan Perkembangan Murid',
     description: 'Peka terhadap keunikan setiap anak, memahami gaya belajar, kondisi emosional, serta mendampingi fase tumbuh kembang secara personal.',
-    icon: '🌱',
   },
   {
     number: 4,
     title: 'Mengoptimalkan Potensi & Bakat Murid Lewat Pengembangan Diri',
     description: 'Membimbing dan memfasilitasi anak didik dalam mengeksplorasi bakat akademik, minat seni budaya, dan potensi kepemimpinan.',
-    icon: '⭐',
   },
   {
     number: 5,
     title: 'Pelayanan Prima, Komunikatif, dan Solutif kepada Orang Tua',
     description: 'Membangun komunikasi yang transparan, hangat, dan konstruktif bersama orang tua untuk solusi terbaik bagi keberhasilan anak.',
-    icon: '🤝',
   },
 ];
 
@@ -775,7 +763,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/instagram/ig-1.svg',
     type: 'post',
     date: '2 hari lalu',
-    link: 'https://instagram.com/sdkmartimjember',
+    link: 'https://www.instagram.com/sdkmariafatimajbr',
   },
   {
     id: 'ig-2',
@@ -785,7 +773,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/instagram/ig-2.svg',
     type: 'reel',
     date: '4 hari lalu',
-    link: 'https://instagram.com/sdkmartimjember',
+    link: 'https://www.instagram.com/sdkmariafatimajbr',
   },
   {
     id: 'ig-3',
@@ -795,7 +783,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/instagram/ig-3.svg',
     type: 'post',
     date: '1 minggu lalu',
-    link: 'https://instagram.com/sdkmartimjember',
+    link: 'https://www.instagram.com/sdkmariafatimajbr',
   },
   {
     id: 'ig-4',
@@ -805,7 +793,7 @@ export const INSTAGRAM_POSTS: InstagramPost[] = [
     imageUrl: '/images/instagram/ig-4.svg',
     type: 'reel',
     date: '1 minggu lalu',
-    link: 'https://instagram.com/sdkmartimjember',
+    link: 'https://www.instagram.com/sdkmariafatimajbr',
   },
 ];
 

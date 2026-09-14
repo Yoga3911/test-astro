@@ -42,6 +42,7 @@ export interface NavItem {
   label:    string;
   href:     string;
   description?: string;
+  hidden?:  boolean;
   children?: NavItem[];
 }
 

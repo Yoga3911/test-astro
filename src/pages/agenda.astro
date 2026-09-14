@@ -53,8 +53,8 @@ const agendaSchema = sorted.map((item) => ({
 
 <BaseLayout
   title="Agenda & Kegiatan Sekolah"
-  description="Kalender agenda resmi SMAN 1 Nusantara — Jadwal lengkap kegiatan akademik, ujian sekolah, peringatan hari besar, kompetisi OSN, dan ekstrakurikuler."
-  keywords="Agenda SMAN 1 Nusantara, Kalender Akademik SMA, Jadwal Kegiatan Sekolah, Event SMAN 1 Nusantara, Ujian Sekolah"
+  description="Kalender agenda resmi SDK Maria Fatima Jember — Jadwal lengkap kegiatan akademik, ujian sekolah, peringatan hari besar, kompetisi, dan ekstrakurikuler."
+  keywords="Agenda SDK Maria Fatima, Kalender Akademik SD, Jadwal Kegiatan Sekolah, Event SDK Maria Fatima, Ujian Sekolah"
   structuredData={agendaSchema}
 >
 
@@ -69,12 +69,12 @@ const agendaSchema = sorted.map((item) => ({
       position: relative; overflow: hidden;
     ">
       <div class="container">
-        <div class="section-tag">📅 Kegiatan</div>
+        <div class="section-tag">Kegiatan Sekolah</div>
         <h1 style="margin: 0.75rem 0 0.5rem; font-size: clamp(2rem, 4vw, 3rem); color: #0f172a;">
           Agenda <span class="accent">Sekolah</span>
         </h1>
         <p style="color: #475569; font-size: 1.05rem; max-width: 480px;">
-          Kalender kegiatan dan acara penting SMAN 1 Nusantara. Selalu update dan jangan sampai terlewat!
+          Kalender kegiatan dan acara penting SDK Maria Fatima Jember. Selalu update dan jangan sampai terlewat!
         </p>
       </div>
     </div>
@@ -103,7 +103,7 @@ const agendaSchema = sorted.map((item) => ({
         {grouped.upcoming.length > 0 && (
           <div style="margin-bottom: 3rem;">
             <h2 class="reveal" style="font-size: 1.35rem; font-weight: 700; color: #1d4ed8; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
-              🗓️ Akan Datang
+              Akan Datang
             </h2>
 
             <!-- Desktop: Timeline | Mobile: Grid -->
@@ -133,7 +133,7 @@ const agendaSchema = sorted.map((item) => ({
         {grouped.completed.length > 0 && (
           <div>
             <h2 class="reveal" style="font-size: 1.35rem; font-weight: 700; color: #64748b; margin-bottom: 1.25rem;">
-              ✅ Telah Selesai
+              Telah Selesai
             </h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; opacity: 0.85;">
               {grouped.completed.map((agenda, i) => (
@@ -147,8 +147,7 @@ const agendaSchema = sorted.map((item) => ({
 
         {allAgenda.length === 0 && (
           <div style="text-align: center; padding: 6rem 0;">
-            <p style="font-size: 3rem; margin-bottom: 1rem;">📭</p>
-            <p style="color: #64748b;">Belum ada agenda yang dipublikasikan.</p>
+            <p style="color: #64748b; font-weight: 600;">Belum ada agenda yang dipublikasikan.</p>
           </div>
         )}
 

@@ -12,6 +12,7 @@
 import { NAV_ITEMS, SITE_CONFIG } from '@/utils/config';
 
 const pathname = Astro.url.pathname;
+const VISIBLE_NAV_ITEMS = NAV_ITEMS.filter(item => !item.hidden);
 
 function isActive(href: string): boolean {
   if (href === '/') return pathname === '/';
@@ -34,23 +35,18 @@ function isActive(href: string): boolean {
         aria-label={`${SITE_CONFIG.name} - Halaman Utama`}
         class="flex items-center gap-3 shrink-0 focus:outline-hidden focus:ring-2 focus:ring-blue-600 rounded-xl p-1"
       >
-        <!-- Logo Mark -->
-        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 flex items-center justify-center font-heading font-black text-white text-lg shadow-md shadow-blue-900/20 group-hover:scale-105 transition-transform duration-300">
-          MF
-        </div>
-        <div class="flex flex-col">
-          <span class="font-heading font-extrabold text-base sm:text-lg text-slate-900 leading-tight group-hover:text-blue-700 transition-colors whitespace-nowrap">
-            {SITE_CONFIG.shortName}
-          </span>
-          <span class="text-xs text-amber-600 font-semibold tracking-wide flex items-center gap-1 whitespace-nowrap">
-            <span>Kabupaten Jember</span>
-          </span>
-        </div>
+        <!-- School Logo (Horizontal) -->
+        <img
+          src="/logo/logo-horizontal.png"
+          alt="SDK Maria Fatima Jember"
+          class="h-12 w-auto object-contain select-none"
+          loading="eager"
+        />
       </a>
 
       <!-- Desktop Navigation Menu (Guaranteed Single Line / No Overlap) -->
       <ul id="desktop-nav" role="list" class="hidden xl:flex items-center gap-1.5 2xl:gap-3 list-none m-0 p-0 flex-nowrap shrink-0">
-        {NAV_ITEMS.map((item) => {
+        {VISIBLE_NAV_ITEMS.map((item) => {
           const hasChildren = item.children && item.children.length > 0;
           const active = isActive(item.href);
 
@@ -115,7 +111,7 @@ function isActive(href: string): boolean {
       <div class="flex items-center gap-3 shrink-0">
         <a
           href="/admission"
-          class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-800 hover:to-indigo-700 shadow-md shadow-blue-700/20 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 whitespace-nowrap shrink-0"
+          class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 hover:from-blue-800 hover:to-blue-900 shadow-md shadow-blue-700/20 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 whitespace-nowrap shrink-0"
         >
           <span>SPMB Online</span>
           <span>→</span>
@@ -145,7 +141,7 @@ function isActive(href: string): boolean {
     class="xl:hidden fixed inset-x-0 top-20 bg-white/98 backdrop-blur-xl border-b border-slate-200/90 shadow-2xl max-h-[calc(100vh-5rem)] overflow-y-auto invisible opacity-0 -translate-y-4 pointer-events-none transition-all duration-300 ease-out z-40"
   >
     <div class="px-4 sm:px-6 py-6 space-y-3">
-      {NAV_ITEMS.map((item, idx) => {
+      {VISIBLE_NAV_ITEMS.map((item, idx) => {
         const hasChildren = item.children && item.children.length > 0;
         const active = isActive(item.href);
 
@@ -221,10 +217,10 @@ function isActive(href: string): boolean {
       })}
 
       <!-- Mobile CTA Buttons -->
-      <div class="mobile-nav-item pt-4 border-t border-slate-200 flex flex-col gap-3" style={`--item-index: ${NAV_ITEMS.length}`}>
+      <div class="mobile-nav-item pt-4 border-t border-slate-200 flex flex-col gap-3" style={`--item-index: ${VISIBLE_NAV_ITEMS.length}`}>
         <a
           href="/admission"
-          class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-600 hover:from-blue-800 hover:to-indigo-700 text-center shadow-lg shadow-blue-700/25 active:scale-95 transition-all"
+          class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-center shadow-lg shadow-blue-700/25 active:scale-95 transition-all"
         >
           <span>Pendaftaran Siswa Baru (SPMB Online)</span>
           <span>→</span>
@@ -235,7 +231,10 @@ function isActive(href: string): boolean {
           rel="noopener noreferrer"
           class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 text-center text-sm transition-colors active:scale-95"
         >
-          <span>💬 Hubungi Kami via WhatsApp</span>
+          <svg class="w-4 h-4 text-emerald-600" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+          </svg>
+          <span>Hubungi Kami via WhatsApp</span>
         </a>
       </div>
     </div>

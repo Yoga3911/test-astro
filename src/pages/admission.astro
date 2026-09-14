@@ -6,108 +6,120 @@
  * - Admission / SPMB / Registration: Promosi Siswa Baru, Alur Seleksi, Syarat, Biaya & Formulir Online
  */
 
-import BaseLayout from '@/layouts/BaseLayout.astro';
-import Header from '@/components/Header.astro';
-import Footer from '@/components/Footer.astro';
-import KontakForm from '@/components/KontakForm.svelte';
-import { SITE_CONFIG } from '@/utils/config';
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import KontakForm from "@/components/KontakForm.svelte";
+import { SITE_CONFIG } from "@/utils/config";
 
 // ─── Gelombang Pendaftaran ──────────────────────────────────────────────────
 const JADWAL_GELOMBANG = [
   {
-    nama: 'Gelombang 1 (Early Bird & Khusus TK SPM)',
-    periode: '1 Oktober – 31 Desember 2026',
-    benefit: 'Potongan Uang Gedung 25% + Bebas Biaya Formulir Pendaftaran',
-    status: 'Sedang Dibuka',
-    badgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+    nama: "Gelombang 1 (Early Bird & Khusus TK SPM)",
+    periode: "1 Oktober – 31 Desember 2026",
+    benefit: "Potongan Uang Gedung 25% + Bebas Biaya Formulir Pendaftaran",
+    status: "Sedang Dibuka",
+    badgeClass: "bg-blue-100 text-blue-800 border-blue-300",
   },
   {
-    nama: 'Gelombang 2 (Reguler)',
-    periode: '2 Januari – 31 Maret 2027',
-    benefit: 'Potongan Uang Gedung 15% untuk Saudara Kandung / Alumni',
-    status: 'Akan Datang',
-    badgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+    nama: "Gelombang 2 (Reguler)",
+    periode: "2 Januari – 31 Maret 2027",
+    benefit: "Potongan Uang Gedung 15% untuk Saudara Kandung / Alumni",
+    status: "Akan Datang",
+    badgeClass: "bg-blue-100 text-blue-800 border-blue-300",
   },
   {
-    nama: 'Gelombang 3 (Sisa Kuota)',
-    periode: '1 April – 30 Juni 2027',
-    benefit: 'Pendaftaran reguler selama kuota kelas masih tersedia',
-    status: 'Akan Datang',
-    badgeClass: 'bg-slate-100 text-slate-700 border-slate-300',
+    nama: "Gelombang 3 (Sisa Kuota)",
+    periode: "1 April – 30 Juni 2027",
+    benefit: "Pendaftaran reguler selama kuota kelas masih tersedia",
+    status: "Akan Datang",
+    badgeClass: "bg-slate-100 text-slate-700 border-slate-300",
   },
 ];
 
 // ─── Syarat Pendaftaran SDK Maria Fatima ────────────────────────────────────
 const SYARAT_PENDAFTARAN = [
-  'Berusia minimal 6 tahun pada bulan Juli 2027 (atau 5 tahun 6 bulan dengan rekomendasi psikolog/TK).',
-  'Fotokopi Akta Kelahiran anak (2 lembar).',
-  'Fotokopi Kartu Keluarga (KK) dan KTP kedua Orang Tua/Wali (2 lembar).',
-  'Fotokopi Surat Baptis (bagi yang beragama Katolik/Kristen).',
-  'Pas foto berwarna ukuran 3×4 (3 lembar).',
-  'Mengisi formulir pendaftaran SPMB SDK Maria Fatima (online atau offline di sekretariat).',
+  "Berusia minimal 6 tahun pada bulan Juli 2027 (atau 5 tahun 6 bulan dengan rekomendasi psikolog/TK).",
+  "Fotokopi Akta Kelahiran anak (2 lembar).",
+  "Fotokopi Kartu Keluarga (KK) dan KTP kedua Orang Tua/Wali (2 lembar).",
+  "Fotokopi Surat Baptis (bagi yang beragama Katolik/Kristen).",
+  "Pas foto berwarna ukuran 3×4 (3 lembar).",
+  "Mengisi formulir pendaftaran SPMB SDK Maria Fatima (online atau offline di sekretariat).",
 ];
 
 // ─── Alur Pendaftaran ───────────────────────────────────────────────────────
 const ALUR_STEPS = [
   {
-    step: '1',
-    title: 'Pengisian Formulir',
-    desc: 'Orang tua mengisi formulir online di website ini atau mengambil formulir di kantor TU SDK Maria Fatima.',
-    icon: '📝',
+    step: "01",
+    title: "Pengisian Formulir",
+    desc: "Orang tua mengisi formulir online di website ini atau mengambil formulir di kantor TU SDK Maria Fatima.",
   },
   {
-    step: '2',
-    title: 'Observasi Kesiapan Belajar',
-    desc: 'Sesi ramah anak untuk mengenal minat, bakat motorik, bahasa, dan kemandirian ananda bersama guru.',
-    icon: '🧸',
+    step: "02",
+    title: "Observasi Kesiapan Belajar",
+    desc: "Sesi ramah anak untuk mengenal minat, bakat motorik, bahasa, dan kemandirian ananda bersama guru.",
   },
   {
-    step: '3',
-    title: 'Wawancara Orang Tua',
-    desc: 'Penyamaan visi dan misi pendidikan antara pihak sekolah dan orang tua murid.',
-    icon: '🤝',
+    step: "03",
+    title: "Wawancara Orang Tua",
+    desc: "Penyamaan visi dan misi pendidikan antara pihak sekolah dan orang tua murid.",
   },
   {
-    step: '4',
-    title: 'Daftar Ulang & Pengukuran Seragam',
-    desc: 'Penyelesaian administrasi pendaftaran ulang dan pengambilan paket seragam serta buku.',
-    icon: '🎒',
+    step: "04",
+    title: "Daftar Ulang & Pengukuran Seragam",
+    desc: "Penyelesaian administrasi pendaftaran ulang dan pengambilan paket seragam serta buku.",
   },
 ];
 
 const ppdbSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'WebPage',
+  "@context": "https://schema.org",
+  "@type": "WebPage",
   name: `Admission & SPMB Online ${SITE_CONFIG.name}`,
-  description: `Informasi resmi pendaftaran peserta didik baru (SPMB) ${SITE_CONFIG.name} Tahun Ajaran 2026/2027.`,
+  description: `Informasi resmi pendaftaran peserta didik baru (SPMB) ${SITE_CONFIG.name} Tahun Ajaran 2027/2028.`,
   url: `${SITE_CONFIG.url}/admission`,
 };
 ---
 
 <BaseLayout
-  title="Admission — SPMB Online 2026/2027"
-  description="Penerimaan Peserta Didik Baru (SPMB) SDK Maria Fatima Jember Tahun Ajaran 2026/2027 — Alur, Syarat, Jadwal & Form Pendaftaran."
+  title="Admission — SPMB Online 2027/2028"
+  description="Penerimaan Peserta Didik Baru (SPMB) SDK Maria Fatima Jember Tahun Ajaran 2027/2028 — Alur, Syarat, Jadwal & Form Pendaftaran."
   structuredData={ppdbSchema}
 >
   <Header />
 
   <main id="main-content">
-    
     <!-- Hero Header -->
-    <section class="bg-gradient-to-b from-blue-50/80 via-white to-slate-50 border-b border-slate-200/80 py-16 sm:py-20 relative overflow-hidden">
+    <section
+      class="bg-gradient-to-b from-blue-50/80 via-white to-slate-50 border-b border-slate-200/80 py-16 sm:py-20 relative overflow-hidden"
+    >
       <!-- Decorative ambient glows -->
-      <div class="absolute top-0 right-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
-      <div class="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+      <div
+        class="absolute top-0 right-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl -z-10 pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 w-80 h-80 bg-amber-100/60 rounded-full blur-3xl -z-10 pointer-events-none"
+      >
+      </div>
 
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs">
-          <span>SPMB TAHUN AJARAN 2026/2027</span>
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 space-y-4"
+      >
+        <div
+          class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase tracking-wider border border-blue-200 shadow-xs"
+        >
+          <span>SPMB TAHUN AJARAN 2027/2028</span>
         </div>
-        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900">
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl font-heading font-black tracking-tight text-slate-900"
+        >
           Admission: SDK Maria Fatima
         </h1>
-        <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
-          Mari bergabung bersama keluarga besar komunitas pembelajar cerdas, berkarakter, dan beriman teguh di SDK Maria Fatima Jember.
+        <p
+          class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed"
+        >
+          Mari bergabung bersama keluarga besar komunitas pembelajar cerdas,
+          berkarakter, dan beriman teguh di SDK Maria Fatima Jember.
         </p>
       </div>
     </section>
@@ -116,54 +128,73 @@ const ppdbSchema = {
     <section class="py-16 sm:py-24 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-14">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase mb-3"
+          >
             <span>PERIODE PENDAFTARAN</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+          <h2
+            class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight"
+          >
             Gelombang Penerimaan Siswa Baru
           </h2>
           <p class="text-slate-600 mt-2 text-base">
-            Dapatkan penawaran khusus dan kemudahan pendaftaran pada gelombang awal pendaftaran.
+            Dapatkan penawaran khusus dan kemudahan pendaftaran pada gelombang
+            awal pendaftaran.
           </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {JADWAL_GELOMBANG.map((g, idx) => (
-            <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-              <div class="space-y-4">
-                <div class="flex items-center justify-between">
-                  <span class={`px-3 py-1 rounded-full text-xs font-bold border ${g.badgeClass}`}>
-                    {g.status}
-                  </span>
-                  <span class="text-xs font-extrabold text-slate-400">#0{idx + 1}</span>
+          {
+            JADWAL_GELOMBANG.map((g, idx) => (
+              <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                <div class="space-y-4">
+                  <div class="flex items-center justify-between">
+                    <span
+                      class={`px-3 py-1 rounded-full text-xs font-bold border ${g.badgeClass}`}
+                    >
+                      {g.status}
+                    </span>
+                    <span class="text-xs font-extrabold text-slate-400">
+                      #0{idx + 1}
+                    </span>
+                  </div>
+
+                  <h3 class="text-xl font-heading font-black text-slate-900 leading-snug">
+                    {g.nama}
+                  </h3>
+
+                  <div class="p-3.5 rounded-2xl bg-white border border-slate-100 space-y-1">
+                    <div class="text-[11px] font-bold text-slate-400 uppercase">
+                      Periode:
+                    </div>
+                    <div class="text-sm font-semibold text-blue-800">
+                      {g.periode}
+                    </div>
+                  </div>
+
+                  <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/60 space-y-1">
+                    <div class="text-[11px] font-bold text-amber-800 uppercase">
+                      Keuntungan:
+                    </div>
+                    <div class="text-xs font-semibold text-amber-950">
+                      {g.benefit}
+                    </div>
+                  </div>
                 </div>
 
-                <h3 class="text-xl font-heading font-black text-slate-900 leading-snug">
-                  {g.nama}
-                </h3>
-
-                <div class="p-3.5 rounded-2xl bg-white border border-slate-100 space-y-1">
-                  <div class="text-[11px] font-bold text-slate-400 uppercase">Periode:</div>
-                  <div class="text-sm font-semibold text-blue-800">{g.periode}</div>
-                </div>
-
-                <div class="p-3.5 rounded-2xl bg-amber-50 border border-amber-200/60 space-y-1">
-                  <div class="text-[11px] font-bold text-amber-800 uppercase">Keuntungan:</div>
-                  <div class="text-xs font-semibold text-amber-950">{g.benefit}</div>
+                <div class="pt-6">
+                  <a
+                    href="#formulir-online"
+                    class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow-md transition-colors text-center"
+                  >
+                    <span>Daftar di Gelombang Ini</span>
+                    <span>→</span>
+                  </a>
                 </div>
               </div>
-
-              <div class="pt-6">
-                <a
-                  href="#formulir-online"
-                  class="w-full inline-flex items-center justify-center gap-2 py-3 rounded-2xl bg-blue-700 hover:bg-blue-800 text-white font-bold text-sm shadow-md transition-colors text-center"
-                >
-                  <span>Daftar di Gelombang Ini</span>
-                  <span>→</span>
-                </a>
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
@@ -172,40 +203,47 @@ const ppdbSchema = {
     <section class="py-16 sm:py-24 bg-slate-50">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase mb-3">
+          <div
+            class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold uppercase mb-3"
+          >
             <span>TAHAPAN ADMISSION</span>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+          <h2
+            class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight"
+          >
             Alur Penerimaan Siswa Baru
           </h2>
           <p class="text-slate-600 mt-2 text-base">
-            Proses seleksi yang ramah anak dan transparan untuk kenyamanan orang tua dan calon murid.
+            Proses seleksi yang ramah anak dan transparan untuk kenyamanan orang
+            tua dan calon murid.
           </p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {ALUR_STEPS.map((step) => (
-            <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4">
-              <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl font-bold">
-                    {step.icon}
-                  </span>
-                  <span class="text-xs font-heading font-black px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700">
-                    LANGKAH {step.step}
-                  </span>
+          {
+            ALUR_STEPS.map((step) => (
+              <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4">
+                <div>
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center text-lg font-heading font-black">
+                      {step.step}
+                    </span>
+                    <span class="text-[11px] font-heading font-black uppercase px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600">
+                      Langkah
+                    </span>
+                  </div>
+
+                  <h3 class="text-lg font-heading font-black text-slate-900 mb-2">
+                    {step.title}
+                  </h3>
+
+                  <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                    {step.desc}
+                  </p>
                 </div>
-
-                <h3 class="text-lg font-heading font-black text-slate-900 mb-2">
-                  {step.title}
-                </h3>
-
-                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
-                  {step.desc}
-                </p>
               </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </div>
     </section>
@@ -214,67 +252,89 @@ const ppdbSchema = {
     <section id="formulir-online" class="py-16 sm:py-24 bg-white scroll-mt-24">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
           <!-- Persyaratan Left -->
           <div class="lg:col-span-5 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase">
+            <div
+              class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs font-bold uppercase"
+            >
               <span>BERKAS PERSYARATAN</span>
             </div>
 
-            <h2 class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight">
+            <h2
+              class="text-3xl sm:text-4xl font-heading font-black text-slate-900 tracking-tight"
+            >
               Syarat &amp; Dokumen SPMB
             </h2>
 
             <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-              Pastikan berkas-berkas di bawah ini disiapkan untuk verifikasi kelengkapan administrasi peserta didik baru:
+              Pastikan berkas-berkas di bawah ini disiapkan untuk verifikasi
+              kelengkapan administrasi peserta didik baru:
             </p>
 
             <ul class="space-y-3 pt-2">
-              {SYARAT_PENDAFTARAN.map((syarat) => (
-                <li class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm font-medium text-slate-700">
-                  <span class="text-emerald-600 font-bold text-base mt-0.5">✓</span>
-                  <span class="leading-relaxed">{syarat}</span>
-                </li>
-              ))}
+              {
+                SYARAT_PENDAFTARAN.map((syarat) => (
+                  <li class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm font-medium text-slate-700">
+                    <span class="text-blue-600 font-bold text-base mt-0.5">>
+                      ✓
+                    </span>
+                    <span class="leading-relaxed">{syarat}</span>
+                  </li>
+                ))
+              }
             </ul>
 
-            <div class="p-6 rounded-3xl bg-blue-50 border border-blue-200/80 space-y-3">
-              <div class="font-heading font-bold text-sm text-blue-900 flex items-center gap-2">
-                <span>💬 Butuh Bantuan Pendaftaran?</span>
+            <div
+              class="p-6 rounded-3xl bg-blue-50 border border-blue-200/80 space-y-3"
+            >
+              <div
+                class="font-heading font-bold text-sm text-blue-900 flex items-center gap-2"
+              >
+                <span>Butuh Bantuan Pendaftaran?</span>
               </div>
               <p class="text-xs text-blue-700 leading-relaxed">
-                Tim Admisi SDK Maria Fatima siap membantu Anda dalam pengisian formulir, konsultasi biaya, maupun jadwal observasi.
+                Tim Admisi SDK Maria Fatima siap membantu Anda dalam pengisian
+                formulir, konsultasi biaya, maupun jadwal observasi.
               </p>
-              <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20Admisi%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20syarat%20dan%20pendaftaran%20SPMB`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 text-xs font-bold text-emerald-700 hover:underline"
-              >
-                <span>Hubungi CS SPMB via WhatsApp (+62 812-3456-7890) →</span>
-              </a>
+              <div class="flex flex-col gap-1.5 pt-1">
+                <a
+                  href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20Admisi%20SDK%20Maria%20Fatima,%20saya%20ingin%20konsultasi%20syarat%20dan%20pendaftaran%20SPMB`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 text-xs font-bold text-blue-700 hover:underline"
+                >
+                  <span>Bpk. Alex (WhatsApp): 0813 5897 7450 →</span>
+                </a>
+                <a
+                  href="tel:081217513124"
+                  class="inline-flex items-center gap-2 text-xs font-bold text-blue-700 hover:underline"
+                >
+                  <span>Ibu Kikis: 0812 1751 3124 →</span>
+                </a>
+              </div>
             </div>
           </div>
 
           <!-- Form Online Right (Menggunakan Svelte KontakForm / SPMB Form) -->
-          <div class="lg:col-span-7 bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-lg">
+          <div
+            class="lg:col-span-7 bg-slate-50 rounded-3xl p-6 sm:p-10 border border-slate-200/90 shadow-lg"
+          >
             <div class="mb-6 border-b border-slate-200 pb-4">
               <h3 class="text-2xl font-heading font-black text-slate-900">
                 Formulir Pendaftaran Siswa Baru
               </h3>
               <p class="text-xs sm:text-sm text-slate-500 mt-1">
-                Silakan lengkapi data calon peserta didik dan data orang tua/wali di bawah ini.
+                Silakan lengkapi data calon peserta didik dan data orang
+                tua/wali di bawah ini.
               </p>
             </div>
 
             <!-- Interactivity Component -->
             <KontakForm client:visible />
           </div>
-
         </div>
       </div>
     </section>
-
   </main>
 
   <Footer />
