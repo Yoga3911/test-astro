@@ -68,11 +68,11 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Heritage',
     href: '/heritage',
     children: [
-      { label: '1. SPM', href: '/heritage#spm', description: 'Sejarah Kongregasi SPM & Perkumpulan Dharmaputri' },
-      { label: '2. JULIE BILLIART', href: '/heritage#julie-billiart', description: 'Inspirasi Pendidikan Berakar Iman & Kasih' },
-      { label: '3. PATER MATTIAS WOLF', href: '/heritage#pater-mattias-wolf', description: 'Perintis & Pendiri Kongregasi Suster SPM' },
-      { label: '4. Tota Christi Per Mariam', href: '/heritage#tota-christi', description: 'Motto & Makna Filosofis Lambang Kongregasi SPM' },
-      { label: '5. SIKARU', href: '/heritage#sikaru', description: 'Maskot Karakter Resmi Perkumpulan Dharmaputri' },
+      { label: 'SPM', href: '/heritage#spm' },
+      { label: 'JULIE BILLIART', href: '/heritage#julie-billiart' },
+      { label: 'PATER MATTIAS WOLF', href: '/heritage#pater-mattias-wolf' },
+      { label: 'Tota Christi Per Mariam', href: '/heritage#tota-christi' },
+      { label: 'SIKARU', href: '/heritage#sikaru' },
     ],
   },
   {
