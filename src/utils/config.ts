@@ -68,11 +68,11 @@ export const NAV_ITEMS: NavItem[] = [
     label: 'Heritage',
     href: '/heritage',
     children: [
-      { label: 'Maria Fatima', href: '/heritage#maria-fatima' },
-      { label: 'SPM', href: '/heritage#spm' },
-      { label: 'St. Julie Billiart', href: '/heritage#st-julie-billiart' },
-      { label: 'Pater Matthias Wolff', href: '/heritage#pater-matthias-wolff' },
-      { label: 'SIKARU', href: '/heritage#sikaru' },
+      { label: '1. SPM', href: '/heritage#spm', description: 'Sejarah Kongregasi SPM & Perkumpulan Dharmaputri' },
+      { label: '2. JULIE BILLIART', href: '/heritage#julie-billiart', description: 'Inspirasi Pendidikan Berakar Iman & Kasih' },
+      { label: '3. PATER MATTIAS WOLF', href: '/heritage#pater-mattias-wolf', description: 'Perintis & Pendiri Kongregasi Suster SPM' },
+      { label: '4. Tota Christi Per Mariam', href: '/heritage#tota-christi', description: 'Motto & Makna Filosofis Lambang Kongregasi SPM' },
+      { label: '5. SIKARU', href: '/heritage#sikaru', description: 'Maskot Karakter Resmi Perkumpulan Dharmaputri' },
     ],
   },
   {
@@ -282,10 +282,10 @@ export const CORE_VALUES_UKB: CoreValueUKB[] = [
       'Semangat Melayani & Kepedulian Sosial',
     ],
     theme: {
-      badge: 'from-rose-500 to-pink-600 text-white',
-      borderHover: 'hover:border-rose-400 hover:shadow-rose-900/10',
-      textAccent: 'text-rose-600',
-      lightBg: 'bg-rose-50/60',
+      badge: 'from-red-500 to-red-600 text-white',
+      borderHover: 'hover:border-red-500 hover:shadow-red-900/10',
+      textAccent: 'text-red-600',
+      lightBg: 'bg-red-50/70',
     },
   },
   {
@@ -301,10 +301,10 @@ export const CORE_VALUES_UKB: CoreValueUKB[] = [
       'Bertanggung Jawab, Beretika & Membawa Kebaikan',
     ],
     theme: {
-      badge: 'from-amber-500 to-amber-700 text-white',
-      borderHover: 'hover:border-amber-400 hover:shadow-amber-900/10',
-      textAccent: 'text-amber-700',
-      lightBg: 'bg-amber-50/60',
+      badge: 'from-yellow-400 to-yellow-500 text-slate-900',
+      borderHover: 'hover:border-yellow-400 hover:shadow-yellow-500/10',
+      textAccent: 'text-yellow-700',
+      lightBg: 'bg-yellow-50/80',
     },
   },
 ];

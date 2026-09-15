@@ -355,5 +355,12 @@ function isActive(href: string): boolean {
         closeMenu();
       }
     });
+
+    // Close when any link inside drawer is clicked
+    drawer.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
   }
 </script>
