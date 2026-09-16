@@ -147,7 +147,7 @@ const ppdbSchema = {
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {
             JADWAL_GELOMBANG.map((g, idx) => (
-              <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+              <div class="group bg-slate-50 rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 hover:bg-white hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
                 <div class="space-y-4">
                   <div class="flex items-center justify-between">
                     <span
@@ -155,16 +155,16 @@ const ppdbSchema = {
                     >
                       {g.status}
                     </span>
-                    <span class="text-xs font-extrabold text-slate-400">
-                      #0{idx + 1}
+                    <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                      0{idx + 1}
                     </span>
                   </div>
 
-                  <h3 class="text-xl font-heading font-black text-slate-900 leading-snug">
+                  <h3 class="text-xl font-heading font-black text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
                     {g.nama}
                   </h3>
 
-                  <div class="p-3.5 rounded-2xl bg-white border border-slate-100 space-y-1">
+                  <div class="p-3.5 rounded-2xl bg-white border border-slate-100 space-y-1 group-hover:border-blue-100 transition-colors">
                     <div class="text-[11px] font-bold text-slate-400 uppercase">
                       Periode:
                     </div>
@@ -225,18 +225,18 @@ const ppdbSchema = {
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {
             ALUR_STEPS.map((step) => (
-              <div class="bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm flex flex-col justify-between space-y-4">
+              <div class="group bg-white rounded-3xl p-7 border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-4">
                 <div>
                   <div class="flex items-center justify-between mb-4">
-                    <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center text-lg font-heading font-black">
+                    <span class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center text-lg font-heading font-black shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
                       {step.step}
                     </span>
-                    <span class="text-[11px] font-heading font-black uppercase px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600">
+                    <span class="text-[11px] font-heading font-black uppercase px-2.5 py-1 rounded-lg bg-slate-100 text-slate-600 group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors">
                       Langkah
                     </span>
                   </div>
 
-                  <h3 class="text-lg font-heading font-black text-slate-900 mb-2">
+                  <h3 class="text-lg font-heading font-black text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
                     {step.title}
                   </h3>
 
@@ -277,8 +277,8 @@ const ppdbSchema = {
             <ul class="space-y-3 pt-2">
               {
                 SYARAT_PENDAFTARAN.map((syarat) => (
-                  <li class="flex items-start gap-3 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 text-xs sm:text-sm font-medium text-slate-700">
-                    <span class="text-blue-600 font-bold text-base mt-0.5">>
+                  <li class="group flex items-start gap-3.5 p-3.5 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 text-xs sm:text-sm font-medium text-slate-700">
+                    <span class="w-6 h-6 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
                       ✓
                     </span>
                     <span class="leading-relaxed">{syarat}</span>

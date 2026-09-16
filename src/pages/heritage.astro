@@ -24,37 +24,31 @@ const LOGO_ELEMENTS = [
     title: 'Salib Kristus (P)',
     desc: 'Untuk membawa dan melahirkan kehidupan sejati, hanya mungkin melalui jalan salib Kristus sebagaimana dialami Maria: jalan hati yang tertusuk pedang.',
     badge: 'KORBAN & KASIH',
-    color: 'border-red-200 bg-red-50/50 text-red-800',
   },
   {
     title: 'Inisial Bunda Maria (M)',
     desc: 'Jalan kita untuk seutuhnya menjadi milik Kristus ditempuh melalui jalan Maria, yaitu jalan yang setia mengandung, memelihara, dan melahirkan Sabda Allah.',
     badge: 'JALAN MARIA',
-    color: 'border-blue-200 bg-blue-50/50 text-blue-800',
   },
   {
     title: 'Bunga Matahari Mekar',
     desc: 'Melambangkan keterbukaan dan keterarahan hati kepada Kristus Sang Matahari Sejati. Seperti rahim Maria yang siap menerima limpahan cahaya daya hidup Allah.',
     badge: 'KETERARAHAN HATI',
-    color: 'border-amber-200 bg-amber-50/50 text-amber-800',
   },
   {
     title: 'Matahari di Tengah Salib & Sinar',
     desc: 'Keberadaan hidup kita senantiasa bernaung dalam kuasa Allah dan Roh Kudus, menyerap kehidupan dari Kristus lalu menyebarkannya ke dunia melalui perutusan karya.',
     badge: 'PERUTUSAN DUNIA',
-    color: 'border-yellow-200 bg-yellow-50/50 text-yellow-800',
   },
   {
     title: 'Biji & Batang pada Salib',
     desc: 'Biji melambangkan lubuk hati (rahim jiwa) yang mengandung sabda benih kehidupan ilahi. Batang melambangkan kesatuan hati dengan Kristus dan kekuatan doa yang mengalir dalam karya.',
     badge: 'DOA & KARYA',
-    color: 'border-blue-200 bg-blue-50/50 text-blue-800',
   },
   {
     title: 'Lingkaran & Warna Kuning Paskah',
     desc: 'Lingkaran melambangkan persekutuan satu keluarga persaudaraan (fraternitas). Warna kuning melambangkan kemuliaan sukacita Paskah yang lahir sesudah dukacita salib.',
     badge: 'PERSAUDARAAN & PASKAH',
-    color: 'border-blue-200 bg-blue-50/50 text-blue-800',
   },
 ];
 
@@ -113,20 +107,20 @@ const MASKOT_ELEMENTS = [
         </p>
 
         <!-- Quick Navigation Jump Pills -->
-        <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
-          <a href="#spm" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+        <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 pt-4">
+          <a href="#spm" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-sm sm:text-base font-bold transition-all shadow-xs hover:shadow-md hover:scale-105 active:scale-95">
             SPM
           </a>
-          <a href="#julie-billiart" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+          <a href="#julie-billiart" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-sm sm:text-base font-bold transition-all shadow-xs hover:shadow-md hover:scale-105 active:scale-95">
             Julie Billiart
           </a>
-          <a href="#pater-mattias-wolf" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+          <a href="#pater-mattias-wolf" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-sm sm:text-base font-bold transition-all shadow-xs hover:shadow-md hover:scale-105 active:scale-95">
             Pater Mattias Wolf
           </a>
-          <a href="#tota-christi" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+          <a href="#tota-christi" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-sm sm:text-base font-bold transition-all shadow-xs hover:shadow-md hover:scale-105 active:scale-95">
             Tota Christi Per Mariam
           </a>
-          <a href="#sikaru" class="px-3.5 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 text-slate-700 hover:text-blue-700 text-xs font-bold transition-all shadow-xs">
+          <a href="#sikaru" class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-white hover:bg-blue-50 border border-slate-200 hover:border-blue-300 text-slate-800 hover:text-blue-700 text-sm sm:text-base font-bold transition-all shadow-xs hover:shadow-md hover:scale-105 active:scale-95">
             SIKARU
           </a>
         </div>
@@ -177,17 +171,25 @@ const MASKOT_ELEMENTS = [
             </p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-              <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2">
-                <div class="text-xs font-extrabold text-blue-700 uppercase tracking-wider">A. Panggilan Misi (1926)</div>
-                <h3 class="text-base font-heading font-black text-slate-900">Kebutuhan Tenaga Religius Wanita</h3>
+              <div class="group p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300">
+                <div class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-blue-100 text-blue-800 text-xs font-extrabold uppercase tracking-wider transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white shadow-2xs">
+                  A. Panggilan Misi (1926)
+                </div>
+                <h3 class="text-base font-heading font-black text-slate-900 group-hover:text-blue-700 transition-colors">
+                  Kebutuhan Tenaga Religius Wanita
+                </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
                   Pada dekade 1920-an, Vikariat Apostolik di Hindia Belanda (khususnya wilayah Jawa Timur) membutuhkan tenaga religius wanita untuk menangani karya sosial dan pendidikan Katolik bagi masyarakat lokal, keturunan Tionghoa, dan Eropa. Atas undangan pimpinan Gereja setempat, pimpinan Kongregasi SPM di Amersfoort mengutus rombongan perintis pertama ke Indonesia.
                 </p>
               </div>
 
-              <div class="p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2">
-                <div class="text-xs font-extrabold text-amber-700 uppercase tracking-wider">B. Pendaratan Perintis</div>
-                <h3 class="text-base font-heading font-black text-slate-900">Probolinggo, 11 Oktober 1926</h3>
+              <div class="group p-6 rounded-3xl bg-slate-50 border border-slate-200/90 space-y-2 hover:bg-white hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300">
+                <div class="inline-flex items-center justify-center px-3 py-1 rounded-xl bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white shadow-2xs">
+                  B. Pendaratan Perintis
+                </div>
+                <h3 class="text-base font-heading font-black text-slate-900 group-hover:text-amber-700 transition-colors">
+                  Probolinggo, 11 Oktober 1926
+                </h3>
                 <p class="text-xs sm:text-sm text-slate-600 leading-relaxed text-justify font-normal">
                   Pada 11 Oktober 1926, enam orang suster misionaris pertama tiba dan mendarat di Probolinggo, Jawa Timur, dipimpin oleh Bunda Stanislas, SPM. Kota Probolinggo dipilih sebagai pos misi pertama dan menjadi cikal bakal (rumah induk/provinsialat) perkembangan Kongregasi SPM di tanah air.
                 </p>
@@ -200,23 +202,52 @@ const MASKOT_ELEMENTS = [
                 C. Perkembangan Karya Awal di Indonesia:
               </div>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
-                  <div class="font-bold text-sm text-blue-800 mb-1">1. Pendidikan</div>
-                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                    Mendirikan sekolah-sekolah rakyat, TK, SD, hingga jenjang menengah (kini bernaung di bawah Perkumpulan Dharmaputri).
-                  </p>
+                <div class="group bg-white p-5 rounded-2xl border border-blue-100/90 shadow-xs hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2.5">
+                      <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                        01
+                      </span>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-blue-700 transition-colors">
+                        Pendidikan
+                      </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Mendirikan sekolah-sekolah rakyat, TK, SD, hingga jenjang menengah (kini bernaung di bawah Perkumpulan Dharmaputri).
+                    </p>
+                  </div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
-                  <div class="font-bold text-sm text-amber-800 mb-1">2. Karya Sosial</div>
-                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                    Membuka panti asuhan dan asrama bagi anak-anak yang membutuhkan pendampingan dan cinta kasih.
-                  </p>
+
+                <div class="group bg-white p-5 rounded-2xl border border-amber-100/90 shadow-xs hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2.5">
+                      <span class="w-10 h-10 rounded-2xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
+                        02
+                      </span>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-amber-700 transition-colors">
+                        Karya Sosial
+                      </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Membuka panti asuhan dan asrama bagi anak-anak yang membutuhkan pendampingan dan cinta kasih.
+                    </p>
+                  </div>
                 </div>
-                <div class="bg-white p-4 rounded-2xl border border-blue-100 shadow-xs">
-                  <div class="font-bold text-sm text-blue-800 mb-1">3. Kesehatan</div>
-                  <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                    Mengelola klinik dan rumah bersalin di berbagai daerah demi kesejahteraan sesama masyarakat.
-                  </p>
+
+                <div class="group bg-white p-5 rounded-2xl border border-blue-100/90 shadow-xs hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2.5">
+                      <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                        03
+                      </span>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-blue-700 transition-colors">
+                        Kesehatan
+                      </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                      Mengelola klinik dan rumah bersalin di berbagai daerah demi kesejahteraan sesama masyarakat.
+                    </p>
+                  </div>
                 </div>
               </div>
               <p class="text-xs text-slate-600 pt-2 leading-relaxed text-justify font-normal">
@@ -263,23 +294,61 @@ const MASKOT_ELEMENTS = [
                   Kebutuhan Badan Hukum Resmi Pasca-Kemerdekaan RI:
                 </div>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
-                    <div class="font-bold text-xs text-blue-700 uppercase mb-1">1. Regulasi Pemerintah</div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Memiliki legalitas formal di mata Kementerian Pendidikan &amp; Kebudayaan serta Kementerian Hukum dan HAM Republik Indonesia.
-                    </p>
+                  <div class="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-xs shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                          01
+                        </span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                          Legalitas
+                        </span>
+                      </div>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-blue-700 transition-colors mb-1">
+                        Regulasi Pemerintah
+                      </div>
+                      <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        Memiliki legalitas formal di mata Kementerian Pendidikan &amp; Kebudayaan serta Kementerian Hukum dan HAM Republik Indonesia.
+                      </p>
+                    </div>
                   </div>
-                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
-                    <div class="font-bold text-xs text-amber-700 uppercase mb-1">2. Manajemen Profesional</div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Memisahkan tata kelola internal kehidupan kebiaraan (religius) suster dengan tata kelola profesional lembaga pendidikan (karya apostolik).
-                    </p>
+
+                  <div class="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/60 flex items-center justify-center font-heading font-black text-xs shadow-2xs transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
+                          02
+                        </span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">
+                          Tata Kelola
+                        </span>
+                      </div>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-amber-700 transition-colors mb-1">
+                        Manajemen Profesional
+                      </div>
+                      <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        Memisahkan tata kelola internal kehidupan kebiaraan (religius) suster dengan tata kelola profesional lembaga pendidikan (karya apostolik).
+                      </p>
+                    </div>
                   </div>
-                  <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-xs">
-                    <div class="font-bold text-xs text-blue-700 uppercase mb-1">3. Akuntabilitas Publik</div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Menjamin kelangsungan operasional, jaminan sosial guru dan karyawan awam, serta pengelolaan dana bantuan dan akreditasi resmi.
-                    </p>
+
+                  <div class="group bg-white p-5 rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center justify-between gap-2 mb-3">
+                        <span class="w-9 h-9 rounded-xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-xs shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                          03
+                        </span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider px-2 py-0.5 rounded-full bg-blue-100 text-blue-800">
+                          Sosial
+                        </span>
+                      </div>
+                      <div class="font-heading font-bold text-sm text-slate-900 group-hover:text-blue-700 transition-colors mb-1">
+                        Akuntabilitas Publik
+                      </div>
+                      <p class="text-xs text-slate-600 leading-relaxed font-normal">
+                        Menjamin kelangsungan operasional, jaminan sosial guru dan karyawan awam, serta pengelolaan dana bantuan dan akreditasi resmi.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -342,24 +411,36 @@ const MASKOT_ELEMENTS = [
 
                 <!-- 2 Karakteristik Sekolah Dharmaputri -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2 text-left">
-                  <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                    <div class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-2">
-                      <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                      <span>Spiritualitas Terintegrasi</span>
+                  <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-3 mb-2.5">
+                        <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                          01
+                        </span>
+                        <div class="font-heading font-bold text-sm sm:text-base text-slate-900 group-hover:text-blue-700 transition-colors">
+                          Spiritualitas Terintegrasi
+                        </div>
+                      </div>
+                      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                        Mengusung nilai-nilai St. Julia Billiart dan Bunda Maria (ramah, berbelas kasih, inklusif, dan mengutamakan pembentukan moral/karakter).
+                      </p>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Mengusung nilai-nilai St. Julia Billiart dan Bunda Maria (ramah, berbelas kasih, inklusif, dan mengutamakan pembentukan moral/karakter).
-                    </p>
                   </div>
 
-                  <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                    <div class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-2">
-                      <span class="w-2 h-2 rounded-full bg-blue-600"></span>
-                      <span>Terbuka dan Inklusif</span>
+                  <div class="group p-6 rounded-2xl bg-slate-50 border border-slate-200/90 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                    <div>
+                      <div class="flex items-center gap-3 mb-2.5">
+                        <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                          02
+                        </span>
+                        <div class="font-heading font-bold text-sm sm:text-base text-slate-900 group-hover:text-blue-700 transition-colors">
+                          Terbuka dan Inklusif
+                        </div>
+                      </div>
+                      <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+                        Menerima peserta didik dari berbagai latar belakang suku, agama, dan tingkat sosio-ekonomi sebagai wujud nyata pelayanan sosial keagamaan.
+                      </p>
                     </div>
-                    <p class="text-xs text-slate-600 leading-relaxed font-normal">
-                      Menerima peserta didik dari berbagai latar belakang suku, agama, dan tingkat sosio-ekonomi sebagai wujud nyata pelayanan sosial keagamaan.
-                    </p>
                   </div>
                 </div>
               </div>
@@ -435,31 +516,43 @@ const MASKOT_ELEMENTS = [
 
               <!-- 3 Highlighted Key Pillars -->
               <div class="space-y-3 pt-2">
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
-                  <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">1</span>
+                <div class="group p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300">
+                  <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shrink-0 mt-0.5 shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                    01
+                  </span>
                   <div>
-                    <div class="font-heading font-bold text-slate-900 text-sm">Pendidikan Memerdekakan Martabat Manusia</div>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    <div class="font-heading font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-700 transition-colors">
+                      Pendidikan Memerdekakan Martabat Manusia
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Pendidikan adalah jalan menghadirkan harapan dan memulihkan martabat manusia, terutama menjangkau yang miskin, lemah, dan kurang beruntung.
                     </p>
                   </div>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
-                  <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">2</span>
+                <div class="group p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:bg-white hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300">
+                  <span class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-700 border border-amber-200/60 flex items-center justify-center font-heading font-black text-sm shrink-0 mt-0.5 shadow-2xs transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
+                    02
+                  </span>
                   <div>
-                    <div class="font-heading font-bold text-slate-900 text-sm">Bukan Sekadar Transfer Pengetahuan</div>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    <div class="font-heading font-bold text-slate-900 text-sm sm:text-base group-hover:text-amber-700 transition-colors">
+                      Bukan Sekadar Transfer Pengetahuan
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Pendidikan adalah karya kasih yang membantu setiap anak menemukan martabat, harapan, dan panggilan hidupnya karena setiap anak berharga dan dicintai Allah.
                     </p>
                   </div>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3.5">
-                  <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">3</span>
+                <div class="group p-4 sm:p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-4 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300">
+                  <span class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shrink-0 mt-0.5 shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                    03
+                  </span>
                   <div>
-                    <div class="font-heading font-bold text-slate-900 text-sm">Warisan yang Dihidupi di Indonesia</div>
-                    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+                    <div class="font-heading font-bold text-slate-900 text-sm sm:text-base group-hover:text-blue-700 transition-colors">
+                      Warisan yang Dihidupi di Indonesia
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Spiritualitas St. Julie diwariskan kepada para Suster SPM di Indonesia dan terus dihidupi oleh Perkumpulan Dharmaputri dalam membentuk generasi yang beriman, berkarakter, dan berbelarasa.
                     </p>
                   </div>
@@ -511,20 +604,34 @@ const MASKOT_ELEMENTS = [
 
               <!-- Milestone Cards -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div class="p-4 rounded-2xl bg-blue-50/60 border border-blue-100">
-                  <div class="text-xs font-bold text-blue-800 uppercase">Mewariskan Spiritualitas</div>
-                  <div class="text-sm font-bold text-slate-900 mt-1">Jalinan Namur &amp; Amersfoort</div>
-                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Menghubungkan pembinaan suster dengan karisma St. Julie: pendidikan kasih, iman, dan penghormatan martabat pribadi manusia.
-                  </p>
+                <div class="group p-5 rounded-2xl bg-blue-50/60 border border-blue-100 hover:bg-white hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2.5">
+                      <span class="w-9 h-9 rounded-xl bg-blue-100 text-blue-800 border border-blue-200/60 flex items-center justify-center font-heading font-black text-xs shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
+                        01
+                      </span>
+                      <div class="text-xs font-bold text-blue-800 uppercase tracking-wider">Mewariskan Spiritualitas</div>
+                    </div>
+                    <div class="text-sm font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Jalinan Namur &amp; Amersfoort</div>
+                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Menghubungkan pembinaan suster dengan karisma St. Julie: pendidikan kasih, iman, dan penghormatan martabat pribadi manusia.
+                    </p>
+                  </div>
                 </div>
 
-                <div class="p-4 rounded-2xl bg-amber-50/60 border border-amber-100">
-                  <div class="text-xs font-bold text-amber-800 uppercase">Menjangkau Indonesia</div>
-                  <div class="text-sm font-bold text-slate-900 mt-1">Misi Abadi Sejak 1926</div>
-                  <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                    Karya Pater Wolff berkembang melampaui benua hingga tiba di Indonesia pada tahun 1926 melalui pelayanan Perkumpulan Dharmaputri.
-                  </p>
+                <div class="group p-5 rounded-2xl bg-amber-50/60 border border-amber-100 hover:bg-white hover:shadow-xl hover:border-amber-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center gap-3 mb-2.5">
+                      <span class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 border border-amber-200/60 flex items-center justify-center font-heading font-black text-xs shadow-2xs transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
+                        02
+                      </span>
+                      <div class="text-xs font-bold text-amber-800 uppercase tracking-wider">Menjangkau Indonesia</div>
+                    </div>
+                    <div class="text-sm font-bold text-slate-900 group-hover:text-amber-700 transition-colors">Misi Abadi Sejak 1926</div>
+                    <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                      Karya Pater Wolff berkembang melampaui benua hingga tiba di Indonesia pada tahun 1926 melalui pelayanan Perkumpulan Dharmaputri.
+                    </p>
+                  </div>
                 </div>
               </div>
 
@@ -607,17 +714,17 @@ const MASKOT_ELEMENTS = [
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {LOGO_ELEMENTS.map((el, idx) => (
-                <div class={`rounded-3xl p-6 border ${el.color} shadow-xs hover:shadow-md transition-all flex flex-col justify-between`}>
+                <div class="group rounded-3xl p-6 border border-blue-200/80 bg-white shadow-xs hover:shadow-xl hover:border-blue-400 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
                   <div>
-                    <div class="flex items-center justify-between gap-2 mb-3">
-                      <span class="w-8 h-8 rounded-xl bg-white/90 shadow-xs border border-slate-200/80 flex items-center justify-center font-heading font-black text-xs text-slate-700">
+                    <div class="flex items-center justify-between gap-2 mb-4">
+                      <span class="w-10 h-10 rounded-2xl bg-blue-50 text-blue-700 border border-blue-200/60 flex items-center justify-center font-heading font-black text-sm shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
                         0{idx + 1}
                       </span>
-                      <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-white/80 border border-slate-200">
+                      <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-slate-100 text-slate-700 border border-slate-200 group-hover:bg-blue-100 group-hover:text-blue-800 transition-colors">
                         {el.badge}
                       </span>
                     </div>
-                    <h4 class="font-heading font-black text-base text-slate-900 mb-2">
+                    <h4 class="font-heading font-black text-base text-slate-900 mb-2 group-hover:text-blue-700 transition-colors">
                       {el.title}
                     </h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
@@ -698,19 +805,19 @@ const MASKOT_ELEMENTS = [
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {MASKOT_ELEMENTS.map((elem, idx) => (
-                <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-md hover:bg-white transition-all flex flex-col justify-between">
+                <div class="group bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-amber-400 hover:bg-white hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
                   <div>
-                    <div class="w-10 h-10 rounded-2xl bg-amber-100 text-amber-900 flex items-center justify-center font-heading font-black text-sm mb-4 shadow-xs">
+                    <div class="w-11 h-11 rounded-2xl bg-amber-100 text-amber-900 border border-amber-200/60 flex items-center justify-center font-heading font-black text-sm mb-4 shadow-2xs transition-colors duration-300 group-hover:bg-amber-500 group-hover:text-white">
                       0{idx + 1}
                     </div>
-                    <h4 class="font-heading font-black text-base text-slate-900 mb-2">
+                    <h4 class="font-heading font-black text-base text-slate-900 mb-2 group-hover:text-amber-700 transition-colors">
                       {elem.label}
                     </h4>
                     <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
                       {elem.desc}
                     </p>
                   </div>
-                  <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                  <div class="pt-4 mt-4 border-t border-slate-200/60 text-[11px] font-bold uppercase tracking-wider text-slate-400 group-hover:text-amber-600 transition-colors">
                     Karakter Si Karu
                   </div>
                 </div>

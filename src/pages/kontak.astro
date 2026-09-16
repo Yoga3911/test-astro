@@ -91,8 +91,8 @@ const kontakInfo = [
 
             <div class="space-y-4 pt-2">
               {kontakInfo.map((info) => (
-                <div class="p-4 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-start gap-4">
-                  <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 mt-0.5">
+                <div class="group p-4 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-blue-300 hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex items-start gap-4">
+                  <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 shadow-2xs transition-colors duration-300 group-hover:bg-blue-600 group-hover:text-white">
                     {info.type === 'location' && (
                       <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />

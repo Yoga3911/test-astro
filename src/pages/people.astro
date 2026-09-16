@@ -115,13 +115,13 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {dewanGuru.map((guru) => (
-            <div class="bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div class="group bg-white rounded-3xl overflow-hidden border border-slate-200/90 shadow-sm hover:shadow-xl hover:border-blue-300 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
               <div>
                 <div class="aspect-4/3 overflow-hidden bg-slate-100 relative">
                   <img
                     src={guru.photo}
                     alt={guru.name}
-                    class="w-full h-full object-cover"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
                   <div class="absolute bottom-3 left-3 px-3 py-1 rounded-full bg-blue-700/90 backdrop-blur-md text-white text-[11px] font-bold">
@@ -130,12 +130,12 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
                 </div>
 
                 <div class="p-6">
-                  <h3 class="font-heading font-bold text-lg text-slate-900 leading-snug">
-                    {guru.name}
-                  </h3>
-                  <p class="text-xs text-blue-600 font-semibold mt-1">
+                  <p class="text-xs text-blue-600 font-semibold mb-2">
                     {guru.role}
                   </p>
+                  <h3 class="font-heading font-bold text-lg text-slate-900 leading-snug group-hover:text-blue-700 transition-colors">
+                    {guru.name}
+                  </h3>
                   <p class="text-xs text-slate-500 mt-3 font-normal">
                     <span class="font-semibold text-slate-600">Pendidikan:</span> {guru.education}
                   </p>
@@ -168,12 +168,12 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {karyawan.map((staf) => (
-            <div class="bg-slate-50 rounded-3xl p-6 border border-slate-200 flex items-center gap-6 shadow-xs hover:shadow-md transition-shadow">
+            <div class="group bg-slate-50 rounded-3xl p-6 border border-slate-200 flex items-center gap-6 shadow-xs hover:shadow-xl hover:border-amber-300 hover:bg-white hover:-translate-y-1.5 transition-all duration-300">
               <div class="w-24 h-24 rounded-2xl overflow-hidden shrink-0 bg-slate-200 border-2 border-white shadow-md">
                 <img
                   src={staf.photo}
                   alt={staf.name}
-                  class="w-full h-full object-cover"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
               </div>
@@ -181,7 +181,7 @@ const karyawan = STAFF_DATA.filter((s) => s.category === 'karyawan');
                 <span class="inline-block px-2.5 py-0.5 rounded-md bg-amber-100 text-amber-800 text-[11px] font-bold uppercase">
                   {staf.subCategory}
                 </span>
-                <h3 class="font-heading font-bold text-base text-slate-900">
+                <h3 class="font-heading font-bold text-base text-slate-900 group-hover:text-amber-700 transition-colors">
                   {staf.name}
                 </h3>
                 <p class="text-xs text-slate-600 font-medium">
