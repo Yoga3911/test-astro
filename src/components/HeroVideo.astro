@@ -114,7 +114,7 @@ import { SITE_CONFIG } from "@/utils/config";
   >
     <!-- Identity Badge with Blue Ping Animation -->
     <div
-      class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner animate-fadeIn"
+      class="animate-hero-badge inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-extrabold tracking-wide uppercase mb-6 shadow-inner"
     >
       <span class="relative flex h-2.5 w-2.5">
         <span
@@ -129,17 +129,17 @@ import { SITE_CONFIG } from "@/utils/config";
     <!-- Grand Headline -->
     <h1
       id="hero-headline"
-      class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-heading font-black tracking-tight leading-[1.1] text-white mb-2 drop-shadow-lg"
+      class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-heading font-black tracking-tight leading-[1.1] text-white mb-2 drop-shadow-lg"
     >
-      <span id="welcome-to-text">WELCOME TO</span>
+      <span id="welcome-to-text" class="animate-hero-welcome inline-block">WELCOME TO</span>
       <br />
       <span
-        class="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300 whitespace-nowrap"
+        class="animate-hero-school inline-block text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-sky-300 to-blue-300 whitespace-nowrap"
       >
         SDK MARIA FATIMA
       </span><br />
       <span
-        class="text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-300"
+        class="animate-hero-city inline-block text-transparent bg-clip-text bg-gradient-to-r from-sky-300 to-blue-300"
       >
         JEMBER
       </span>
@@ -148,13 +148,14 @@ import { SITE_CONFIG } from "@/utils/config";
     <!-- Tagline matching width of WELCOME TO -->
     <p
       id="hero-tagline"
-      class="text-white tracking-wider mb-10 drop-shadow-lg font-script font-normal transform -rotate-1 whitespace-nowrap"
+      class="animate-hero-tagline text-white tracking-wider mb-10 drop-shadow-lg font-script font-normal transform -rotate-1 whitespace-nowrap"
       style="font-size: 2rem;"
     >
       Living values, creating digitally
     </p>
 
-    <!-- Quick Action Button: Transparan, Wording Putih, Outline Putih/Kuning -->
+    {/* Quick Action Button (Hidden sementara) */}
+    {/*
     <div class="flex items-center">
       <a
         href="/admission"
@@ -175,6 +176,7 @@ import { SITE_CONFIG } from "@/utils/config";
         </svg>
       </a>
     </div>
+    */}
   </div>
 
   <script>
@@ -349,12 +351,36 @@ import { SITE_CONFIG } from "@/utils/config";
       });
     }
 
+    function restartHeroAnimations() {
+      const animEls = document.querySelectorAll<HTMLElement>(
+        '.animate-hero-badge, .animate-hero-welcome, .animate-hero-school, .animate-hero-city, .animate-hero-tagline'
+      );
+      animEls.forEach((el) => {
+        el.style.animation = 'none';
+        el.style.opacity = '0';
+        void el.offsetWidth; // Trigger reflow to restart animation
+        el.style.animation = '';
+        el.style.opacity = '';
+      });
+    }
+
     function initAll() {
       initHeroVideo();
       initFullscreen();
       fitTaglineWidth();
       setTimeout(fitTaglineWidth, 600);
+
+      // Only run immediate animation if splash screen is NOT active
+      if (!document.documentElement.classList.contains('show-splash')) {
+        restartHeroAnimations();
+      }
     }
+
+    // Trigger animations immediately when splash screen reveals page content
+    document.addEventListener('splash:reveal', () => {
+      restartHeroAnimations();
+      setTimeout(fitTaglineWidth, 200);
+    });
 
     if (document.readyState === "loading") {
       document.addEventListener("DOMContentLoaded", initAll);
@@ -363,6 +389,9 @@ import { SITE_CONFIG } from "@/utils/config";
     }
     document.addEventListener("astro:page-load", () => {
       _heroInitDone = false;
+      if (!document.documentElement.classList.contains('show-splash')) {
+        restartHeroAnimations();
+      }
       initAll();
     });
 
@@ -376,4 +405,70 @@ import { SITE_CONFIG } from "@/utils/config";
       { passive: true },
     );
   </script>
+
+  <style>
+    /* Hide and pause hero headline while splash screen is displaying */
+    :global(html.show-splash) .animate-hero-badge,
+    :global(html.show-splash) .animate-hero-welcome,
+    :global(html.show-splash) .animate-hero-school,
+    :global(html.show-splash) .animate-hero-city,
+    :global(html.show-splash) .animate-hero-tagline {
+      animation: none !important;
+      opacity: 0 !important;
+    }
+
+    @keyframes heroEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes heroTaglineEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(22px) rotate(-1deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotate(-1deg);
+      }
+    }
+
+    .animate-hero-badge {
+      animation: heroEntrance 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+    }
+
+    .animate-hero-welcome {
+      animation: heroEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+    }
+
+    .animate-hero-school {
+      animation: heroEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.55s both;
+    }
+
+    .animate-hero-city {
+      animation: heroEntrance 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.75s both;
+    }
+
+    .animate-hero-tagline {
+      animation: heroTaglineEntrance 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.95s both;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .animate-hero-badge,
+      .animate-hero-welcome,
+      .animate-hero-school,
+      .animate-hero-city,
+      .animate-hero-tagline {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
 </section>

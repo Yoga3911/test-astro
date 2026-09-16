@@ -40,7 +40,7 @@
   });
 </script>
 
-<div class="my-12 max-w-5xl mx-auto">
+<div class="my-12 w-full">
   <!-- Carousel Box with Navigation -->
   <div class="relative bg-gradient-to-br from-blue-900 via-indigo-950 to-slate-900 text-white rounded-3xl p-8 sm:p-14 border border-blue-800/80 shadow-2xl overflow-hidden text-center">
     
@@ -96,16 +96,16 @@
           </div>
 
           <blockquote class="bg-white/5 border-y border-amber-400/30 py-4 px-6 rounded-2xl max-w-2xl mx-auto">
-            <p class="text-base sm:text-lg text-slate-200 italic font-medium leading-relaxed">
+            <p class="text-base sm:text-lg text-white italic font-medium leading-relaxed">
               "Betapa baiknya Allah yang Mahabaik itu!"
             </p>
-            <footer class="text-xs text-amber-300/80 font-bold tracking-wider mt-1 uppercase">
+            <footer class="text-xs text-amber-300 font-bold tracking-wider mt-1 uppercase">
               (Ah! Qu'il est bon le Bon Dieu! — Warisan St. Julia Billiart)
             </footer>
           </blockquote>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
-            <strong class="text-white">Makna:</strong> Meyakini bahwa Allah senantiasa hadir dan membimbing dalam segala situasi hidup, baik saat bersukacita maupun di tengah krisis dan tantangan zaman.
+          <p class="text-white text-sm sm:text-base leading-relaxed max-w-2xl mx-auto font-normal">
+            <strong class="text-amber-300">Makna:</strong> Meyakini bahwa Allah senantiasa hadir dan membimbing dalam segala situasi hidup, baik saat bersukacita maupun di tengah krisis dan tantangan zaman.
           </p>
         </div>
       {/if}
@@ -124,15 +124,15 @@
             (Ecce Ancilla Domini — Aku Ini Hamba Tuhan)
           </div>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            Sebagai Kongregasi yang bernaung di bawah nama <strong>Santa Perawan Maria</strong>, para suster meneladani Maria dalam dua sikap batin yang mendalam:
+          <p class="text-white text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            Sebagai Kongregasi yang bernaung di bawah nama <strong class="text-amber-300">Santa Perawan Maria</strong>, para suster meneladani Maria dalam dua sikap batin yang mendalam:
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-center pt-2">
             <div class="bg-white/5 p-5 rounded-2xl border border-white/10 flex flex-col items-center">
               <span class="w-8 h-8 rounded-full bg-blue-500/30 text-blue-300 font-black text-sm flex items-center justify-center mb-2">1</span>
               <div class="text-sm font-bold text-white mb-1">Ketulusan Berkata "Ya"</div>
-              <p class="text-xs text-slate-300 leading-relaxed font-normal">
+              <p class="text-xs text-white leading-relaxed font-normal">
                 Ketulusan hati mengatakan <em>"Ya" (Fiat)</em> seutuhnya pada kehendak Allah dalam segala rancangan-Nya.
               </p>
             </div>
@@ -140,7 +140,7 @@
             <div class="bg-white/5 p-5 rounded-2xl border border-white/10 flex flex-col items-center">
               <span class="w-8 h-8 rounded-full bg-blue-500/30 text-blue-300 font-black text-sm flex items-center justify-center mb-2">2</span>
               <div class="text-sm font-bold text-white mb-1">Kerendahan Hati &amp; Keterbukaan</div>
-              <p class="text-xs text-slate-300 leading-relaxed font-normal">
+              <p class="text-xs text-white leading-relaxed font-normal">
                 Kerendahan hati, kelembutan, dan semangat keterbukaan untuk melayani sesama tanpa membeda-bedakan.
               </p>
             </div>
@@ -162,21 +162,21 @@
             (Keberpihakan pada yang Lemah &amp; Sukacita Injili)
           </div>
 
-          <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-            Sesuai amanat pendiri <strong>(Pater Mathias Wolff, SJ)</strong>, karya SPM difokuskan pada pelayanan belas kasih <em>(compassion)</em>:
+          <p class="text-white text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+            Sesuai amanat pendiri <strong class="text-amber-300">(Pater Mathias Wolff, SJ)</strong>, karya SPM difokuskan pada pelayanan belas kasih <em>(compassion)</em>:
           </p>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto text-center pt-2">
             <div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex flex-col items-center">
               <div class="text-sm font-bold text-white mb-1">Pendidikan Karakter &amp; Inklusif</div>
-              <p class="text-xs text-slate-300 leading-relaxed font-normal">
+              <p class="text-xs text-white leading-relaxed font-normal">
                 Memanusiakan manusia melalui pendidikan bermutu, terutama bagi yang miskin, tersingkir, dan terlupakan, serta responsif terhadap kebutuhan sosial.
               </p>
             </div>
 
             <div class="bg-white/5 p-4 rounded-2xl border border-white/10 flex flex-col items-center">
               <div class="text-sm font-bold text-white mb-1">Persaudaraan yang Hangat &amp; Gembira</div>
-              <p class="text-xs text-slate-300 leading-relaxed font-normal">
+              <p class="text-xs text-white leading-relaxed font-normal">
                 Pendekatan pengajaran dijiwai suasana kekeluargaan <em>(fraternitas)</em>, kehangatan seorang ibu, serta sukacita injili yang memikat.
               </p>
             </div>

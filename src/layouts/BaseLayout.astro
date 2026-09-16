@@ -11,6 +11,7 @@
 
 import { SITE_CONFIG } from '@/utils/config';
 import FloatingWA from '@/components/FloatingWA.svelte';
+import SplashScreen from '@/components/SplashScreen.astro';
 import '@/styles/global.css';
 
 interface Props {
@@ -44,6 +45,7 @@ const {
 const pageTitle    = title ? `${title} | ${SITE_CONFIG.shortName}` : `${SITE_CONFIG.name} — Cerdas, Berkarakter & Berakar Kasih`;
 const canonicalURL = new URL(Astro.url.pathname, SITE_CONFIG.url).href;
 const ogImageURL   = new URL(image, SITE_CONFIG.url).href;
+const isHomePage   = Astro.url.pathname === '/' || Astro.url.pathname === '';
 
 // Breadcrumb Schema calculation
 const pathSegments = Astro.url.pathname.split('/').filter(Boolean);
@@ -205,6 +207,9 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   )}
 </head>
 <body class="bg-white text-slate-700 min-h-screen flex flex-col justify-between antialiased">
+  <!-- First Visit Splash Screen (Hanya di Beranda) -->
+  {isHomePage && <SplashScreen />}
+
   <!-- Accessibility: Skip to main content link -->
   <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-blue-700 focus:text-white focus:rounded-lg">
     Lewati ke konten utama

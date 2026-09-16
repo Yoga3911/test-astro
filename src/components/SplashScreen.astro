@@ -1,0 +1,247 @@
+---
+/**
+ * SplashScreen.astro
+ *
+ * Elegantly introduces SDK Maria Fatima Jember when the user first opens the website.
+ * Features:
+ * - Official logo (/logo/logo-sdk.png) with luminous ambient glow
+ * - Brand typography & tagline
+ * - Sleek gradient progress shimmer
+ * - Cinematic cross-dissolve transition into the main content
+ * - Appears on initial website opening and reload, but stays silent during internal menu navigation
+ */
+---
+
+<!-- Critical inline script to determine whether to display splash screen -->
+<script is:inline>
+  (function () {
+    try {
+      // 1. Clean up any legacy persistent cookies
+      document.cookie = 'sdk_splash_shown=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; SameSite=Lax';
+
+      // 2. Check if this is a reload (refreshing page)
+      var isReload = false;
+      try {
+        var perfNav = window.performance && window.performance.getEntriesByType && window.performance.getEntriesByType('navigation')[0];
+        if (perfNav && perfNav.type === 'reload') {
+          isReload = true;
+        } else if (window.performance && window.performance.navigation && window.performance.navigation.type === 1) {
+          isReload = true;
+        }
+      } catch (e) {}
+
+      // If reload, reset internal nav flag so developer/visitor sees the splash on refresh
+      if (isReload) {
+        try {
+          sessionStorage.removeItem('sdk_from_internal_nav');
+        } catch (e) {}
+      }
+
+      // 3. Check if user is navigating from an internal page (ganti menu)
+      var isInternalNav = false;
+      try {
+        if (sessionStorage.getItem('sdk_from_internal_nav') === 'true' && !isReload) {
+          isInternalNav = true;
+        }
+      } catch (e) {}
+
+      if (isInternalNav) {
+        // Navigated from another menu: do not show splash screen
+        document.documentElement.classList.remove('show-splash');
+      } else {
+        // Initial entry or reload: SHOW splash screen
+        document.documentElement.classList.add('show-splash');
+      }
+    } catch (e) {
+      document.documentElement.classList.add('show-splash');
+    }
+  })();
+</script>
+
+<div
+  id="splash-screen"
+  aria-hidden="true"
+  class="splash-overlay fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-slate-950 text-white select-none overflow-hidden"
+>
+  <!-- Ambient cinematic glow accents -->
+  <div class="absolute w-96 h-96 bg-blue-600/25 rounded-full blur-3xl pointer-events-none -top-12 -left-12"></div>
+  <div class="absolute w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none -bottom-12 -right-12"></div>
+  <div class="absolute w-72 h-72 bg-amber-400/15 rounded-full blur-2xl pointer-events-none"></div>
+
+  <!-- Splash Content Container -->
+  <div class="splash-content relative z-10 flex flex-col items-center text-center px-6 max-w-md">
+    <!-- Logo with luminous ring & gentle pulse -->
+    <div class="relative mb-6 sm:mb-8">
+      <div class="absolute -inset-4 sm:-inset-5 bg-gradient-to-tr from-blue-600 via-sky-400 to-amber-400 rounded-3xl blur-lg opacity-60 animate-pulse"></div>
+      <div class="relative w-36 h-36 sm:w-44 sm:h-44 rounded-3xl bg-white p-4 sm:p-5 shadow-2xl flex items-center justify-center border border-white/50 splash-logo-container ring-1 ring-black/5">
+        <img
+          src="/logo/logo-sdk.png"
+          alt="SDK Maria Fatima Jember"
+          class="w-full h-full object-contain select-none"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    <!-- School Identity & Tagline -->
+    <div class="space-y-2 splash-text">
+      <h2 class="font-heading font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-wide leading-tight">
+        SDK MARIA FATIMA
+      </h2>
+      <p class="text-xs sm:text-sm font-bold text-amber-400 tracking-widest uppercase">
+        Kabupaten Jember
+      </p>
+      <p class="text-xs sm:text-sm text-blue-200/90 font-normal tracking-wider pt-1 font-sans">
+        Living values, creating digitally
+      </p>
+    </div>
+
+    <!-- Elegant Progress Indicator -->
+    <div class="w-56 sm:w-64 h-1.5 bg-white/10 rounded-full mt-8 overflow-hidden relative border border-white/10">
+      <div class="splash-progress-bar h-full bg-gradient-to-r from-blue-500 via-sky-400 to-amber-400 rounded-full"></div>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var splash = document.getElementById('splash-screen');
+    if (!splash) return;
+
+    // If html does not have show-splash, remove immediately
+    if (!document.documentElement.classList.contains('show-splash')) {
+      splash.style.display = 'none';
+      splash.remove();
+      return;
+    }
+
+    // Mark that the splash screen has played for this session
+    try {
+      sessionStorage.setItem('sdk_from_internal_nav', 'true');
+    } catch (e) {}
+
+    var dismissed = false;
+    function dismissSplash() {
+      if (dismissed) return;
+      dismissed = true;
+      splash.classList.add('splash-fading');
+      document.body.classList.add('content-revealing');
+
+      // Remove show-splash class and dispatch reveal event so hero video text animation triggers
+      document.documentElement.classList.remove('show-splash');
+      document.dispatchEvent(new CustomEvent('splash:reveal'));
+
+      setTimeout(function () {
+        splash.style.display = 'none';
+        splash.remove();
+        document.body.classList.remove('content-revealing');
+        document.dispatchEvent(new CustomEvent('splash:finished'));
+      }, 900);
+    }
+
+    // Allow clicking anywhere to skip/dismiss early
+    splash.addEventListener('click', dismissSplash);
+
+    // Auto dismiss after 3.8s
+    setTimeout(dismissSplash, 3800);
+  })();
+</script>
+
+<style>
+  /* Hidden unless html has show-splash */
+  .splash-overlay {
+    display: none !important;
+    opacity: 1;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s ease;
+  }
+
+  :global(html.show-splash) .splash-overlay {
+    display: flex !important;
+  }
+
+  /* Logo entrance animation */
+  .splash-logo-container {
+    animation: splashLogoIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Typography entrance animation */
+  .splash-text {
+    animation: splashTextIn 0.95s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+  }
+
+  /* Progress bar loading shimmer */
+  .splash-progress-bar {
+    width: 0%;
+    animation: splashProgress 3.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+
+  @keyframes splashLogoIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.75) translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
+  @keyframes splashTextIn {
+    0% {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes splashProgress {
+    0% {
+      width: 0%;
+    }
+    30% {
+      width: 45%;
+    }
+    70% {
+      width: 82%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+
+  /* Smooth exit transition to page content */
+  .splash-overlay.splash-fading {
+    opacity: 0;
+    transform: scale(1.08);
+    filter: blur(12px);
+    pointer-events: none;
+  }
+
+  :global(body.content-revealing) {
+    animation: pageContentReveal 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  @keyframes pageContentReveal {
+    0% {
+      opacity: 0.85;
+      transform: scale(0.99);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .splash-logo-container,
+    .splash-text,
+    .splash-progress-bar,
+    .splash-overlay {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+</style>

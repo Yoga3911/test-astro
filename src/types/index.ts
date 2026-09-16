@@ -51,7 +51,7 @@ export interface StatItem {
   value:  number;
   suffix: string;
   label:  string;
-  icon:   string;
+  icon?:  string;
 }
 
 // ─── Team / Staff Member ───────────────────────────────────────────────────
