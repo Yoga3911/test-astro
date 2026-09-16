@@ -13,7 +13,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import AudioPlayer from '@/components/AudioPlayer.svelte';
-import { SITE_CONFIG } from '@/utils/config';
 
 // ─── Data Video Items ───────────────────────────────────────────────────────
 const VIDEO_ITEMS = [
@@ -81,6 +80,7 @@ const PHOTO_GALLERY = [
 <BaseLayout
   title="Media — Mars, Jingle, Galeri & Video"
   description="Koleksi multimedia resmi SDK Maria Fatima Jember: Mars sekolah, Jingle UKB, video profil, dan galeri dokumentasi foto."
+  preloadImages={['/sdk/gedung-lapangan.jpg', '/sdk/totem-identitas-sekolah.jpg']}
 >
   <Header />
 
@@ -219,6 +219,7 @@ const PHOTO_GALLERY = [
                   alt={foto.title}
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   loading="lazy"
+                  decoding="async"
                 />
                 <span class="absolute top-3 left-3 px-3 py-1 rounded-full bg-blue-700/90 backdrop-blur-md text-white text-[10px] font-bold uppercase shadow-xs">
                   {foto.category}

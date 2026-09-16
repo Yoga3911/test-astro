@@ -28,6 +28,7 @@ import { SITE_CONFIG } from "@/utils/config";
 <BaseLayout
   title="Beranda"
   description="Website Resmi SDK Maria Fatima Jember — Sekolah Dasar Katolik unggulan di Kabupaten Jember. Membina tunas muda yang cerdas, berkarakter luhur, dan berakar kasih."
+  preloadImages={['/sdk/gedung-lapangan.jpg', '/logo/logo-sdk.png']}
 >
   <Header />
 
@@ -72,6 +73,7 @@ import { SITE_CONFIG } from "@/utils/config";
                   alt="Gedung Bersejarah & Lapangan SDK Maria Fatima Jember"
                   class="w-full h-auto object-cover"
                   loading="lazy"
+                  decoding="async"
                 />
               </div>
 

@@ -46,6 +46,7 @@ const kontakInfo = [
 <BaseLayout
   title="Kontak & Lokasi"
   description="Hubungi SDK Maria Fatima Jember — Layanan informasi pendaftaran SPMB, konsultasi orang tua, alamat, dan nomor kontak resmi."
+  preloadImages={['/sdk/totem-identitas-sekolah.jpg', '/sdk/gerbang-prestasi.jpg']}
 >
   <Header />
 
@@ -176,6 +177,7 @@ const kontakInfo = [
                 alt="Totem Papan Nama Resmi SDK Maria Fatima Jember di Tepi Jl. Kartini"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
+                decoding="async"
               />
               <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-xs font-bold shadow-xs">
                 Patokan Tepi Jalan Kartini
@@ -199,6 +201,7 @@ const kontakInfo = [
                 alt="Gerbang Masuk Utama dan Etalase Piala Prestasi SDK Maria Fatima"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 loading="lazy"
+                decoding="async"
               />
               <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-slate-900/85 backdrop-blur-md text-white text-xs font-bold shadow-xs">
                 Pintu Masuk &amp; Akses Tamu

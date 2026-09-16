@@ -8,9 +8,9 @@
 
 import ArticleLayout from '@/layouts/ArticleLayout.astro';
 import { getCollection, render } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = (async () => {
   const beritaEntries = await getCollection('berita');
   return beritaEntries
     .filter(entry => !entry.data.draft)
@@ -18,7 +18,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
       params: { id: entry.id },
       props:  { entry },
     }));
-};
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);

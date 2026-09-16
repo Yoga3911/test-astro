@@ -109,6 +109,23 @@
     display: block;
   }
 
+  /* Anti top-to-bottom scanline render: Smooth atomic image reveal */
+  img {
+    transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Held during network transfer and background decoding */
+  img.is-loading {
+    opacity: 0;
+    filter: blur(6px);
+  }
+
+  /* Revealed atomically once 100% decoded in memory */
+  img.is-loaded {
+    opacity: 1;
+    filter: blur(0);
+  }
+
   /* Scrollbar styling */
   ::-webkit-scrollbar        { width: 6px; }
   ::-webkit-scrollbar-track  { background: #f1f5f9; }

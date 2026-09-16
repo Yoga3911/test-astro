@@ -11,7 +11,7 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
-import { STAFF_DATA, SITE_CONFIG } from '@/utils/config';
+import { STAFF_DATA } from '@/utils/config';
 
 const kepalaSekolah = STAFF_DATA.find((s) => s.category === 'kepala_sekolah')!;
 const dewanGuru = STAFF_DATA.filter((s) => s.category === 'guru_kelas' || s.category === 'guru_bidang');

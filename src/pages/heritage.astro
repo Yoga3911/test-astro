@@ -17,7 +17,6 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import Header from '@/components/Header.astro';
 import Footer from '@/components/Footer.astro';
 import CarouselSpiritualitasSPM from '@/components/CarouselSpiritualitasSPM.svelte';
-import { SITE_CONFIG } from '@/utils/config';
 
 // ─── Data Bedah Logo Tota Christi Per Mariam ────────────────────────────────
 const LOGO_ELEMENTS = [
@@ -91,6 +90,7 @@ const MASKOT_ELEMENTS = [
 <BaseLayout
   title="Heritage & Spiritualitas SPM — Warisan Rohani & Sejarah"
   description="Sejarah Kongregasi Suster SPM di Indonesia, teladan Santa Julie Billiart, Pater Mathias Wolff, SJ, Perkumpulan Dharmaputri, Logo Tota Christi Per Mariam, dan Maskot Si Karu."
+  preloadImages={['/images/heritage/spm-sejarah.png', '/sdk/totem-identitas-sekolah.jpg', '/sdk/gerbang-semboyan-ukb.jpg']}
 >
   <Header />
 
@@ -163,6 +163,7 @@ const MASKOT_ELEMENTS = [
               alt="Enam Suster Perintis Pertama Kongregasi SPM di Indonesia"
               class="w-full h-auto object-cover"
               loading="lazy"
+              decoding="async"
             />
             <div class="p-3 bg-slate-900 text-white text-center text-xs font-semibold">
               Foto Bersejarah: Enam Suster Misionaris Perintis Kongregasi SPM Tiba di Indonesia (1926)
@@ -740,6 +741,7 @@ const MASKOT_ELEMENTS = [
                     alt="Totem Resmi Papan Nama SDK Maria Fatima dan Maskot Si Karu di Jl. Kartini"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                   <div class="absolute bottom-3 left-4 right-4">
@@ -764,6 +766,7 @@ const MASKOT_ELEMENTS = [
                     alt="Pintu Gerbang Kanopi dengan Running Text Semboyan Unggul, Kasih, Bermartabat"
                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
+                    decoding="async"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                   <div class="absolute bottom-3 left-4 right-4">

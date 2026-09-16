@@ -26,6 +26,7 @@ interface Props {
   modifiedTime?:   string;
   noindex?:        boolean;
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
+  preloadImages?:  string[];
 }
 
 const {
@@ -40,6 +41,7 @@ const {
   modifiedTime,
   noindex        = false,
   structuredData,
+  preloadImages  = [],
 } = Astro.props;
 
 const pageTitle    = title ? `${title} | ${SITE_CONFIG.shortName}` : `${SITE_CONFIG.name} — Cerdas, Berkarakter & Berakar Kasih`;
@@ -142,6 +144,11 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   <!-- Canonical URL -->
   <link rel="canonical" href={canonicalURL} />
 
+  <!-- Preload Critical Above-The-Fold Images -->
+  {(preloadImages ?? []).map((src) => (
+    <link rel="preload" as="image" href={src} fetchpriority="high" />
+  ))}
+
   <!-- Preload fonts to eliminate CLS and render-blocking -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -153,15 +160,7 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   <link
     rel="stylesheet"
     href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700;800;900&display=swap"
-    media="print"
-    onload="this.media='all'"
   />
-  <noscript>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Homemade+Apple&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,600&family=Space+Grotesk:wght@500;600;700;800;900&display=swap"
-    />
-  </noscript>
 
   <!-- OpenGraph / Facebook -->
   <meta property="og:type" content={type} />
@@ -193,17 +192,17 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
   <link rel="manifest" href="/site.webmanifest" />
 
   <!-- Structured Data: Organization & Website -->
-  <script type="application/ld+json" set:html={JSON.stringify(schoolSchema)} />
-  <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schoolSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(websiteSchema)} />
 
   <!-- Structured Data: Breadcrumb Schema (if subpage) -->
   {breadcrumbSchema && (
-    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
   )}
 
   <!-- Structured Data: Custom Page Specific Schemas (Articles, Events, etc.) -->
   {structuredData && (
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
   )}
 </head>
 <body class="bg-white text-slate-700 min-h-screen flex flex-col justify-between antialiased">
@@ -331,9 +330,74 @@ const breadcrumbSchema = pathSegments.length > 0 ? {
       counters.forEach((c) => observer.observe(c));
     }
 
+    function setupImagePreloaders() {
+      const images = document.querySelectorAll<HTMLImageElement>('img');
+      images.forEach((img) => {
+        // Enforce asynchronous decoding off main thread to prevent top-to-bottom scanline rendering
+        if (!img.getAttribute('decoding')) {
+          img.decoding = 'async';
+        }
+
+        // If image is already complete in memory (cached), reveal immediately without flicker
+        if (img.complete && img.naturalWidth > 0) {
+          img.classList.remove('is-loading');
+          img.classList.add('is-loaded');
+          return;
+        }
+
+        // Attach loading state while downloading
+        img.classList.add('is-loading');
+
+        const markLoaded = () => {
+          img.classList.remove('is-loading');
+          img.classList.add('is-loaded');
+        };
+
+        const tryDecode = () => {
+          if (typeof img.decode === 'function') {
+            img.decode().then(markLoaded).catch(markLoaded);
+          } else {
+            markLoaded();
+          }
+        };
+
+        if (img.complete) {
+          tryDecode();
+        } else {
+          img.addEventListener('load', tryDecode, { once: true });
+          img.addEventListener('error', markLoaded, { once: true });
+        }
+      });
+
+      // Background preloader for images approaching the viewport (400px advance margin)
+      if ('IntersectionObserver' in window) {
+        const preloadObserver = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const img = entry.target as HTMLImageElement;
+                if (img.src && !img.complete) {
+                  new Image().src = img.src;
+                }
+                preloadObserver.unobserve(img);
+              }
+            });
+          },
+          { rootMargin: '400px 0px 400px 0px' }
+        );
+
+        images.forEach((img) => {
+          if (!img.complete) {
+            preloadObserver.observe(img);
+          }
+        });
+      }
+    }
+
     function initGlobalScripts() {
       setupScrollReveal();
       initGlobalCounters();
+      setupImagePreloaders();
     }
 
     if (document.readyState === 'loading') {
