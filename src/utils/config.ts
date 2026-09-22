@@ -118,7 +118,9 @@ export const NAV_ITEMS: NavItem[] = [
 // ─── SPMB / Pendaftaran Online Form Configuration ───────────────────────────
 export const SPMB_FORM_CONFIG = {
   // Webhook URL Google Apps Script yang terhubung ke Google Spreadsheet
-  googleScriptUrl: (import.meta.env.PUBLIC_SPMB_GOOGLE_SCRIPT_URL as string) || '',
+  googleScriptUrl:
+    (import.meta.env.PUBLIC_SPMB_GOOGLE_SCRIPT_URL as string) ||
+    'https://script.google.com/macros/s/AKfycbyJppWD_At6WuTGQMT28AarHL1tM7Idpk60BRb0Md1LkqUfqzu2G775LDJhIbR857lF/exec',
   // Nomor WhatsApp Admin penerima konfirmasi pendaftaran
   whatsappAdmin: '6281358977450',
 };
