@@ -22,31 +22,26 @@ const KEUNGGULAN_LIST = [
     number: "01",
     title: "Aman untuk bertumbuh",
     desc: "Lingkungan sekolah ramah anak yang aman, nyaman, inklusif, dan bebas perundungan.",
-    icon: "shield",
   },
   {
     number: "02",
     title: "Cerdas dalam berpikir, baik dalam bersikap",
     desc: "Keseimbangan pembinaan nalar kritis akademik dan keluhuran budi pekerti Kristiani.",
-    icon: "brain-heart",
   },
   {
     number: "03",
     title: "Didampingi untuk tumbuh dan belajar",
     desc: "Para pendidik berdedikasi tinggi yang mendampingi setiap fase tumbuh kembang anak secara personal.",
-    icon: "mentor",
   },
   {
     number: "04",
     title: "Cakap digital, siap mencipta bersama Sokrates Empowering School",
     desc: "Integrasi kurikulum teknologi dan literasi digital modern terakreditasi bersama Sokrates.",
-    icon: "digital",
   },
   {
     number: "05",
     title: "90+ tahun menumbuhkan generasi",
     desc: "Warisan tradisi pendidikan Katolik SPM yang telah teruji menghasilkan generasi berprestasi lintas zaman.",
-    icon: "badge-90",
   },
 ];
 
@@ -175,8 +170,10 @@ const ppdbSchema = {
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <!-- Tanggal Buka -->
               <div class="p-5 rounded-3xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center gap-4 shadow-lg text-left">
-                <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl shrink-0 shadow-inner">
-                  📅
+                <div class="w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center shrink-0 shadow-inner">
+                  <svg class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
                 </div>
                 <div>
                   <div class="text-[11px] font-extrabold text-blue-200 uppercase tracking-wider">
@@ -210,7 +207,9 @@ const ppdbSchema = {
 
             <!-- Pengumuman Kuota Terbatas -->
             <div class="p-3.5 rounded-2xl bg-blue-900/60 border border-blue-700/60 flex items-center justify-center lg:justify-start gap-2.5 text-xs text-amber-300 font-bold shadow-sm">
-              <span class="text-base">📢</span>
+              <svg class="w-4 h-4 text-amber-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+              </svg>
               <span>Kuota terbatas, segera daftarkan putra-putri Anda.</span>
             </div>
 
@@ -343,17 +342,11 @@ const ppdbSchema = {
             <div class="group bg-slate-50 rounded-3xl p-6 border border-slate-200/90 shadow-xs hover:shadow-xl hover:border-blue-400 hover:bg-white hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
               <div class="space-y-4">
                 <div class="flex items-center justify-between">
-                  <span class="w-12 h-12 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-heading font-black text-base shadow-2xs group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                  <span class="w-11 h-11 rounded-2xl bg-blue-100 text-blue-700 flex items-center justify-center font-heading font-black text-sm shadow-2xs group-hover:bg-blue-600 group-hover:text-white transition-colors">
                     {item.number}
                   </span>
-                  
-                  <!-- Pillar Icons -->
-                  <span class="text-2xl">
-                    {item.icon === "shield" && "🛡️"}
-                    {item.icon === "brain-heart" && "🧠❤️"}
-                    {item.icon === "mentor" && "👩‍🏫"}
-                    {item.icon === "digital" && "💻"}
-                    {item.icon === "badge-90" && "⭐"}
+                  <span class="text-[11px] font-heading font-black uppercase tracking-wider text-slate-400 group-hover:text-blue-600 transition-colors">
+                    Pilar {item.number}
                   </span>
                 </div>
 
@@ -507,32 +500,52 @@ const ppdbSchema = {
               </div>
 
               <!-- Banner Kuota Terbatas dari Poster -->
-              <div class="p-3 rounded-xl bg-amber-400 text-slate-950 text-xs font-extrabold flex items-center gap-2 shadow-xs">
-                <span>📢</span>
+              <div class="p-3 rounded-xl bg-amber-400 text-slate-950 text-xs font-extrabold flex items-center gap-2.5 shadow-xs">
+                <svg class="w-4 h-4 text-slate-950 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                </svg>
                 <span>Kuota terbatas, segera daftarkan putra-putri anda.</span>
               </div>
 
               <!-- List Kontak -->
               <div class="space-y-3">
                 {INFORMASI_KONTAK.map((info) => (
-                  <div class="flex items-start gap-3 p-3 rounded-xl bg-white border border-blue-100 shadow-2xs">
-                    <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0 mt-0.5 text-sm">
-                      {info.icon === "whatsapp" && "💬"}
-                      {info.icon === "phone" && "📞"}
-                      {info.icon === "location" && "📍"}
-                      {info.icon === "clock" && "⏰"}
+                  <div class="flex items-center gap-3.5 p-3.5 rounded-2xl bg-white border border-blue-100/90 shadow-2xs hover:border-blue-300 transition-colors">
+                    <span class="w-10 h-10 rounded-xl bg-blue-50/80 border border-blue-100 flex items-center justify-center shrink-0">
+                      {info.icon === "whatsapp" && (
+                        <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                        </svg>
+                      )}
+                      {info.icon === "phone" && (
+                        <svg class="w-5 h-5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                        </svg>
+                      )}
+                      {info.icon === "location" && (
+                        <svg class="w-5 h-5 text-rose-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
+                      )}
+                      {info.icon === "clock" && (
+                        <svg class="w-5 h-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      )}
                     </span>
                     <div class="text-xs">
-                      <div class="font-bold text-slate-800">{info.nama}</div>
+                      <div class="font-bold text-slate-900 text-[13px]">{info.nama}</div>
                       <div class="text-[11px] text-slate-500 font-medium">{info.role}</div>
                       {info.href ? (
                         <a
                           href={info.href}
                           target={info.href.startsWith("http") ? "_blank" : undefined}
                           rel={info.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                          class="font-extrabold text-blue-700 hover:underline mt-0.5 inline-block"
+                          class="font-extrabold text-blue-700 hover:underline mt-0.5 inline-flex items-center gap-1"
                         >
-                          {info.telepon} →
+                          <span>{info.telepon}</span>
+                          <span class="text-xs">→</span>
                         </a>
                       ) : (
                         <div class="font-bold text-slate-800 mt-0.5">{info.telepon}</div>
