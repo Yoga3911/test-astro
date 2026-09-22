@@ -112,9 +112,16 @@ export const NAV_ITEMS: NavItem[] = [
   {
     label: 'Admission',
     href: '/admission',
-    hidden: true,
   },
 ];
+
+// ─── SPMB / Pendaftaran Online Form Configuration ───────────────────────────
+export const SPMB_FORM_CONFIG = {
+  // Webhook URL Google Apps Script yang terhubung ke Google Spreadsheet
+  googleScriptUrl: (import.meta.env.PUBLIC_SPMB_GOOGLE_SCRIPT_URL as string) || '',
+  // Nomor WhatsApp Admin penerima konfirmasi pendaftaran
+  whatsappAdmin: '6281358977450',
+};
 
 // ─── School Statistics ────────────────────────────────────────────────────
 export const STATS: StatItem[] = [

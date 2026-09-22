@@ -9,7 +9,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import KontakForm from "@/components/KontakForm.svelte";
+import AdmissionForm from "@/components/AdmissionForm.svelte";
 import { SITE_CONFIG } from "@/utils/config";
 
 // ─── Gelombang Pendaftaran ──────────────────────────────────────────────────
@@ -183,8 +183,6 @@ const ppdbSchema = {
                   </div>
                 </div>
 
-                {/* Tombol Daftar (Hidden sementara) */}
-                {/*
                 <div class="pt-6">
                   <a
                     href="#formulir-online"
@@ -194,7 +192,6 @@ const ppdbSchema = {
                     <span>→</span>
                   </a>
                 </div>
-                */}
               </div>
             ))
           }
@@ -332,8 +329,8 @@ const ppdbSchema = {
               </p>
             </div>
 
-            <!-- Interactivity Component -->
-            <KontakForm client:visible />
+            <!-- Interactivity Component (SPMB Admission Form) -->
+            <AdmissionForm client:load />
           </div>
         </div>
       </div>

@@ -113,8 +113,7 @@ function isActive(href: string): boolean {
 
       <!-- CTA & Mobile Menu Toggle -->
       <div class="flex items-center gap-3 shrink-0">
-        {/* SPMB CTA (Hidden sementara) */}
-        {/*
+        <!-- SPMB CTA Button -->
         <a
           href="/admission"
           class="hidden sm:inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 hover:from-blue-800 hover:to-blue-900 shadow-md shadow-blue-700/20 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all duration-200 whitespace-nowrap shrink-0"
@@ -122,7 +121,6 @@ function isActive(href: string): boolean {
           <span>SPMB Online</span>
           <span>→</span>
         </a>
-        */}
 
         <!-- Animated Mobile Hamburger Button -->
         <button
@@ -225,8 +223,7 @@ function isActive(href: string): boolean {
 
       <!-- Mobile CTA Buttons -->
       <div class="mobile-nav-item pt-4 border-t border-slate-200 flex flex-col gap-3" style={`--item-index: ${VISIBLE_NAV_ITEMS.length}`}>
-        {/* Mobile SPMB CTA (Hidden sementara) */}
-        {/*
+        <!-- Mobile SPMB CTA -->
         <a
           href="/admission"
           class="w-full flex items-center justify-center gap-2 py-3.5 rounded-2xl font-bold text-white bg-gradient-to-r from-blue-700 via-blue-600 to-blue-800 hover:from-blue-800 hover:to-blue-900 text-center shadow-lg shadow-blue-700/25 active:scale-95 transition-all"
@@ -234,7 +231,6 @@ function isActive(href: string): boolean {
           <span>Pendaftaran Siswa Baru (SPMB Online)</span>
           <span>→</span>
         </a>
-        */}
         <a
           href={`https://wa.me/${SITE_CONFIG.whatsapp}?text=Halo%20Admin%20SDK%20Maria%20Fatima%20Jember,%20saya%20ingin%20bertanya`}
           target="_blank"
