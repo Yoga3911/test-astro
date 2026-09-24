@@ -7,12 +7,6 @@
 /sejarah                 /heritage     301
 /sejarah/*               /heritage     301
 
-# Guru & Staf
-/guru                    /people       301
-/guru/*                  /people       301
-/staff                   /people       301
-/staff/*                 /people       301
-/tenaga-pendidik         /people       301
 
 # Profil & Visi Misi
 /profil                  /about-us     301
