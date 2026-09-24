@@ -23,7 +23,7 @@ export const SITE_CONFIG: SiteConfig = {
   shortName:   'SDK Maria Fatima',
   tagline:     'Living values, creating digitally',
   description: 'Sekolah Dasar Katolik Maria Fatima Jember di Kabupaten Jember — Membina tunas muda berprestasi, berintegritas, mandiri, dan berjiwa belas kasih.',
-  url:         'https://sdkmartimjember.sch.id',
+  url:         'https://sdkmarfatjember.sch.id',
   npsn:        '20523821',
   akreditasi:  'A (Unggul)',
   email:       'sdkmartimjember@gmail.com',

@@ -1,16 +1,16 @@
 {
-  "name": "SMA Negeri 1 Nusantara",
-  "short_name": "SMAN 1 Nusantara",
-  "description": "Sekolah Unggulan Berprestasi untuk Generasi Pemimpin Bangsa sejak 1975.",
+  "name": "SDK Maria Fatima Jember",
+  "short_name": "SDK Maria Fatima",
+  "description": "Sekolah Dasar Katolik Maria Fatima Jember — Membina tunas muda berprestasi, berintegritas, mandiri, dan berjiwa belas kasih.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1d4ed8",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/logo/logo-sdk.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

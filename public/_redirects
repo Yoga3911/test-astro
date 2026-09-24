@@ -1,0 +1,37 @@
+# Redirects for old website paths to new Astro structure
+# Format: /old-path /new-path 301
+
+# Sejarah Sekolah
+/sejarah-sekolah         /heritage     301
+/sejarah-sekolah/*       /heritage     301
+/sejarah                 /heritage     301
+/sejarah/*               /heritage     301
+
+# Guru & Staf
+/guru                    /people       301
+/guru/*                  /people       301
+/staff                   /people       301
+/staff/*                 /people       301
+/tenaga-pendidik         /people       301
+
+# Profil & Visi Misi
+/profil                  /about-us     301
+/profil-sekolah          /about-us     301
+/visi-misi               /about-us     301
+
+# Fasilitas & Ruang Kelas
+/fasilitas               /classroom    301
+/fasilitas/*             /classroom    301
+
+# Kontak
+/kontak-kami             /kontak       301
+/contact                 /kontak       301
+
+# Pendaftaran / SPMB
+/pendaftaran             /admission    301
+/pendaftaran/*           /admission    301
+/spmb                    /admission    301
+
+# Berita & Galeri
+/galeri                  /media        301
+/prestasi                /berita       301

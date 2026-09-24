@@ -5,5 +5,5 @@ Allow: /
 Disallow: /draft/
 Disallow: /api/
 
-Sitemap: https://sman1nusantara.sch.id/sitemap-index.xml
+Sitemap: https://sdkmarfatjember.sch.id/sitemap-index.xml
 

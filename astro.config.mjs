@@ -9,7 +9,7 @@ import sitemap from '@astrojs/sitemap';
  * Astro configuration optimized for 100% SEO & PageSpeed Performance
  */
 export default defineConfig({
-  site: 'https://sman1nusantara.sch.id',
+  site: 'https://sdkmarfatjember.sch.id',
   output: 'static',
   compressHTML: true,
 

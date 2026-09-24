@@ -1,6 +1,6 @@
 # 🏫 Website SDK Maria Fatima Jember
 
-Website resmi SMA Negeri 1 Nusantara — dibangun dengan Astro 7, Tailwind CSS v4, Svelte 5, dan di-deploy ke **Cloudflare Workers with Assets**.
+Website resmi SDK Maria Fatima Jember — dibangun dengan Astro 7, Tailwind CSS v4, Svelte 5, dan di-deploy ke **Cloudflare Workers with Assets**.
 
 ## 🛠️ Tech Stack
 
@@ -160,4 +160,4 @@ Formulir pendaftaran menggunakan **Google Apps Script** sebagai backend:
 
 ---
 
-*Dikembangkan untuk SMAN 1 Nusantara © 2026*
+*Dikembangkan untuk SDK Maria Fatima Jember © 2026*
